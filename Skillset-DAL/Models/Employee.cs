@@ -14,6 +14,7 @@ namespace Skillset_DAL.Models
         public DateTime DateOfJoining { get; set; }
         public int DesignationId { get; set; }
         public int QualificationId { get; set; }
+        public int RoleId { get; set; }
         public int Experience { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int ManagerCode { get; set; }
@@ -21,6 +22,8 @@ namespace Skillset_DAL.Models
         public string Email { get; set; }
         public double MobileNumber { get; set; }
         public string Gender { get; set; }
+        public bool Status { get; set; }
+
 
     }
 }

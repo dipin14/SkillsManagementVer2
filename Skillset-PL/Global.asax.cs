@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Skillset_BLL.Services;
+using Skillset_DAL.ContextClass;
 using Skillset_DAL.Repositories;
 using System.Reflection;
 using System.Web.Mvc;
@@ -20,7 +21,9 @@ namespace Skillset_PL
 
             builder.RegisterType<SkillService>().As<ISkillService>().InstancePerRequest();
             builder.RegisterType<SkillRepository>().As<ISkillRepository>().InstancePerRequest();
-            
+            builder.RegisterType<LoginService>().As<ILoginService>().InstancePerRequest();
+            builder.RegisterType<LoginRepository>().As<IloginRepository>().InstancePerRequest();
+            builder.RegisterType<SkillsetDbContext>();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
