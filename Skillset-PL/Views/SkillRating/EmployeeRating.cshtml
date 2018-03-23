@@ -6,8 +6,8 @@
 <script src="~/Scripts/SkillRating.js"></script>
 <h2>  Rate your skills</h2>
 
-<div class="row" style="margin-left:20px;">
-    <div class="col-lg-9">
+<div class="row" >
+  
         @foreach (var item in Model)
         {
 
@@ -46,18 +46,50 @@
 
 
 
-        } @{var data = @Html.Raw(Json.Encode(Model));
-        <input type="button" class="btn btn-danger"  onclick="SubmitRating(@data)" >
         }
-    </div>
+            <div class="collapse " id="viewdetails">
+                <div class="row">
 
-    <div class="col-lg-3">
-        <div style="color:red;">
-            <strong style="font-size:40px; margin-left:15px;">
-            </strong>
-        </div>
-    </div>
-</div>
+                    <div class="col-md-7" style="margin-left:20px;">
+
+
+                        <div>
+                
+                            <textarea class="form-control" rows="3" cols="50" id="TxtAra" placeholder="Enter your special skill here" name="TxtAra" required style="margin:10px;"></textarea>
+                            </div></div>
+                    <div class="col-md-4" style="color:grey;margin-top:35px;">
+                        <div onmouseout="CRateSelected(0)">
+                            <input id="Rating 0" hidden />
+                            <span class="starFade" id="Rate1 0" onclick="CRate(0, 1)" onmouseover="CRateOver(0,1)" onmouseout="CRateOut(0,1)"></span>
+                            <label for="Rate1 0" title="Amazing"></label>
+                            <span class="starFade" id="Rate2 0" onclick="CRate(0, 2)" onmouseover="CRateOver(0,2)" onmouseout="CRateOut(0,2)"></span>
+                            <span class="starFade" id="Rate3 0" onclick="CRate(0, 3)" onmouseover="CRateOver(0,3)" onmouseout="CRateOut(0,3)"></span>
+                            <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)"></span>
+                            <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)"></span>
+                        </div>
+                        </div>
+                    </div>
+
+
+
+                    </div><br />
+   
+                    <p><button class="btn btn-primary" data-toggle="collapse in" data-target="#viewdetails" >Special Skills &raquo;</button></p>
+    <p>
+      
+
+                    @{var data = @Html.Raw(Json.Encode(Model));
+                        <input type="button" class="btn btn-danger" onclick='SubmitRating(@data)'>
+                    }
+                </div>
+
+                <div class="col-lg-3">
+                    <div style="color:red;">
+                        <strong style="font-size:40px; margin-left:15px;">
+                        </strong>
+                    </div>
+                </div>
+
 
 
 

@@ -199,6 +199,7 @@
     <Content Include="Views\Skill\Delete.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
+    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
