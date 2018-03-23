@@ -165,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Global.asax.cs">
@@ -184,6 +185,7 @@
     <Content Include="Views\Skill\Create.cshtml" />
     <Content Include="Views\Skill\Edit.cshtml" />
     <Content Include="Views\Skill\Delete.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
