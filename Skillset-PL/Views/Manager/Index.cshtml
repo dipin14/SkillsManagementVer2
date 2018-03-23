@@ -5,11 +5,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<label class="control-label alert-success well-sm">Staff Details</label>
 <table class="table">
     <tr>
         <th>
@@ -18,39 +14,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateOfJoining)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Designation)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Qualification)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Experience)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ManagerCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MobileNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
+        
         <th></th>
     </tr>
 
@@ -62,43 +34,19 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfJoining)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.Designation)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Qualification)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Experience)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfBirth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ManagerCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.Email)
         </td>
+      
+       
         <td>
-            @Html.DisplayFor(modelItem => item.MobileNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Skills", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+         
+            @Html.ActionLink("Skills", "SkillRate", new {code=item.EmployeeCode}) 
         </td>
     </tr>
 }

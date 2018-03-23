@@ -67,7 +67,42 @@ namespace Skillset_PL.ViewModelExtensions
                 SkillId = skill.skillId,
                 SkillName = skill.SkillName,
                 SkillDescription = skill.SkillDescription
-            }).ToList(); ;
+            }).ToList(); 
         }
+
+        /// <summary>
+        /// Staff details dto to viewmodel.
+        /// </summary>
+        /// <param name="managerCode"></param>
+        /// <returns></returns>
+        public static IEnumerable<ViewModels.ReportingStaff> ToReportingStaffViewmodel(this IEnumerable<Common.DTO.ReportingStaff> staffList)
+        {
+
+          return  staffList.Select(staff =>new ViewModels.ReportingStaff
+          {
+                                    EmployeeCode = staff.EmployeeCode,
+                                    Name = staff.Name,
+                                    Email = staff.Email,
+                                    Designation = staff.Designation
+                                }).ToList();
+            
+        }
+
+        /// <summary>
+        /// skill ratings of an employee dto to viewmodel.
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
+        public static IEnumerable<ViewModels.StaffSkills> ToSkillRatingsViewmodel(this IEnumerable<Common.DTO.StaffSkills> skillList)
+        {
+         return skillList.Select(skill=>new ViewModels.StaffSkills
+         {
+                                          Skill = skill.Skill,
+                                          Rating = skill.Rating,
+                                          RatingDate = skill.RatingDate,
+                                          Note = skill.Note
+                                      }).ToList();
+        }
+
     }
 }

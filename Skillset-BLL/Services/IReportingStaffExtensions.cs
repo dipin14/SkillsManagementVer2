@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Common.DTO;
 
-namespace Common.Extensions
+namespace Skillset_BLL.Services
 {
     public interface IReportingStaffExtensions
     {

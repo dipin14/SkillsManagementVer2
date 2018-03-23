@@ -62,6 +62,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextClass\SkillsetDbContext.cs" />
+    <Compile Include="Migrations\201803230541398_InitialCreate.cs" />
+    <Compile Include="Migrations\201803230541398_InitialCreate.Designer.cs">
+      <DependentUpon>201803230541398_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803231029115_change manager code.cs" />
+    <Compile Include="Migrations\201803231029115_change manager code.Designer.cs">
+      <DependentUpon>201803231029115_change manager code.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Qualification.cs" />
@@ -86,6 +95,14 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803230541398_InitialCreate.resx">
+      <DependentUpon>201803230541398_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803231029115_change manager code.resx">
+      <DependentUpon>201803231029115_change manager code.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

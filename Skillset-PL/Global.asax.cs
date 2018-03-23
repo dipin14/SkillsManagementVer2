@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using Common.Extensions;
 using Skillset_BLL.Services;
 using Skillset_DAL.ContextClass;
 using Skillset_DAL.Repositories;

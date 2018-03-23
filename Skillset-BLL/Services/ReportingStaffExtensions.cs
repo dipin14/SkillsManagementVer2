@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Common.DTO;
 using Skillset_DAL.Repositories;
 
-namespace Common.Extensions
+namespace Skillset_BLL.Services
 {
     public class ReportingStaffExtensions : IReportingStaffExtensions
     {
@@ -22,7 +22,7 @@ namespace Common.Extensions
         /// </summary>
         /// <param name="managerCode"></param>
         /// <returns></returns>
-        public IEnumerable<DTO.ReportingStaff> GetEmployeeDetails(string managerCode)
+        public IEnumerable<Common.DTO.ReportingStaff> GetEmployeeDetails(string managerCode)
         {
             var designations = _reportingStaff.GetDesignationDetails(managerCode);
             var staff = _reportingStaff.GetEmployeeDetails(managerCode);
@@ -34,8 +34,16 @@ namespace Common.Extensions
                                     Name = s.Name,
                                     Email = s.Email,
                                     Designation = d.Name
-                                }).Cast<DTO.ReportingStaff>().ToList();
-            return staffDetails;
+                                }).ToList();
+            return staffDetails.Select(employee => new Common.DTO.ReportingStaff
+            {
+                EmployeeCode=employee.EmployeeCode,
+                Name=employee.Name,
+                Email=employee.Email,
+                Designation=employee.Designation
+
+            }).ToList();
+            
         }
         /// <summary>
         /// skill ratings of an employee combined.
@@ -50,13 +58,13 @@ namespace Common.Extensions
             var skillRatingDetails = (from sr in skillRatings
                                       join r in ratings on sr.RatingId equals r.Id
                                       join s in skills on sr.SkillId equals s.skillId
-                                      select new
+                                      select new StaffSkills
                                       {
                                           Skill = s.skillName,
                                           Rating = r.Value,
                                           RatingDate = sr.RatingDate,
                                           Note = sr.Note
-                                      }).Cast<StaffSkills>().ToList();
+                                      }).ToList();
             return skillRatingDetails;
         }
     }

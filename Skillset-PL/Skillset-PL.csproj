@@ -247,7 +247,6 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModelExtensions\ManagerExtension.cs" />
     <Compile Include="ViewModelExtensions\ViewModelExtension.cs" />
     <Compile Include="ViewModels\ReportingStaff.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
@@ -266,6 +265,7 @@
     <Content Include="Views\Shared\_ManagerLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
+    <Content Include="Views\Manager\SkillRate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -304,7 +304,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53067</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
