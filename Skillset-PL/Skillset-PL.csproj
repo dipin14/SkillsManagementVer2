@@ -205,11 +205,10 @@
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\zh-CN\Npgsql.resources.dll" />
-    <Content Include="Content\adminview.css" />
+    <Content Include="Content\bootstrap.min.css" />    <Content Include="Content\adminview.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Card.css" />
-    <Content Include="Content\Dashboard.css" />
+    <Content Include="Content\Card.css" />    <Content Include="Content\Dashboard.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -244,21 +243,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdministratorViewController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />    <Compile Include="Controllers\AdministratorViewController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\ManagerController.cs" />    <Compile Include="Controllers\SkillController.cs" />
-    <Compile Include="Global.asax.cs">
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\SkillController.cs" />    <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModelExtensions\ViewModelExtension.cs" />
-    <Compile Include="ViewModels\ReportingStaff.cs" />
-    <Compile Include="ViewModels\AdministratorEmployeeViewModel.cs" />
-    <Compile Include="ViewModels\AdministratorSkillViewModel.cs" />
-    <Compile Include="ViewModels\SkillViewModel.cs" />
+    <Compile Include="ViewModelExtensions\ViewModelExtension.cs" />    <Compile Include="ViewModels\ReportingStaff.cs" />    <Compile Include="ViewModels\AdministratorEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\AdministratorSkillViewModel.cs" />    <Compile Include="ViewModels\SkillViewModel.cs" />
     <Compile Include="ViewModels\StaffSkills.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -269,13 +265,10 @@
     <Content Include="Views\Skill\Create.cshtml" />
     <Content Include="Views\Skill\Edit.cshtml" />
     <Content Include="Views\Skill\Delete.cshtml" />
-    <Content Include="Views\AdministratorView\Index.cshtml" />
+    <Content Include="Views\Manager\SkillRate.cshtml" />    <Content Include="Views\AdministratorView\Index.cshtml" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\AdministratorView\Skills.cshtml" />
-    <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
-    <Content Include="Views\Manager\SkillRate.cshtml" />
-    <None Include="Web.Debug.config">
+    <Content Include="Views\AdministratorView\Skills.cshtml" />    <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
@@ -286,9 +279,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Login\" />
-    <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Views\Home\" />
-  </ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />    <Folder Include="Views\Home\" />
+    <Folder Include="Views\Login\" />  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A439D49B-8048-4918-AFFD-FCDF3DF9B710}</Project>

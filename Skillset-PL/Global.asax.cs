@@ -22,12 +22,10 @@ namespace Skillset_PL
             // manual registration of types;
             builder.RegisterType<SkillService>().As<ISkillService>().InstancePerRequest();
             builder.RegisterType<SkillRepository>().As<ISkillRepository>().InstancePerRequest();
-            builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
+            builder.RegisterType<SkillsetDbContext>();            builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
             builder.RegisterType<AdminEmployeeSkillRepository>().As<IAdminEmployeeSkillRepository>().InstancePerRequest();
-            builder.RegisterType<SkillsetDbContext>();
-            builder.RegisterType<ReportingStaffExtensions>().As<IReportingStaffExtensions>().InstancePerRequest();
-            builder.RegisterType<ReportingStaff>().As<IReportingStaff>().InstancePerRequest();            builder.RegisterControllers(Assembly.GetExecutingAssembly());
-            var container = builder.Build();
+
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());            var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
