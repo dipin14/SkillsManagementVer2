@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Skillset_DAL.Models
+namespace Common.DTO
 {
-    public class Role
+    public class AdminEmployeeDTO
     {
-        public int Id { get; set; }
+        public string EmployeeCode { get; set; }
         public string Name { get; set; }
+        public string Designation { get; set; }
     }
 }
