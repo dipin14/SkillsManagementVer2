@@ -69,8 +69,54 @@ namespace Skillset_PL.ViewModelExtensions
                 SkillDescription = skill.SkillDescription
             }).ToList(); ;
         }
+        /// <summary>
+        /// convert employee view model to dto
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        public static EmployeeDTO EmployeeViewModeltoDTO(this EmployeeViewModel employee)
+        {
+            EmployeeDTO dto = new EmployeeDTO();
+            dto.EmployeeCode = employee.EmployeeCode;
+            dto.Name = employee.Name;
+            dto.DateOfBirth = employee.DateOfBirth;
+            dto.DateOfJoining = employee.DateOfJoining;
+            dto.DesignationId = employee.DesignationId;
+            dto.RoleId = employee.RoleId;
+            dto.Experience = employee.Experience;
+            dto.QualificationId = employee.QualificationId;
+            dto.Address = employee.Address;
+            dto.MobileNumber = employee.MobileNumber;
+            dto.Email = employee.Email;
+            dto.Gender = employee.Gender;
+            dto.EmployeeId = employee.EmployeeId;
 
+            return dto;
+        }
+        /// <summary>
+        /// convert dto model to employee view model
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public static EmployeeViewModel EmployeeDTOtoViewModel(this EmployeeDTO dto)
+        {
+            EmployeeViewModel employee = new EmployeeViewModel();
+            employee.EmployeeCode = dto.EmployeeCode;
+            employee.Name = dto.Name;
+            employee.DateOfBirth = dto.DateOfBirth;
+            employee.DateOfJoining = dto.DateOfJoining;
+            employee.DesignationId = dto.DesignationId;
+            employee.RoleId = dto.RoleId;
+            employee.Experience = dto.Experience;
+            employee.QualificationId = dto.QualificationId;
+            employee.Address = dto.Address;
+            employee.MobileNumber = dto.MobileNumber;
+            employee.Email = dto.Email;
+            employee.Gender = dto.Gender;
+            employee.EmployeeId = dto.EmployeeId;
 
+            return employee;
+        }
 
     }
 }

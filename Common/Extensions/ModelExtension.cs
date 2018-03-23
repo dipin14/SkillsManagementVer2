@@ -48,7 +48,11 @@ namespace Common.Extensions
             };
         }
 
-
+        /// <summary>
+        /// Convert employee dto to datalayer model
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public static Employee EmployeeDTOtoModel(this EmployeeDTO dto)
         {
             Employee employee = new Employee();
@@ -57,6 +61,7 @@ namespace Common.Extensions
             employee.DateOfBirth = dto.DateOfBirth;
             employee.DateOfJoining = dto.DateOfJoining;
             employee.DesignationId = Convert.ToInt32(dto.DesignationId);
+            employee.RoleId = Convert.ToInt32(dto.RoleId);
             employee.Experience = dto.Experience;
             employee.QualificationId = Convert.ToInt32(dto.QualificationId);
             employee.Address = dto.Address;
@@ -66,6 +71,30 @@ namespace Common.Extensions
             employee.EmployeeId = Convert.ToInt32(dto.EmployeeId);
 
             return employee;
+        }
+        /// <summary>
+        /// Convert employee  datalayer model to dto
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public static EmployeeDTO EmployeeModeltoDTO(this Employee employee)
+        {
+            EmployeeDTO dto = new EmployeeDTO();
+            dto.EmployeeCode = employee.EmployeeCode;
+            dto.Name = employee.Name;
+            dto.DateOfBirth = employee.DateOfBirth;
+            dto.DateOfJoining = employee.DateOfJoining;
+            dto.DesignationId = employee.DesignationId.ToString();
+            dto.RoleId = employee.RoleId.ToString();
+            dto.Experience = employee.Experience;
+            dto.QualificationId = employee.QualificationId.ToString();
+            dto.Address = employee.Address;
+            dto.MobileNumber = employee.MobileNumber;
+            dto.Email = employee.Email;
+            dto.Gender = employee.Gender;
+            dto.EmployeeId = employee.EmployeeId.ToString();
+
+            return dto;
         }
     }
 }

@@ -38,7 +38,14 @@ namespace Skillset_BLL.Services
 
         public IEnumerable<EmployeeDTO> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            var list = _repository.GetAllEmployees();
+            var dtoList = new List<EmployeeDTO>();
+            foreach(Employee item in list)
+            {
+                dtoList.Add(item.EmployeeModeltoDTO());
+            }
+            return dtoList;
+            
         }
 
         public EmployeeDTO GetEmployeeDetailsById(int id)

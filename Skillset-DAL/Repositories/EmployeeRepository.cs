@@ -16,25 +16,26 @@ namespace Skillset_DAL.Repositories
             try
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                employeeList = context.Employees.ToList();
+                int status = CheckDuplicateEmployee(employeeList, employee);
+                if (status == 0)
                 {
-                    employeeList = context.Employees.ToList();
-                    int status = CheckDuplicateEmployee(employeeList, employee);
-                    if (status == 0)
-                    {
-                        context.Employees.Add(employee);
-                        context.SaveChanges();
-                        return 0;
-                    }
-                    else
-                    {
-                        return status;
-                    }
+                    employee.Status = true;
+                    context.Employees.Add(employee);
+                    context.SaveChanges();
+                    return 0;
                 }
+                else
+                {
+                    return status;
+                }
+            }
             }
             catch
             {
                 return -1;
-            }           
+            }
         }
 
         public int CheckDuplicateEmployee(List<Employee> employeeList, Employee newEmployee)
@@ -71,7 +72,10 @@ namespace Skillset_DAL.Repositories
 
         public IEnumerable<Employee> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                return context.Employees.ToList();
+            }
         }
 
         public List<Designation> GetDesignations()
@@ -93,7 +97,7 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                return context.Employees.ToList();
+                return context.Employees.Where(p => p.RoleId == 2).ToList();
             }
         }
 

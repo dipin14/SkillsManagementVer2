@@ -1,5 +1,7 @@
 ﻿using Common.DTO;
 using Skillset_BLL.Services;
+using Skillset_PL.ViewModelExtensions;
+using Skillset_PL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,7 +80,13 @@ namespace Skillset_PL.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            return View();
+            var dtoList = _services.GetAllEmployees();
+            var modelList = new List<EmployeeViewModel>();
+            foreach (EmployeeDTO item in dtoList)
+            {
+                modelList.Add(item.EmployeeDTOtoViewModel());
+            }
+            return View(modelList);
         }
         public ActionResult Create()
         {
@@ -90,22 +98,22 @@ namespace Skillset_PL.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeCode,Name,DateOfJoining,DesignationId,QualificationId,RoleId,Experience,DateOfBirth,EmployeeId,Address,Email,MobileNumber,Gender")] EmployeeDTO employee)
+        public ActionResult Create(EmployeeViewModel employee)
         {
             if (ModelState.IsValid)
             {
-                int status = _services.AddNewEmployee(employee);
+                int status = _services.AddNewEmployee(employee.EmployeeViewModeltoDTO());
                 if (status == 1)
                 {
-                    ModelState.AddModelError("Employee Code", "Employee code exists");
+                    ViewBag.message = "Employee code exists";
                 }
                 else if (status == 2)
                 {
-                    ModelState.AddModelError("Mobile Number", "Mobile number already exists");
+                    ViewBag.message = "Mobile number already exists";
                 }
                 else if (status == 3)
                 {
-                    ModelState.AddModelError("Email", "Email already exists");
+                    ViewBag.message = "Email already exists";
                 }
                 else if (status == -1)
                 {
@@ -115,6 +123,11 @@ namespace Skillset_PL.Controllers
                 else
                 {
                     ViewBag.message = "Successfully Added Employee";
+                    ViewData["Designations"] = GetDesignations();
+                    ViewData["Qualifications"] = GetQualifications();
+                    ViewData["Managers"] = GetManagers();
+                    ViewData["Roles"] = GetRoles();
+                    ModelState.Clear();
                     return View();
                 }
             }
@@ -124,6 +137,7 @@ namespace Skillset_PL.Controllers
             ViewData["Roles"] = GetRoles();
             return View(employee);
         }
+
 
     }
 }
