@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Skillset_PL.ViewModels.AdministratorEmployeeViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<link href="~/Content/adminview.css" rel="stylesheet" type="text/css" />
+
+<p>
+    @using (Html.BeginForm("Index", "AdministratorView", FormMethod.Get))
+    {
+        <b> Search By: </b>
+        @Html.RadioButton("option", "Employee Code") <text>Employee Code</text>
+        @Html.RadioButton("option", "Name") <text> Name </text>
+        @Html.RadioButton("option", "Designation")<text>Designation</text>
+        @Html.RadioButton("option", "All")<text>All</text>
+        @Html.TextBox("search") <input type="submit" name="submit" value="Search" />
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designation)
+            </td>
+            <td>
+                @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }) |
+            </td>
+        </tr>
+    }
+
+</table>

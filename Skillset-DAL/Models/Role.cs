@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace Skillset_DAL.Models
 {
-<<<<<<< HEAD
-   public class Rating
-=======
-    public class Rating
->>>>>>> c0546a2e8b80f71dcc01bfac16fe36b1d8116f3d
+    public class Role
     {
         public int Id { get; set; }
-        public int Value { get; set; }
-        public string Note { get; set; }
+        public string Name { get; set; }
     }
 }

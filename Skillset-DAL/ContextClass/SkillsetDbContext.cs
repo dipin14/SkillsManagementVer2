@@ -23,7 +23,14 @@ namespace Skillset_DAL.ContextClass
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Designation> Designations { get; set; }
+<<<<<<< HEAD
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<SkillRating> SkillRatings { get; set; }
+=======
+        public DbSet<SkillRating> SkillRatings { get; set; }
+        public DbSet<Qualification> Qualifications { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+>>>>>>> c0546a2e8b80f71dcc01bfac16fe36b1d8116f3d
     }
 }

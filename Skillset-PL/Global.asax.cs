@@ -22,9 +22,14 @@ namespace Skillset_PL
             // manual registration of types;
             builder.RegisterType<SkillService>().As<ISkillService>().InstancePerRequest();
             builder.RegisterType<SkillRepository>().As<ISkillRepository>().InstancePerRequest();
+<<<<<<< HEAD
             builder.RegisterType<ReportingStaff>().As<IReportingStaff>().InstancePerRequest();
             builder.RegisterType<ReportingStaffExtensions>().As<IReportingStaffExtensions>().InstancePerRequest();
             builder.RegisterType<SkillsetDbContext>();
+=======
+            builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
+            builder.RegisterType<AdminEmployeeSkillRepository>().As<IAdminEmployeeSkillRepository>().InstancePerRequest();
+>>>>>>> c0546a2e8b80f71dcc01bfac16fe36b1d8116f3d
 
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             var container = builder.Build();
