@@ -14,3 +14,4 @@ A better version of .net MVC Application that does skill management for an organ
 * Collaborators
   - Dipin Dinesh
   - Reshma Pradeep
+  - Nikhal Rajan
