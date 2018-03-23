@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,8 @@ namespace Skillset_PL.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
+            ViewBag.SkillnameList = "'Java','C','C#','Python'";
+            ViewBag.RatingList = "0,90,20,100";
             return View();
         }
     }

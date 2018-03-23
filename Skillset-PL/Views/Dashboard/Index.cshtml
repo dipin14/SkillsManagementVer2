@@ -1,29 +1,108 @@
 ﻿
-@{ 
+@{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+    
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Card.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <script>
+        var LineChartData =
+                   {
+                       labels: ['Java','C','Python','C#'],
+                       datasets: [{
+                           label: 'Skill Ratings',
+                           backgroundColor: "rgba(75,192,192,0.4)",
+                           borderWidth: 2,
+                           data: [@ViewBag.RatingList]
+                       }]
+                   };
 
-<h2>Index</h2>
+        window.onload = function () {
+            var ctx1 = document.getElementById("Linecanvas").getContext("2d");
+            window.myBar = new Chart(ctx1,
+                {
+                    type: 'line',
+                    data: LineChartData,
+                    options:
+                        {
+                            title:
+                            {
+                                display: true,
+                                text: "Skill Ratings"
+                            },
+                            responsive: true,
+                            maintainAspectRatio: true
+                        }
+                });
+        }
+    </script>
+</head>
+
 <body>
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-10">
-            <div class="row">
-                <div class="col-sm-4">
-                    <h2>Basic Card</h2>
-                    <div class="card" style="width:200px;height:200px">
-
-                        <div class="card-header" style="text-align: center;"><span class="glyphicon glyphicon-leaf"></span></div>
-                        <div class="card-body">
-                            <h4 class="card-title">John Doe</h4>
-                            <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                            <a href="#" class="btn btn-primary">See Profile</a>
+    <div class="row" style="margin-left:5px">
+        <div class="col-sm-4">
+            <div class="card">
+                <div style="text-align:center;background-color:lightgoldenrodyellow;height:80px;"><span class="fa fa-lightbulb-o" style="font-size:55px;margin-top:30px"></span></div>
+                <div class="container">
+                    <h4><b>30</b></h4>
+                    <p>Total Skills</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" aria-valuenow="70"
+                             aria-valuemin="0" aria-valuemax="100" style="width:30%;">
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4"></div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="card">
+                <div style="text-align:center;background-color:indianred;height:80px"><span class="glyphicon glyphicon-star" style="font-size:50px;margin-top:30px"></span></div>
+                <div class="container">
+                    <h4><b>40</b></h4>
+                    <p>Total Ratings</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-danger" aria-valuenow="70"
+                             aria-valuemin="0" aria-valuemax="100" style="width:40%;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+
+            <div class="card">
+                <div style="text-align:center;background-color:teal;height:80px"><span class="glyphicon glyphicon-user" style="font-size:50px;margin-top:30px"></span></div>
+                <div class="container">
+                    <h4><b>50</b></h4>
+                    <p>Total Users</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" aria-valuenow="70"
+                             aria-valuemin="0" aria-valuemax="100" style="width:50%;">
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    @* Chart *@
+    <div class="row" style="margin-left:5px;margin-top:50px">
+        <div class="col-sm-8">
+            <div style="text-align: center">
+                <canvas id="Linecanvas"></canvas>
+            </div>
+        </div>
+        <div class="col-sm-4">test</div>
+    </div>
+
+
 </body>
+</html>

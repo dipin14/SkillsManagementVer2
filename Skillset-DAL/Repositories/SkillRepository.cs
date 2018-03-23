@@ -19,6 +19,7 @@ namespace Skillset_DAL.Repositories
                 {
                     using (var db = new SkillsetDbContext())
                     {
+                        skill.status = true;
                         db.Skills.Add(skill);
                         db.SaveChanges();
                     }
@@ -66,7 +67,7 @@ namespace Skillset_DAL.Repositories
         {
             using (var db = new SkillsetDbContext())
             {
-                var skillList = db.Skills.ToList();
+                var skillList = db.Skills.Where(s => s.status == true).ToList();
                 return skillList;
             }
         }
@@ -82,7 +83,11 @@ namespace Skillset_DAL.Repositories
 
         public Skill GetSkillBySkillName(string skillName)
         {
-            throw new NotImplementedException();
+            using (var db = new SkillsetDbContext())
+            {
+                var skillDetails = db.Skills.Where(s => s.skillName == skillName).FirstOrDefault();
+                return skillDetails;
+            }
         }
     }
 }
