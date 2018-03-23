@@ -40,8 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\ReportingStaff.cs" />
     <Compile Include="DTO\SkillDTO.cs" />
+    <Compile Include="DTO\StaffSkills.cs" />
+    <Compile Include="Extensions\IReportingStaffExtensions.cs" />
     <Compile Include="Extensions\ModelExtension.cs" />
+    <Compile Include="Extensions\ReportingStaffExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

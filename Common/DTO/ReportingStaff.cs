@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Skillset_DAL.Models
+namespace Common.DTO
 {
-    public class Employee
+    public class ReportingStaff
     {
-        public int Id { get; set; }
+        public int EmployeeId { get; set; }
         public string EmployeeCode { get; set; }
         public string Name { get; set; }
         public DateTime DateOfJoining { get; set; }
-        public int DesignationId { get; set; }
-        public int QualificationId { get; set; }
+        public string Designation { get; set; }
+        public string Qualification { get; set; }
         public int Experience { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string ManagerCode { get; set; }
@@ -22,6 +22,5 @@ namespace Skillset_DAL.Models
         public double MobileNumber { get; set; }
         public string Gender { get; set; }
         public bool Status { get; set; }
-
     }
 }
