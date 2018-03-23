@@ -80,32 +80,51 @@ namespace Skillset_PL.Controllers
 
         // POST: Skill/Edit/5
         [HttpPost]
-        public ActionResult Edit(string skillName, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(SkillViewModel skillView, FormCollection collection)
         {
             try
             {
-                return View();
+                _skillService.Update(skillView.ToDTO());
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("SkillName", "Skillname already exists");
+                return View(skillView);
             }
         }
 
         // GET: Skill/Delete/5
-        public ActionResult Delete(string name)
+        public ActionResult Delete(string skillName)
         {
-            return View();
+            if (skillName == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                SkillViewModel skillView = _skillService.GetBySkillName(skillName).ToViewModel();
+                return View(skillView);
+            }
         }
 
         // POST: Skill/Delete/5
         [HttpPost]
-        public ActionResult Delete(string name, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(SkillViewModel skillView, FormCollection collection)
         {
             try
             {
-                var deleteResult = _skillService.Delete(name);
-                return RedirectToAction("Index");
+                if (skillView == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else
+                {
+                    var deleteResult = _skillService.Delete(skillView.SkillName);
+                    return RedirectToAction("Index");
+                }
             }
             catch
             {

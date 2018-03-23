@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Skillset_PL.ViewModels.SkillViewModel>
+﻿@using Common.Extensions
+@model IEnumerable<Skillset_PL.ViewModels.SkillViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -18,7 +19,7 @@
             @Html.DisplayNameFor(model => model.SkillDescription)
         </th>
         <th>
-            @Html.Display("Operations")
+            @Html.DisplayName("Operations")
         </th>
     </tr>
 
@@ -28,12 +29,12 @@
             @Html.DisplayFor(modelItem => item.SkillName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SkillDescription)
+            @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { name=item.SkillName }) |
-            @Html.ActionLink("Details", "Details", new { name = item.SkillName }) |
-            @Html.ActionLink("Delete", "Delete", new { name = item.SkillName })
+            @Html.ActionLink("Edit", "Edit", new { skillName=item.SkillName }) |
+            @*@Html.ActionLink("Details", "Details", new { skillName = item.SkillName }) |*@
+            @Html.ActionLink("Delete", "Delete", new { skillName = item.SkillName })
         </td>
     </tr>
 }
