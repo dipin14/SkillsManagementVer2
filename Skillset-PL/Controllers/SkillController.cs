@@ -126,7 +126,7 @@ namespace Skillset_PL.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch
+            catch (Exception)
             {
                 return View();
             }

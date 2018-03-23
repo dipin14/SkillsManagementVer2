@@ -88,6 +88,7 @@ namespace Skillset_DAL.Repositories
                 var skillDetails = db.Skills.Where(s => s.skillName == skillName).FirstOrDefault();
                 return skillDetails;
             }
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@using Common.Extensions
+﻿﻿@using Common.Extensions
 @model IEnumerable<Skillset_PL.ViewModels.SkillViewModel>
 
 @{
@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.SkillDescription)
         </th>
         <th>
-            @Html.DisplayName("Operations")
+            @Html.Display("Operations")
         </th>
     </tr>
 
@@ -35,6 +35,7 @@
             @Html.ActionLink("Edit", "Edit", new { skillName=item.SkillName }) |
             @*@Html.ActionLink("Details", "Details", new { skillName = item.SkillName }) |*@
             @Html.ActionLink("Delete", "Delete", new { skillName = item.SkillName })
+
         </td>
     </tr>
 }
