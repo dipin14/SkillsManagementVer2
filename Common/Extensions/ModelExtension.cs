@@ -1,5 +1,6 @@
 ﻿using Common.DTO;
 using Skillset_DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,6 +46,26 @@ namespace Common.Extensions
                 SkillName = skill.skillName,
                 SkillDescription = skill.skillDescription
             };
+        }
+
+
+        public static Employee EmployeeDTOtoModel(this EmployeeDTO dto)
+        {
+            Employee employee = new Employee();
+            employee.EmployeeCode = dto.EmployeeCode;
+            employee.Name = dto.Name;
+            employee.DateOfBirth = dto.DateOfBirth;
+            employee.DateOfJoining = dto.DateOfJoining;
+            employee.DesignationId = Convert.ToInt32(dto.DesignationId);
+            employee.Experience = dto.Experience;
+            employee.QualificationId = Convert.ToInt32(dto.QualificationId);
+            employee.Address = dto.Address;
+            employee.MobileNumber = dto.MobileNumber;
+            employee.Email = dto.Email;
+            employee.Gender = dto.Gender;
+            employee.EmployeeId = Convert.ToInt32(dto.EmployeeId);
+
+            return employee;
         }
     }
 }

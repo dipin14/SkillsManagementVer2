@@ -69,5 +69,8 @@ namespace Skillset_PL.ViewModelExtensions
                 SkillDescription = skill.SkillDescription
             }).ToList(); ;
         }
+
+
+
     }
 }
