@@ -122,19 +122,10 @@
 }
 body {
   padding-top: 50px;
+
 }
 
 #sidebar {
     padding:15px;
     margin-top:10px;
-}
-
-.wrapper {
-   position: relative;
-}
-
-.wrapper .glyphicon {
-   position: absolute;
-   top: 40px;
-   left: 40px;
 }
