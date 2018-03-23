@@ -21,7 +21,7 @@ namespace Skillset_DAL.Repositories
             {
                 var designations = (from d in context.Designations
                                     from e in context.Employees
-                                    where (e.Status && e.ManagerCode == managerCode && d.Id == e.DesignationId)
+                                    where (e.ManagerCode == Convert.ToInt32(managerCode) && d.Id == e.DesignationId)
                                     select d).ToList();
 
                 return designations;
@@ -68,7 +68,7 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                var employees = context.Employees.ToList().Where(s => s.Status && s.ManagerCode == managerCode);
+                var employees = context.Employees.ToList().Where(s => s.ManagerCode == Convert.ToInt32(managerCode));
                 return employees;
             }
 
@@ -85,7 +85,7 @@ namespace Skillset_DAL.Repositories
             {
                 var skillRatings = (from d in context.SkillRatings
                                     from e in context.Employees
-                                    where (e.Status && e.EmployeeCode.Equals(employeeCode) && d.EmployeeId == e.Id && d.Status)
+                                    where (e.EmployeeCode.Equals(employeeCode) && d.EmployeeId == e.Id && d.Status)
                                     select d).ToList();
                 return skillRatings;
             }

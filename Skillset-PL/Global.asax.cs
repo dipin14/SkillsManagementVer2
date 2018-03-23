@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Common.Extensions;
 using Skillset_BLL.Services;
+using Skillset_DAL.ContextClass;
 using Skillset_DAL.Repositories;
 using System.Reflection;
 using System.Web.Mvc;
@@ -18,9 +20,13 @@ namespace Skillset_PL
             //Registering dependency injection for Autofac
             var builder = new ContainerBuilder();
 
+            // manual registration of types;
             builder.RegisterType<SkillService>().As<ISkillService>().InstancePerRequest();
             builder.RegisterType<SkillRepository>().As<ISkillRepository>().InstancePerRequest();
-            
+            builder.RegisterType<ReportingStaff>().As<IReportingStaff>().InstancePerRequest();
+            builder.RegisterType<ReportingStaffExtensions>().As<IReportingStaffExtensions>().InstancePerRequest();
+            builder.RegisterType<SkillsetDbContext>();
+
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

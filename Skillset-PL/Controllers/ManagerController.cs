@@ -14,7 +14,7 @@ namespace Skillset_PL.Controllers
         // GET: Manager
         public ActionResult Index()
         {
-            Session["empcode"] = 1;
+            Session["empcode"] = 34;
 
             var staff = view.GetEmployeeDetails(Session["empcode"].ToString());
             return View(staff);
