@@ -263,13 +263,9 @@
     <Content Include="Views\Skill\Delete.cshtml" />
     <Content Include="Views\AdministratorView\Index.cshtml" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Login\Login.cshtml" />
-||||||| merged common ancestors
-=======
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\AdministratorView\Skills.cshtml" />
->>>>>>> 2f163eff0a66aa26474db1e9c401eb079c688ce8
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -280,13 +276,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-<<<<<<< HEAD
-||||||| merged common ancestors
     <Folder Include="Views\Login\" />
-=======
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Login\" />
->>>>>>> 2f163eff0a66aa26474db1e9c401eb079c688ce8
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
