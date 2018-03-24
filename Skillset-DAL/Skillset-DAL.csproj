@@ -65,13 +65,21 @@
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Qualification.cs" />
+    <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Skill.cs" />
+    <Compile Include="Models\SkillRating.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="Repositories\IloginRepository.cs" />
+||||||| merged common ancestors
+=======
+    <Compile Include="Repositories\AdminEmployeeSkillRepository.cs" />
+    <Compile Include="Repositories\IAdminEmployeeSkillRepository.cs" />
+>>>>>>> 2f163eff0a66aa26474db1e9c401eb079c688ce8
     <Compile Include="Repositories\ISkillRepository.cs" />
     <Compile Include="Repositories\LoginRepository.cs" />
     <Compile Include="Repositories\SkillRepository.cs" />
