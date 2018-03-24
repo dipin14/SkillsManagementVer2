@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Skillset_PL.Controllers
 {
@@ -19,6 +20,7 @@ namespace Skillset_PL.Controllers
             logService = logSer;
         }
         // GET: Login
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -33,14 +35,17 @@ namespace Skillset_PL.Controllers
             var role = logService.GetRole(employeeCode, password);
             if (role == "Admin")
             {
+                FormsAuthentication.SetAuthCookie(role, false);
                 return RedirectToAction("Index");
             }
             else if (role == "Manager")
             {
+                FormsAuthentication.SetAuthCookie(role.ToString(), false);
                 return RedirectToAction("Search");
             }
             else if (role == "Employee")
             {
+                FormsAuthentication.SetAuthCookie(role.ToString(), false);
                 return RedirectToAction("Search");
             }
             else
