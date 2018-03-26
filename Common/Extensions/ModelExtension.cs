@@ -16,9 +16,9 @@ namespace Common.Extensions
         {
             return new Skill
             {
-                skillId = skillDTO.SkillId,
-                skillName = skillDTO.SkillName,
-                skillDescription = skillDTO.SkillDescription
+                SkillId = skillDTO.SkillId,
+                SkillName = skillDTO.SkillName,
+                SkillDescription = skillDTO.SkillDescription
             };
         }
 
@@ -31,9 +31,9 @@ namespace Common.Extensions
         {
             return skillList.Select(skill => new SkillDTO
             {
-                SkillDescription = skill.skillDescription,
-                SkillId = skill.skillId,
-                SkillName = skill.skillName
+                SkillDescription = skill.SkillDescription,
+                SkillId = skill.SkillId,
+                SkillName = skill.SkillName
             }).ToList(); ;
         }
 
@@ -41,9 +41,9 @@ namespace Common.Extensions
         {
             return new SkillDTO
             {
-                SkillId = skill.skillId,
-                SkillName = skill.skillName,
-                SkillDescription = skill.skillDescription
+                SkillId = skill.SkillId,
+                SkillName = skill.SkillName,
+                SkillDescription = skill.SkillDescription
             };
         }
     }

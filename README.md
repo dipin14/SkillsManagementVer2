@@ -12,6 +12,11 @@ A better version of .net MVC Application that does skill management for an organ
   - Perform self assessment
   
 * Collaborators
-  - Dipin Dinesh
-  - Reshma Pradeep
-  - Nikhal Rajan
+  * [Dipin Dinesh](https://github.com/dipin14) 
+  * [Sneha Saajan](https://github.com/SnehaSaajan) 
+  * [Gokul Vijayan](https://github.com/GokulVijayan) 
+  * [Reshma Pradeep](https://github.com/reshma-pradeep) 
+  * [Aimi Roy](https://github.com/aimiroy)
+  * [Rizwan Ebrahim](https://github.com/RizwanEbrahim)
+  * [Nikhal Rajan](https://github.com/Nikhal62)
+ 

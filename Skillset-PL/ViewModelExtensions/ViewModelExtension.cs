@@ -67,7 +67,7 @@ namespace Skillset_PL.ViewModelExtensions
                 SkillId = skill.skillId,
                 SkillName = skill.SkillName,
                 SkillDescription = skill.SkillDescription
-            }).ToList(); 
+            }).ToList();
         }
 
         /// <summary>
@@ -78,15 +78,65 @@ namespace Skillset_PL.ViewModelExtensions
         public static IEnumerable<ViewModels.ReportingStaff> ToReportingStaffViewmodel(this IEnumerable<Common.DTO.ReportingStaff> staffList)
         {
 
-          return  staffList.Select(staff =>new ViewModels.ReportingStaff
-          {
-                                    EmployeeCode = staff.EmployeeCode,
-                                    Name = staff.Name,
-                                    Email = staff.Email,
-                                    Designation = staff.Designation
-                                }).ToList();
-            
+            return staffList.Select(staff => new ViewModels.ReportingStaff
+            {
+                EmployeeCode = staff.EmployeeCode,
+                Name = staff.Name,
+                Email = staff.Email,
+                Designation = staff.Designation
+            }).ToList();
+
         }
+
+        /// <summary>
+        /// convert employee view model to dto
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        public static EmployeeDTO EmployeeViewModeltoDTO(this EmployeeViewModel employee)
+        {
+            EmployeeDTO dto = new EmployeeDTO();
+            dto.EmployeeCode = employee.EmployeeCode;
+            dto.Name = employee.Name;
+            dto.DateOfBirth = employee.DateOfBirth;
+            dto.DateOfJoining = employee.DateOfJoining;
+            dto.DesignationId = employee.DesignationId;
+            dto.RoleId = employee.RoleId;
+            dto.Experience = employee.Experience;
+            dto.QualificationId = employee.QualificationId;
+            dto.Address = employee.Address;
+            dto.MobileNumber = employee.MobileNumber;
+            dto.Email = employee.Email;
+            dto.Gender = employee.Gender;
+            dto.EmployeeId = employee.EmployeeId;
+
+            return dto;
+        }
+        /// <summary>
+        /// convert dto model to employee view model
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public static EmployeeViewModel EmployeeDTOtoViewModel(this EmployeeDTO dto)
+        {
+            EmployeeViewModel employee = new EmployeeViewModel();
+            employee.EmployeeCode = dto.EmployeeCode;
+            employee.Name = dto.Name;
+            employee.DateOfBirth = dto.DateOfBirth;
+            employee.DateOfJoining = dto.DateOfJoining;
+            employee.DesignationId = dto.DesignationId;
+            employee.RoleId = dto.RoleId;
+            employee.Experience = dto.Experience;
+            employee.QualificationId = dto.QualificationId;
+            employee.Address = dto.Address;
+            employee.MobileNumber = dto.MobileNumber;
+            employee.Email = dto.Email;
+            employee.Gender = dto.Gender;
+            employee.EmployeeId = dto.EmployeeId;
+
+            return employee;
+        }
+
 
         /// <summary>
         /// skill ratings of an employee dto to viewmodel.
@@ -95,13 +145,13 @@ namespace Skillset_PL.ViewModelExtensions
         /// <returns></returns>
         public static IEnumerable<ViewModels.StaffSkills> ToSkillRatingsViewmodel(this IEnumerable<Common.DTO.StaffSkills> skillList)
         {
-         return skillList.Select(skill=>new ViewModels.StaffSkills
-         {
-                                          Skill = skill.Skill,
-                                          Rating = skill.Rating,
-                                          RatingDate = skill.RatingDate,
-                                          Note = skill.Note
-                                      }).ToList();
+            return skillList.Select(skill => new ViewModels.StaffSkills
+            {
+                Skill = skill.Skill,
+                Rating = skill.Rating,
+                RatingDate = skill.RatingDate,
+                Note = skill.Note
+            }).ToList();
         }
 
     }
