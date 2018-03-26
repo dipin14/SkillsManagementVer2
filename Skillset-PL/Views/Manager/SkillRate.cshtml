@@ -4,114 +4,62 @@
     Layout = "~/Views/Shared/_ManagerLayout.cshtml";
     ViewBag.Title = "SkillRate";
 }
-
-
-@*<div>
-        <h4>StaffSkills</h4>
-        <hr />
-       <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.EmployeeCode)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.EmployeeCode)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Skill)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Skill)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Rating)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Rating)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.RatingDate)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.RatingDate)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Note)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Note)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.IsSpecialSkill)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.IsSpecialSkill)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Status)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Status)
-            </dd>
-
-        </dl>
-    </div>*@
-
-    <label class="control-label alert-success well-sm">Skill Details</label>
-    <table class="table">
-        <tr>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.Skill)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RatingDate)
-            </th>
-           
-        </tr>
-
-        @foreach (var item in Model)
-        {
+<label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
+<label class="control-label col-sm-3" style="display:block;text-align:center">Employee Code : @(ViewBag.Code) </label><br/>
+<label class="control-label col-sm-3" style="display:block;text-align:center">Employee Name : @(ViewBag.Name) </label>
+    @if (Model.Count() > 0)
+    {
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Skill)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Note)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Skill)
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.RatingDate)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RatingDate)
+                </th>
 
             </tr>
-        }
 
-    </table>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Skill)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RatingDate)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+    }
+    else
+    {
+        <br/>
+        <div class="alert alert-warning fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>No Skill Ratings!</strong> There is no skill ratings available.
+        </div>
+    }
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>

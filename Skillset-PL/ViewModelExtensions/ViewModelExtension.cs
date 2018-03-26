@@ -77,14 +77,20 @@ namespace Skillset_PL.ViewModelExtensions
         /// <returns></returns>
         public static IEnumerable<ViewModels.ReportingStaff> ToReportingStaffViewmodel(this IEnumerable<Common.DTO.ReportingStaff> staffList)
         {
-
-          return  staffList.Select(staff =>new ViewModels.ReportingStaff
-          {
-                                    EmployeeCode = staff.EmployeeCode,
-                                    Name = staff.Name,
-                                    Email = staff.Email,
-                                    Designation = staff.Designation
-                                }).ToList();
+            if (staffList != null && staffList.Any())
+            {
+                return staffList.Select(staff => new ViewModels.ReportingStaff
+                {
+                    EmployeeCode = staff.EmployeeCode,
+                    Name = staff.Name,
+                    Email = staff.Email,
+                    Designation = staff.Designation
+                }).ToList().OrderBy(staff => staff.Name).ThenBy(staff => staff.Designation).ToList();
+            }
+            else
+            {
+                return Enumerable.Empty<ViewModels.ReportingStaff>().ToList();
+            }
             
         }
 
@@ -119,7 +125,9 @@ namespace Skillset_PL.ViewModelExtensions
         /// <returns></returns>
         public static EmployeeViewModel EmployeeDTOtoViewModel(this EmployeeDTO dto)
         {
-            EmployeeViewModel employee = new EmployeeViewModel();
+            
+
+                EmployeeViewModel employee = new EmployeeViewModel();
             employee.EmployeeCode = dto.EmployeeCode;
             employee.Name = dto.Name;
             employee.DateOfBirth = dto.DateOfBirth;
@@ -139,21 +147,31 @@ namespace Skillset_PL.ViewModelExtensions
 
 
         /// <summary>
-        /// skill ratings of an employee dto to viewmodel.
+        /// Skill ratings of an employee dto to viewmodel.
         /// </summary>
         /// <param name="employeeCode"></param>
         /// <returns></returns>
         public static IEnumerable<ViewModels.StaffSkills> ToSkillRatingsViewmodel(this IEnumerable<Common.DTO.StaffSkills> skillList)
         {
-         return skillList.Select(skill=>new ViewModels.StaffSkills
-         {
-                                          Skill = skill.Skill,
-                                          Rating = skill.Rating,
-                                          RatingDate = skill.RatingDate,
-                                          Note = skill.Note
-                                      }).ToList();
+            if (skillList != null && skillList.Any())
+            {
 
+
+                return skillList.Select(skill => new ViewModels.StaffSkills
+                {
+                    Skill = skill.Skill,
+                    Rating = skill.Rating,
+                    RatingDate = skill.RatingDate,
+                    Note = skill.Note
+                }).ToList().OrderByDescending(skillRating => skillRating.Rating).ThenByDescending(skillRating => skillRating.RatingDate).ToList();
+
+            }
+
+            else
+            {
+                return Enumerable.Empty<ViewModels.StaffSkills>().ToList();
+            }
+               
         }
-
     }
 }
