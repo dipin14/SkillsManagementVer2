@@ -46,66 +46,60 @@ function CRateSelected(id) {
 
 function SubmitRating(data,m)
 {
-    var RatingList = new Array();
-    for (var i = 0; i < m; i++) {
-        var ratingSCore = document.getElementById("Rating " + data[i].skillId).value
-        var SkillID = data[i].skillId
-        var Notes = document.getElementById("TxtAra " + data[i].skillId).value
-       
-        if (ratingSCore != "") {
-            var RatingObject = {};
-
-            RatingObject.SkillId = SkillID;
-            RatingObject.RatingScore = ratingSCore;
-            RatingObject.Note = Notes;
-            RatingList.push(RatingObject);
-        }
-    }
-    var specialSkill = document.getElementById("TxtAra").value
-    if(specialSkill!="")
+    if (data == "")
+    { alert('Please Enter Your rating') }
+    else
     {
-        var specialScore = document.getElementById("Rating 0").value
-        var SkillID = 0;
-        if(specialScore!="")
-        {
-            var RatingObject = {};
-            RatingObject.IsSpecialSkill = true;
-            RatingObject.Note = specialSkill;
-            RatingObject.SkillId = SkillID;
-            RatingObject.RatingScore = specialScore;
-            RatingList.push(RatingObject);
-         }
+        var RatingList = new Array();
+        for (var i = 0; i < m; i++) {
+            var ratingSCore = document.getElementById("Rating " + data[i].skillId).value
+            var SkillID = data[i].skillId
+            var Notes = document.getElementById("TxtAra " + data[i].skillId).value
+
+            if (ratingSCore != "") {
+                var RatingObject = {};
+
+                RatingObject.SkillId = SkillID;
+                RatingObject.RatingScore = ratingSCore;
+                RatingObject.Note = Notes;
+                RatingList.push(RatingObject);
+            }
+        }
+        var specialSkill = document.getElementById("TxtAra").value
+        if (specialSkill != "") {
+            var specialScore = document.getElementById("Rating 0").value
+            var SkillID = 0;
+            if (specialScore != "") {
+                var RatingObject = {};
+                RatingObject.IsSpecialSkill = true;
+                RatingObject.Note = specialSkill;
+                RatingObject.SkillId = SkillID;
+                RatingObject.RatingScore = specialScore;
+                RatingList.push(RatingObject);
+            }
+
+        }
+
+        CompleteRating(RatingList);
 
     }
-    
-    CompleteRating(RatingList);
- 
- 
 }
 
 /*collapsing div*/
 
-function collapse()
-{ alert('collapse')
-
-
-}
-
 function CompleteRating(RatingList)
 {
     
-    alert("inside rating");
     $.ajax({
         type: "POST",
         url: '/SkillRating/RateSkills',
         data: { ratingList: RatingList },
         complete: function (result) {
             if (result.responseText) {
-               
-                alert("success")
+                              
             }
             else {
-                alert('sorry');
+                alert('please check your connection');
 
             }
 
