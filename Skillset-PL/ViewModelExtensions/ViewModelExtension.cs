@@ -154,6 +154,24 @@ namespace Skillset_PL.ViewModelExtensions
                                       }).ToList();
 
         }
+        /// <summary>
+        /// Convert IList of EmployeeRatingViewModel to EmployeeRatingDto
+        /// </summary>
+        /// <param name="SkillRatingVMList"></param>
+        /// <returns></returns>
+        public static IList<EmployeeSkillRatingDTO> ToSkillRatingDTOList(this IList<EmployeeSkillRatingViewModel> SkillRatingVMList)
+        {
+            return SkillRatingVMList.Select(skill => new EmployeeSkillRatingDTO
+            {   EmployeeId=skill.EmployeeId,
+                SkillId = skill.SkillId,
+                Note = skill.Note,
+                RatingDate = skill.RatingDate,
+                IsSpecialSkill=skill.IsSpecialSkill,
+                RatingScore=skill.RatingScore,
+                Status=skill.Status
+
+            }).ToList();
+        }
 
     }
 }

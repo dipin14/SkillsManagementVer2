@@ -76,12 +76,12 @@
             </div>
         </div>
         </div>
-
+    <br /><br />
 
 
 
         @{var data = @Html.Raw(Json.Encode(Model));
-            <input type="button" class="btn btn-danger" onclick='SubmitRating(@data,@Model.Count())'>
+            <input type="button" class="btn btn-danger" onclick='SubmitRating(@data,@Model.Count())' value="Submit Ratings"> 
         }
 </div>
 

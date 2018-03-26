@@ -207,7 +207,7 @@
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\AdministratorEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AdministratorSkillViewModel.cs" />
-    <Compile Include="ViewModels\EmpoyeeRatingViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeSkillRatingViewModel.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
     <Compile Include="ViewModels\ReportingStaff.cs" />
     <Compile Include="ViewModels\StaffSkills.cs" />

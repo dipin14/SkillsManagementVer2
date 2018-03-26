@@ -28,7 +28,8 @@ namespace Skillset_PL
             builder.RegisterType<SkillsetDbContext>();  
             builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
             builder.RegisterType<AdminEmployeeSkillRepository>().As<IAdminEmployeeSkillRepository>().InstancePerRequest();
-
+            builder.RegisterType<SkillRatingService>().As<ISkillRatingService>().InstancePerRequest();
+            builder.RegisterType<SkillRatingRepository>().As<ISkillRatingRepository>().InstancePerRequest();
             builder.RegisterControllers(Assembly.GetExecutingAssembly()); 
             var container = builder.Build();
 

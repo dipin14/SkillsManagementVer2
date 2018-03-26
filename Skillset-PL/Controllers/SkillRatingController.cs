@@ -15,12 +15,17 @@ namespace Skillset_PL.Controllers
     {
 
         private readonly ISkillService _skillService;
-
-        public SkillRatingController(ISkillService skillService)
+        private ISkillRatingService _skillRatingService;
+       public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
         {
             _skillService = skillService;
+            _skillRatingService = skillRatingService;
         }
 
+      /*  public SkillRatingController(ISkillRatingService skillRatingService)
+        {
+            _skillRatingService = skillRatingService;
+        }*/
         // GET: Skill
         public ActionResult GetAllSkills()
         {
@@ -33,10 +38,10 @@ namespace Skillset_PL.Controllers
             var skillList = _skillService.GetAllSkills().ToViewModelList();
             return View( skillList);
         }
-        public ActionResult RateSkills(List<EmpoyeeRatingViewModel> ratingList)
+        public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
         {
-          
-            return View();
+           var result= _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
+            return View(result);
         } 
     }
 }
