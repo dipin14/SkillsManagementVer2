@@ -59,10 +59,10 @@ namespace Skillset_BLL.Services
             var skillRatings = _reportingStaff.GetSkillRatingsDetails(employeeCode);
             var skillRatingDetails = (from sr in skillRatings
                                       join r in ratings on sr.RatingId equals r.Id
-                                      join s in skills on sr.SkillId equals s.skillId
+                                      join s in skills on sr.SkillId equals s.SkillId
                                       select new StaffSkills
                                       {
-                                          Skill = s.skillName,
+                                          Skill = s.SkillName,
                                           Rating = r.Value,
                                           RatingDate = sr.RatingDate,
                                           Note = sr.Note

@@ -21,10 +21,12 @@ namespace Skillset_BLL.Services
 
         public IEnumerable<AdminEmployeeDTO> ViewSearchedRecords(string option, string searchKey)
         {
+            //getting list of searched employees
             List<Employee> employeeList = _iEmpSkillRepository.GetEmployeeDetails(option, searchKey);
             List<string> designationList = new List<string>();
             foreach (var emp in employeeList)
             {
+                //finding designation from designation id
                 string designation = _iEmpSkillRepository.FindDesignation(emp.DesignationId);
                 designationList.Add(designation);
             }
@@ -42,13 +44,16 @@ namespace Skillset_BLL.Services
 
         public IEnumerable<AdminSkillDTO> GetSkillDetails(string employeeCode)
         {
+            //getting list of skills of a particular employee
             List<SkillRating> skillList = _iEmpSkillRepository.GetSkillDetails(employeeCode);
             List<string> skillNameList = new List<string>();
             List<int> skillValueList = new List<int>();
             foreach (var item in skillList)
             {
+                //finding skill name from skill id
                 string skillName = _iEmpSkillRepository.FindSkillName(item.SkillId);
                 skillNameList.Add(skillName);
+                //finding skill value from rating id
                 int skillValue = _iEmpSkillRepository.FindSkillValue(item.RatingId);
                 skillValueList.Add(skillValue);
             }

@@ -1,5 +1,6 @@
 ﻿using Common.DTO;
 using Skillset_DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,9 +17,9 @@ namespace Common.Extensions
         {
             return new Skill
             {
-                skillId = skillDTO.SkillId,
-                skillName = skillDTO.SkillName,
-                skillDescription = skillDTO.SkillDescription
+                SkillId = skillDTO.SkillId,
+                SkillName = skillDTO.SkillName,
+                SkillDescription = skillDTO.SkillDescription
             };
         }
 
@@ -31,9 +32,9 @@ namespace Common.Extensions
         {
             return skillList.Select(skill => new SkillDTO
             {
-                SkillDescription = skill.skillDescription,
-                SkillId = skill.skillId,
-                SkillName = skill.skillName
+                SkillDescription = skill.SkillDescription,
+                SkillId = skill.SkillId,
+                SkillName = skill.SkillName
             }).ToList(); ;
         }
 
@@ -41,10 +42,59 @@ namespace Common.Extensions
         {
             return new SkillDTO
             {
-                SkillId = skill.skillId,
-                SkillName = skill.skillName,
-                SkillDescription = skill.skillDescription
+                SkillId = skill.SkillId,
+                SkillName = skill.SkillName,
+                SkillDescription = skill.SkillDescription
             };
+        }
+
+        /// <summary>
+        /// Convert employee dto to datalayer model
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public static Employee EmployeeDTOtoModel(this EmployeeDTO dto)
+        {
+            Employee employee = new Employee();
+            employee.EmployeeCode = dto.EmployeeCode;
+            employee.Name = dto.Name;
+            employee.DateOfBirth = dto.DateOfBirth;
+            employee.DateOfJoining = dto.DateOfJoining;
+            employee.DesignationId = Convert.ToInt32(dto.DesignationId);
+            employee.RoleId = Convert.ToInt32(dto.RoleId);
+            employee.Experience = dto.Experience;
+            employee.QualificationId = Convert.ToInt32(dto.QualificationId);
+            employee.Address = dto.Address;
+            employee.MobileNumber = dto.MobileNumber;
+            employee.Email = dto.Email;
+            employee.Gender = dto.Gender;
+            employee.EmployeeId = Convert.ToInt32(dto.EmployeeId);
+
+            return employee;
+        }
+        /// <summary>
+        /// Convert employee  datalayer model to dto
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public static EmployeeDTO EmployeeModeltoDTO(this Employee employee)
+        {
+            EmployeeDTO dto = new EmployeeDTO();
+            dto.EmployeeCode = employee.EmployeeCode;
+            dto.Name = employee.Name;
+            dto.DateOfBirth = employee.DateOfBirth;
+            dto.DateOfJoining = employee.DateOfJoining;
+            dto.DesignationId = employee.DesignationId.ToString();
+            dto.RoleId = employee.RoleId.ToString();
+            dto.Experience = employee.Experience;
+            dto.QualificationId = employee.QualificationId.ToString();
+            dto.Address = employee.Address;
+            dto.MobileNumber = employee.MobileNumber;
+            dto.Email = employee.Email;
+            dto.Gender = employee.Gender;
+            dto.EmployeeId = employee.EmployeeId.ToString();
+
+            return dto;
         }
 
         public static List<EmployeeDTO> ListEmployeeModeltoDTO(this List<Employee> employees)
@@ -72,6 +122,5 @@ namespace Common.Extensions
             }
             return dto;
         }
-
     }
 }

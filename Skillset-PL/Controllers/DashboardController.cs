@@ -19,6 +19,7 @@ namespace Skillset_PL.Controllers
             _services = services;
         }
         // GET: Dashboard
+        [Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
             ViewBag.SkillnameList = "'Java','C','C#','Python'";
