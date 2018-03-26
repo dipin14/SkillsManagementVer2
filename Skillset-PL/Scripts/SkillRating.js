@@ -46,10 +46,7 @@ function CRateSelected(id) {
 
 function SubmitRating(data,m)
 {
-    if (data == "")
-    { alert('Please Enter Your rating') }
-    else
-    {
+   
         var RatingList = new Array();
         for (var i = 0; i < m; i++) {
             var ratingSCore = document.getElementById("Rating " + data[i].skillId).value
@@ -82,27 +79,31 @@ function SubmitRating(data,m)
 
         CompleteRating(RatingList);
 
-    }
+    
 }
 
 /*collapsing div*/
 
 function CompleteRating(RatingList)
 {
-    
-    $.ajax({
-        type: "POST",
-        url: '/SkillRating/RateSkills',
-        data: { ratingList: RatingList },
-        complete: function (result) {
-            if (result.responseText) {
-                              
-            }
-            else {
-                alert('please check your connection');
+    if (RatingList == "") {
+        alert("Please enter your ratings");
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: '/SkillRating/RateSkills',
+            data: { ratingList: RatingList },
+            complete: function (result) {
+                if (result.responseText) {
+                    alert('Review submitted')
+                }
+                else {
+                    alert('please check your connection');
+
+                }
 
             }
-
-        }
-    });
+        });
+    }
 }
