@@ -4,6 +4,8 @@
     ViewBag.Title = "EmployeeRating";
 }
 <script src="~/Scripts/SkillRating.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
 <h2>  Rate your skills</h2>
 
 <div class="row" >
@@ -79,7 +81,7 @@
       
 
                     @{var data = @Html.Raw(Json.Encode(Model));
-                        <input type="button" class="btn btn-danger" onclick='SubmitRating(@data)'>
+                        <input type="button" class="btn btn-danger" onclick='SubmitRating(@data,@Model.Count())'>
                     }
                 </div>
 

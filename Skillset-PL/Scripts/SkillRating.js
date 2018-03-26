@@ -44,26 +44,47 @@ function CRateSelected(id) {
     }
 }
 
-function SubmitRating( data)
+function SubmitRating(data,m)
 {
-    //for(var i=0;i<)
-    alert(data);
-}
-/*collapsing div*/
-$(document).on('click', '.panel-heading span.clickable', function (e) {
-    var $this = $(this);
-    if (!$this.hasClass('panel-collapsed')) {
-        $this.parents('.panel').find('.panel-body').slideUp();
-        $this.addClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
-    } else {
-        $this.parents('.panel').find('.panel-body').slideDown();
-        $this.removeClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+    var arr = [];
+    for (var i = 0; i < m;i++)
+    { var ratingSCore = document.getElementById("Rating " + data[i].skillId).value
+    var SkillID= data[i].skillId
+    
+    if (ratingSCore  != "")
+        {
+            arr.push({ rateScore: ratingSCore, Skillid:  SkillID});
+        }
     }
-})
+    CompleteRating(arr);
+ 
+ 
+}
+
+/*collapsing div*/
+
 function collapse()
 { alert('collapse')
 
-$('#viewdetails').collapse('hide')
+
+}
+function CompleteRating(arr)
+{
+    alert("inside rating");
+    $.ajax({
+        type: "POST",
+        url: '/SkillRating/RateSkills',
+        data: { arr },
+        complete: function (result) {
+            if (result.responseText) {
+               
+                alert("success")
+            }
+            else {
+                alert('sorry');
+
+            }
+
+        }
+    });
 }
