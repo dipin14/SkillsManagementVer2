@@ -5,6 +5,7 @@ using Skillset_PL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -84,6 +85,10 @@ namespace Skillset_PL.Controllers
             var modelList = new List<EmployeeViewModel>();
             foreach (EmployeeDTO item in dtoList)
             {
+                item.DesignationId = _services.GetDesignationName(item.DesignationId);
+                item.QualificationId = _services.GetQualificationName(item.QualificationId);
+                item.RoleId = _services.GetRoleName(item.RoleId);
+                item.EmployeeId = _services.GetManagerName(item.EmployeeId);
                 modelList.Add(item.EmployeeDTOtoViewModel());
             }
             return View(modelList);
@@ -138,6 +143,99 @@ namespace Skillset_PL.Controllers
             return View(employee);
         }
 
+        // GET: Employees/Delete/
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            EmployeeDTO employee = _services.GetEmployeeDetailsById(id);
+            employee.DesignationId = _services.GetDesignationName(employee.DesignationId);
+            employee.QualificationId = _services.GetQualificationName(employee.QualificationId);
+            employee.RoleId = _services.GetRoleName(employee.RoleId);
+            employee.EmployeeId = _services.GetManagerName(employee.EmployeeId);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employee.EmployeeDTOtoViewModel());
+        }
+
+        // POST: Employees/Delete/
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            int status = _services.DeleteEmployeeById(id);
+            if (status == 0)
+            {
+                ViewBag.message = "Error in deleting employee record";
+                return RedirectToAction("Delete", id);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        // GET: Employees/Details/
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            EmployeeDTO employee = _services.GetEmployeeDetailsById(id);
+            employee.DesignationId = _services.GetDesignationName(employee.DesignationId);
+            employee.QualificationId = _services.GetQualificationName(employee.QualificationId);
+            employee.RoleId = _services.GetRoleName(employee.RoleId);
+            employee.EmployeeId = _services.GetManagerName(employee.EmployeeId);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+            return View(employee.EmployeeDTOtoViewModel());
+        }
+
+        // GET: Employees/Edit/5
+        public ActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            EmployeeDTO employee = _services.GetEmployeeDetailsById(id);
+            if (employee == null)
+            {
+                return HttpNotFound();
+            }
+            ViewData["Designations"] = GetDesignations();
+            ViewData["Qualifications"] = GetQualifications();
+            ViewData["Managers"] = GetManagers();
+            ViewData["Roles"] = GetRoles();
+            return View(employee.EmployeeDTOtoViewModel());
+        }
+
+        // POST: Employees/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EmployeeViewModel employee)
+        {
+            if (ModelState.IsValid)
+            {
+                int status = _services.EditEmployeeById(employee.EmployeeViewModeltoDTO());
+                if (status == 0)
+                {
+                    ViewBag.message = "Error in modifying employee record";
+                    return RedirectToAction("Edit", employee);
+                }
+                return RedirectToAction("Index");
+            }
+            return View(employee);
+           
+        }
 
     }
 }
