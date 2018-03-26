@@ -34,6 +34,7 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Skill/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();

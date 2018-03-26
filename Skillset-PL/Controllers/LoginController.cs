@@ -33,6 +33,7 @@ namespace Skillset_PL.Controllers
         public ActionResult Login(string employeeCode, string password)
         {
             var role = logService.GetRole(employeeCode, password);
+           
             if (role == "Admin")
             {
                 var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(20), false, "Admin;Manager;Employee");
