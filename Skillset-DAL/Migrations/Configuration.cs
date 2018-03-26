@@ -9,7 +9,7 @@ namespace Skillset_DAL.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "Skillset_DAL.ContextClass.SkillsetDbContext";
         }
 

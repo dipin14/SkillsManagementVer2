@@ -22,6 +22,7 @@ namespace Skillset_DAL.Repositories
             {
                 var designations = (from d in context.Designations
                                     from e in context.Employees
+
                                     where (e.Status && e.EmployeeId == managerId && d.Id == e.DesignationId)
                                     select d).ToList();
 
@@ -70,6 +71,7 @@ namespace Skillset_DAL.Repositories
             int managerId = Convert.ToInt32(managerCode);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
+     
                 var employees = context.Employees.ToList().Where(s => s.Status && s.EmployeeId == managerId);
                 return employees;
             }

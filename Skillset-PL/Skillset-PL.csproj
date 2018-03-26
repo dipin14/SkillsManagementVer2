@@ -225,10 +225,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\Skillset-PL.csprojResolveAssemblyReference.cache" />
-    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
-    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
-    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
-    <Content Include="bin\Skillset_PL.dll.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="obj\Debug\Skillset-PL.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Skillset_PL.dll" />
@@ -248,8 +244,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ManagerController.cs" />
-    <Compile Include="Controllers\AdministratorViewController.cs" />
+       <Compile Include="Controllers\AdministratorViewController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
@@ -265,7 +260,7 @@
     <Compile Include="ViewModels\AdministratorEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AdministratorSkillViewModel.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
-    <Compile Include="ViewModels\StaffSkills.cs" />
+    <Compile Include="ViewModels\ReportingStaff.cs" />    <Compile Include="ViewModels\StaffSkills.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -275,15 +270,12 @@
     <Content Include="Views\Skill\Create.cshtml" />
     <Content Include="Views\Skill\Edit.cshtml" />
     <Content Include="Views\Skill\Delete.cshtml" />
-    <Content Include="Views\Manager\SkillRate.cshtml" />
-    <Content Include="Views\AdministratorView\Index.cshtml" />
+
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\AdministratorView\Skills.cshtml" />
+
     <Content Include="Views\Manager\Index.cshtml" />
-    <Content Include="Views\Shared\_ManagerLayout.cshtml" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <Content Include="Views\Shared\_ManagerLayout.cshtml" />      <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -342,7 +334,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
