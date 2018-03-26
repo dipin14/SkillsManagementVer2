@@ -7,37 +7,39 @@
 <h2>Skills</h2>
 <link href="~/Content/adminview.css" rel="stylesheet" type="text/css" />
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SkillName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SkillValue)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RatingDate)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SkillName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SkillValue)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RatingDate)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.SkillName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SkillValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RatingDate)
+            </th>
+            <th></th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SkillName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SkillValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RatingDate)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
 <p>
-    @Html.ActionLink("Back to Employee List", "Index", null, new { @class = "adminview" })
+    @Html.ActionLink("Back to Employee List", "Index", null, new { @class = "buttonstyle" })
 </p>
