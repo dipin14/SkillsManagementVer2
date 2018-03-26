@@ -13,7 +13,7 @@ namespace Skillset_DAL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201803230541398_InitialCreate"; }
+            get { return "201803230549076_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

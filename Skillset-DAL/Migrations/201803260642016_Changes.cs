@@ -3,7 +3,7 @@ namespace Skillset_DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Changes : DbMigration
     {
         public override void Up()
         {
@@ -24,16 +24,26 @@ namespace Skillset_DAL.Migrations
                         EmployeeCode = c.String(),
                         Name = c.String(),
                         DateOfJoining = c.DateTime(nullable: false),
+                        RoleId = c.Int(nullable: false),
                         DesignationId = c.Int(nullable: false),
                         QualificationId = c.Int(nullable: false),
                         Experience = c.Int(nullable: false),
                         DateOfBirth = c.DateTime(nullable: false),
-                        ManagerCode = c.Int(nullable: false),
+                        ManagerCode = c.String(),
                         Address = c.String(),
                         Email = c.String(),
                         MobileNumber = c.Double(nullable: false),
                         Gender = c.String(),
                         Status = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "public.Qualifications",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -48,40 +58,37 @@ namespace Skillset_DAL.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "public.Roles",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "public.SkillRatings",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        EmployeeId = c.Int(nullable: false),
                         SkillId = c.Int(nullable: false),
                         RatingId = c.Int(nullable: false),
                         RatingDate = c.DateTime(nullable: false),
                         Note = c.String(),
                         IsSpecialSkill = c.Boolean(nullable: false),
                         Status = c.Boolean(nullable: false),
+                        EmployeeId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "public.Skills",
-                c => new
-                    {
-                        skillId = c.Int(nullable: false, identity: true),
-                        skillName = c.String(),
-                        skillDescription = c.String(),
-                        Status = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.skillId)
-                .Index(t => t.skillName, unique: true, name: "SK_Name");
             
         }
         
         public override void Down()
         {
-            DropIndex("public.Skills", "SK_Name");
-            DropTable("public.Skills");
             DropTable("public.SkillRatings");
+            DropTable("public.Roles");
             DropTable("public.Ratings");
+            DropTable("public.Qualifications");
             DropTable("public.Employees");
             DropTable("public.Designations");
         }

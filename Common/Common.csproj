@@ -71,14 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="DTO\ReportingStaff.cs" />
-
     <Compile Include="DTO\AdminEmployeeDTO.cs" />
     <Compile Include="DTO\AdminSkillDTO.cs" />
     <Compile Include="DTO\SkillDTO.cs" />
+    <Compile Include="DTO\StaffSkills.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
-
     <Compile Include="Extensions\ModelExtension.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
@@ -97,25 +95,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\Common.dll" />
-    <Content Include="bin\Debug\Common.pdb" />
-    <Content Include="bin\Debug\EntityFramework.dll" />
-    <Content Include="bin\Debug\EntityFramework.xml" />
-    <Content Include="bin\Debug\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Debug\Skillset_DAL.dll" />
-    <Content Include="bin\Debug\Skillset_DAL.pdb" />
-    <Content Include="bin\Debug\System.Web.Helpers.dll" />
-    <Content Include="bin\Debug\System.Web.Helpers.xml" />
-    <Content Include="bin\Debug\System.Web.Mvc.dll" />
-    <Content Include="bin\Debug\System.Web.Mvc.xml" />
-    <Content Include="bin\Debug\System.Web.Razor.dll" />
-    <Content Include="bin\Debug\System.Web.Razor.xml" />
-    <Content Include="bin\Debug\System.Web.WebPages.Deployment.dll" />
-    <Content Include="bin\Debug\System.Web.WebPages.Deployment.xml" />
-    <Content Include="bin\Debug\System.Web.WebPages.dll" />
-    <Content Include="bin\Debug\System.Web.WebPages.Razor.dll" />
-    <Content Include="bin\Debug\System.Web.WebPages.Razor.xml" />
-    <Content Include="bin\Debug\System.Web.WebPages.xml" />
     <Content Include="obj\Debug\Common.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Common.dll" />
     <Content Include="obj\Debug\Common.pdb" />
