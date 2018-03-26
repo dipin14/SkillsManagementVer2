@@ -152,7 +152,6 @@ namespace Skillset_PL.ViewModelExtensions
                 RatingDate = skill.RatingDate,
                 Note = skill.Note
             }).ToList();
-
         }
 
     }
