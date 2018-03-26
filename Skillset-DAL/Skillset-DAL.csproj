@@ -66,10 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextClass\SkillsetDbContext.cs" />
-    <Compile Include="Migrations\201803260737155_seed.cs" />
-    <Compile Include="Migrations\201803260737155_seed.Designer.cs">
-      <DependentUpon>201803260737155_seed.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Employee.cs" />
