@@ -209,8 +209,7 @@
     <Content Include="Content\adminview.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Card.css" />
-    <Content Include="Content\Dashboard.css" />
+    <Content Include="Content\Card.css" />    <Content Include="Content\Dashboard.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -250,8 +249,7 @@
     <Compile Include="Controllers\AdministratorViewController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\SkillController.cs" />
-    <Compile Include="Global.asax.cs">
+    <Compile Include="Controllers\SkillController.cs" />    <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -294,9 +292,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Home\" />
-  </ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />    <Folder Include="Views\Home\" />
+    <Folder Include="Views\Login\" />  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A439D49B-8048-4918-AFFD-FCDF3DF9B710}</Project>

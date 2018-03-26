@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Skillset_BLL.Services;
+using Skillset_DAL.ContextClass;
+using Skillset_DAL.Repositories;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -27,7 +29,7 @@ namespace Skillset_PL
             builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
             builder.RegisterType<AdminEmployeeSkillRepository>().As<IAdminEmployeeSkillRepository>().InstancePerRequest();
 
-            builder.RegisterControllers(Assembly.GetExecutingAssembly()); 
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());            var container = builder.Build();
             var container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
