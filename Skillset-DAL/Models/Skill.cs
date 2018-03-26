@@ -8,9 +8,9 @@ namespace Skillset_DAL.Models
 {
     public class Skill
     {
-        public int skillId { get; set; }
-        public string skillName { get; set; }
-        public string skillDescription { get; set; }
-        public bool status { get; set; }
+        public int SkillId { get; set; }
+        public string SkillName { get; set; }
+        public string SkillDescription { get; set; }
+        public bool Status { get; set; }
     }
 }

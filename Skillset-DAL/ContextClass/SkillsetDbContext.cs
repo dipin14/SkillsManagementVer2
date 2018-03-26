@@ -18,7 +18,8 @@ namespace Skillset_DAL.ContextClass
             //Fluent API to be written here
 
 
-            modelBuilder.Entity<Skill>().Property(c => c.skillName).HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("SK_Name") { IsUnique = true }));
+
+            modelBuilder.Entity<Skill>().Property(c => c.SkillName).HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("SK_Name") { IsUnique = true }));
 
         }
         public DbSet<Skill> Skills { get; set; }
@@ -28,6 +29,6 @@ namespace Skillset_DAL.ContextClass
         public DbSet<SkillRating> SkillRatings { get; set; }
         public DbSet<Qualification> Qualifications { get; set; }
         public DbSet<Role> Roles { get; set; }
-
+        
     }
 }

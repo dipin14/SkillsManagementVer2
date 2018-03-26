@@ -19,7 +19,7 @@ namespace Skillset_DAL.Repositories
                 {
                     using (var db = new SkillsetDbContext())
                     {
-                        skill.status = true;
+                        skill.Status = true;
                         db.Skills.Add(skill);
                         db.SaveChanges();
                     }
@@ -39,7 +39,7 @@ namespace Skillset_DAL.Repositories
             {
                 using (var db = new SkillsetDbContext())
                 {
-                    skill.status = true;
+                    skill.Status = true;
                     db.Entry(skill).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -55,7 +55,7 @@ namespace Skillset_DAL.Repositories
                 using (var db = new SkillsetDbContext())
                 {
                     var deleteSkill = db.Skills.Find(skillId);
-                    deleteSkill.status = false;
+                    deleteSkill.Status = false;
                     db.Entry(deleteSkill).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -68,7 +68,7 @@ namespace Skillset_DAL.Repositories
         {
             using (var db = new SkillsetDbContext())
             {
-                var skillList = db.Skills.Where(s => s.status == true).ToList();
+                var skillList = db.Skills.Where(s => s.Status == true).ToList();
                 return skillList;
             }
         }
@@ -77,7 +77,7 @@ namespace Skillset_DAL.Repositories
         {
             using (var db = new SkillsetDbContext())
             {
-                var skillId = db.Skills.Where(s => s.skillName == skillName).FirstOrDefault().skillId;
+                var skillId = db.Skills.Where(s => s.SkillName == skillName).FirstOrDefault().SkillId;
                 return skillId;
             }
         }
@@ -86,7 +86,7 @@ namespace Skillset_DAL.Repositories
         {
             using (var db = new SkillsetDbContext())
             {
-                var skillDetails = db.Skills.Where(s => s.skillName == skillName).FirstOrDefault();
+                var skillDetails = db.Skills.Where(s => s.SkillName == skillName).FirstOrDefault();
                 return skillDetails;
             }
         }
