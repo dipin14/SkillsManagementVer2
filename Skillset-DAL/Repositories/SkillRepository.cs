@@ -39,6 +39,7 @@ namespace Skillset_DAL.Repositories
             {
                 using (var db = new SkillsetDbContext())
                 {
+                    skill.status = true;
                     db.Entry(skill).State = EntityState.Modified;
                     db.SaveChanges();
                 }

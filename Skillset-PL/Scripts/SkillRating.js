@@ -47,9 +47,6 @@ function CRateSelected(id) {
 function SubmitRating(data,m)
 {
     var RatingList = new Array();
-  
-
- 
     for (var i = 0; i < m; i++) {
         var ratingSCore = document.getElementById("Rating " + data[i].skillId).value
         var SkillID = data[i].skillId
