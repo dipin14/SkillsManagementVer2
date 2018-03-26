@@ -26,6 +26,7 @@ namespace Skillset_BLL.Services
         {
             var designations = _reportingStaff.GetDesignationDetails(managerCode);
             var staff = _reportingStaff.GetEmployeeDetails(managerCode);
+           
             if (staff.Any())
             {
                 var staffDetails = (from s in staff
@@ -43,9 +44,7 @@ namespace Skillset_BLL.Services
                     Name = employee.Name,
                     Email = employee.Email,
                     Designation = employee.Designation
-
-                }).ToList();
-
+            }).ToList();
             }
             else
                 return Enumerable.Empty<Common.DTO.ReportingStaff>().ToList();
@@ -61,6 +60,7 @@ namespace Skillset_BLL.Services
             var ratings = _reportingStaff.GetRatingDetails();
             var skills = _reportingStaff.GetSkillDetails();
             var skillRatings = _reportingStaff.GetSkillRatingsDetails(employeeCode);
+
             if (skillRatings.Any())
             {
                 var skillRatingDetails = (from sr in skillRatings

@@ -41,7 +41,7 @@ where (e.Status && e.EmployeeId == managerId && e.Id!=e.EmployeeId && d.Id == e.
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                var skills = context.Skills.Where(s => s.status).ToList();
+                var skills = context.Skills.Where(s => s.Status).ToList();
 
                 if (skills.Any())
                     return skills;
