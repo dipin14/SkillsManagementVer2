@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Skillset_DAL.Models
+namespace Common.DTO
 {
-        public class Rating
+    public class DesignationDTO
     {
         public int Id { get; set; }
-        public int Value { get; set; }
-        public string Note { get; set; }
+        public string Name { get; set; }
     }
 }

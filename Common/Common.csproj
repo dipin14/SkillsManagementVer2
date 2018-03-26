@@ -71,6 +71,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\DesignationDTO.cs" />
+    <Compile Include="DTO\EmployeeDTO.cs" />
+    <Compile Include="DTO\QualificationDTO.cs" />
+    <Compile Include="DTO\RoleDTO.cs" />
+    <Compile Include="DTO\ReportingStaff.cs" />
     <Compile Include="DTO\AdminEmployeeDTO.cs" />
     <Compile Include="DTO\AdminSkillDTO.cs" />
     <Compile Include="DTO\SkillDTO.cs" />
@@ -80,12 +85,6 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Skillset-DAL\Skillset-DAL.csproj">
-      <Project>{2C5954C6-E497-4A20-BD12-B6CCCA268FE6}</Project>
-      <Name>Skillset-DAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="obj\Debug\Common.csprojResolveAssemblyReference.cache" />
@@ -118,6 +117,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Skillset-DAL\Skillset-DAL.csproj">
+      <Project>{2c5954c6-e497-4a20-bd12-b6ccca268fe6}</Project>
+      <Name>Skillset-DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

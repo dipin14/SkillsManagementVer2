@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Skillset_PL.ViewModels.ReportingStaff>
+
+@{
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<label class="control-label alert-success well-sm">Staff Details</label>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Designation)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+      
+       
+        <td>
+         
+            @Html.ActionLink("Skills", "SkillRate", new {code=item.EmployeeCode}) 
+        </td>
+    </tr>
+}
+
+</table>

@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Skillset_DAL.Models
+namespace Common.DTO
 {
-    public class SkillRating
+    public class StaffSkills
     {
-        public int Id { get; set; }        public int EmployeeId { get; set; }        public int SkillId { get; set; }
-        public int RatingId { get; set; }
+        public string EmployeeCode { get; set; }
+        public string Skill { get; set; }
+        public int Rating { get; set; }
         public DateTime RatingDate { get; set; }
         public string Note { get; set; }
         public bool IsSpecialSkill { get; set; }
         public bool Status { get; set; }
-        public int EmployeeId { get; set; }    }
+    }
 }
