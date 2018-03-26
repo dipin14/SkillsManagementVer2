@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Skillset_PL.ViewModels.StaffSkills>
+
+@{
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+    ViewBag.Title = "SkillRate";
+}
+
+
+@*<div>
+        <h4>StaffSkills</h4>
+        <hr />
+       <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeCode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeCode)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Skill)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Skill)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Rating)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Rating)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RatingDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RatingDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsSpecialSkill)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsSpecialSkill)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+
+        </dl>
+    </div>*@
+
+    <label class="control-label alert-success well-sm">Skill Details</label>
+    <table class="table">
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Skill)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RatingDate)
+            </th>
+           
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Skill)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.RatingDate)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

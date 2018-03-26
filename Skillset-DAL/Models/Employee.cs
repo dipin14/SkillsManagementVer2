@@ -23,5 +23,6 @@ namespace Skillset_DAL.Models
         public double MobileNumber { get; set; }
         public string Gender { get; set; }
         public bool Status { get; set; }
+
     }
 }
