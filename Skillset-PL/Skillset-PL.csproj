@@ -251,7 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\SkillController.cs" />    <Compile Include="Global.asax.cs">
+    <Compile Include="Controllers\SkillController.cs" />    <Compile Include="Global.asax.cs" />
     <Compile Include="Controllers\AdministratorViewController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -282,12 +282,12 @@
     <Content Include="Views\Skill\Create.cshtml" />
     <Content Include="Views\Skill\Edit.cshtml" />
     <Content Include="Views\Skill\Delete.cshtml" />
-    <Content Include="Views\AdministratorView\Skills.cshtml" />    <None Include="Web.Debug.config">
+    <Content Include="Views\AdministratorView\Skills.cshtml" />    <None Include="Web.Debug.config" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\AdministratorView\Skills.cshtml" />
     <Content Include="Views\SkillRating\EmployeeRating.cshtml" /><Content Include="Views\Manager\MyProfile.cshtml" />
-    <Content Include="Views\Manager\_ManagerLayout.cshtml" /    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Manager\_ManagerLayout.cshtml" />   <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Employee\_EmployeeLayout.cshtml" />
     <Content Include="Views\Employee\EmployeeProfile.cshtml" />
 
@@ -300,7 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Login\" />  </ItemGroup>
+    <Folder Include="Views\Login\" />  
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="obj\Models\" />
     <Folder Include="Views\Home\" />
