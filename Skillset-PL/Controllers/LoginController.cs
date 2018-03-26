@@ -35,24 +35,42 @@ namespace Skillset_PL.Controllers
             var role = logService.GetRole(employeeCode, password);
             if (role == "Admin")
             {
-                FormsAuthentication.SetAuthCookie(role, false);
-                return RedirectToAction("Index");
+                var authTicket = new FormsAuthenticationTicket( 1,employeeCode,DateTime.Now,DateTime.Now.AddMinutes(2),false,"Admin");
+                SetCode(authTicket);
+                Session["customercode"] = employeeCode;
+                return RedirectToAction("Index", "Dashboard");
             }
             else if (role == "Manager")
             {
-                FormsAuthentication.SetAuthCookie(role.ToString(), false);
-                return RedirectToAction("Search");
+                var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(2), false, "Manager");
+                SetCode(authTicket);
+                Session["customercode"] = employeeCode;
+                return RedirectToAction("Index", "Skill");
             }
             else if (role == "Employee")
             {
-                FormsAuthentication.SetAuthCookie(role.ToString(), false);
-                return RedirectToAction("Search");
+                var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(2), false, "Employee");
+                SetCode(authTicket);
+                Session["customercode"] = employeeCode;
+                return RedirectToAction("Index", "Skill");
             }
             else
             {
                 ViewBag.ErrorMessage = "Invalid Employee Code or Password";
                 return View();
-            }
+            } 
+        }
+        public void  SetCode(FormsAuthenticationTicket authTicket)
+        {
+            string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+            System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
+            
+        }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
         }
     }
 }

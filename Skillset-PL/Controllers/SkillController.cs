@@ -18,7 +18,7 @@ namespace Skillset_PL.Controllers
         {
             _skillService = skillService;
         }
-
+        
         // GET: Skill
         public ActionResult Index()
         {
@@ -33,6 +33,7 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Skill/Create
+        [Authorize(Roles = "Manager,Employee")]
         public ActionResult Create()
         {
             return View();
