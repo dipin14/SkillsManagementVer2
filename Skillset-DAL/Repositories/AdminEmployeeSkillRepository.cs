@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Skillset_DAL.Repositories
 {
-    public class AdminEmployeeSkillRepository: IAdminEmployeeSkillRepository
+    public class AdminEmployeeSkillRepository : IAdminEmployeeSkillRepository
     {
         public List<Employee> GetEmployeeDetails(string option, string searchKey)
         {
@@ -76,7 +76,7 @@ namespace Skillset_DAL.Repositories
             {
                 int empId = context.Employees.Where(m => m.EmployeeCode == employeeCode).Select(m => m.Id).FirstOrDefault();
                 return empId;
-            }          
+            }
         }
     }
 }
