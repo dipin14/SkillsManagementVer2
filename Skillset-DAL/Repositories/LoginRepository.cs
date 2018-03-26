@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Skillset_DAL.Repositories
 {
-    public class LoginRepository : IloginRepository
+    public class LoginRepository:ILoginRepository
     {
+       
         SkillsetDbContext db = new SkillsetDbContext();
-
         public string GetRole(string employeecode, string password)
         {
             try
@@ -28,7 +28,7 @@ namespace Skillset_DAL.Repositories
                     return role;
                 }
             }
-            catch(Exception )
+            catch (Exception)
             {
                 return "error";
             }

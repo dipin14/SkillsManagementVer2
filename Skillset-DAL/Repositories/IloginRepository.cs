@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Skillset_DAL.Repositories
 {
-    public interface IloginRepository
+    public interface ILoginRepository
     {
         string GetRole(string employeecode, string password);
     }

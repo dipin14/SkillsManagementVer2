@@ -19,13 +19,21 @@ namespace Skillset_PL
             //Registering dependency injection for Autofac
             var builder = new ContainerBuilder();
 
-            // manual registration of types;
             builder.RegisterType<SkillService>().As<ISkillService>().InstancePerRequest();
             builder.RegisterType<SkillRepository>().As<ISkillRepository>().InstancePerRequest();
-            builder.RegisterType<SkillsetDbContext>();            builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
+<<<<<<< HEAD
+            builder.RegisterType<LoginService>().As<ILoginService>().InstancePerRequest();
+            builder.RegisterType<LoginRepository>().As<IloginRepository>().InstancePerRequest();
+            builder.RegisterType<SkillsetDbContext>();
+||||||| merged common ancestors
+            
+=======
+            builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
             builder.RegisterType<AdminEmployeeSkillRepository>().As<IAdminEmployeeSkillRepository>().InstancePerRequest();
 
-            builder.RegisterControllers(Assembly.GetExecutingAssembly());            var container = builder.Build();
+>>>>>>> 2f163eff0a66aa26474db1e9c401eb079c688ce8
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }

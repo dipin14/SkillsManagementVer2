@@ -33,13 +33,9 @@ namespace Skillset_PL.Controllers
         public ActionResult Login(string employeeCode, string password)
         {
             var role = logService.GetRole(employeeCode, password);
-           
             if (role == "Admin")
             {
-                var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(20), false, "Admin;Manager;Employee");
-                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-                System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
+                FormsAuthentication.SetAuthCookie(role, false);
                 return RedirectToAction("Index");
             }
             else if (role == "Manager")
@@ -57,7 +53,6 @@ namespace Skillset_PL.Controllers
                 ViewBag.ErrorMessage = "Invalid Employee Code or Password";
                 return View();
             }
-
         }
     }
 }

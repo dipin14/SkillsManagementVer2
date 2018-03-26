@@ -9,8 +9,8 @@ namespace Skillset_BLL.Services
 {
     public class LoginService:ILoginService
     {
-        private readonly IloginRepository logRepository;
-        public LoginService(IloginRepository logRepo)
+        private readonly ILoginRepository logRepository;
+        public LoginService(ILoginRepository logRepo)
         {
             logRepository = logRepo;
         }
