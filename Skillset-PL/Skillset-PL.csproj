@@ -257,6 +257,7 @@
     <Compile Include="ViewModelExtensions\ViewModelExtension.cs" />
     <Compile Include="ViewModels\AdministratorEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AdministratorSkillViewModel.cs" />
+    <Compile Include="ViewModels\EmpoyeeRatingViewModel.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -283,8 +284,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="obj\Models\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Models\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>

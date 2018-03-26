@@ -28,9 +28,9 @@
                         </p>
 
                     </div>
-                    <div class="col-md-4" style="color:grey;margin-top:35px;">
+                    <div class="col-md-4" style="color:grey;">
 
-                        <div onmouseout="CRateSelected(@item.skillId)">
+                        <div onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;">
                             <input id="Rating @item.skillId" hidden />
                             <span class="starFade" id="Rate1 @item.skillId" onclick="CRate(@item.skillId, 1)" onmouseover="CRateOver(@item.skillId,1)" onmouseout="CRateOut(@item.skillId,1)"></span>
                           <label for="Rate1 @item.skillId" title="Amazing"></label>
@@ -39,6 +39,8 @@
                             <span class="starFade" id="Rate4 @item.skillId" onclick="CRate(@item.skillId, 4)" onmouseover="CRateOver(@item.skillId,4)" onmouseout="CRateOut(@item.skillId,4)"></span>
                             <span class="starFade" id="Rate5 @item.skillId" onclick="CRate(@item.skillId, 5)" onmouseover="CRateOver(@item.skillId,5)" onmouseout="CRateOut(@item.skillId,5)"></span>
                         </div>
+                        <textarea class="form-control" id="TxtAra @item.skillId" placeholder="Enter your notes here" name="TxtAra" required style="margin:10px;"></textarea>
+
                        
                     </div>
                 </div>
@@ -49,41 +51,39 @@
 
 
         }
-            <div class="collapse " id="viewdetails">
-                <div class="row">
+     
+       
+    <a class="btn btn-info" href="#demo" data-toggle="collapse">Special Skills?</a>
 
-                    <div class="col-md-7" style="margin-left:20px;">
+    <div id="demo" class="collapse">
+        <div class="card">
+            <div class="row">
 
-
-                        <div>
-                
-                            <textarea class="form-control" rows="3" cols="50" id="TxtAra" placeholder="Enter your special skill here" name="TxtAra" required style="margin:10px;"></textarea>
-                            </div></div>
-                    <div class="col-md-4" style="color:grey;margin-top:35px;">
-                        <div onmouseout="CRateSelected(0)">
-                            <input id="Rating 0" hidden />
-                            <span class="starFade" id="Rate1 0" onclick="CRate(0, 1)" onmouseover="CRateOver(0,1)" onmouseout="CRateOut(0,1)"></span>
-                            <label for="Rate1 0" title="Amazing"></label>
-                            <span class="starFade" id="Rate2 0" onclick="CRate(0, 2)" onmouseover="CRateOver(0,2)" onmouseout="CRateOut(0,2)"></span>
-                            <span class="starFade" id="Rate3 0" onclick="CRate(0, 3)" onmouseover="CRateOver(0,3)" onmouseout="CRateOut(0,3)"></span>
-                            <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)"></span>
-                            <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)"></span>
-                        </div>
-                        </div>
-                    </div>
-
-
-
-                    </div><br />
-   
-                    <p><button class="btn btn-primary" data-toggle="collapse in" data-target="#viewdetails" >Special Skills &raquo;</button></p>
-    <p>
-      
-
-                    @{var data = @Html.Raw(Json.Encode(Model));
-                        <input type="button" class="btn btn-danger" onclick='SubmitRating(@data,@Model.Count())'>
-                    }
+                <div class="col-md-7" style="margin-left:20px;">
+                    <textarea class="form-control" rows="3" cols="50" id="TxtAra" placeholder="Enter your special skill here" name="TxtAra" required style="margin:10px;"></textarea>
                 </div>
+                <div class="col-md-4" style="color:grey;margin-top:35px;">
+                    <div onmouseout="CRateSelected(0)">
+                        <input id="Rating 0" hidden />
+                        <span class="starFade" id="Rate1 0" onclick="CRate(0, 1)" onmouseover="CRateOver(0,1)" onmouseout="CRateOut(0,1)"></span>
+                        <label for="Rate1 0" title="Amazing"></label>
+                        <span class="starFade" id="Rate2 0" onclick="CRate(0, 2)" onmouseover="CRateOver(0,2)" onmouseout="CRateOut(0,2)"></span>
+                        <span class="starFade" id="Rate3 0" onclick="CRate(0, 3)" onmouseover="CRateOver(0,3)" onmouseout="CRateOut(0,3)"></span>
+                        <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)"></span>
+                        <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
+
+        @{var data = @Html.Raw(Json.Encode(Model));
+            <input type="button" class="btn btn-danger" onclick='SubmitRating(@data,@Model.Count())'>
+        }
+</div>
 
                 <div class="col-lg-3">
                     <div style="color:red;">
