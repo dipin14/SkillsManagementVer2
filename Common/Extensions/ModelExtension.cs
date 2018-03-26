@@ -122,5 +122,23 @@ namespace Common.Extensions
             }
             return dto;
         }
+/// <summary>
+        /// Convert IList of SkillRatingDTO model to SkillRatingModel
+        /// </summary>
+        /// <param name="skillRatingDTOList"></param>
+        /// <returns></returns>
+        public static IList<SkillRating> ToSkillRatingModelList(this IList<EmployeeSkillRatingDTO> skillRatingDtoList)
+        {
+            return skillRatingDtoList.Select(skill => new SkillRating
+            {
+                EmployeeId = skill.EmployeeId,
+                SkillId = skill.SkillId,
+                Note = skill.Note,
+                RatingDate = skill.RatingDate,
+                IsSpecialSkill = skill.IsSpecialSkill,
+                RatingId = skill.RatingScore,
+                Status = skill.Status
+            }).ToList(); ;
+        }
     }
 }

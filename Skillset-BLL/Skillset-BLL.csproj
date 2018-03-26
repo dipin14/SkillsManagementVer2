@@ -48,8 +48,10 @@
     <Compile Include="Services\LoginService.cs" />
     <Compile Include="Services\IReportingStaffExtensions.cs" />
     <Compile Include="Services\IAdminEmployeeSkillService.cs" />
+    <Compile Include="Services\ISkillRatingService.cs" />
     <Compile Include="Services\ISkillService.cs" />
     <Compile Include="Services\ReportingStaffExtensions.cs" />
+    <Compile Include="Services\SkillRatingService.cs" />
     <Compile Include="Services\SkillService.cs" />
   </ItemGroup>
   <ItemGroup>
