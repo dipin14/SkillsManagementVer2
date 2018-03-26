@@ -35,21 +35,21 @@ namespace Skillset_PL.Controllers
             var role = logService.GetRole(employeeCode, password);
             if (role == "Admin")
             {
-                var authTicket = new FormsAuthenticationTicket( 1,employeeCode,DateTime.Now,DateTime.Now.AddMinutes(2),false,"Admin");
+                var authTicket = new FormsAuthenticationTicket( 1,employeeCode,DateTime.Now,DateTime.Now.AddMinutes(10),false,"Admin");
                 SetCode(authTicket);
                 Session["customercode"] = employeeCode;
                 return RedirectToAction("Index", "Dashboard");
             }
             else if (role == "Manager")
             {
-                var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(2), false, "Manager");
+                var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Manager");
                 SetCode(authTicket);
                 Session["customercode"] = employeeCode;
                 return RedirectToAction("Index", "Skill");
             }
             else if (role == "Employee")
             {
-                var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(2), false, "Employee");
+                var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Employee");
                 SetCode(authTicket);
                 Session["customercode"] = employeeCode;
                 return RedirectToAction("Index", "Skill");
