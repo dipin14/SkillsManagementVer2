@@ -77,6 +77,7 @@ namespace Skillset_PL.ViewModelExtensions
         /// <returns></returns>
         public static IEnumerable<ViewModels.ReportingStaff> ToReportingStaffViewmodel(this IEnumerable<Common.DTO.ReportingStaff> staffList)
         {
+
             if (staffList != null && staffList.Any())
             {
                 return staffList.Select(staff => new ViewModels.ReportingStaff
@@ -155,7 +156,6 @@ namespace Skillset_PL.ViewModelExtensions
         {
             if (skillList != null && skillList.Any())
             {
-
 
                 return skillList.Select(skill => new ViewModels.StaffSkills
                 {

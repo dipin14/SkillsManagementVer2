@@ -146,6 +146,67 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Autofac.Configuration.dll" />
+    <Content Include="bin\Autofac.Configuration.xml" />
+    <Content Include="bin\Autofac.dll" />
+    <Content Include="bin\Autofac.Integration.Mvc.dll" />
+    <Content Include="bin\Autofac.Integration.Mvc.xml" />
+    <Content Include="bin\Autofac.xml" />
+    <Content Include="bin\Common.dll" />
+    <Content Include="bin\Common.pdb" />
+    <Content Include="bin\de\Npgsql.resources.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\es\Npgsql.resources.dll" />
+    <Content Include="bin\fi\Npgsql.resources.dll" />
+    <Content Include="bin\fr\Npgsql.resources.dll" />
+    <Content Include="bin\ja\Npgsql.resources.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <Content Include="bin\Microsoft.Extensions.Configuration.Abstractions.xml" />
+    <Content Include="bin\Microsoft.Extensions.Configuration.dll" />
+    <Content Include="bin\Microsoft.Extensions.Configuration.xml" />
+    <Content Include="bin\Microsoft.Extensions.Primitives.dll" />
+    <Content Include="bin\Microsoft.Extensions.Primitives.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Mono.Security.dll" />
+    <Content Include="bin\Npgsql.dll" />
+    <Content Include="bin\Npgsql.EntityFramework.dll" />
+    <Content Include="bin\Npgsql.EntityFramework.xml" />
+    <Content Include="bin\Npgsql.xml" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\Skillset_BLL.dll" />
+    <Content Include="bin\Skillset_BLL.pdb" />
+    <Content Include="bin\Skillset_DAL.dll" />
+    <Content Include="bin\Skillset_DAL.pdb" />
+    <Content Include="bin\Skillset_PL.dll" />
+    <Content Include="bin\Skillset_PL.pdb" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\zh-CN\Npgsql.resources.dll" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\adminview.css" />
     <Content Include="Content\bootstrap.css" />
@@ -172,6 +233,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -182,8 +244,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\AdministratorViewController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -200,7 +260,6 @@
     <Compile Include="ViewModels\AdministratorEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AdministratorSkillViewModel.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
-    <Compile Include="ViewModels\ReportingStaff.cs" />
     <Compile Include="ViewModels\StaffSkills.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -211,13 +270,10 @@
     <Content Include="Views\Skill\Create.cshtml" />
     <Content Include="Views\Skill\Edit.cshtml" />
     <Content Include="Views\Skill\Delete.cshtml" />
-    <Content Include="Views\Employee\Create.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
-    <Content Include="Views\Manager\SkillRate.cshtml" />
     <Content Include="Views\AdministratorView\Index.cshtml" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\AdministratorView\Skills.cshtml" />
+      <DependentUpon>Web.config</DependentUpon>
     <Content Include="Views\Manager\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -279,7 +335,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

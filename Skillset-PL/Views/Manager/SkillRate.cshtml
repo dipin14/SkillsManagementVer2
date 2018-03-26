@@ -16,10 +16,12 @@
                     @Html.DisplayNameFor(model => model.Skill)
                 </th>
 
+
                 <th>
                     @Html.DisplayNameFor(model => model.Rating)
                 </th>
 
+           
                 <th>
                     @Html.DisplayNameFor(model => model.Note)
                 </th>
@@ -43,23 +45,12 @@
                         @Html.DisplayFor(modelItem => item.Note)
                     </td>
 
+
                     <td>
                         @Html.DisplayFor(modelItem => item.RatingDate)
                     </td>
 
+
                 </tr>
             }
-
-        </table>
-    }
-    else
-    {
-        <br/>
-        <div class="alert alert-warning fade in">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>No Skill Ratings!</strong> There is no skill ratings available.
-        </div>
-    }
-    <p>
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+</p>
