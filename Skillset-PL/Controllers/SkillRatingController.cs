@@ -36,7 +36,7 @@ namespace Skillset_PL.Controllers
         public ActionResult EmployeeRating()
         {
             var skillList = _skillService.GetAllSkills().ToViewModelList();
-            return View( skillList);
+            return View(skillList);
         }
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
         {
