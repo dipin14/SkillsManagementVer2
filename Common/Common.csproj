@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="DTO\DesignationDTO.cs" />
     <Compile Include="DTO\EmployeeDTO.cs" />
+    <Compile Include="DTO\EmployeeSkillRatingDTO.cs" />
     <Compile Include="DTO\QualificationDTO.cs" />
     <Compile Include="DTO\ReportingStaff.cs" />
     <Compile Include="DTO\AdminEmployeeDTO.cs" />
