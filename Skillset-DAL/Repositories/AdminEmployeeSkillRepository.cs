@@ -57,7 +57,7 @@ namespace Skillset_DAL.Repositories
         {
             using (var context = new SkillsetDbContext())
             {
-                return context.Skills.Where(d => d.skillId == skillId).Select(d => d.skillName).FirstOrDefault();
+                return context.Skills.Where(d => d.SkillId == skillId).Select(d => d.SkillName).FirstOrDefault();
             }
         }
 
