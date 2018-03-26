@@ -8,7 +8,10 @@ namespace Skillset_DAL.ContextClass
 {
     public class SkillsetDbContext : DbContext
     {
-        public SkillsetDbContext() : base(nameOrConnectionString: "Default") { }
+        public SkillsetDbContext() : base(nameOrConnectionString: "Default")
+        {
+           
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

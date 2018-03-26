@@ -26,14 +26,15 @@ namespace Skillset_BLL.Services
 
         }
 
-        public int DeleteEmployeeById(int id)
+        public int DeleteEmployeeById(string id)
         {
-            throw new NotImplementedException();
+            return _repository.DeleteEmployee(id);
         }
 
-        public EmployeeDTO EditEmployeeById(int id)
+        public int EditEmployeeById(EmployeeDTO employee)
         {
-            throw new NotImplementedException();
+            return _repository.EditEmployee(employee.EmployeeDTOtoModel());
+
         }
 
         public IEnumerable<EmployeeDTO> GetAllEmployees()
@@ -48,9 +49,9 @@ namespace Skillset_BLL.Services
             
         }
 
-        public EmployeeDTO GetEmployeeDetailsById(int id)
+        public EmployeeDTO GetEmployeeDetailsById(string id)
         {
-            throw new NotImplementedException();
+            return _repository.GetEmployeeDetails(id).EmployeeModeltoDTO();
         }
 
         public List<DesignationDTO> GetDesignations()
@@ -96,7 +97,26 @@ namespace Skillset_BLL.Services
             return dto;
         }
 
-        public List<EmployeeDTO> GetRecentEmployees()
+        public string GetDesignationName(string id)
+        {
+            return _repository.GetDesignationName(id);
+        }
+
+        public string GetQualificationName(string id)
+        {
+            return _repository.GetQualificationName(id);
+        }
+
+        public string GetManagerName(string id)
+        {
+            return _repository.GetManagerName(id);
+        }
+
+        public string GetRoleName(string id)
+        {
+            return _repository.GetRoleName(id);
+        }
+public List<EmployeeDTO> GetRecentEmployees()
         {
             return _repository.GetRecentEmployees().ListEmployeeModeltoDTO();
         }

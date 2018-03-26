@@ -24,6 +24,8 @@ namespace Skillset_PL
             var builder = new ContainerBuilder();
 
             // manual registration of types;
+            builder.RegisterType<EmployeeServices>().As<IEmployeeServices>();
+            builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>();
             builder.RegisterType<SkillService>().As<ISkillService>().InstancePerRequest();
             builder.RegisterType<SkillRepository>().As<ISkillRepository>().InstancePerRequest();
             builder.RegisterType<ReportingStaffExtensions>().As<IReportingStaffExtensions>().InstancePerRequest();

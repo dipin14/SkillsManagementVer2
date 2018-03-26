@@ -2,6 +2,7 @@
 using Skillset_DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,21 +17,21 @@ namespace Skillset_DAL.Repositories
             try
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
-            {
-                employeeList = context.Employees.ToList();
-                int status = CheckDuplicateEmployee(employeeList, employee);
-                if (status == 0)
                 {
-                    employee.Status = true;
-                    context.Employees.Add(employee);
-                    context.SaveChanges();
-                    return 0;
+                    employeeList = context.Employees.ToList();
+                    int status = CheckDuplicateEmployee(employeeList, employee);
+                    if (status == 0)
+                    {
+                        employee.Status = true;
+                        context.Employees.Add(employee);
+                        context.SaveChanges();
+                        return 0;
+                    }
+                    else
+                    {
+                        return status;
+                    }
                 }
-                else
-                {
-                    return status;
-                }
-            }
             }
             catch
             {
@@ -60,22 +61,64 @@ namespace Skillset_DAL.Repositories
 
         }
 
-        public int DeleteEmployee(int id)
+        public int DeleteEmployee(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SkillsetDbContext context = new SkillsetDbContext())
+                {
+                    Employee employee = context.Employees.Where(p => p.EmployeeCode == id && p.Status == true).Single();
+                    employee.Status = false;
+                    context.Entry(employee).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+                return 1;
+            }
+            catch
+            {
+                return 0;
+            }
+
         }
 
-        public Employee EditEmployee(int id)
+        public int EditEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                int id = Convert.ToInt32(context.Employees.Where(p => p.EmployeeCode == employee.EmployeeCode).Select(p => p.Id).Single());
+                employee.Id = id;
+                employee.Status = true;
+                context.Entry(employee).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+            return 1;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         public IEnumerable<Employee> GetAllEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                return context.Employees.ToList();
+                return context.Employees.Where(p => p.Status == true).ToList();
             }
+        }
+
+        public string GetDesignationName(string id)
+        {
+
+            int designationId = Convert.ToInt32(id);
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                var name = context.Designations.Where(p => p.Id == designationId).Select(p => p.Name).Single();
+                return name.ToString();
+            }
+
         }
 
         public List<Designation> GetDesignations()
@@ -86,18 +129,39 @@ namespace Skillset_DAL.Repositories
             }
         }
 
-        public Employee GetEmployeeDetails(int id)
+        public Employee GetEmployeeDetails(string id)
         {
-            throw new NotImplementedException();
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                return context.Employees.Where(p => p.EmployeeCode == id && p.Status == true).Single();
+            }
         }
 
-
+        public string GetManagerName(string id)
+        {
+            int managerId = Convert.ToInt32(id);
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                var name = context.Employees.Where(p => p.Id == managerId).Select(p => p.Name).Single();
+                return name.ToString();
+            }
+        }
 
         public List<Employee> GetManagers()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                return context.Employees.Where(p => p.RoleId == 2).ToList();
+                return context.Employees.Where(p => p.RoleId == 2 && p.Status == true).ToList();
+            }
+        }
+
+        public string GetQualificationName(string id)
+        {
+            int qualificationId = Convert.ToInt32(id);
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                var name = context.Qualifications.Where(p => p.Id == qualificationId).Select(p => p.Name).Single();
+                return name.ToString();
             }
         }
 
@@ -117,7 +181,16 @@ namespace Skillset_DAL.Repositories
             }
         }
 
-        public List<Employee> GetRecentEmployees()
+        public string GetRoleName(string id)
+        {
+            int roleId = Convert.ToInt32(id);
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                var name = context.Roles.Where(p => p.Id == roleId).Select(p => p.Name).Single();
+                return name.ToString();
+            }
+        }
+public List<Employee> GetRecentEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {

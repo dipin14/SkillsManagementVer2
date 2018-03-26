@@ -12,14 +12,17 @@ namespace Skillset_BLL.Services
     {
         IEnumerable<EmployeeDTO> GetAllEmployees();
         int AddNewEmployee(EmployeeDTO employee);
-        EmployeeDTO EditEmployeeById(int id);
-        int DeleteEmployeeById(int id);
-        EmployeeDTO GetEmployeeDetailsById(int id);       
+        int EditEmployeeById(EmployeeDTO employee);
+        int DeleteEmployeeById(string id);
+        EmployeeDTO GetEmployeeDetailsById(string id);       
         List<DesignationDTO> GetDesignations();
         List<QualificationDTO> GetQualifications();
         List<EmployeeDTO> GetManagers();
         List<RoleDTO> GetRoles();
         List<EmployeeDTO> GetRecentEmployees();
-        
+        string GetDesignationName(string id);
+        string GetQualificationName(string id);
+        string GetManagerName(string id);
+        string GetRoleName(string id);
     }
 }
