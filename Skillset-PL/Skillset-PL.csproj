@@ -152,9 +152,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Card.css" />
     <Content Include="Content\Dashboard.css" />
+    <Content Include="Content\Layout.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\female.png" />
+    <Content Include="Images\male.png" />
     <Content Include="obj\Debug\Skillset-PL.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Skillset_PL.dll" />
     <Content Include="obj\Debug\Skillset_PL.pdb" />
@@ -218,6 +221,11 @@
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\AdministratorView\Skills.cshtml" />
+    <Content Include="Views\Manager\MyProfile.cshtml" />
+    <Content Include="Views\Manager\_ManagerLayout.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Employee\_EmployeeLayout.cshtml" />
+    <Content Include="Views\Employee\EmployeeProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -19,5 +19,6 @@ namespace Skillset_DAL.Repositories
         List<Qualification> GetQualifications();
         List<Employee> GetManagers();
         List<Role> GetRole();
+        List<Employee> GetRecentEmployees();
     }
 }

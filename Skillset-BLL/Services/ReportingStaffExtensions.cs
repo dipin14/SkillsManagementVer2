@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.Extensions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.DTO;
 using Skillset_DAL.Repositories;
+using Skillset_DAL.Models;
 
 namespace Skillset_BLL.Services
 {
@@ -66,6 +68,11 @@ namespace Skillset_BLL.Services
                                           Note = sr.Note
                                       }).ToList();
             return skillRatingDetails;
+        }
+
+        public EmployeeDTO GetProfile(int id)
+        {
+            return _reportingStaff.GetProfile(id).EmployeeModeltoDTO();
         }
     }
 }

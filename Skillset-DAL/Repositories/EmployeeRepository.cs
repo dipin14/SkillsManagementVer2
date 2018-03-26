@@ -116,5 +116,13 @@ namespace Skillset_DAL.Repositories
                 return context.Roles.ToList();
             }
         }
+
+        public List<Employee> GetRecentEmployees()
+        {
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                return context.Employees.OrderByDescending(e => e.EmployeeCode).Take(5).ToList();
+            }
+        }
     }
 }

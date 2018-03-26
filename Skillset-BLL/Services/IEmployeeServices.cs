@@ -19,5 +19,7 @@ namespace Skillset_BLL.Services
         List<QualificationDTO> GetQualifications();
         List<EmployeeDTO> GetManagers();
         List<RoleDTO> GetRoles();
+        List<EmployeeDTO> GetRecentEmployees();
+        
     }
 }

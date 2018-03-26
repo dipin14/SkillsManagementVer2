@@ -91,5 +91,13 @@ namespace Skillset_DAL.Repositories
             }
 
         }
+
+        public Employee GetProfile(int id)
+        {
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                return context.Employees.Where(e => e.EmployeeId == id).FirstOrDefault();
+            }
+        }
     }
   }

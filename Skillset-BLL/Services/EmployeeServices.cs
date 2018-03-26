@@ -95,5 +95,10 @@ namespace Skillset_BLL.Services
             }
             return dto;
         }
+
+        public List<EmployeeDTO> GetRecentEmployees()
+        {
+            return _repository.GetRecentEmployees().ListEmployeeModeltoDTO();
+        }
     }
 }

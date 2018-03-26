@@ -25,6 +25,9 @@ namespace Skillset_PL
 
             builder.RegisterType<EmployeeServices>().As<IEmployeeServices>().InstancePerRequest();
             builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>().InstancePerRequest();
+            builder.RegisterType<ReportingStaff>().As<IReportingStaff>().InstancePerRequest();
+            builder.RegisterType<ReportingStaffExtensions>().As<IReportingStaffExtensions>().InstancePerRequest();
+
             builder.RegisterType<SkillsetDbContext>();  
             builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
             builder.RegisterType<AdminEmployeeSkillRepository>().As<IAdminEmployeeSkillRepository>().InstancePerRequest();
