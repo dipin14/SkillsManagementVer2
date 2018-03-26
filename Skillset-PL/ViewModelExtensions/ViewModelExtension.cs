@@ -135,6 +135,7 @@ namespace Skillset_PL.ViewModelExtensions
             employee.EmployeeId = dto.EmployeeId;
 
             return employee;
+        }
 
 
         /// <summary>
