@@ -20,6 +20,7 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Skill
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var skillList = _skillService.GetAllSkills().ToViewModelList();

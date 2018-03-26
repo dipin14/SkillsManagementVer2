@@ -35,7 +35,10 @@ namespace Skillset_PL.Controllers
             var role = logService.GetRole(employeeCode, password);
             if (role == "Admin")
             {
-                FormsAuthentication.SetAuthCookie(role, false);
+                var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(20), false, "Admin;Manager;Employee");
+                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
                 return RedirectToAction("Index");
             }
             else if (role == "Manager")
