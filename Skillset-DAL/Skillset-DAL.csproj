@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201803231029115_change manager code.Designer.cs">
       <DependentUpon>201803231029115_change manager code.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803260642229_pull from master.cs" />
+    <Compile Include="Migrations\201803260642229_pull from master.Designer.cs">
+      <DependentUpon>201803260642229_pull from master.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -108,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803231029115_change manager code.resx">
       <DependentUpon>201803231029115_change manager code.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803260642229_pull from master.resx">
+      <DependentUpon>201803260642229_pull from master.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

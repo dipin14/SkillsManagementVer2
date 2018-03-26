@@ -17,7 +17,7 @@ namespace Skillset_DAL.Models
         public int QualificationId { get; set; }
         public int Experience { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string ManagerCode { get; set; }
+        public int EmployeeId { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
         public double MobileNumber { get; set; }

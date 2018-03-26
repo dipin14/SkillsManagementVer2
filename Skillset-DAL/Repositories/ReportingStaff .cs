@@ -17,11 +17,12 @@ namespace Skillset_DAL.Repositories
         /// <returns>List of Designations</returns>
         public IEnumerable<Designation> GetDesignationDetails(string managerCode)
         {
+            int managerId = Convert.ToInt32(managerCode);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 var designations = (from d in context.Designations
                                     from e in context.Employees
-                                    where (e.Status && e.ManagerCode == managerCode && d.Id == e.DesignationId)
+                                    where (e.Status && e.EmployeeId == managerId && d.Id == e.DesignationId)
                                     select d).ToList();
 
                 return designations;
@@ -66,9 +67,10 @@ namespace Skillset_DAL.Repositories
         /// <returns>List of Employees</returns>
         public IEnumerable<Employee> GetEmployeeDetails(string managerCode)
         {
+            int managerId = Convert.ToInt32(managerCode);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                var employees = context.Employees.ToList().Where(s => s.Status && s.ManagerCode == managerCode);
+                var employees = context.Employees.ToList().Where(s => s.Status && s.EmployeeId == managerId);
                 return employees;
             }
 

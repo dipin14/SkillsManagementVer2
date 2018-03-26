@@ -26,6 +26,8 @@ namespace Skillset_PL
             builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
             builder.RegisterType<AdminEmployeeSkillRepository>().As<IAdminEmployeeSkillRepository>().InstancePerRequest();
 
+            builder.RegisterType<ReportingStaff>().As<IReportingStaff>().InstancePerRequest();
+            builder.RegisterType<ReportingStaffExtensions>().As<IReportingStaffExtensions>().InstancePerRequest();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());            var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
