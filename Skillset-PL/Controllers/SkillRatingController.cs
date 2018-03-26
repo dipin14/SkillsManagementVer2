@@ -42,6 +42,12 @@ namespace Skillset_PL.Controllers
         {
            var result= _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
             return View(result);
-        } 
+        }
+
+        public ActionResult EmployeeProfile()
+        {
+            var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
+            return View("EmployeeProfile", profile);
+        }
     }
 }

@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextClass\SkillsetDbContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Qualification.cs" />

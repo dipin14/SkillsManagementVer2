@@ -36,7 +36,7 @@ namespace Skillset_PL.Controllers
         }
         public ActionResult MyProfile()
         {
-            var profile = _reportingStaff.GetProfile(1).EmployeeDTOtoViewModel();
+            var profile = _reportingStaff.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
             return View("MyProfile",profile);
         }
     }

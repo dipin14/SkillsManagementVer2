@@ -7,6 +7,6 @@ namespace Skillset_BLL.Services
     {
         IEnumerable<ReportingStaff> GetEmployeeDetails(string managerCode);
         IEnumerable<StaffSkills> GetSkillRatingsDetails(string employeeCode);
-        EmployeeDTO GetProfile(int id);
+        EmployeeDTO GetProfile(string id);
     }
 }

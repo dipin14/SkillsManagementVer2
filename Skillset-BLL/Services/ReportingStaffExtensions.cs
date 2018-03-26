@@ -70,7 +70,7 @@ namespace Skillset_BLL.Services
             return skillRatingDetails;
         }
 
-        public EmployeeDTO GetProfile(int id)
+        public EmployeeDTO GetProfile(string id)
         {
             return _reportingStaff.GetProfile(id).EmployeeModeltoDTO();
         }

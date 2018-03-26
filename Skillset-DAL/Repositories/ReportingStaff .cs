@@ -92,11 +92,11 @@ namespace Skillset_DAL.Repositories
 
         }
 
-        public Employee GetProfile(int id)
+        public Employee GetProfile(string id)
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                return context.Employees.Where(e => e.EmployeeId == id).FirstOrDefault();
+                return context.Employees.Where(e => e.EmployeeCode == id).FirstOrDefault();
             }
         }
     }

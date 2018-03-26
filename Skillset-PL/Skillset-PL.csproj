@@ -254,13 +254,12 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
-
     <Compile Include="Controllers\AdministratorViewController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SkillRatingController.cs" />
     <Compile Include="Global.asax.cs">
-    <DependentUpon>Global.asax</DependentUpon>
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
@@ -290,11 +289,11 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\SkillRating\_EmployeeLayout.cshtml" />
     <Content Include="Views\SkillRating\EmployeeProfile.cshtml" />
+    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <None Include="Web.Debug.config" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\AdministratorView\Skills.cshtml" />
-    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <Content Include="Views\Manager\MyProfile.cshtml" />
     <Content Include="Views\Manager\_ManagerLayout.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />

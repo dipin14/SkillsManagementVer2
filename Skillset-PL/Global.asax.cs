@@ -39,6 +39,9 @@ namespace Skillset_PL
             builder.RegisterType<SkillRatingService>().As<ISkillRatingService>().InstancePerRequest();
             builder.RegisterType<SkillRatingRepository>().As<ISkillRatingRepository>().InstancePerRequest();
 
+            builder.RegisterType<LoginService>().As<ILoginService>().InstancePerRequest();
+            builder.RegisterType<LoginRepository>().As<ILoginRepository>().InstancePerRequest();
+
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
