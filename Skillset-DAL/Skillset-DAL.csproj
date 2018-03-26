@@ -84,9 +84,11 @@
     <Compile Include="Repositories\IEmployeeRepository.cs" />
     <Compile Include="Repositories\ILoginRepository.cs" />
     <Compile Include="Repositories\IReportingStaff.cs" />
+    <Compile Include="Repositories\ISkillRatingRepository.cs" />
     <Compile Include="Repositories\ISkillRepository.cs" />
     <Compile Include="Repositories\LoginRepository.cs" />
     <Compile Include="Repositories\ReportingStaff .cs" />
+    <Compile Include="Repositories\SkillRatingRepository.cs" />
     <Compile Include="Repositories\SkillRepository.cs" />
   </ItemGroup>
   <ItemGroup>
