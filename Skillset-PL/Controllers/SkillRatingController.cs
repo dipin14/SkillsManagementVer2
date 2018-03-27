@@ -60,8 +60,9 @@ namespace Skillset_PL.Controllers
             return View(ratingObj);
         }        public ActionResult EmployeeProfile()
         {
-            var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
-            Session["customerId"] = profile.EmployeeId;
+            var EmployeeDtoList = _skillService.GetProfile(Session["customercode"].ToString());
+            var profile = EmployeeDtoList.EmployeeDTOtoViewModel();
+            Session["customerId"] = EmployeeDtoList.Id;
             profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
             profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
             return View("EmployeeProfile", profile);
