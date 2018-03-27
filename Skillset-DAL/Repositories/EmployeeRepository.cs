@@ -105,7 +105,7 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                return context.Employees.Where(p => p.Status == true).ToList();
+                return context.Employees.Where(p => p.Status == true && p.RoleId != 1).OrderBy(p=>p.EmployeeCode).ToList();
             }
         }
 
@@ -125,7 +125,7 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                return context.Designations.ToList();
+                return context.Designations.Where(p=>p.Id !=1).ToList();
             }
         }
 
@@ -177,7 +177,7 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                return context.Roles.ToList();
+                return context.Roles.Where(p=>p.Id != 1).ToList();
             }
         }
 
