@@ -20,6 +20,7 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Employee Details
+        [Authorize(Roles ="Admin")]
         public ActionResult Index(string option, string search)
         {
             IEnumerable<AdminEmployeeDTO> employeerecordlist;
@@ -36,6 +37,7 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Employee Skills Details
+        [Authorize(Roles = "Admin")]
         public ActionResult Skills(string id)
         {
             if (id == null)
