@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Skillset_PL.ViewModels.AdministratorEmployeeViewModel>
 
 @{
-    Layout = "~/Views/AdministratorView/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
 }
 
@@ -15,40 +15,54 @@
         @Html.RadioButton("option", "Employee Code") <text>Employee Code</text>
         @Html.RadioButton("option", "Name") <text> Name </text>
         @Html.RadioButton("option", "Designation")<text>Designation</text>
-        @Html.RadioButton("option", "All")<text>All</text>
-        @Html.TextBox("search") <input type="submit" name="submit" value="Search" />
+        @Html.TextBox("search")
+        <input type="submit" name="submit" value="Search" class="btn btn-primary" />
+        @Html.ActionLink("View All", "Index", null, new { @class = "buttonstyle" })
     }
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Designation)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmployeeCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Designation)
-            </td>
-            <td>
-                @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }) |
-            </td>
-        </tr>
-    }
+@if (Model.Count() > 0)
+{
+    <br />
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmployeeCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Designation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designation)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, new { @class = "buttonstyle" }) |
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
-</table>
+else
+{
+    @Html.Label("There is not any active employees")
+}
+

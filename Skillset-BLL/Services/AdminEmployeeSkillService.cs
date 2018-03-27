@@ -68,5 +68,9 @@ namespace Skillset_BLL.Services
             }
             return skillDetailsList;
         }
+        public string FindEmployeeName(string employeeCode)
+        {
+            return _iEmpSkillRepository.FindEmployeeName(employeeCode);
+        }
     }
 }

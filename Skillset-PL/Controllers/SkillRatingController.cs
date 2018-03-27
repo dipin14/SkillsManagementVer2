@@ -11,11 +11,12 @@ using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
 {
+    [Authorize(Roles ="Manager,Employee")]
     public class SkillRatingController : Controller
     {
 
-        private readonly ISkillService _skillService;
-        private ISkillRatingService _skillRatingService;
+       private readonly ISkillService _skillService;
+       private ISkillRatingService _skillRatingService;
        public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
         {
             _skillService = skillService;
@@ -59,15 +60,10 @@ namespace Skillset_PL.Controllers
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
         }
-
-
-        }
-
         public ActionResult EmployeeProfile()
         {
             var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
             return View("EmployeeProfile", profile);
         }
-
     }
 }
