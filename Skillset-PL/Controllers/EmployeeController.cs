@@ -10,7 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
-{
+{   [Authorize(Roles ="Admin")]
     public class EmployeeController : Controller
     {
         private IEmployeeServices _services;

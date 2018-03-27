@@ -96,7 +96,8 @@ function CompleteRating(RatingList)
             data: { ratingList: RatingList },
             complete: function (result) {
                 if (result.responseText) {
-                    alert('Review submitted')
+                 alert('submitted succesfully')
+                    reload();
                 }
                 else {
                     alert('please check your connection');
@@ -106,4 +107,24 @@ function CompleteRating(RatingList)
             }
         });
     }
+}
+function reload()
+{
+    $.ajax({
+        type: "POST",
+        url: '/SkillRating/EmployeeRating',
+        data: { },
+        complete: function (result) {
+            if (result.responseText) {
+             
+                $('body').html(result.responseText);
+            }
+            else {
+                alert('please check your connection');
+
+            }
+
+        }
+    });
+
 }

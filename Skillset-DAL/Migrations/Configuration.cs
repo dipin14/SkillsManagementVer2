@@ -12,6 +12,7 @@ namespace Skillset_DAL.Migrations
 
         protected override void Seed(Skillset_DAL.ContextClass.SkillsetDbContext context)
         {
+
             context.Designations.AddOrUpdate(
             p => p.Id,
             new Designation { Id = 1, Name = "Administrator" },
@@ -34,6 +35,20 @@ namespace Skillset_DAL.Migrations
             new Role { Id = 1, Name = "Manager" },
             new Role { Id = 1, Name = "Employee" }
            );
+            context.Ratings.AddOrUpdate(
+                p => p.Id,
+                new Rating { Id = 1, Value = 1, Note = "Not so good" },
+                new Rating { Id = 2, Value = 2, Note = "Need help" },
+                new Rating { Id = 3, Value = 3, Note = "Need reference" },
+                new Rating { Id = 4, Value = 4, Note = "Okay" },
+                new Rating { Id = 5, Value = 5, Note = "Perfect" }
+             );
+            context.Skills.AddOrUpdate(
+                  p => p.SkillId,
+                   new Skill { SkillId = 1, SkillName = "Special skill", SkillDescription = "If you have any special Skills" ,Status=true}
+   
+                );
+
         }
     }
 }
