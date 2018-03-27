@@ -32,8 +32,7 @@ namespace Skillset_PL.Controllers
             //}
             ViewBag.Productname_List = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkill().Select(i => i.Replace("'", "\"\"")).ToArray()));
 
-            ViewBag.RatingList = string.Format("'{0}'", string.Join("','", _barcodes.Select(i => i.Replace("'", "\"\"")).ToArray()));
-
+            ViewBag.RatingList = _barcodes;
             var dtoList = _services.GetRecentEmployees();
             var modelList = new List<EmployeeViewModel>();
             foreach (EmployeeDTO item in dtoList)

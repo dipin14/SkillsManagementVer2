@@ -214,8 +214,8 @@ namespace Skillset_DAL.Repositories
         public IQueryable<string> GetEmployeeRating()
         {
             SkillsetDbContext context = new SkillsetDbContext();
-            //{
-            //    var p= context.SkillRatings.GroupBy(s=>s.SkillId).Select()
+            {
+                var p = context.SkillRatings.Select(s => s.SkillId).Distinct().Count();
                 var pl = from r in context.SkillRatings
                          orderby r.SkillId
                          group r by r.SkillId into grp
