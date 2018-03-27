@@ -8,7 +8,10 @@ namespace Skillset_DAL.ContextClass
 {
     public class SkillsetDbContext : DbContext
     {
-        public SkillsetDbContext() : base(nameOrConnectionString: "Default") { }
+        public SkillsetDbContext() : base(nameOrConnectionString: "Default")
+        {
+           
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,6 +32,5 @@ namespace Skillset_DAL.ContextClass
         public DbSet<SkillRating> SkillRatings { get; set; }
         public DbSet<Qualification> Qualifications { get; set; }
         public DbSet<Role> Roles { get; set; }
-        
     }
 }
