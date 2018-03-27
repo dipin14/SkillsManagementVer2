@@ -16,10 +16,12 @@ namespace Skillset_PL.Controllers
 
         private readonly ISkillService _skillService;
         private ISkillRatingService _skillRatingService;
-       public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
+        private readonly IEmployeeServices _employeeServices;
+        public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService, IEmployeeServices employeeServices)
         {
             _skillService = skillService;
             _skillRatingService = skillRatingService;
+            _employeeServices = employeeServices;
         }
 
         public ActionResult GetAllSkills()
@@ -31,7 +33,7 @@ namespace Skillset_PL.Controllers
         public ActionResult EmployeeRating()
         {
             var skillList = _skillService.GetAllSkills().ToViewModelList();
-            return View( skillList);
+            return View(skillList);
         }
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
         {if (ratingList != null)
@@ -41,6 +43,14 @@ namespace Skillset_PL.Controllers
                 return View(result);
             }
             return View();
-        } 
+        }
+
+        public ActionResult EmployeeProfile()
+        {
+            var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
+            profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
+            profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
+            return View("EmployeeProfile", profile);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Skillset_PL.ViewModels.EmployeeViewModel>
 
 @{
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
 }
 
@@ -23,7 +24,7 @@
 
     }
 </p>
-@if (Model.Count() != 0)
+@if (Model.Count() > 0)
 {
     <table class="table">
         <tr>

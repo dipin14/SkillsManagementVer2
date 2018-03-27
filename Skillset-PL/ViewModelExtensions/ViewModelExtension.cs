@@ -95,6 +95,7 @@ namespace Skillset_PL.ViewModelExtensions
         }
 
         /// <summary>
+        /// <summary>
         /// convert employee view model to dto
         /// </summary>
         /// <param name="employee"></param>

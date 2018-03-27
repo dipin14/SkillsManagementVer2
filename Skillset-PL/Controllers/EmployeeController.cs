@@ -18,6 +18,7 @@ namespace Skillset_PL.Controllers
         {
             _services = services;
         }
+
         public List<SelectListItem> GetDesignations()
         {
             List<SelectListItem> items = new List<SelectListItem>();

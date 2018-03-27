@@ -2,11 +2,8 @@
 using Common.Extensions;
 using Skillset_DAL.Models;
 using Skillset_DAL.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Skillset_BLL.Services
 {
@@ -22,8 +19,6 @@ namespace Skillset_BLL.Services
         public int AddNewEmployee(EmployeeDTO employee)
         {
             return _repository.AddEmployee(employee.EmployeeDTOtoModel());
-
-
         }
 
         public int DeleteEmployeeById(string id)
@@ -45,8 +40,7 @@ namespace Skillset_BLL.Services
             {
                 dtoList.Add(item.EmployeeModeltoDTO());
             }
-            return dtoList;
-            
+            return dtoList;          
         }
 
         public EmployeeDTO GetEmployeeDetailsById(string id)
@@ -127,5 +121,21 @@ namespace Skillset_BLL.Services
             }
             return dtoList;
         }
+        public List<EmployeeDTO> GetRecentEmployees()
+        {
+            return _repository.GetRecentEmployees().ListEmployeeModeltoDTO();
+        }
+
+        public IQueryable<string> GetEmployeeRatedSkill()
+        {
+            return _repository.GetEmployeeRatedSkill();
+        }
+
+        public string GetEmployeeRating()
+        {
+            return _repository.GetEmployeeRating();
+        }
+
+
     }
 }

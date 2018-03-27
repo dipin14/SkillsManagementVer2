@@ -1,7 +1,7 @@
-﻿
+﻿@model IEnumerable<Skillset_PL.ViewModels.EmployeeViewModel>
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
-    
+
 }
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
     <script>
         var LineChartData =
                    {
-                       labels: ['Java','C','Python','C#'],
+                       labels: [@Html.Raw(ViewBag.Productname_List)],
                        datasets: [{
                            label: 'Skill Ratings',
                            backgroundColor: "rgba(75,192,192,0.4)",
@@ -42,8 +42,9 @@
     </script>
 </head>
 
-<body>
-    <div class="row" style="margin-left:5px">
+<body style="overflow:hidden">
+   
+    <div class="row" >
         <div class="col-sm-4">
             <div class="card">
                 <div style="text-align:center;background-color:lightgoldenrodyellow;height:80px;"><span class="fa fa-lightbulb-o" style="font-size:55px;margin-top:30px"></span></div>
@@ -100,7 +101,42 @@
                 <canvas id="Linecanvas"></canvas>
             </div>
         </div>
-        <div class="col-sm-4">test</div>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Recent Employees</div>
+                <div class="panel-body">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @if (item.Gender == "female")
+                                {
+                                    <td>
+                                        <img src="~/Images/female.png" width="40" height="20"/>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <img src="~/Images/male.png" width="40" height="20" />
+                                    </td>
+                                }
+                                
+                                <td >
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -20,10 +20,11 @@
                 <span class="navbar-brand" style="color:white">Skill Management</span>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="~/Login/Logout" style="color:red;margin-top:-10px"><span class="glyphicon glyphicon-log-out btn btn-danger"></span> Logout</a></li>
+                <li><a href="/Authentication/Logout" style="color:red;margin-top:-10px"><span class="glyphicon glyphicon-log-out btn btn-danger"></span> Logout</a></li>
             </ul>
         </div>
     </nav>
+
     <div class="nav-side-menu">
         <div class="brand" style="color:white;">Hi Admin</div>
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -37,13 +38,18 @@
                     </a>
                 </li>
                 <li>
-                    <a href="~/Employee/Index">
+                    <a href="#">
                         <i class="glyphicon glyphicon-user"></i> Employee Management
                     </a>
                 </li>
                 <li>
-                    <a href="/AdministratorView/Index">
-                        <i class="glyphicon glyphicon-eye-open" style="font-size:15px"></i> View Employee Skills
+                    <a href="#">
+                        <i class="fa fa-lightbulb-o" style="font-size:20px"></i> Skill Management
+                    </a>
+                </li>
+                <li>
+                    <a href="~/AdministratorView/Index">
+                        <i class="fa fa-lightbulb-o" style="font-size:20px"></i> View Employee Skills
                     </a>
                 </li>
             </ul>
@@ -63,3 +69,4 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
+

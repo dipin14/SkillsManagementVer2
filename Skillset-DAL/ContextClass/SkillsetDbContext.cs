@@ -2,7 +2,6 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Collections.Generic;
 
 namespace Skillset_DAL.ContextClass
 {
@@ -20,10 +19,7 @@ namespace Skillset_DAL.ContextClass
 
             //Fluent API to be written here
 
-
-
             modelBuilder.Entity<Skill>().Property(c => c.SkillName).HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("SK_Name") { IsUnique = true }));
-
         }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Rating> Ratings { get; set; }
