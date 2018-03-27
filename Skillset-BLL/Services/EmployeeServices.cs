@@ -116,5 +116,16 @@ namespace Skillset_BLL.Services
         {
             return _repository.GetRoleName(id);
         }
+
+        public IEnumerable<EmployeeDTO> ViewSearchRecords(string option, string search)
+        {
+            var list = _repository.GetSearchRecords(option,search);
+            var dtoList = new List<EmployeeDTO>();
+            foreach (Employee item in list)
+            {
+                dtoList.Add(item.EmployeeModeltoDTO());
+            }
+            return dtoList;
+        }
     }
 }

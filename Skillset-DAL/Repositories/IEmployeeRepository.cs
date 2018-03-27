@@ -10,6 +10,7 @@ namespace Skillset_DAL.Repositories
     public interface IEmployeeRepository
     {
         IEnumerable<Employee> GetAllEmployees();
+        IEnumerable<Employee> GetSearchRecords(string option,string search);
         int AddEmployee(Employee employee);
         int EditEmployee(Employee employee);
         int DeleteEmployee(string id);

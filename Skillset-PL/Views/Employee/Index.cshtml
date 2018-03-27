@@ -10,6 +10,20 @@
         @Html.ActionLink("NEW EMPLOYEE", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
     </p>
 
+<p style="color:red;margin-left:15px"> @ViewBag.message </p>
+
+<p>
+    @using (Html.BeginForm("Index", "Employee", FormMethod.Post))
+    {
+        <b> Search By: </b>
+        @Html.RadioButton("option", "Employee Code") <text>Employee Code</text>
+        @Html.RadioButton("option", "Name") <text> Name </text>
+        @Html.RadioButton("option", "Designation")<text>Designation</text>
+        @Html.RadioButton("option", "All")<text>All</text>
+        @Html.TextBox("search",null, new { htmlAttributes = new { @class = "form-control" } }) <input type="submit" name="submit" value="Search" class="btn btn-success" />
+    }
+</p>
+
 <table class="table">
     <tr>
         <th>
@@ -22,9 +36,7 @@
         <th>
             @Html.DisplayNameFor(model => model.DesignationId)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeId)
-        </th>
+      
 
         <th>Operations</th>
     </tr>
@@ -40,9 +52,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.DesignationId)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeId)
-        </td>
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new {  id=item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" }) 
             @Html.ActionLink("Details", "Details", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" }) 

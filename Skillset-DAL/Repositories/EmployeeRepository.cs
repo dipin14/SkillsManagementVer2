@@ -190,5 +190,35 @@ namespace Skillset_DAL.Repositories
                 return name.ToString();
             }
         }
+
+        public IEnumerable<Employee> GetSearchRecords(string option, string search)
+        {
+            try
+            {
+                using (SkillsetDbContext context = new SkillsetDbContext())
+                {
+                    if (option == "Employee Code")
+                    {
+                        return context.Employees.Where(p => p.Status == true && p.EmployeeCode.Contains(search)).Select(p => p).ToList();
+                    }
+                    else if (option == "Name")
+                    {
+                        return context.Employees.Where(p => p.Status == true && p.Name.Contains(search)).Select(p => p).ToList();
+                    }
+                    else if (option == "Designation")
+                    {
+                        var employeeList = from e in context.Employees from d in context.Designations where ((e.Status == true) && (e.DesignationId == d.Id) && (d.Name.Equals(search))) select e;
+                        return employeeList.ToList();
+                    }
+                    else
+                        return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+           
+        }
     }
 }
