@@ -116,9 +116,20 @@ namespace Skillset_BLL.Services
         {
             return _repository.GetRoleName(id);
         }
-public List<EmployeeDTO> GetRecentEmployees()
+
+        public List<EmployeeDTO> GetRecentEmployees()
         {
             return _repository.GetRecentEmployees().ListEmployeeModeltoDTO();
+        }
+
+        public IQueryable<string> GetEmployeeRatedSkill()
+        {
+            return _repository.GetEmployeeRatedSkill();
+        }
+
+        public IQueryable<string> GetEmployeeRating()
+        {
+            return _repository.GetEmployeeRating();
         }
     }
 }

@@ -190,11 +190,37 @@ namespace Skillset_DAL.Repositories
                 return name.ToString();
             }
         }
-public List<Employee> GetRecentEmployees()
+
+        public List<Employee> GetRecentEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 return context.Employees.OrderByDescending(e => e.EmployeeCode).Take(5).ToList();
+            }
+        }
+
+        public IQueryable<string> GetEmployeeRatedSkill()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            {
+                var skill = (from s in context.SkillRatings
+                            join j in context.Skills
+                            on s.SkillId equals j.SkillId
+                            select (j.SkillName)).Distinct();
+                return skill;
+            }
+        }
+
+        public IQueryable<string> GetEmployeeRating()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            //{
+            //    var p= context.SkillRatings.GroupBy(s=>s.SkillId).Select()
+                var pl = from r in context.SkillRatings
+                         orderby r.SkillId
+                         group r by r.SkillId into grp
+                         select new { cnt = grp.Count() }.ToString();
+                return pl;
             }
         }
     }

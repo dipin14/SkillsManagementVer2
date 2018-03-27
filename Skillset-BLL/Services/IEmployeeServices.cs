@@ -24,5 +24,7 @@ namespace Skillset_BLL.Services
         string GetQualificationName(string id);
         string GetManagerName(string id);
         string GetRoleName(string id);
+        IQueryable<string> GetEmployeeRatedSkill();
+        IQueryable<string> GetEmployeeRating();
     }
 }
