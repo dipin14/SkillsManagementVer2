@@ -208,7 +208,6 @@
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\adminview.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Card.css" />
@@ -286,7 +285,6 @@
     <Content Include="Views\Skill\Create.cshtml" />
     <Content Include="Views\Skill\Edit.cshtml" />
     <Content Include="Views\Skill\Delete.cshtml" />
-    <Content Include="Views\AdministratorView\_AdminLayout.cshtml" />
     <Content Include="Views\AdministratorView\Index.cshtml" />
     <Content Include="Views\Manager\SkillRate.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />

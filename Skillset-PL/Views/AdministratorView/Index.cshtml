@@ -15,8 +15,8 @@
         @Html.RadioButton("option", "Name") <text> Name </text>
         @Html.RadioButton("option", "Designation")<text>Designation</text>
         @Html.TextBox("search")
-        <input type="submit" name="submit" value="Search" class="btn btn-primary" />
-        @Html.ActionLink("View All", "Index", null, new { @class = "buttonstyle" })
+        <input type="submit" name="submit" value="Search" class="btn btn-success" />
+        @Html.ActionLink("View All", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
     }
 </p>
 
@@ -55,7 +55,7 @@
                         @Html.DisplayFor(modelItem => item.Designation)
                     </td>
                     <td>
-                        @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" })
                     </td>
                 </tr>
             }
