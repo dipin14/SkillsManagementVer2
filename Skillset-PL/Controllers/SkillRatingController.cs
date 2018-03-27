@@ -16,7 +16,7 @@ namespace Skillset_PL.Controllers
 
         private readonly ISkillService _skillService;
         private ISkillRatingService _skillRatingService;
-       public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
+        public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
         {
             _skillService = skillService;
             _skillRatingService = skillRatingService;
@@ -24,23 +24,24 @@ namespace Skillset_PL.Controllers
 
         public ActionResult GetAllSkills()
         {
-
             return View();
         }
 
         public ActionResult EmployeeRating()
         {
             var skillList = _skillService.GetAllSkills().ToViewModelList();
-            return View( skillList);
+            return View(skillList);
         }
+
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
-        {if (ratingList != null)
+        {
+            if (ratingList != null)
             {
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
 
                 return View(result);
             }
             return View();
-        } 
+        }
     }
 }

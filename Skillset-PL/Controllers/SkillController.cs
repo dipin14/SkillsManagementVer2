@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class SkillController : Controller
     {
         private readonly ISkillService _skillService;
@@ -20,7 +21,6 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Skill
-        [Authorize(Roles = "Manager,Employee")]
         public ActionResult Index()
         {
             var skillList = _skillService.GetAllSkills().ToViewModelList();
@@ -28,14 +28,13 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Skill/Details/5
-        [Authorize(Roles = "Manager,Employee")]
         public ActionResult Details(string name)
         {
             return View();
         }
 
         // GET: Skill/Create
-        [Authorize(Roles = "Manager,Employee")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -67,7 +66,6 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Skill/Edit/5
-        [Authorize(Roles = "Manager,Employee")]
         public ActionResult Edit(string skillName)
         {
             if (skillName == null)
@@ -85,7 +83,6 @@ namespace Skillset_PL.Controllers
         // POST: Skill/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Manager,Employee")]
         public ActionResult Edit(SkillViewModel skillView, FormCollection collection)
         {
             try
@@ -101,7 +98,6 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Skill/Delete/5
-        [Authorize(Roles = "Manager,Employee")]
         public ActionResult Delete(string skillName)
         {
             if (skillName == null)
@@ -118,7 +114,6 @@ namespace Skillset_PL.Controllers
         // POST: Skill/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Manager,Employee")]
         public ActionResult Delete(SkillViewModel skillView, FormCollection collection)
         {
             try

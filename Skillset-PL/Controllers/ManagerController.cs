@@ -20,7 +20,6 @@ namespace Skillset_PL.Controllers
 
 
         // GET: Manager
-        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             Session["empcode"] = 34;
@@ -28,8 +27,6 @@ namespace Skillset_PL.Controllers
             var staff = _reportingStaff.GetEmployeeDetails(Session["empcode"].ToString()).ToReportingStaffViewmodel();
             return View(staff);
         }
-
-        [Authorize(Roles = "Admin")]
         public ActionResult SkillRate(string code)
         {
             var skill = _reportingStaff.GetSkillRatingsDetails(code).ToSkillRatingsViewmodel();

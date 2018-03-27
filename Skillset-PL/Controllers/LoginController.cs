@@ -20,7 +20,6 @@ namespace Skillset_PL.Controllers
             logService = logSer;
         }
         // GET: Login
-        [Authorize]
         public ActionResult Index()
         {
             return View();
