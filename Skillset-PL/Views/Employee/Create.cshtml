@@ -86,10 +86,12 @@
                         @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
                     </div>
 
-                    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" , })
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                       
+                            @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", type = "date", @onchange = "OnChangeEvent();" } })
+                    
+                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -97,7 +99,8 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.EmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.DropDownListFor(model => model.EmployeeId, (IEnumerable<SelectListItem>)ViewData["Managers"], "--pick--", new { @class = "form-control" })                @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(model => model.EmployeeId, (IEnumerable<SelectListItem>)ViewData["Managers"], "--pick--", new { @class = "form-control" })          
+                        @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
                     </div>
                     @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -143,5 +146,6 @@
 
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/Employee.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
