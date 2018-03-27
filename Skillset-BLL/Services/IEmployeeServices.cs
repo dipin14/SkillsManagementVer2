@@ -19,9 +19,12 @@ namespace Skillset_BLL.Services
         List<QualificationDTO> GetQualifications();
         List<EmployeeDTO> GetManagers();
         List<RoleDTO> GetRoles();
+        List<EmployeeDTO> GetRecentEmployees();
         string GetDesignationName(string id);
         string GetQualificationName(string id);
         string GetManagerName(string id);
         string GetRoleName(string id);
+        IQueryable<string> GetEmployeeRatedSkill();
+        string GetEmployeeRating();
     }
 }

@@ -15,7 +15,7 @@ namespace Skillset_DAL.Repositories
         {
             try
             {
-                var pass = Convert.ToDouble(password);
+                double pass = Convert.ToDouble(password);
                 var status = (from employee in db.Employees where (employee.EmployeeCode == employeecode && employee.MobileNumber == pass) select (employee.Status)).FirstOrDefault();
                 if (status == true)
                 {

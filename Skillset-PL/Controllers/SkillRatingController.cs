@@ -31,7 +31,7 @@ namespace Skillset_PL.Controllers
         public ActionResult EmployeeRating()
         {
             var skillList = _skillService.GetAllSkills().ToViewModelList();
-            return View( skillList);
+            return View(skillList);
         }
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
         {if (ratingList != null)
@@ -41,6 +41,12 @@ namespace Skillset_PL.Controllers
                 return View(result);
             }
             return View();
-        } 
+        }
+
+        public ActionResult EmployeeProfile()
+        {
+            var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
+            return View("EmployeeProfile", profile);
+        }
     }
 }

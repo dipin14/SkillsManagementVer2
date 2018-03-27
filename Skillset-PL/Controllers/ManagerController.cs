@@ -35,5 +35,10 @@ namespace Skillset_PL.Controllers
             var skill = _reportingStaff.GetSkillRatingsDetails(code).ToSkillRatingsViewmodel();
             return View(skill);
         }
+        public ActionResult MyProfile()
+        {
+            var profile = _reportingStaff.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
+            return View("MyProfile",profile);
+        }
     }
 }
