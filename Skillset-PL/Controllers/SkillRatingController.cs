@@ -14,7 +14,8 @@ namespace Skillset_PL.Controllers
     public class SkillRatingController : Controller
     {
 
-       
+        private readonly ISkillRatingService _skillRatingService;
+        private readonly ISkillService _skillService;
 
         public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
         {
@@ -45,10 +46,11 @@ namespace Skillset_PL.Controllers
             }
             return View();
 
-       
+        }
 
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
+            var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
            return RatedSkills;
         }
         public ActionResult EmployeeRating()
