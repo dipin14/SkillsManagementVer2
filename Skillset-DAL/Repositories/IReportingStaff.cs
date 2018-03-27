@@ -14,5 +14,6 @@ namespace Skillset_DAL.Repositories
         IEnumerable<Designation> GetDesignationDetails(string managerCode);
         IEnumerable<Skill> GetSkillDetails();
         IEnumerable<Rating> GetRatingDetails();
+        Employee GetProfile(string id);
     }
 }
