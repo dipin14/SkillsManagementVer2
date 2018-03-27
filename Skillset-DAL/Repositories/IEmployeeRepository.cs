@@ -11,13 +11,17 @@ namespace Skillset_DAL.Repositories
     {
         IEnumerable<Employee> GetAllEmployees();
         int AddEmployee(Employee employee);
-        Employee EditEmployee(int id);
-        int DeleteEmployee(int id);
-        Employee GetEmployeeDetails(int id);
+        int EditEmployee(Employee employee);
+        int DeleteEmployee(string id);
+        Employee GetEmployeeDetails(string id);
         int CheckDuplicateEmployee(List<Employee> employeeList, Employee newEmployee);
         List<Designation> GetDesignations();
         List<Qualification> GetQualifications();
         List<Employee> GetManagers();
         List<Role> GetRole();
+        string GetDesignationName(string id);
+        string GetQualificationName(string id);
+        string GetManagerName(string id);
+        string GetRoleName(string id);
     }
 }

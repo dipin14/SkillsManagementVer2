@@ -66,6 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextClass\SkillsetDbContext.cs" />
+    <Compile Include="Migrations\201803260737155_seed.cs" />
+    <Compile Include="Migrations\201803260737155_seed.Designer.cs">
+      <DependentUpon>201803260737155_seed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -84,9 +88,11 @@
     <Compile Include="Repositories\IEmployeeRepository.cs" />
     <Compile Include="Repositories\ILoginRepository.cs" />
     <Compile Include="Repositories\IReportingStaff.cs" />
+    <Compile Include="Repositories\ISkillRatingRepository.cs" />
     <Compile Include="Repositories\ISkillRepository.cs" />
     <Compile Include="Repositories\LoginRepository.cs" />
     <Compile Include="Repositories\ReportingStaff .cs" />
+    <Compile Include="Repositories\SkillRatingRepository.cs" />
     <Compile Include="Repositories\SkillRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +103,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803260737155_seed.resx">
+      <DependentUpon>201803260737155_seed.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
