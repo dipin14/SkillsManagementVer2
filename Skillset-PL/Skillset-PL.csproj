@@ -289,8 +289,11 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\AdministratorView\Skills.cshtml" />
 
-    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
+    <Content Include="Views\Employee\Delete.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
 
+    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Display.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />

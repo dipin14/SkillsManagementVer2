@@ -22,5 +22,11 @@ namespace Skillset_BLL.Services
         /// <param name="employeeCode"></param>
         /// <returns></returns>
         IEnumerable<AdminSkillDTO> GetSkillDetails(string employeeCode);
+        /// <summary>
+        /// Finding employee name from table Employee
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
+        string FindEmployeeName(string employeeCode);
     }
 }

@@ -35,7 +35,7 @@ namespace Skillset_PL.Controllers
             return View(recordlist);
         }
 
-        // GET: Employee Skills Details
+        // GET: Employee Skills Details      
         public ActionResult Skills(string id)
         {
             if (id == null)
@@ -52,6 +52,9 @@ namespace Skillset_PL.Controllers
             {
                 recordlist.Add(new AdministratorSkillViewModel(obj.SkillName, obj.SkillValue, obj.RatingDate));
             }
+            string employeeName = _empSkillService.FindEmployeeName(id);
+            ViewData["employeename"] = employeeName;
+            ViewData["employeecode"] = id;
             return View(recordlist);
         }
     }

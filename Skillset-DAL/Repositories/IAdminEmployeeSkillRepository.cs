@@ -40,5 +40,11 @@ namespace Skillset_DAL.Repositories
         /// <param name="ratingId"></param>
         /// <returns></returns>
         int FindSkillValue(int ratingId);
+        /// <summary>
+        /// Finding employee name from table Employee
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
+        string FindEmployeeName(string employeeCode);
     }
 }
