@@ -298,10 +298,6 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Shared\_ManagerLayout.cshtml" />
-    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
-    <Content Include="Views\Employee\Delete.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
-    <Content Include="Views\Employee\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

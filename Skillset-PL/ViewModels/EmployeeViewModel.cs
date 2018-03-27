@@ -10,6 +10,7 @@ namespace Skillset_PL.ViewModels
     {
         [Required]
         [Display(Name = "Code")]
+        [RegularExpression("^E([0-9]){3,8}$", ErrorMessage = "Code must begin with 'E' followed by atleast 3 and at maximum 8 numbers")]
         public string EmployeeCode { get; set; }
         [Required]
         public string Name { get; set; }
@@ -42,7 +43,7 @@ namespace Skillset_PL.ViewModels
         [Required]
         public string Email { get; set; }
         [Required]
-        //[RegularExpression("^d{10}$", ErrorMessage = "Mobile Number should contain only 10 digits")]
+        [RegularExpression("^([0-9]){10}$", ErrorMessage = "Mobile Number should contain only 10 digits")]
         public double MobileNumber { get; set; }
         [Required]
         public string Gender { get; set; }
