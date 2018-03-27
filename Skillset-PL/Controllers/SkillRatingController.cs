@@ -61,6 +61,7 @@ namespace Skillset_PL.Controllers
         }        public ActionResult EmployeeProfile()
         {
             var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
+            Session["customerId"] = profile.EmployeeId;
             profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
             profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
             return View("EmployeeProfile", profile);
