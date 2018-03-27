@@ -25,6 +25,6 @@ namespace Skillset_DAL.Repositories
         string GetManagerName(string id);
         string GetRoleName(string id);
         IQueryable<string> GetEmployeeRatedSkill();
-        IQueryable<string> GetEmployeeRating();
+        string GetEmployeeRating();
     }
 }

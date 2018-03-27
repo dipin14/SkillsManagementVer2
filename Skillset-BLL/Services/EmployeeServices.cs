@@ -127,7 +127,7 @@ namespace Skillset_BLL.Services
             return _repository.GetEmployeeRatedSkill();
         }
 
-        public IQueryable<string> GetEmployeeRating()
+        public string GetEmployeeRating()
         {
             return _repository.GetEmployeeRating();
         }

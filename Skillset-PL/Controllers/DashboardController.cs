@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace Skillset_PL.Controllers
 {
@@ -25,7 +26,7 @@ namespace Skillset_PL.Controllers
             //ViewBag.SkillnameList = "'Java','C','C#','Python'";
             //ViewBag.RatingList = "0,90,20,100";
             ViewBag.SkillnameList = _services.GetEmployeeRatedSkill();
-            IQueryable<string> _barcodes = _services.GetEmployeeRating();
+            string _barcodes = _services.GetEmployeeRating();
             //foreach (var e in name)
             //{
             //    ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", e.Select(i => i.Replace("'", "''")).ToArray()));
