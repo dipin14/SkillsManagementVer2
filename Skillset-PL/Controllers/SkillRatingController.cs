@@ -2,16 +2,12 @@
 using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
 using Skillset_PL.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
 {
-    [Authorize(Roles ="Manager,Employee")]
+    [Authorize(Roles = "Employee,Manager")]
     public class SkillRatingController : Controller
     {
 
@@ -27,7 +23,6 @@ namespace Skillset_PL.Controllers
 
         public ActionResult GetAllSkills()
         {
-
             return View();
         }
 
@@ -39,29 +34,32 @@ namespace Skillset_PL.Controllers
 
         }
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
-        {if (ratingList != null)
+        {
+            if (ratingList != null)
             {
+                ratingList.ForEach(m => m.EmployeeId = Convert.ToInt32(Session["customerId"]));
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
 
                 return View(result);
             }
             return View();
-
-        } 
+        }
 
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
-           var RatedSkills =_skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel() ;
-           return RatedSkills;
+            var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
+            return RatedSkills;
         }
         public ActionResult EmployeeRating()
         {
-            var EmpId = 0;
+
+            var EmpId = Convert.ToInt32(Session["customerId"]);
             EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
         }
+
         public ActionResult EmployeeProfile()
         {
             var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
@@ -70,4 +68,7 @@ namespace Skillset_PL.Controllers
             return View("EmployeeProfile", profile);
         }
     }
+
 }
+ 
+
