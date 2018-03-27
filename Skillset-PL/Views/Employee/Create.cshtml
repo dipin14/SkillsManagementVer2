@@ -5,7 +5,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2 style="margin-left:15px">Add New Employee</h2>
+<h2 style="margin-left:15px">ADD NEW EMPLOYEE</h2>
 
  <p style="color:red;margin-left:15px"> @ViewBag.message </p>
 @using (Html.BeginForm())
@@ -98,7 +98,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -120,10 +120,17 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group" style="margin:15px">
+            <div class="col-md-2">
+                <input type="reset" value="RESET" class="btn btn-success" />
             </div>
+            <div class="col-md-2">
+                <input type="submit" value="SAVE" class="btn btn-success" />
+            </div>
+            <div class="col-md-2">
+                @Html.ActionLink("CANCEL", "Index",null, htmlAttributes: new { @class = "btn btn-success" })
+            </div>
+
         </div>
     </div>
 }

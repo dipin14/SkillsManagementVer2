@@ -31,6 +31,5 @@ namespace Skillset_DAL.ContextClass
         public DbSet<SkillRating> SkillRatings { get; set; }
         public DbSet<Qualification> Qualifications { get; set; }
         public DbSet<Role> Roles { get; set; }
-
     }
 }

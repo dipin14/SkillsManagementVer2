@@ -39,7 +39,7 @@ namespace Skillset_DAL.Repositories
             {
                 using (var db = new SkillsetDbContext())
                 {
-                    skill.Status = true;
+                    skill.Status = true; 
                     db.Entry(skill).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -56,6 +56,8 @@ namespace Skillset_DAL.Repositories
                 {
                     var deleteSkill = db.Skills.Find(skillId);
                     deleteSkill.Status = false;
+                    //Changin skill name of deleted skill to prevent conflict
+                    deleteSkill.SkillName += "-deleted";
                     db.Entry(deleteSkill).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -77,7 +79,7 @@ namespace Skillset_DAL.Repositories
         {
             using (var db = new SkillsetDbContext())
             {
-                var skillId = db.Skills.Where(s => s.SkillName == skillName).FirstOrDefault().SkillId;
+                var skillId = db.Skills.Where(s => s.SkillName == skillName && s.Status == true).FirstOrDefault().SkillId;
                 return skillId;
             }
         }
@@ -86,7 +88,7 @@ namespace Skillset_DAL.Repositories
         {
             using (var db = new SkillsetDbContext())
             {
-                var skillDetails = db.Skills.Where(s => s.SkillName == skillName).FirstOrDefault();
+                var skillDetails = db.Skills.Where(s => s.SkillName == skillName && s.Status == true).FirstOrDefault();
                 return skillDetails;
             }
         }
