@@ -206,6 +206,8 @@
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\zh-CN\Npgsql.resources.dll" />
     <Content Include="Content\adminview.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -214,6 +216,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\ashstar.jpg" />
+    <Content Include="Images\ashstar.png" />
+    <Content Include="Images\rate1.png" />
+    <Content Include="Images\rate2.png" />
+    <Content Include="Images\redstar.jpg" />
+    <Content Include="Images\redstar.png" />
+    <Content Include="Images\star1.png" />
+    <Content Include="Images\StarFade.gif" />
+    <Content Include="Images\StarGlow.gif" />
     <Content Include="obj\Debug\Skillset-PL.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Skillset_PL.dll" />
     <Content Include="obj\Debug\Skillset_PL.pdb" />
@@ -228,15 +239,9 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\Skillset_PL.dll.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Images\ashstar.jpg" />
-    <Content Include="Images\ashstar.png" />
-    <Content Include="Images\rate1.png" />
-    <Content Include="Images\rate2.png" />
-    <Content Include="Images\redstar.jpg" />
-    <Content Include="Images\redstar.png" />
-    <Content Include="Images\star1.png" />
-    <Content Include="Images\StarFade.gif" />
-    <Content Include="Images\StarGlow.gif" />
+    <Content Include="obj\Debug\Skillset-PL.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Skillset_PL.dll" />
+    <Content Include="obj\Debug\Skillset_PL.pdb" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -247,7 +252,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\SkillRating.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -267,11 +271,11 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelExtensions\ViewModelExtension.cs" />
+    <Compile Include="ViewModels\EmployeeSkillRatingViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\ReportingStaff.cs" />
     <Compile Include="ViewModels\AdministratorEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AdministratorSkillViewModel.cs" />
-    <Compile Include="ViewModels\EmployeeSkillRatingViewModel.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
     <Compile Include="ViewModels\StaffSkills.cs" />
   </ItemGroup>
@@ -288,19 +292,16 @@
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\AdministratorView\Skills.cshtml" />
-
-    <Content Include="Views\Employee\Delete.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
-    <Content Include="Views\Employee\Edit.cshtml" />
-
-    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Display.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Shared\_ManagerLayout.cshtml" />
-
+    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
+    <Content Include="Views\Employee\Delete.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -310,8 +311,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="obj\Models\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
