@@ -4,11 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>EMPLOYEE LIST</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("NEW EMPLOYEE", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
+    </p>
+
 <table class="table">
     <tr>
         <th>
@@ -43,9 +44,9 @@
             @Html.DisplayFor(modelItem => item.EmployeeId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.EmployeeCode }) |
-            @Html.ActionLink("Details", "Details", new { id = item.EmployeeCode }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeCode })
+            @Html.ActionLink("Edit", "Edit", new {  id=item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("Details", "Details", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
