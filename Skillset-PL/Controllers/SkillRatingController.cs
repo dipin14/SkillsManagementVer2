@@ -11,11 +11,12 @@ using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
 {
+    [Authorize(Roles ="Manager,Employee")]
     public class SkillRatingController : Controller
     {
 
-        private readonly ISkillService _skillService;
-        private ISkillRatingService _skillRatingService;
+       private readonly ISkillService _skillService;
+       private ISkillRatingService _skillRatingService;
        public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
         {
             _skillService = skillService;

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdministratorViewController : Controller
     {
         private readonly IAdminEmployeeSkillService _empSkillService;
@@ -19,7 +20,7 @@ namespace Skillset_PL.Controllers
             _empSkillService = skillService;
         }
 
-        // GET: Employee Details
+        // GET: Searched Employee Details
         public ActionResult Index(string option, string search)
         {
             IEnumerable<AdminEmployeeDTO> employeerecordlist;

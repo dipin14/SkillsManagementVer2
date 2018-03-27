@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class ManagerController : Controller
     {
 

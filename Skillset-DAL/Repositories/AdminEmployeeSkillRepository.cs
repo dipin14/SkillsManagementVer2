@@ -16,23 +16,23 @@ namespace Skillset_DAL.Repositories
             {
                 if (option == "Employee Code")
                 {
-                    return context.Employees.Where(m => m.Status == true && m.EmployeeCode.Contains(searchKey)).Select(m => m).ToList();
+                    return context.Employees.Where(m => m.Status == true && m.RoleId!=1 && m.EmployeeCode.Contains(searchKey)).Select(m => m).ToList();
                 }
                 else if (option == "Name")
                 {
-                    return context.Employees.Where(m => m.Status == true && m.Name.Contains(searchKey)).Select(m => m).ToList();
+                    return context.Employees.Where(m => m.Status == true && m.RoleId != 1 && m.Name.Contains(searchKey)).Select(m => m).ToList();
                 }
                 else if (option == "Designation")
                 {
                     var query = from e in context.Employees
                                 from d in context.Designations
-                                where ((e.Status == true) && (e.DesignationId == d.Id) && (d.Name.Equals(searchKey)))
+                                where ((e.Status == true) && (e.RoleId != 1) && (e.DesignationId == d.Id) && (d.Name.Contains(searchKey)))
                                 select e;
                     return query.ToList();
                 }
                 else
                 {
-                    return context.Employees.Where(e => e.Status == true).Select(e => e).ToList();
+                    return context.Employees.Where(e => e.Status == true && e.RoleId != 1).Select(e => e).ToList();
                 }
             }
         }

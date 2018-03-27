@@ -10,7 +10,7 @@ namespace Skillset_DAL.Repositories
     public interface IAdminEmployeeSkillRepository
     {
         /// <summary>
-        /// Get Employee details from table Employee
+        /// Get Searched Employee details from table Employee
         /// </summary>
         /// <param name="option"></param>
         /// <param name="searchKey"></param>
