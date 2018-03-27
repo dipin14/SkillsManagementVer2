@@ -49,10 +49,14 @@ namespace Skillset_DAL.Repositories
             using (var context = new SkillsetDbContext())
             {
                 int empId = FindId(employeeCode);
-                var query = from sr in context.SkillRatings
-                            from s in context.Skills
-                            where ((sr.Status == true) && (s.Status == true) && (sr.EmployeeId == empId))
-                            select sr;
+                //var query = (from sr in context.SkillRatings
+                //            from s in context.Skills
+                //            where (sr.EmployeeId == empId && sr.Status && s.Status )
+                //            select sr).ToList();
+                var query = (from sr in context.SkillRatings
+                             from s in context.Skills
+                             where (sr.EmployeeId == empId && sr.SkillId == s.SkillId && sr.Status && s.Status)
+                             select sr).ToList();
                 return query.ToList();
             }
         }
@@ -60,7 +64,7 @@ namespace Skillset_DAL.Repositories
         public string FindSkillName(int skillId)
         {
             using (var context = new SkillsetDbContext())
-            {
+            {      
                 return context.Skills.Where(d => d.SkillId == skillId).Select(d => d.SkillName).FirstOrDefault();
             }
         }
