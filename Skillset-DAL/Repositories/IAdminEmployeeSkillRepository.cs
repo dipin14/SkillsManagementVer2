@@ -10,7 +10,7 @@ namespace Skillset_DAL.Repositories
     public interface IAdminEmployeeSkillRepository
     {
         /// <summary>
-        /// Get Employee details from table Employee
+        /// Get Searched Employee details from table Employee
         /// </summary>
         /// <param name="option"></param>
         /// <param name="searchKey"></param>
@@ -40,5 +40,11 @@ namespace Skillset_DAL.Repositories
         /// <param name="ratingId"></param>
         /// <returns></returns>
         int FindSkillValue(int ratingId);
+        /// <summary>
+        /// Finding employee name from table Employee
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
+        string FindEmployeeName(string employeeCode);
     }
 }
