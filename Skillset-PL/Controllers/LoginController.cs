@@ -45,8 +45,7 @@ namespace Skillset_PL.Controllers
                 var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Manager");
                 SetCode(authTicket);
                 Session["customercode"] = employeeCode;
-                return RedirectToAction("MyProfile", "Manager");
-            }
+                return RedirectToAction("MyProfile", "Manager");            }
             else if (role == "Employee")
             {
                 var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Employee");
