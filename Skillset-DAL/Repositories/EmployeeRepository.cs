@@ -218,7 +218,7 @@ namespace Skillset_DAL.Repositories
             {
                 string result = string.Empty;
                 string id = string.Empty;
-                var p = context.SkillRatings.GroupBy(s => s.SkillId).Select(g => new { skillid = g.Select(s => s.SkillId) ,count = g.Select(s => s.SkillId).Distinct().Count() });
+                var p = context.SkillRatings.GroupBy(s => s.SkillId).Select(g => new { skillid = g.Select(s => s.SkillId), count = g.Select(s => s.SkillId).Distinct().Count() });
                 var pll = context.SkillRatings.Select(s => s.SkillId);
                 var pll2 = context.SkillRatings.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
                 //var pl = from r in context.SkillRatings
@@ -226,7 +226,7 @@ namespace Skillset_DAL.Repositories
                 //         group r by r.SkillId into grp
                 //         select new { cnt = grp.Count() };
                 foreach (var r in pll2.OrderByDescending(x => x.Id).Select(x => x.Values))
-                {                    
+                {
                     //result = string.Join(", ", r.Values);
                     result += r;
                     result += ", ";
@@ -234,5 +234,46 @@ namespace Skillset_DAL.Repositories
                 return result;
             }
         }
+        /// <summary>
+        /// Return total skill count
+        /// </summary>
+        /// <returns></returns>
+        public int GetSkillsCount()
+        {
+            int skillsCount = default(int);
+            using (SkillsetDbContext context = new SkillsetDbContext()) 
+            {
+                skillsCount = context.Skills.Where(s=>s.Status).Distinct().Count();
+            }
+            return skillsCount;
+        }
+        /// <summary>
+        /// Return total skill ratings count
+        /// </summary>
+        /// <returns></returns>
+        public int GetSkillRatingsCount()
+        {
+            int skillRatingsCount = default(int);
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                skillRatingsCount = context.SkillRatings.Where(s => s.Status).Distinct().Count();
+            }
+            return skillRatingsCount;
+        }
+        /// <summary>
+        /// Return total employees count
+        /// </summary>
+        /// <returns></returns>
+        public int GetEmployeesCount()
+        {
+            int employeesCount = default(int);
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                //Exclude Admin
+                employeesCount = (context.Employees.Where(s => s.Status).Distinct().Count())-1;
+            }
+            return employeesCount;
+        }
+
     }
 }

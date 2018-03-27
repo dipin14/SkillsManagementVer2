@@ -24,6 +24,9 @@ namespace Skillset_PL.Controllers
       
         public ActionResult Index()
         {
+            ViewBag.TotalSkills = _services.GetSkillsCount();
+            ViewBag.TotalSkillRatings = _services.GetSkillRatingsCount();
+            ViewBag.TotalEmployees = _services.GetEmployeesCount();
             //ViewBag.SkillnameList = "'Java','C','C#','Python'";
             //ViewBag.RatingList = "0,90,20,100";
             ViewBag.SkillnameList = _services.GetEmployeeRatedSkill();
