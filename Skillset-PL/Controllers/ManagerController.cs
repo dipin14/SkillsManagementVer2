@@ -1,5 +1,6 @@
 ﻿using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
+using Skillset_PL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace Skillset_PL.Controllers
 
         private readonly IReportingStaffExtensions _reportingStaff;
         private readonly ISkillService _skillService;
-        public ManagerController(IReportingStaffExtensions reportingStaff, ISkillService skillService)
+        private ISkillRatingService _skillRatingService;
+        public ManagerController(IReportingStaffExtensions reportingStaff, ISkillService skillService, ISkillRatingService skillRatingService)
         {
-            _skillService = skillService;
             _reportingStaff = reportingStaff;
+            _skillService = skillService;
+            _skillRatingService = skillRatingService;
         }
         
         
@@ -44,8 +47,23 @@ namespace Skillset_PL.Controllers
 
         public ActionResult ManagerRating()
         {
+            var EmpId = 0;
+            EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
+            ratingObj.RatedSkills = GetRatedSkills(EmpId);
+            ratingObj.SkillRatings = EmployeeRatings();
+            return View(ratingObj);
+        }
+        public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
+        {
+            var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
+            return RatedSkills;
+        }
+        public IEnumerable<SkillViewModel> EmployeeRatings()
+        {
             var skillList = _skillService.GetAllSkills().ToViewModelList();
-            return View(skillList);
+
+            return skillList;
+
         }
     }
 }
