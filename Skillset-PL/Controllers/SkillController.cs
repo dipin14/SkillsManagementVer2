@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SkillController : Controller
     {
         private readonly ISkillService _skillService;
@@ -33,7 +34,6 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Skill/Create
-       
         public ActionResult Create()
         {
             return View();
