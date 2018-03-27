@@ -34,7 +34,8 @@ namespace Skillset_PL.Controllers
             return View(skillList);
         }
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
-        {if (ratingList != null)
+        {
+            if (ratingList != null)
             {
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
 

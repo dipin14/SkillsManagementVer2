@@ -12,10 +12,11 @@ namespace Skillset_PL.Controllers
     {
 
         private readonly IReportingStaffExtensions _reportingStaff;
-
-        public ManagerController(IReportingStaffExtensions reportingStaff)
+        private readonly ISkillService _skillService;
+        public ManagerController(IReportingStaffExtensions reportingStaff, ISkillService skillService)
         {
-            this._reportingStaff = reportingStaff;
+            _skillService = skillService;
+            _reportingStaff = reportingStaff;
         }
         
         
@@ -39,6 +40,12 @@ namespace Skillset_PL.Controllers
         {
             var profile = _reportingStaff.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
             return View("MyProfile",profile);
+        }
+
+        public ActionResult ManagerRating()
+        {
+            var skillList = _skillService.GetAllSkills().ToViewModelList();
+            return View(skillList);
         }
     }
 }
