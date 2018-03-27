@@ -23,11 +23,6 @@ namespace Skillset_PL.Controllers
             _skillRatingService = skillRatingService;
         }
 
-      /*  public SkillRatingController(ISkillRatingService skillRatingService)
-        {
-            _skillRatingService = skillRatingService;
-        }*/
-        // GET: Skill
         public ActionResult GetAllSkills()
         {
 
@@ -40,9 +35,13 @@ namespace Skillset_PL.Controllers
             return View( skillList);
         }
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
-        {
-           var result= _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
-            return View(result);
+        {if (ratingList != null)
+            {
+                var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
+
+                return View(result);
+            }
+            return View();
         } 
     }
 }
