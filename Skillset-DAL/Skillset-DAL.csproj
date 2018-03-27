@@ -66,6 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextClass\SkillsetDbContext.cs" />
+    <Compile Include="Migrations\201803270606240_-new skill.cs" />
+    <Compile Include="Migrations\201803270606240_-new skill.Designer.cs">
+      <DependentUpon>201803270606240_-new skill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -103,6 +107,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803260737155_seed.resx">
       <DependentUpon>201803260737155_seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803270606240_-new skill.resx">
+      <DependentUpon>201803270606240_-new skill.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
