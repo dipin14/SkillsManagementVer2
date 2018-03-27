@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
 {
-    [Authorize(Roles ="Employee,Manager")]
+    [Authorize(Roles = "Employee,Manager")]
     public class SkillRatingController : Controller
     {
 
@@ -38,19 +38,19 @@ namespace Skillset_PL.Controllers
 
         }
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
-            {
-                ratingList.ForEach(m => m.EmployeeId = Convert.ToInt32(Session["customerId"]));
-                var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
+        {
+            ratingList.ForEach(m => m.EmployeeId = Convert.ToInt32(Session["customerId"]));
+            var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
 
-                return View(result);
-            }
-            return View();
+            return View(result);
 
         }
 
 
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
+            var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
+            return RatedSkills;
         }
         public ActionResult EmployeeRating()
         {
@@ -64,7 +64,7 @@ namespace Skillset_PL.Controllers
         }
 
 
-        
+
 
         public ActionResult EmployeeProfile()
         {
@@ -73,3 +73,4 @@ namespace Skillset_PL.Controllers
             return View("EmployeeProfile", profile);
         }
     }
+}
