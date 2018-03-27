@@ -94,18 +94,12 @@ namespace Skillset_PL.Controllers
             return View(modelList);
         }
         [HttpPost]
-        public ActionResult Index(string option, string search)
+        public ActionResult IndexSearch(string option, string search)
         {
             
             //calling method to search for employee details
             var dtoList = _services.ViewSearchRecords(option, search);
-            if(dtoList==null)
-            {
-                ViewBag.message = "Search not found";
-                return View();
-            }
-            else
-            {
+           
                 var modelList = new List<EmployeeViewModel>();
                 List<AdministratorEmployeeViewModel> recordlist = new List<AdministratorEmployeeViewModel>();
 
@@ -117,8 +111,8 @@ namespace Skillset_PL.Controllers
                     item.EmployeeId = _services.GetManagerName(item.EmployeeId);
                     modelList.Add(item.EmployeeDTOtoViewModel());
                 }
-                return View(modelList);
-            }
+                return View("Index",modelList);
+          
             
         }
 

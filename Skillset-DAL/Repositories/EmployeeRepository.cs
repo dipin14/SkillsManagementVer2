@@ -198,16 +198,16 @@ namespace Skillset_DAL.Repositories
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
                     if (option == "Employee Code")
-                    {
-                        return context.Employees.Where(p => p.Status == true && p.EmployeeCode.Contains(search)).Select(p => p).ToList();
+                    { 
+                        return context.Employees.Where(p => p.Status == true && p.EmployeeCode.Contains(search)&& p.RoleId !=1).Select(p => p).ToList();
                     }
                     else if (option == "Name")
                     {
-                        return context.Employees.Where(p => p.Status == true && p.Name.Contains(search)).Select(p => p).ToList();
+                        return context.Employees.Where(p => p.Status == true && p.Name.Contains(search) && p.RoleId != 1).Select(p => p).ToList();
                     }
                     else if (option == "Designation")
                     {
-                        var employeeList = from e in context.Employees from d in context.Designations where ((e.Status == true) && (e.DesignationId == d.Id) && (d.Name.Equals(search))) select e;
+                        var employeeList = from e in context.Employees from d in context.Designations where ((e.Status == true) && (e.DesignationId == d.Id) && (d.Name.Equals(search)) && e.RoleId != 1) select e;
                         return employeeList.ToList();
                     }
                     else
