@@ -49,14 +49,10 @@ namespace Skillset_DAL.Repositories
             using (var context = new SkillsetDbContext())
             {
                 int empId = FindId(employeeCode);
-                //var query = (from sr in context.SkillRatings
-                //            from s in context.Skills
-                //            where (sr.EmployeeId == empId && sr.Status && s.Status )
-                //            select sr).ToList();
-                var query = (from sr in context.SkillRatings
-                             from s in context.Skills
-                             where (sr.EmployeeId == empId && sr.SkillId == s.SkillId && sr.Status && s.Status)
-                             select sr).ToList();
+                var query = from sr in context.SkillRatings
+                            from s in context.Skills
+                            where (sr.EmployeeId == empId && sr.SkillId == s.SkillId && sr.Status && s.Status)
+                            select sr;
                 return query.ToList();
             }
         }
