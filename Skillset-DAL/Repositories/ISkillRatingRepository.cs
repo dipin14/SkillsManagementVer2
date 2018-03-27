@@ -14,6 +14,22 @@ namespace Skillset_DAL.Repositories
         /// <param name="skill"></param>
         /// <returns></returns>
         int Create(IList<SkillRating> skillRating);
+        /// <summary>
+        /// Get all skillratings from skillrating table
+        /// </summary>
+        /// <param name="employee id"></param>
+        /// <returns></returns>
+        IList<SkillRating> GetAllRatings(int empId);
+        /// <summary>
+        /// Get all skills
+        /// </summary
+        /// <returns></returns>
+         IList<Skill> GetAllSkills();
+        /// <summary>
+        /// Get all Rating values
+        /// </summary
+        /// <returns></returns>
+       IList<Rating> GetAllRatingValues();
 
     }
 }
