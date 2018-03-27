@@ -8,10 +8,10 @@
     <script src="~/Scripts/SkillRating.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-    
+
 </head>
 
-    <h2>  Rate your skills</h2>
+<h2>  Rate your skills</h2>
 <div class="row">
     <div class="col-sm-7">
 
@@ -85,7 +85,7 @@
 
 
         @{var data = @Html.Raw(Json.Encode(Model.SkillRatings));
-            <input type="button" class="btn btn-danger" onclick='SubmitRating(@data,@Model.SkillRatings.Count())' value="Submit Ratings">  
+            <input type="button" class="btn btn-danger" onclick='SubmitRating(@data,@Model.SkillRatings.Count())' value="Submit Ratings">
             <input type="button" class="btn btn-success" onclick='Reset()' value="Reset">
         }
 
@@ -96,13 +96,9 @@
         @foreach (var item in Model.RatedSkills)
         {
             <div class="panel" style="background-color:aliceblue;">
-
-
                 <b style="color:steelblue;">
                     @Html.DisplayFor(modelItem => item.SkillName)
                 </b>
-
-
                 <p style="color:black;">
                     @Html.DisplayFor(modelItem => item.RaitedNote)
                 </p>
@@ -121,8 +117,4 @@
         }
     </div>
 </div>
-
-
-
-
 
