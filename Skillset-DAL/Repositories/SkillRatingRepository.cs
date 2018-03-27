@@ -26,6 +26,7 @@ namespace Skillset_DAL.Repositories
                                 var updateObj = db.SkillRatings.Find(id);
                                 updateObj.RatingId = skillRating.RatingId;
                                 updateObj.Note = skillRating.Note;
+
                             }
                             else
                             {
@@ -45,5 +46,15 @@ namespace Skillset_DAL.Repositories
                 return -1;
             }
         }
+        public IList<SkillRating> GetAllRatings(int empId)
+        {
+         
+            using (var db = new SkillsetDbContext())
+            {
+                var skillList = db.SkillRatings.Where(s => s.Status == true && s.EmployeeId==empId).ToList();
+                return skillList;
+            }
+        
+    }
     }
 }
