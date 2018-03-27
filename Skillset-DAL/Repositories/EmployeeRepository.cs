@@ -125,6 +125,7 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
+                
                 return context.Designations.Where(p => p.Id != 1).ToList();
             }
         }
@@ -191,6 +192,35 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        public IEnumerable<Employee> GetSearchRecords(string option, string search)
+        {
+            try
+            {
+                using (SkillsetDbContext context = new SkillsetDbContext())
+                {
+                    if (option == "Employee Code")
+                    { 
+                        return context.Employees.Where(p => p.Status == true && p.EmployeeCode.Contains(search)&& p.RoleId !=1).Select(p => p).ToList();
+                    }
+                    else if (option == "Name")
+                    {
+                        return context.Employees.Where(p => p.Status == true && p.Name.Contains(search) && p.RoleId != 1).Select(p => p).ToList();
+                    }
+                    else if (option == "Designation")
+                    {
+                        var employeeList = from e in context.Employees from d in context.Designations where ((e.Status == true) && (e.DesignationId == d.Id) && (d.Name.Equals(search)) && e.RoleId != 1) select e;
+                        return employeeList.ToList();
+                    }
+                    else
+                        return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+           
+        }
         public List<Employee> GetRecentEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -228,10 +258,12 @@ namespace Skillset_DAL.Repositories
             SkillsetDbContext context = new SkillsetDbContext();
             {
                 string result = string.Empty;
+
                 string id = string.Empty;                
                 var pll = context.SkillRatings.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
                 
                 foreach (var r in pll.OrderByDescending(x => x.Id).Select(x => x.Values))
+
                 {                    
                     result += r;
                     result += ", ";
