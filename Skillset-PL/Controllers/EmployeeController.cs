@@ -79,6 +79,7 @@ namespace Skillset_PL.Controllers
             return items;
         }
         // GET: Employee
+        [Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
             var dtoList = _services.GetAllEmployees();
@@ -93,6 +94,7 @@ namespace Skillset_PL.Controllers
             }
             return View(modelList);
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewData["Designations"] = GetDesignations();
@@ -144,6 +146,7 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Employees/Delete/
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -166,6 +169,7 @@ namespace Skillset_PL.Controllers
         // POST: Employees/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(string id)
         {
             int status = _services.DeleteEmployeeById(id);
@@ -179,6 +183,7 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Employees/Details/
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -198,6 +203,7 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Employees/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -221,6 +227,7 @@ namespace Skillset_PL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(EmployeeViewModel employee)
         {
             if (ModelState.IsValid)
