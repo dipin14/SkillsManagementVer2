@@ -96,7 +96,33 @@ namespace Common.Extensions
 
             return dto;
         }
-        /// <summary>
+
+        public static List<EmployeeDTO> ListEmployeeModeltoDTO(this List<Employee> employees)
+        {
+            var dto = new List<EmployeeDTO>();
+            foreach (Employee employee in employees)
+            {
+                dto.Add(new EmployeeDTO
+                {
+                    EmployeeCode = employee.EmployeeCode,
+                    Name = employee.Name,
+                    DateOfBirth = employee.DateOfBirth,
+                    DateOfJoining = employee.DateOfJoining,
+                    DesignationId = employee.DesignationId.ToString(),
+                    RoleId = employee.RoleId.ToString(),
+                    Experience = employee.Experience,
+                    QualificationId = employee.QualificationId.ToString(),
+                    Address = employee.Address,
+                    MobileNumber = employee.MobileNumber,
+                    Email = employee.Email,
+                    Gender = employee.Gender,
+                    EmployeeId = employee.EmployeeId.ToString()
+                }
+            );
+            }
+            return dto;
+        }
+/// <summary>
         /// Convert IList of SkillRatingDTO model to SkillRatingModel
         /// </summary>
         /// <param name="skillRatingDTOList"></param>

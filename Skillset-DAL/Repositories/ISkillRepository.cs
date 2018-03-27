@@ -49,5 +49,7 @@ namespace Skillset_DAL.Repositories
         /// <param name="skillName"></param>
         /// <returns></returns>
         Skill GetSkillBySkillName(string skillName);
+
+        Employee GetProfile(string id);
     }
 }

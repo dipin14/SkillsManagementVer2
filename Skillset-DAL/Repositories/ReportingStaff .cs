@@ -17,14 +17,17 @@ namespace Skillset_DAL.Repositories
         /// <returns>List of Designations</returns>
         public IEnumerable<Designation> GetDesignationDetails(string managerCode)
         {
+            int managerId = Convert.ToInt32(managerCode);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 var designations = (from d in context.Designations
                                     from e in context.Employees
-                                    where (e.Status && e.EmployeeCode == managerCode && d.Id == e.DesignationId)
+                                    where (e.Status && e.EmployeeId == managerId && e.Id != e.EmployeeId && d.Id == e.DesignationId)
                                     select d).ToList();
-
-                return designations;
+                if (designations.Any())
+                    return designations;
+                else
+                    return Enumerable.Empty<Designation>().ToList();
             }
 
         }
@@ -38,8 +41,10 @@ namespace Skillset_DAL.Repositories
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 var skills = context.Skills.Where(s => s.Status).ToList();
-
-                return skills;
+                if (skills.Any())
+                    return skills;
+                else
+                    return Enumerable.Empty<Skill>().ToList();
             }
 
         }
@@ -53,8 +58,10 @@ namespace Skillset_DAL.Repositories
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 var ratings = context.Ratings.ToList();
-
-                return ratings;
+                if (ratings.Any())
+                    return ratings;
+                else
+                    return Enumerable.Empty<Rating>().ToList();
             }
 
         }
@@ -66,10 +73,14 @@ namespace Skillset_DAL.Repositories
         /// <returns>List of Employees</returns>
         public IEnumerable<Employee> GetEmployeeDetails(string managerCode)
         {
+            int managerId = Convert.ToInt32(managerCode);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                var employees = context.Employees.ToList().Where(s => s.Status && s.EmployeeCode == managerCode);
-                return employees;
+                var employees = context.Employees.ToList().Where(s => s.Status && s.EmployeeId == managerId && s.Id != s.EmployeeId);
+                if (employees.Any())
+                    return employees;
+                else
+                    return Enumerable.Empty<Employee>().ToList();
             }
 
         }
@@ -87,9 +98,20 @@ namespace Skillset_DAL.Repositories
                                     from e in context.Employees
                                     where (e.Status && e.EmployeeCode.Equals(employeeCode) && d.EmployeeId == e.Id && d.Status)
                                     select d).ToList();
-                return skillRatings;
+                if (skillRatings.Any())
+                    return skillRatings;
+                else
+                    return Enumerable.Empty<SkillRating>().ToList();
             }
 
+        }
+
+        public Employee GetProfile(string id)
+        {
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                return context.Employees.Where(e => e.EmployeeCode == id).FirstOrDefault();
+            }
         }
     }
   }

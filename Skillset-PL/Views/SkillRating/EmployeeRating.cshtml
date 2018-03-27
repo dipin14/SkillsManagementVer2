@@ -1,4 +1,7 @@
+
 ﻿@model Skillset_PL.ViewModels.EmployeeRatingScreenViewModel
+
+
 
 @{
     ViewBag.Title = "EmployeeRating";
@@ -7,6 +10,7 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
 <h2>  Rate your skills</h2>
+
 
 <div class="row" >
     <div class="col-lg-8">
@@ -27,7 +31,37 @@
                             @Html.DisplayFor(modelItem => item.SkillDescription)
                         </p>
 
+
+    @foreach (var item in Model)
+    {
+
+
+        <div class="card">
+            <div class="row">
+
+                <div class="col-md-7" style="margin-left:20px;">
+                    <h4>
+                        <b style="color:steelblue;">
+                            @Html.DisplayFor(modelItem => item.SkillName)
+                        </b>
+                    </h4>
+                    <p style="color:black;">
+                        @Html.DisplayFor(modelItem => item.SkillDescription)
+                    </p>
+
+                </div>
+                <div class="col-md-4" style="color:grey;">
+
+                    <div onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;">
+                        <input id="Rating @item.skillId" hidden />
+                        <span class="starFade" id="Rate1 @item.skillId" onclick="CRate(@item.skillId, 1)" onmouseover="CRateOver(@item.skillId,1)" onmouseout="CRateOut(@item.skillId,1)"></span>
+                        <label for="Rate1 @item.skillId" title="Amazing"></label>
+                        <span class="starFade" id="Rate2 @item.skillId" onclick="CRate(@item.skillId, 2)" onmouseover="CRateOver(@item.skillId,2)" onmouseout="CRateOut(@item.skillId,2)"></span>
+                        <span class="starFade" id="Rate3 @item.skillId" onclick="CRate(@item.skillId, 3)" onmouseover="CRateOver(@item.skillId,3)" onmouseout="CRateOut(@item.skillId,3)"></span>
+                        <span class="starFade" id="Rate4 @item.skillId" onclick="CRate(@item.skillId, 4)" onmouseover="CRateOver(@item.skillId,4)" onmouseout="CRateOut(@item.skillId,4)"></span>
+                        <span class="starFade" id="Rate5 @item.skillId" onclick="CRate(@item.skillId, 5)" onmouseover="CRateOver(@item.skillId,5)" onmouseout="CRateOut(@item.skillId,5)"></span>
                     </div>
+
                     <div class="col-md-4" style="color:grey;">
 
                         <div onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;">
@@ -43,14 +77,21 @@
 
 
                     </div>
+
                 </div>
+            </div>
 
-            </div><br />
+        </div><br />
 
+
+
+
+    }
 
 
 
         }
+
 
 
         <a class="btn btn-info" href="#demo" data-toggle="collapse">Special Skills?</a>
@@ -76,6 +117,7 @@
                 </div>
             </div>
         </div>
+
         <br /><br />
 
 
@@ -114,6 +156,7 @@
 
                     </div>
                    }
+
 
 
 

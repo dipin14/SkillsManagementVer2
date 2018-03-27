@@ -77,17 +77,24 @@ namespace Skillset_PL.ViewModelExtensions
         /// <returns></returns>
         public static IEnumerable<ViewModels.ReportingStaff> ToReportingStaffViewmodel(this IEnumerable<Common.DTO.ReportingStaff> staffList)
         {
-
-            return staffList.Select(staff => new ViewModels.ReportingStaff
+            if (staffList != null && staffList.Any())
             {
-                EmployeeCode = staff.EmployeeCode,
-                Name = staff.Name,
-                Email = staff.Email,
-                Designation = staff.Designation
-            }).ToList();
+                return staffList.Select(staff => new ViewModels.ReportingStaff
+                {
+                    EmployeeCode = staff.EmployeeCode,
+                    Name = staff.Name,
+                    Email = staff.Email,
+                    Designation = staff.Designation
+                }).ToList().OrderBy(staff => staff.Name).ThenBy(staff => staff.Designation).ToList();
+            }
+            else
+            {
+                return Enumerable.Empty<ViewModels.ReportingStaff>().ToList();
+            }
 
         }
 
+        /// <summary>
         /// <summary>
         /// convert employee view model to dto
         /// </summary>
@@ -145,13 +152,24 @@ namespace Skillset_PL.ViewModelExtensions
         /// <returns></returns>
         public static IEnumerable<ViewModels.StaffSkills> ToSkillRatingsViewmodel(this IEnumerable<Common.DTO.StaffSkills> skillList)
         {
-            return skillList.Select(skill => new ViewModels.StaffSkills
+            if (skillList != null && skillList.Any())
             {
-                Skill = skill.Skill,
-                Rating = skill.Rating,
-                RatingDate = skill.RatingDate,
-                Note = skill.Note
-            }).ToList();
+
+
+                return skillList.Select(skill => new ViewModels.StaffSkills
+                {
+                    Skill = skill.Skill,
+                    Rating = skill.Rating,
+                    RatingDate = skill.RatingDate,
+                    Note = skill.Note
+                }).ToList().OrderByDescending(skillRating => skillRating.Rating).ThenByDescending(skillRating => skillRating.RatingDate).ToList();
+
+            }
+
+            else
+            {
+                return Enumerable.Empty<ViewModels.StaffSkills>().ToList();
+            }
         }
         /// <summary>
         /// Convert IList of EmployeeRatingViewModel to EmployeeRatingDto

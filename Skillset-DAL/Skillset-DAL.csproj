@@ -66,13 +66,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextClass\SkillsetDbContext.cs" />
-    <Compile Include="Migrations\201803270934102_initial.cs" />
-    <Compile Include="Migrations\201803270934102_initial.Designer.cs">
-      <DependentUpon>201803270934102_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803270936508_initials.cs" />
-    <Compile Include="Migrations\201803270936508_initials.Designer.cs">
-      <DependentUpon>201803270936508_initials.cs</DependentUpon>
+
+    <Compile Include="Migrations\201803270606240_-new skill.cs" />
+    <Compile Include="Migrations\201803270606240_-new skill.Designer.cs">
+      <DependentUpon>201803270606240_-new skill.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Designation.cs" />
@@ -112,11 +110,9 @@
     <EmbeddedResource Include="Migrations\201803260737155_seed.resx">
       <DependentUpon>201803260737155_seed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803270934102_initial.resx">
-      <DependentUpon>201803270934102_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803270936508_initials.resx">
-      <DependentUpon>201803270936508_initials.cs</DependentUpon>
+
+    <EmbeddedResource Include="Migrations\201803270606240_-new skill.resx">
+      <DependentUpon>201803270606240_-new skill.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

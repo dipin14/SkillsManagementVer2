@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.Extensions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.DTO;
 using Skillset_DAL.Repositories;
+using Skillset_DAL.Models;
 
 namespace Skillset_BLL.Services
 {
@@ -26,24 +28,30 @@ namespace Skillset_BLL.Services
         {
             var designations = _reportingStaff.GetDesignationDetails(managerCode);
             var staff = _reportingStaff.GetEmployeeDetails(managerCode);
-            var staffDetails = (from s in staff
-                                join d in designations on s.DesignationId equals d.Id
-                                select new
-                                {
-                                    EmployeeCode = s.EmployeeCode,
-                                    Name = s.Name,
-                                    Email = s.Email,
-                                    Designation = d.Name
-                                }).ToList();
-            return staffDetails.Select(employee => new Common.DTO.ReportingStaff
+            if (staff.Any())
             {
-                EmployeeCode=employee.EmployeeCode,
-                Name=employee.Name,
-                Email=employee.Email,
-                Designation=employee.Designation
+                var staffDetails = (from s in staff
+                                    join d in designations on s.DesignationId equals d.Id
+                                    select new
+                                    {
+                                        EmployeeCode = s.EmployeeCode == null || s.EmployeeCode == string.Empty ? "Not available" : s.EmployeeCode,
+                                        Name = s.Name == null || s.Name == string.Empty ? "Not available" : s.Name,
+                                        Email = s.Email == null || s.Email == string.Empty ? "Not available" : s.Email,
+                                        Designation = d == null ? "Not available" : d.Name
+                                    }).ToList();
+                return staffDetails.Select(employee => new Common.DTO.ReportingStaff
+                {
+                    EmployeeCode = employee.EmployeeCode,
+                    Name = employee.Name,
+                    Email = employee.Email,
+                    Designation = employee.Designation
 
-            }).ToList();
-            
+                }).ToList();
+
+            }
+            else
+                return Enumerable.Empty<Common.DTO.ReportingStaff>().ToList();
+
         }
         /// <summary>
         /// skill ratings of an employee combined.
@@ -55,17 +63,27 @@ namespace Skillset_BLL.Services
             var ratings = _reportingStaff.GetRatingDetails();
             var skills = _reportingStaff.GetSkillDetails();
             var skillRatings = _reportingStaff.GetSkillRatingsDetails(employeeCode);
-            var skillRatingDetails = (from sr in skillRatings
-                                      join r in ratings on sr.RatingId equals r.Id
-                                      join s in skills on sr.SkillId equals s.SkillId
-                                      select new StaffSkills
-                                      {
-                                          Skill = s.SkillName,
-                                          Rating = r.Value,
-                                          RatingDate = sr.RatingDate,
-                                          Note = sr.Note
-                                      }).ToList();
-            return skillRatingDetails;
+            if (skillRatings.Any())
+            {
+                var skillRatingDetails = (from sr in skillRatings
+                                          join r in ratings on sr.RatingId equals r.Id
+                                          join s in skills on sr.SkillId equals s.SkillId
+                                          select new StaffSkills
+                                          {
+                                              Skill = s.SkillName == null || s.SkillName == string.Empty ? "Not available" : s.SkillName,
+                                              Rating = r == null ? default(int) : r.Value,
+                                              RatingDate = sr.RatingDate,
+                                              Note = sr.Note == null || sr.Note == string.Empty ? "Not available" : sr.Note
+                                          }).ToList();
+                return skillRatingDetails;
+            }
+            else
+                return Enumerable.Empty<StaffSkills>().ToList();
+        }
+
+        public EmployeeDTO GetProfile(string id)
+        {
+            return _reportingStaff.GetProfile(id).EmployeeModeltoDTO();
         }
     }
 }

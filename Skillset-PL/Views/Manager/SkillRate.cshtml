@@ -1,75 +1,15 @@
 ﻿@model IEnumerable<Skillset_PL.ViewModels.StaffSkills>
 
 @{
-    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+    Layout = "~/Views/Manager/_ManagerLayout.cshtml";
     ViewBag.Title = "SkillRate";
 }
 
-
-@*<div>
-        <h4>StaffSkills</h4>
-        <hr />
-       <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.EmployeeCode)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.EmployeeCode)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Skill)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Skill)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Rating)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Rating)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.RatingDate)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.RatingDate)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Note)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Note)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.IsSpecialSkill)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.IsSpecialSkill)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Status)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Status)
-            </dd>
-
-        </dl>
-    </div>*@
-
-    <label class="control-label alert-success well-sm">Skill Details</label>
+<label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
+<label class="control-label col-sm-3" style="float:left;display:block;text-align:center">Employee Code : @(ViewBag.Code) </label>
+<label class="control-label col-sm-3" style="float:left;display:block;text-align:center;">  Employee Name : @(ViewBag.Name) </label>
+@if (Model.Count() > 0)
+{
     <table class="table">
         <tr>
             
@@ -112,6 +52,15 @@
         }
 
     </table>
+}
+else
+{
+    <br />
+        <div class="alert alert-warning fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>No Skill Ratings!</strong> There is no skill ratings available.
+        </div>
+}
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
