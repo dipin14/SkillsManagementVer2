@@ -27,5 +27,8 @@ namespace Skillset_DAL.Repositories
         string GetRoleName(string id);
         IQueryable<string> GetEmployeeRatedSkill();
         string GetEmployeeRating();
+        int GetSkillsCount();
+        int GetEmployeesCount();
+        int GetSkillRatingsCount();
     }
 }
