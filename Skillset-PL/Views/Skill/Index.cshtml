@@ -1,5 +1,7 @@
 ﻿﻿@using Common.Extensions
-@model IEnumerable<Skillset_PL.ViewModels.SkillViewModel>
+@model PagedList.IPagedList<Skillset_PL.ViewModels.SkillViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +15,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SkillName)
+            @Html.DisplayName("Skill Name")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SkillDescription)
+            @Html.DisplayName("Skill Description")
         </th>
         <th>
             @Html.DisplayName("Operations")
@@ -34,9 +36,15 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-warning" })  |
             @Html.ActionLink("Delete", "Delete", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-danger" })
-
         </td>
     </tr>
 }
 
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new
+    {
+        page
+    }))
