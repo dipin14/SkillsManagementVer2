@@ -8,14 +8,9 @@ namespace Skillset_DAL.ContextClass
 {
 
 
-		protected override void OnModelCreating(DbModelBuilder modelBuilder)
-		{
-			modelBuilder.HasDefaultSchema("public");
-			base.OnModelCreating(modelBuilder);
 
 
 
-
-            modelBuilder.Entity<Skill>().Property(c => c.skillName).HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("SK_Name") { IsUnique = true }));
+        public DbSet<Qualification> Qualifications { get; set; }
         public DbSet<Role> Roles { get; set; }
-}
+    }}
