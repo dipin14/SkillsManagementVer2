@@ -2,7 +2,6 @@
 using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
 using Skillset_PL.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,7 +15,7 @@ namespace Skillset_PL.Controllers
 
         private readonly ISkillService _skillService;
         private ISkillRatingService _skillRatingService;
-       public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
+        public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
         {
             _skillService = skillService;
             _skillRatingService = skillRatingService;
@@ -36,7 +35,8 @@ namespace Skillset_PL.Controllers
 
         }
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
-        {if (ratingList != null)
+        {
+            if (ratingList != null)
             {
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
 
@@ -44,12 +44,12 @@ namespace Skillset_PL.Controllers
             }
             return View();
 
-        } 
+        }
 
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
-           var RatedSkills =_skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel() ;
-           return RatedSkills;
+            var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
+            return RatedSkills;
         }
         public ActionResult EmployeeRating()
         {
@@ -59,10 +59,6 @@ namespace Skillset_PL.Controllers
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
         }
-
-
-        }
-
         public ActionResult EmployeeProfile()
         {
             var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
@@ -70,4 +66,5 @@ namespace Skillset_PL.Controllers
         }
 
     }
+
 }
