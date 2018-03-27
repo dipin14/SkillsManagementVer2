@@ -32,7 +32,7 @@ namespace Skillset_PL.Controllers
             //{
             //    ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", e.Select(i => i.Replace("'", "''")).ToArray()));
             //}
-            ViewBag.Productname_List = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkill().Select(i => i.Replace("'", "\"\"")).ToArray()));
+            //ViewBag.Productname_List = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkill().Select(i => i.Replace("'", "\"\"")).ToArray()));
 
             ViewBag.RatingList = _barcodes;
             var dtoList = _services.GetRecentEmployees();
