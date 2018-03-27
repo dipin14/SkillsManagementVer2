@@ -16,11 +16,13 @@ namespace Skillset_PL.Controllers
         private readonly IReportingStaffExtensions _reportingStaff;
         private readonly ISkillService _skillService;
         private ISkillRatingService _skillRatingService;
-        public ManagerController(IReportingStaffExtensions reportingStaff, ISkillService skillService, ISkillRatingService skillRatingService)
+        private readonly IEmployeeServices _employeeServices;
+        public ManagerController(IReportingStaffExtensions reportingStaff, ISkillService skillService, ISkillRatingService skillRatingService, IEmployeeServices employeeServices)
         {
             _reportingStaff = reportingStaff;
             _skillService = skillService;
             _skillRatingService = skillRatingService;
+            _employeeServices = employeeServices;
         }
         
         
