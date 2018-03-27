@@ -32,17 +32,20 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        <div class="form-group" style="margin:15px">
+            <div class="col-md-2">
+                <input type="reset" value="RESET" class="btn btn-success" />
+            </div>
+            <div class="col-md-2">
+                <input type="submit" value="UPDATE" class="btn btn-success" />
+            </div>
+            <div class="col-md-2">
+                @Html.ActionLink("CANCEL", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
