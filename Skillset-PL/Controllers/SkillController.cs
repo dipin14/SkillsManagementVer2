@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Skillset_PL.Controllers
 {
@@ -21,10 +22,13 @@ namespace Skillset_PL.Controllers
         }
         
         // GET: Skill
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var skillList = _skillService.GetAllSkills().ToViewModelList();
-            return View(skillList);
+            var skillList = _skillService.GetAllSkills().ToViewModelList().OrderByDescending(s => s.SkillName);
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(skillList.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Skill/Details/5
