@@ -43,6 +43,8 @@ namespace Skillset_PL.Controllers
         public ActionResult MyProfile()
         {
             var profile = _reportingStaff.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
+            profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
+            profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
             return View("MyProfile",profile);
         }
 
