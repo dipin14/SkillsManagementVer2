@@ -21,6 +21,10 @@ namespace Skillset_BLL.Services
         {
             return _iSkillRatingRepository.Create(skillRatingDto.ToSkillRatingModelList());
         }
+      /*  public IList<SkillDTO> GetAllSkills(int empId)
+        {
+            _iSkillRatingRepository.
+        }*/
 
     }
 }

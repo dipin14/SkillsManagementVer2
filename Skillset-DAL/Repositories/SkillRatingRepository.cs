@@ -51,10 +51,19 @@ namespace Skillset_DAL.Repositories
          
             using (var db = new SkillsetDbContext())
             {
-                var skillList = db.SkillRatings.Where(s => s.Status == true && s.EmployeeId==empId).ToList();
-                return skillList;
+                var skillRatingList = db.SkillRatings.Where(s => s.Status == true && s.EmployeeId==empId).ToList();
+                return skillRatingList;
             }
         
     }
+        public IList<Skill> GetAllSkills()
+        {
+            using (var db = new SkillsetDbContext())
+            {
+                var skillList = db.Skills.Where(s => s.Status == true).ToList();
+                return skillList;
+            }
+        }
+
     }
 }
