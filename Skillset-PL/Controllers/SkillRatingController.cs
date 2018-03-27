@@ -11,12 +11,14 @@ using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
 {
+    [Authorize(Roles ="Employee,Manager")]
     public class SkillRatingController : Controller
     {
 
         private readonly ISkillService _skillService;
         private ISkillRatingService _skillRatingService;
-       public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
+
+        public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
         {
             _skillService = skillService;
             _skillRatingService = skillRatingService;
@@ -30,13 +32,14 @@ namespace Skillset_PL.Controllers
 
         public IEnumerable<SkillViewModel> EmployeeRatings()
         {
+
             var skillList = _skillService.GetAllSkills().ToViewModelList();
 
             return skillList;
 
         }
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
-        {if (ratingList != null)
+        { if (ratingList != null)
             {
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
 
@@ -44,16 +47,19 @@ namespace Skillset_PL.Controllers
             }
             return View();
 
-        } 
+        }
+
 
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
-           var RatedSkills =_skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel() ;
-           return RatedSkills;
+            var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
+            return RatedSkills;
         }
         public ActionResult EmployeeRating()
         {
-            var EmpId = 0;
+
+            var EmpId = Convert.ToInt32(Session["customerId"]);
+
             EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
             ratingObj.SkillRatings = EmployeeRatings();
@@ -61,13 +67,14 @@ namespace Skillset_PL.Controllers
         }
 
 
-        }
+        
 
         public ActionResult EmployeeProfile()
         {
             var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
+            Session["customerId"] = profile.EmployeeId;
             return View("EmployeeProfile", profile);
         }
-
     }
-}
+    }
+

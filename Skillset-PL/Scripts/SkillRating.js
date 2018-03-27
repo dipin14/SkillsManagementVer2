@@ -110,6 +110,7 @@ function CompleteRating(RatingList)
 }
 function reload()
 {
+
     $.ajax({
         type: "POST",
         url: '/SkillRating/EmployeeRating',
