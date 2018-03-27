@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2 style="margin-left:15px">Edit Employee Details</h2>
+<h2 style="margin-left:15px">EDIT EMPLOYEE</h2>
 
 
 @using (Html.BeginForm())
@@ -18,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EmployeeCode, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control" ,@readonly= "readonly"} })
                 @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -97,7 +97,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -119,18 +119,23 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Update" class="btn btn-default" />
+        <div class="form-group" style="margin:15px">
+            <div class="col-md-2">
+                <input type="reset" value="RESET" class="btn btn-success" />
             </div>
+            <div class="col-md-2">
+                <input type="submit" value="UPDATE" class="btn btn-success" />
+            </div>
+            <div class="col-md-2">
+                @Html.ActionLink("CANCEL", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+            </div>
+
         </div>
     </div>
 }
 
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
