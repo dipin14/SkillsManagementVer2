@@ -171,6 +171,21 @@ namespace Skillset_PL.ViewModelExtensions
 
             }).ToList();
         }
-
+        /// <summary>
+        /// Convert Ilist of RatedSkilldto to RatedSkillViewModel 
+        /// </summary>
+        /// <param name="SkillRatedListDto"></param>
+        /// <returns></returns>
+        public static IEnumerable<ViewModels.EmployeeRatedSkillsViewModel> ToSkillRatedViewmodel(this IEnumerable<Common.DTO.EmployeeRatedSkillsDTO> skillList)
+        {
+            return skillList.Select(employee => new ViewModels.EmployeeRatedSkillsViewModel
+            {
+                EmployeeId = employee.EmployeeId,
+                SkillName = employee.SkillName,
+                RaitedNote = employee.RaitedNote,
+                RaitedValue = employee.RaitedValue,
+                RaitedDate = employee.RaitedDate
+            }).ToList();
+        }
     }
 }

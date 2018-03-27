@@ -33,7 +33,7 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Skill/Create
-        [Authorize(Roles = "Manager,Employee")]
+       
         public ActionResult Create()
         {
             return View();

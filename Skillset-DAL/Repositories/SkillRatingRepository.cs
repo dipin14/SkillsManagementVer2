@@ -51,7 +51,7 @@ namespace Skillset_DAL.Repositories
          
             using (var db = new SkillsetDbContext())
             {
-                var skillRatingList = db.SkillRatings.Where(s => s.Status == true && s.EmployeeId==empId).ToList();
+                var skillRatingList = db.SkillRatings.Where(s => s.EmployeeId==empId).ToList();
                 return skillRatingList;
             }
         
@@ -65,5 +65,13 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        public IList<Rating> GetAllRatingValues()
+        {
+            using (var db = new SkillsetDbContext())
+            {
+                var RatingValues = db.Ratings.ToList();
+                return RatingValues;
+            }
+        }
     }
 }
