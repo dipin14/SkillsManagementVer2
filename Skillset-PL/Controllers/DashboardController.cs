@@ -12,6 +12,7 @@ using System.Web.UI;
 
 namespace Skillset_PL.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
         private IEmployeeServices _services;
@@ -20,7 +21,7 @@ namespace Skillset_PL.Controllers
             _services = services;
         }
         // GET: Dashboard
-        [Authorize(Roles ="Admin")]
+      
         public ActionResult Index()
         {
             //ViewBag.SkillnameList = "'Java','C','C#','Python'";
