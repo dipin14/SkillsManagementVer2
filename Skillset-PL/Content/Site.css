@@ -26,10 +26,11 @@ textarea {
 }
 
 .starFadeN{
-    background-image:url('/Images/StarFade.gif');
-    min-width:30px;
-    min-height:30px;
+    background-image:url('/Images/ashstar.png');
+    min-width:20px;
+    min-height:20px;
     display:inline-block;
+    cursor:pointer;
 }
 
 .starGlow{
@@ -41,20 +42,21 @@ textarea {
     cursor:pointer;
 }
 .starGlowN{
-    background-image:url('/Images/starglow.gif');
-    min-width:30px;
-    min-height:30px;
+    background-image:url('/Images/redstar.png');
+    min-width:20px;
+    min-height:20px;
     display:inline-block;
+    cursor:pointer;
 }
 /*Style for card layout*/
-.card {
+.Ratecard {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 50%;
+    width: 80%;
     border-radius: 5px;
 }
 
-.card:hover {
+.Ratecard:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
