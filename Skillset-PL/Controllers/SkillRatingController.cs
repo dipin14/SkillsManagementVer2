@@ -60,15 +60,10 @@ namespace Skillset_PL.Controllers
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
         }
-
-
-        }
-
         public ActionResult EmployeeProfile()
         {
             var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
             return View("EmployeeProfile", profile);
         }
-
     }
 }
