@@ -59,13 +59,14 @@ namespace Skillset_PL.Controllers
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
-public int DeleteRating(int Id)
+        }
+       public int DeleteRating(int Id)
         {
             
                 return _skillRatingService.Delete(Id);
               
         }
-
+        public ActionResult EmployeeProfile()
         {
             var EmployeeDtoList = _skillService.GetProfile(Session["customercode"].ToString());
             var profile = EmployeeDtoList.EmployeeDTOtoViewModel();
