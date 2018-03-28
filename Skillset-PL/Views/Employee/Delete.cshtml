@@ -1,4 +1,5 @@
-﻿@model Skillset_PL.ViewModels.EmployeeViewModel
+﻿
+@model Skillset_PL.ViewModels.EmployeeViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -9,7 +10,7 @@
 
 <h3>Are you sure you want to delete this Employee?</h3>
 <div>
-  
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -118,16 +119,17 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-        <div class="form-group" style="margin:15px">
-            <div class="col-md-2">
-                <input type="submit" value="Delete" class="btn btn-danger" />
+        <div class="form-group">
+            <div class="col-md-3">
+                <input type="submit" value="Delete" class="btn btn-danger " />
+                &nbsp; &nbsp;
+                @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-success " })
+              
             </div>
-  
-            <div class="col-md-2">
-                @Html.ActionLink("CANCEL", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
-            </div>
+            <div class="col-md-8"></div>
         </div>
     }
 </div>
