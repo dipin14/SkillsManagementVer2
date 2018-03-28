@@ -1,12 +1,9 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
+﻿
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-top:30px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -27,8 +24,8 @@ textarea {
 
 .starFadeN{
     background-image:url('/Images/ashstar.png');
-    min-width:20px;
-    min-height:20px;
+    min-width:21px;
+    min-height:21px;
     display:inline-block;
     cursor:pointer;
 }
@@ -43,10 +40,12 @@ textarea {
 }
 .starGlowN{
     background-image:url('/Images/redstar.png');
-    min-width:20px;
-    min-height:20px;
+    min-width:21px;
+    min-height:21px;
     display:inline-block;
     cursor:pointer;
+    
+    
 }
 /*Style for card layout*/
 .Ratecard {

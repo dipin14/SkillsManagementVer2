@@ -4,6 +4,7 @@
     Layout = "~/Views/Manager/_ManagerLayout.cshtml";
     ViewBag.Title = "SkillRate";
 }
+<div class="row first">
 
 <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
 @if (string.IsNullOrWhiteSpace(ViewBag.Code))
@@ -24,50 +25,32 @@
                 @Html.DisplayNameFor(model => model.Skill)
             </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RatingDate)
-            </th>
-           
-        </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Skill)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Note)
-                </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.RatingDate)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RatingDate)
+                </th>
 
-            </tr>
-        }
 
-    </table>
-}
-else
-{
-    <br />
+
+
+
+
+
+
+
+
+    else
+    {
+        <br />
         <div class="alert alert-warning fade in">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <strong>No Skill Ratings!</strong> There is no skill ratings available.
         </div>
-}
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+</div>

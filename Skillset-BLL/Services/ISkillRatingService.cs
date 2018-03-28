@@ -20,5 +20,11 @@ namespace Skillset_BLL.Services
         /// <param name="employeeId"></param>
         /// <returns></returns>
         IList<EmployeeRatedSkillsDTO> GetRatedSkills(int empId);
+        /// <summary>
+        /// Remove skillrating from table Skillrating
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        int Delete(int SkillRatingId);
     }
 }
