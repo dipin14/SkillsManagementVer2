@@ -129,3 +129,7 @@ function reload()
     });
 
 }
+function Reset()
+{
+    location.reload();
+}

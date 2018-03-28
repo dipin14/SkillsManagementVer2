@@ -4,6 +4,7 @@
     transition: 0.3s;
     margin-left:20px;
     margin-top:10px;
+    width:150px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -28,6 +29,6 @@ body
 }
 @media (max-width: 767px) {
     .card .container .progress {
-       width:300px;
+       width:150px;
     }
 }
