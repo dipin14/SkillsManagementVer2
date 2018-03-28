@@ -12,7 +12,6 @@ namespace Skillset_PL.Controllers
     [Authorize(Roles = "Manager")]
     public class ManagerController : Controller
     {
-
         private readonly IReportingStaffExtensions _reportingStaff;
         private readonly ISkillService _skillService;
         private ISkillRatingService _skillRatingService;
@@ -23,16 +22,14 @@ namespace Skillset_PL.Controllers
             _skillService = skillService;
             _skillRatingService = skillRatingService;
             _employeeServices = employeeServices;
-        }
-
-
+        }      
         // GET: Manager
         public ActionResult Index()
         {
             //Session["empcode"] = 1;
             var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
             return View(staff);
-        }
+        }       
         public ActionResult SkillRate(string code, string name)
         {
             ViewBag.Code = code;
@@ -58,7 +55,7 @@ namespace Skillset_PL.Controllers
         }
         /// <summary>
         /// Retrieve rated skills of employee
-        /// </summary>
+        /// </summary>	
         /// <param name="EmpId"></param>
         /// <returns>IEnumerable<EmployeeRatedSkillsViewModel></returns>
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
@@ -66,9 +63,9 @@ namespace Skillset_PL.Controllers
             var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
             return RatedSkills;
         }
-        /// <summary>
-        /// Retrieve all skills
-        /// </summary>
+        /// <summary>	
+        /// Retrieve all skills	
+        /// </summary>	
         /// <returns>IEnumerable<SkillViewModel></returns>
         public IEnumerable<SkillViewModel> EmployeeRatings()
         {

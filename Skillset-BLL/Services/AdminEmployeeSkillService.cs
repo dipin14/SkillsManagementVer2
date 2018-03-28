@@ -19,6 +19,12 @@ namespace Skillset_BLL.Services
             _iEmpSkillRepository = empSkillRepository;
         }
 
+        /// <summary>
+        /// Get Searched Employee details from table Employee
+        /// </summary>
+        /// <param name="option"></param>
+        /// <param name="searchKey"></param>
+        /// <returns></returns>
         public IEnumerable<AdminEmployeeDTO> ViewSearchedRecords(string option, string searchKey)
         {
             //getting list of searched employees
@@ -42,6 +48,11 @@ namespace Skillset_BLL.Services
             return employeeDetailsList;
         }
 
+        /// <summary>
+        /// Get Skill details of an employee from table Skillrating
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
         public IEnumerable<AdminSkillDTO> GetSkillDetails(string employeeCode)
         {
             //getting list of skills of a particular employee
@@ -68,6 +79,11 @@ namespace Skillset_BLL.Services
             }
             return skillDetailsList;
         }
+        /// <summary>
+        /// Finding employee name from table Employee
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
         public string FindEmployeeName(string employeeCode)
         {
             return _iEmpSkillRepository.FindEmployeeName(employeeCode);

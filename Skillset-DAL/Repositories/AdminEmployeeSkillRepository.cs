@@ -10,6 +10,12 @@ namespace Skillset_DAL.Repositories
 {
     public class AdminEmployeeSkillRepository : IAdminEmployeeSkillRepository
     {
+        /// <summary>
+        /// Get Searched Employee details from table Employee
+        /// </summary>
+        /// <param name="option"></param>
+        /// <param name="searchKey"></param>
+        /// <returns></returns>
         public List<Employee> GetEmployeeDetails(string option, string searchKey)
         {
             using (var context = new SkillsetDbContext())
@@ -37,6 +43,11 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Finding designation from table Designation
+        /// </summary>
+        /// <param name="designationId"></param>
+        /// <returns></returns>
         public string FindDesignation(int designationId)
         {
             using (var context = new SkillsetDbContext())
@@ -44,23 +55,30 @@ namespace Skillset_DAL.Repositories
                 return context.Designations.Where(d => d.Id == designationId).Select(d => d.Name).FirstOrDefault();
             }
         }
+
+        /// <summary>
+        /// Get Skill details of an employee from table Skillrating
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
         public List<SkillRating> GetSkillDetails(string employeeCode)
         {
             using (var context = new SkillsetDbContext())
             {
                 int empId = FindId(employeeCode);
-                //var query = (from sr in context.SkillRatings
-                //            from s in context.Skills
-                //            where (sr.EmployeeId == empId && sr.Status && s.Status )
-                //            select sr).ToList();
-                var query = (from sr in context.SkillRatings
-                             from s in context.Skills
-                             where (sr.EmployeeId == empId && sr.SkillId == s.SkillId && sr.Status && s.Status)
-                             select sr).ToList();
+                var query = from sr in context.SkillRatings
+                            from s in context.Skills
+                            where (sr.EmployeeId == empId && sr.SkillId == s.SkillId && sr.Status && s.Status)
+                            select sr;
                 return query.ToList();
             }
         }
 
+        /// <summary>
+        /// Finding skill name from table Skill
+        /// </summary>
+        /// <param name="skillId"></param>
+        /// <returns></returns>
         public string FindSkillName(int skillId)
         {
             using (var context = new SkillsetDbContext())
@@ -69,6 +87,11 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Finding skill value from table Rating
+        /// </summary>
+        /// <param name="ratingId"></param>
+        /// <returns></returns>
         public int FindSkillValue(int ratingId)
         {
             using (var context = new SkillsetDbContext())
@@ -77,6 +100,11 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Finding employee name from table Employee
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
         public string FindEmployeeName(string employeeCode)
         {
             using (var context = new SkillsetDbContext())
