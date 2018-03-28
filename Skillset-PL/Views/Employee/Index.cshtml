@@ -7,37 +7,38 @@
 <div class="row first">
     <h2>EMPLOYEE LIST</h2>
 
-    <p>
-        @Html.ActionLink("NEW EMPLOYEE", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
-    </p>
 
-
-    <p>
-        @using (Html.BeginForm("IndexSearch", "Employee", FormMethod.Post))
-        {
-            <b> Search By: </b>
-            @Html.RadioButton("option", "Employee Code", true) <text>Employee Code</text>
-            @Html.RadioButton("option", "Name") <text> Name </text>
-            @Html.RadioButton("option", "Designation")<text>Designation</text>
-            @Html.TextBox("search", null, new { htmlAttributes = new { @class = "form-control" } }) <input type="submit" name="submit" value="Search" class="btn btn-success" />
-            @Html.ActionLink("Reset", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
-
-        }
-    </p>
-    @if (Model.Count() > 0)
     {
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.EmployeeCode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.DesignationId)
-                </th>
+       
+        <div class="row">
+            <div class="panel-group">
+                <div class="panel panel-success">
+                    <div class="panel-heading">Search</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-md-1"><b> SearchBy </b></div>
+                            <div class="col-md-5">                             
+                                @Html.RadioButton("option", "Employee Code", true) <text>Employee Code</text>
+                                &nbsp;
+                                @Html.RadioButton("option", "Name") <text> Name </text>
+                                &nbsp; 
+                                @Html.RadioButton("option", "Designation")<text>Designation</text>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control" } })
+                                &nbsp; &nbsp;
+                            </div>
+                            <div class="col-md-3">
+                                <input type="submit" name="submit" value="Search" class="btn btn-success" />
+                                &nbsp; &nbsp;
+                                @Html.ActionLink("Reset", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <table class="table table-responsive">
 
 
                 <th>Operations</th>
