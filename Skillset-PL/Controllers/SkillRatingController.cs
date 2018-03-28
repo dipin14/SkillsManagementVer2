@@ -43,5 +43,11 @@ namespace Skillset_PL.Controllers
             }
             return View();
         }
+
+        public ActionResult EmployeeProfile()
+        {
+            var profile = _skillService.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
+            return View("EmployeeProfile", profile);
+        }
     }
 }
