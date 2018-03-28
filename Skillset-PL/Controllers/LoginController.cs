@@ -20,7 +20,7 @@ namespace Skillset_PL.Controllers
             logService = logSer;
         }
         // GET: Login
-        [Authorize]
+      
         public ActionResult Index()
         {
             return View();
@@ -69,6 +69,7 @@ namespace Skillset_PL.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();          
+            //Session.Abandon();
             return RedirectToAction("Login");
         }
     }

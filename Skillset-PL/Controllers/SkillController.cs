@@ -20,7 +20,7 @@ namespace Skillset_PL.Controllers
         {
             _skillService = skillService;
         }
-        
+
         // GET: Skill
         public ActionResult Index(int? page)
         {
