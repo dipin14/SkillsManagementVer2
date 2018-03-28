@@ -16,12 +16,14 @@ namespace Skillset_BLL.Services
         /// <param name="searchKey"></param>
         /// <returns></returns>
         IEnumerable<AdminEmployeeDTO> ViewSearchedRecords(string option, string searchKey);
+        
         /// <summary>
         /// Get Skill details of an employee from table Skillrating
         /// </summary>
         /// <param name="employeeCode"></param>
         /// <returns></returns>
         IEnumerable<AdminSkillDTO> GetSkillDetails(string employeeCode);
+        
         /// <summary>
         /// Finding employee name from table Employee
         /// </summary>

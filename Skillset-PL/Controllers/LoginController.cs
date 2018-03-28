@@ -68,7 +68,7 @@ namespace Skillset_PL.Controllers
         }
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
+            FormsAuthentication.SignOut();          
             return RedirectToAction("Login");
         }
     }

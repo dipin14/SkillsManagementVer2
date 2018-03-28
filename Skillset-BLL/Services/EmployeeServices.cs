@@ -135,7 +135,29 @@ namespace Skillset_BLL.Services
         {
             return _repository.GetEmployeeRating();
         }
-
-
+        /// <summary>
+        /// Return total skill count
+        /// </summary>
+        /// <returns></returns>
+        public int GetSkillsCount()
+        {
+            return _repository.GetSkillsCount();
+        }
+        /// <summary>
+        /// Return total employees count
+        /// </summary>
+        /// <returns></returns>
+        public int GetEmployeesCount()
+        {
+            return _repository.GetEmployeesCount();
+        }
+        /// <summary>
+        /// Return total skill ratings count
+        /// </summary>
+        /// <returns></returns>
+        public int GetSkillRatingsCount()
+        {
+            return _repository.GetSkillRatingsCount();
+        }
     }
 }

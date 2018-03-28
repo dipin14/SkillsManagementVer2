@@ -24,17 +24,13 @@ namespace Skillset_PL.Controllers
       
         public ActionResult Index()
         {
-            //ViewBag.SkillnameList = "'Java','C','C#','Python'";
-            //ViewBag.RatingList = "0,90,20,100";
-            ViewBag.SkillnameList = _services.GetEmployeeRatedSkill();
-            string _barcodes = _services.GetEmployeeRating();
-            //foreach (var e in name)
-            //{
-            //    ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", e.Select(i => i.Replace("'", "''")).ToArray()));
-            //}
-            //ViewBag.Productname_List = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkill().Select(i => i.Replace("'", "\"\"")).ToArray()));
+            ViewBag.TotalSkills = _services.GetSkillsCount();
+            ViewBag.TotalSkillRatings = _services.GetSkillRatingsCount();
+            ViewBag.TotalEmployees = _services.GetEmployeesCount();
+           
+            ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkill().Select(i => i.Replace("'", "\"\"")).ToArray()));
 
-            ViewBag.RatingList = _barcodes;
+            ViewBag.RatingList = _services.GetEmployeeRating();
             var dtoList = _services.GetRecentEmployees();
             var modelList = new List<EmployeeViewModel>();
             foreach (EmployeeDTO item in dtoList)
