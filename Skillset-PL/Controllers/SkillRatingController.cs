@@ -42,7 +42,7 @@ namespace Skillset_PL.Controllers
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
                 return View(result);
             }
-            return View(); 
+            return View();
         }
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
@@ -57,6 +57,8 @@ namespace Skillset_PL.Controllers
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
+        }
+        public ActionResult EmployeeProfile()
         {
             var EmployeeDtoList = _skillService.GetProfile(Session["customercode"].ToString());
             var profile = EmployeeDtoList.EmployeeDTOtoViewModel();
@@ -66,4 +68,4 @@ namespace Skillset_PL.Controllers
             return View("EmployeeProfile", profile);
         }
     }
-    }
+}
