@@ -16,13 +16,24 @@ namespace Skillset_PL.Controllers
             logService = logSer;
         }
         // GET: Login
-        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult Login()
         {
+            if (Request.IsAuthenticated &&(Session["role"].ToString()=="Admin"))
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+            else if (Request.IsAuthenticated && (Session["role"].ToString() == "Manager"))
+            {
+                return RedirectToAction("Myprofile", "Manager");
+            }
+            else if (Request.IsAuthenticated && (Session["role"].ToString() == "Employee"))
+            {
+                return RedirectToAction("EmployeeProfile", "SkillRating");
+            }
             return View();
         }
         /// <summary>
@@ -42,6 +53,7 @@ namespace Skillset_PL.Controllers
                     var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Admin");
                     SetCode(authTicket);
                     Session["customercode"] = employeeCode;
+                    Session["role"] = "Admin";
                     return RedirectToAction("Index", "Dashboard");
                 }
                 else if (role == "Manager")
@@ -49,6 +61,7 @@ namespace Skillset_PL.Controllers
                     var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Manager");
                     SetCode(authTicket);
                     Session["customercode"] = employeeCode;
+                    Session["role"] = "Manager";
                     return RedirectToAction("MyProfile", "Manager");
                 }
                 else if (role == "Employee")
@@ -56,6 +69,7 @@ namespace Skillset_PL.Controllers
                     var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Employee");
                     SetCode(authTicket);
                     Session["customercode"] = employeeCode;
+                    Session["role"] = "Employee";
                     return RedirectToAction("EmployeeProfile", "SkillRating");
                 }
                 else
