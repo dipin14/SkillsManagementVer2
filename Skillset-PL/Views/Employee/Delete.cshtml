@@ -15,7 +15,7 @@
             <dt>
                 @Html.DisplayNameFor(model => model.EmployeeCode)
             </dt>
-  
+
             <dd>
                 @Html.DisplayFor(model => model.EmployeeCode)
             </dd>
@@ -117,19 +117,13 @@
             </dd>
 
         </dl>
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <div class="form-group" style="margin:15px">
-                <div class="col-md-2">
-                    <input type="submit" value="Delete" class="btn btn-danger" />
-                </div>
-
+    </div>
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
         <div class="form-group" style="margin:15px">
             <div class="col-md-2">
                 <input type="submit" value="Delete" class="btn btn-danger" />
             </div>
+            </div>
 </div>
+   

@@ -6,70 +6,39 @@
 }
 <div class="row first">
     <h2>Index</h2>
-    <link href="~/Content/adminview.css" rel="stylesheet" type="text/css" />
 
     <p>
         @using (Html.BeginForm("Index", "AdministratorView", FormMethod.Get))
         {
             <b> Search By: </b>
-            @Html.RadioButton("option", "Employee Code") <text>Employee Code</text>
+            @Html.RadioButton("option", "Employee Code", new { @checked = true }) <text>Employee Code</text>
             @Html.RadioButton("option", "Name") <text> Name </text>
             @Html.RadioButton("option", "Designation")<text>Designation</text>
             @Html.TextBox("search")
-            <input type="submit" name="submit" value="Search" class="btn btn-primary" />
-            @Html.ActionLink("View All", "Index", null, new { @class = "buttonstyle" })
+            <input type="submit" name="submit" value="Search" class="btn btn-success" />
+            @Html.ActionLink("View All", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
         }
     </p>
 
     @if (Model.Count() > 0)
     {
-        <b> Search By: </b>
-        @Html.RadioButton("option", "Employee Code", new { @checked = true }) <text>Employee Code</text>
-        @Html.RadioButton("option", "Name") <text> Name </text>
-        @Html.RadioButton("option", "Designation")<text>Designation</text>
-        @Html.TextBox("search")
-        <input type="submit" name="submit" value="Search" class="btn btn-success" />
-        @Html.ActionLink("View All", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
-    }
-</p>
-
-@if (Model.Count() > 0)
-{
-    <br />
-    <label class="control-label alert-success well-sm" style="display:block;text-align:center"><u>Employee Details</u></label>
-    <table class="table table-bordered table-hover table-responsive">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.EmployeeCode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Designation)
-                </th>
-                <th>
-                    @Html.DisplayName("Action")
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        <br />
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center"><u>Employee Details</u></label>
+        <table class="table table-bordered table-hover table-responsive">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EmployeeCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Designation)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" })
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Designation)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Action")
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -86,7 +55,7 @@
                             @Html.DisplayFor(modelItem => item.Designation)
                         </td>
                         <td>
-                            @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, new { @class = "buttonstyle" }) |
+                            @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" })
                         </td>
                     </tr>
                 }
@@ -94,11 +63,11 @@
         </table>
     }
 
-else
-{
-    <div class="alert alert-warning fade in">
-        <a href="#" class="close" data-dismiss="alert">&times;</a>
-        <strong>No Employee Details!</strong> There is no employees.
-    </div>
-}
-
+    else
+    {
+        <div class="alert alert-warning fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>No Employee Details!</strong> There is no employees.
+        </div>
+    }
+</div>
