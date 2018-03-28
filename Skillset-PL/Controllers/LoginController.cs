@@ -31,32 +31,41 @@ namespace Skillset_PL.Controllers
         [HttpPost]
         public ActionResult Login(string employeeCode, string password)
         {
-            var role = logService.GetRole(employeeCode, password);
-            if (role == "Admin")
+            if (!(string.IsNullOrEmpty(employeeCode) && string.IsNullOrEmpty(password)))
             {
-                var authTicket = new FormsAuthenticationTicket( 1,employeeCode,DateTime.Now,DateTime.Now.AddMinutes(10),false,"Admin");
-                SetCode(authTicket);
-                Session["customercode"] = employeeCode;
-                return RedirectToAction("Index", "Dashboard");
-            }
-            else if (role == "Manager")
-            {
-                var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Manager");
-                SetCode(authTicket);
-                Session["customercode"] = employeeCode;
-                return RedirectToAction("MyProfile", "Manager");            }
-            else if (role == "Employee")
-            {
-                var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Employee");
-                SetCode(authTicket);
-                Session["customercode"] = employeeCode;
-                return RedirectToAction("EmployeeProfile", "SkillRating");
+                var role = logService.GetRole(employeeCode, password);
+                if (role == "Admin")
+                {
+                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Admin");
+                    SetCode(authTicket);
+                    Session["customercode"] = employeeCode;
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else if (role == "Manager")
+                {
+                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Manager");
+                    SetCode(authTicket);
+                    Session["customercode"] = employeeCode;
+                    return RedirectToAction("MyProfile", "Manager");
+                }
+                else if (role == "Employee")
+                {
+                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Employee");
+                    SetCode(authTicket);
+                    Session["customercode"] = employeeCode;
+                    return RedirectToAction("EmployeeProfile", "SkillRating");
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Invalid Employee Code or Password";
+                    return View();
+                }
             }
             else
             {
-                ViewBag.ErrorMessage = "Invalid Employee Code or Password";
+                ViewBag.ErrorMessage = "Please Enter Employee Code and Password";
                 return View();
-            } 
+            }
         }
         public void  SetCode(FormsAuthenticationTicket authTicket)
         {
