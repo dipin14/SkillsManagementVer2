@@ -220,6 +220,11 @@ namespace Skillset_DAL.Repositories
             }
            
         }
+
+        /// <summary>
+        /// Get recently registered 5 employee details
+        /// </summary>
+        /// <returns></returns>
         public List<Employee> GetRecentEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -228,6 +233,10 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Get skill names of skills rated by employee
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<string> GetEmployeeRatedSkill()
         {
             SkillsetDbContext context = new SkillsetDbContext();
@@ -252,19 +261,18 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Get total ratings for each skill given by employees
+        /// </summary>
+        /// <returns></returns>
         public string GetEmployeeRating()
         {
             SkillsetDbContext context = new SkillsetDbContext();
             {
                 string result = string.Empty;
                 string id = string.Empty;
-                var p = context.SkillRatings.GroupBy(s => s.SkillId).Select(g => new { skillid = g.Select(s => s.SkillId), count = g.Select(s => s.SkillId).Distinct().Count() });
-                var pll = context.SkillRatings.Select(s => s.SkillId);
                 var pll2 = context.SkillRatings.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
-                //var pl = from r in context.SkillRatings
-                //         orderby r.SkillId
-                //         group r by r.SkillId into grp
-                //         select new { cnt = grp.Count() };
+               
                 foreach (var r in pll2.OrderByDescending(x => x.Id).Select(x => x.Values))
                 {
                     result += r;
