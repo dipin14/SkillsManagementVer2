@@ -25,6 +25,7 @@ namespace Skillset_DAL.Repositories
                                     where (e.Status && e.EmployeeId == managerId && e.Id != e.EmployeeId && d.Id == e.DesignationId)
                                     select d).ToList();
                 if (designations.Any())
+
                     return designations;
                 else
                     return Enumerable.Empty<Designation>().ToList();

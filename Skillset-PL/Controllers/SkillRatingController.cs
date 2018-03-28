@@ -10,7 +10,6 @@ namespace Skillset_PL.Controllers
     [Authorize(Roles = "Employee,Manager")]
     public class SkillRatingController : Controller
     {
-
         private readonly ISkillService _skillService;
         private readonly ISkillRatingService _skillRatingService;
         private readonly IEmployeeServices _employeeServices;
