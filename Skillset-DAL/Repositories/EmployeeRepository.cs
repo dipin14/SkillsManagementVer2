@@ -233,11 +233,22 @@ namespace Skillset_DAL.Repositories
         {
             SkillsetDbContext context = new SkillsetDbContext();
             {
-                var skill = (from s in context.SkillRatings
-                             join j in context.Skills
-                             on s.SkillId equals j.SkillId
-                             orderby s.SkillId
-                             select (j.SkillName)).Distinct();
+                var skills = (from s in context.SkillRatings
+                              join j in context.Skills
+                              on s.SkillId equals j.SkillId
+                              where s.Status == true
+                              select new { j.SkillName, j.SkillId }).Distinct();
+
+                var skill = from s in skills
+                            orderby s.SkillId descending
+                            select s.SkillName;
+
+                var b = string.Empty;
+                foreach(var c in skill)
+                {
+                    b += c;
+                }
+                var ab = b;
                 return skill;
             }
         }
@@ -247,11 +258,12 @@ namespace Skillset_DAL.Repositories
             SkillsetDbContext context = new SkillsetDbContext();
             {
                 string result = string.Empty;
-                string id = string.Empty;
-                var p = context.SkillRatings.GroupBy(s => s.SkillId).Select(g => new { skillid = g.Select(s => s.SkillId) ,count = g.Select(s => s.SkillId).Distinct().Count() });
-                var pll = context.SkillRatings.Select(s => s.SkillId);
-                var pll2 = context.SkillRatings.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
-                foreach (var r in pll2.OrderByDescending(x => x.Id).Select(x => x.Values))
+
+                string id = string.Empty;                
+                var pll = context.SkillRatings.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+                
+                foreach (var r in pll.OrderByDescending(x => x.Id).Select(x => x.Values))
+
                 {                    
                     result += r;
                     result += ", ";
