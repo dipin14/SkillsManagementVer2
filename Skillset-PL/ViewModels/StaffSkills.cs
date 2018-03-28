@@ -14,6 +14,7 @@ namespace Skillset_PL.ViewModels
         public int Rating { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [Display(Name = "Rated Date")]
         public DateTime RatingDate { get; set; }
         public string Note { get; set; }
         public bool IsSpecialSkill { get; set; }

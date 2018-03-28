@@ -225,8 +225,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\ashstar.jpg" />
     <Content Include="Images\female.png" />
     <Content Include="Images\male.png" />
+    <Content Include="Images\rate1.png" />
+    <Content Include="Images\rate2.png" />
+    <Content Include="Images\redstar.png" />
+    <Content Include="Images\star1.png" />
+    <Content Include="Images\StarFade.gif" />
+    <Content Include="Images\StarGlow.gif" />
     <Content Include="obj\Debug\Skillset-PL.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Skillset_PL.dll" />
     <Content Include="obj\Debug\Skillset_PL.pdb" />
@@ -238,10 +245,8 @@
     <Content Include="obj\Debug\Skillset-PL.csprojResolveAssemblyReference.cache" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\ashstar.jpg" />
-    <Content Include="Images\ashstar.png" />
     <Content Include="Images\rate1.png" />
     <Content Include="Images\rate2.png" />
-    <Content Include="Images\redstar.jpg" />
     <Content Include="Images\redstar.png" />
     <Content Include="Images\star1.png" />
     <Content Include="Images\StarFade.gif" />
