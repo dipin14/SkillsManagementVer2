@@ -4,17 +4,12 @@
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
 }
-
-<h2>EMPLOYEE LIST</h2>
-
-<p>
-    @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
-</p>
+<div class="row first">
+    <h2>EMPLOYEE LIST</h2>
 
 
-<p>
-    @using (Html.BeginForm("IndexSearch", "Employee", FormMethod.Post))
     {
+       
         <div class="row">
             <div class="panel-group">
                 <div class="panel panel-success">
@@ -43,56 +38,42 @@
                 </div>
             </div>
         </div>
-    }
-</p>
-@if (Model.Count() > 0)
-{
     <table class="table table-responsive">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EmployeeCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.DesignationId)
-            </th>
 
 
-            <th>Operations</th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmployeeCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DesignationId)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
-                    @Html.ActionLink("Details", "Details", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-danger" })
-                </td>
+                <th>Operations</th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DesignationId)
+                    </td>
 
-}
-else
-{
-    <br />
-    <div class="alert alert-warning fade in">
-        <a href="#" class="close" data-dismiss="alert">&times;</a>
-        <strong>No Employees!</strong> There are no employees to display.
-    </div>
-}
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Details", "Details", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    }
+    else
+    {
+        <br />
+        <div class="alert alert-warning fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>No Employees!</strong> There are no employees to display.
+        </div>
+    }
+</div>

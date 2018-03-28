@@ -14,15 +14,16 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#484848;height:50px;border: 0;">
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
                 <span class="navbar-brand" style="color:white">Skill Management</span>
             </div>
+
             <ul class="nav navbar-nav navbar-right">
-              
-                <li><a href="~/Login/Logout" style="color:red;margin-top:-10px"><span class="glyphicon glyphicon-log-out btn btn-danger"></span> Logout</a></li>
-<          </ul>
+
+                <li><a href="~/Login/Logout" style="color:red"><span class="glyphicon glyphicon-log-out btn-sm btn-danger"></span></a></li>
+            </ul>
         </div>
     </nav>
 
@@ -48,8 +49,8 @@
     </div>
     <div class="container-fluid body-content">
         <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-9">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
                 @RenderBody()
             </div>
         </div>

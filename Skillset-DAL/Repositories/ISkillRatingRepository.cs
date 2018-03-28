@@ -30,6 +30,12 @@ namespace Skillset_DAL.Repositories
         /// </summary
         /// <returns></returns>
        IList<Rating> GetAllRatingValues();
+        /// <summary>
+        /// Sets status of skillrating to false
+        /// </summary>
+        /// <param name="skillrating Id"></param>
+        /// <returns></returns>
+        int Delete(int? SkillRatingId);
 
     }
 }

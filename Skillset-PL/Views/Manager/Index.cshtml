@@ -4,10 +4,11 @@
     Layout = "~/Views/Manager/_ManagerLayout.cshtml";
     ViewBag.Title = "Index";
 }
+<div class="row first">
 @if (Model.Count() > 0)
 {
     <label class="control-label alert-success well-sm" style="display:block;text-align:center"><u>Staff Details</u></label>
-    <table class="table">
+    <table class="table table-hover table-responsive">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.EmployeeCode)
@@ -48,7 +49,7 @@
 
                 <td>
 
-                   @Html.ActionLink("Skills", "SkillRate", new { code = item.EmployeeCode, name = item.Name }, new { @class = "btn btn-success" }) 
+                   @Html.ActionLink("Skills", "SkillRate", new { code = item.EmployeeCode, name = item.Name }) 
                 </td>
             </tr>
         }
@@ -64,3 +65,4 @@ else
     </div>
 
 }
+</div>

@@ -6,45 +6,47 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="row first">
+    <h2>List Of Skills</h2>
 
-<h2>List Of Skills</h2>
+    <p>
+        @Html.ActionLink("NEW SKILL", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Skill Name")
+            </th>
+            <th>
+                @Html.DisplayName("Skill Description")
+            </th>
+            <th>
+                @Html.DisplayName("Operations")
+            </th>
+        </tr>
 
-<p>
-    @Html.ActionLink("NEW SKILL", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Skill Name")
-        </th>
-        <th>
-            @Html.DisplayName("Skill Description")
-        </th>
-        <th>
-            @Html.DisplayName("Operations")
-        </th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SkillName)
+                </td>
+                <td>
+                    @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-warning" })  |
+                    @Html.ActionLink("Delete", "Delete", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SkillName)
-        </td>
-        <td>
-            @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-warning" })  |
-            @Html.ActionLink("Delete", "Delete", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}
+    </table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-</table>
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index",
+    @Html.PagedListPager(Model, page => Url.Action("Index",
     new
     {
         page
     }))
+</div>
