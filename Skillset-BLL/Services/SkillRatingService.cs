@@ -18,7 +18,7 @@ namespace Skillset_BLL.Services
             _iSkillRatingRepository = skillRatingRepository;
         }
         public int Create(IList<EmployeeSkillRatingDTO>skillRatingDto)
-        {
+        {    
             return _iSkillRatingRepository.Create(skillRatingDto.ToSkillRatingModelList());
         }
         //Get All employeee ratings to ratedDto
@@ -30,15 +30,16 @@ namespace Skillset_BLL.Services
                                   join s in SkillList on r.SkillId equals s.SkillId
                                   join rt in RatingValuesList on r.RatingId equals rt.Id
                                   select new
-                                  {
+                                  {   Id=r.Id,
                                       EmployeeId = r.EmployeeId,
-                                      SkillName = s.SkillName,
+                                      SkillName =r.IsSpecialSkill==true?"Special skill":s.SkillName,
                                       RaitedValue = rt.Value,
                                       RaitedNote=r.Note,
                                       RaitedDate=r.RatingDate
+                                      
                                   }).ToList();
             return RatingViewList.Select(employee => new EmployeeRatedSkillsDTO
-            {
+            {   Id=employee.Id,
                 EmployeeId = employee.EmployeeId,
                 SkillName = employee.SkillName,
                 RaitedNote = employee.RaitedNote,
@@ -46,6 +47,13 @@ namespace Skillset_BLL.Services
                 RaitedDate=employee.RaitedDate
 
             }).ToList();
+        }
+        public int Delete(int SkillRatingId)
+        {
+            //Retrieves skill id from unique skill name
+            return _iSkillRatingRepository.Delete(SkillRatingId);
+
+         
         }
 
     }

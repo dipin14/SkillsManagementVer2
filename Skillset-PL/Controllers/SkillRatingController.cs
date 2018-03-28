@@ -38,7 +38,7 @@ namespace Skillset_PL.Controllers
 
             if (ratingList != null)
             {
-                ratingList.ForEach(m => { m.EmployeeId = Convert.ToInt32(Session["customerId"]);m.Status = true; });
+                ratingList.ForEach(m => { m.EmployeeId = Convert.ToInt32(Session["customerId"]); m.Status = true; m.RatingDate = DateTime.Now; });
 
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
 
@@ -60,6 +60,13 @@ namespace Skillset_PL.Controllers
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
+        }
+
+        public int DeleteRating(int Id)
+        {
+            
+                return _skillRatingService.Delete(Id);
+              
         }
 
         public ActionResult EmployeeProfile()

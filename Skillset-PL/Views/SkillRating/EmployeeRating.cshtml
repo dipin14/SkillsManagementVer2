@@ -96,14 +96,16 @@
         @foreach (var item in Model.RatedSkills)
         {
             <div class="panel" style="background-color:aliceblue;">
-
+                <span style="float:right;">
+                    <a class="glyphicon glyphicon-remove" id="@item.Id" onclick="DeleteRating(@item.Id)"></a>
+                </span>
 
                 <b style="color:steelblue;">
                     @Html.DisplayFor(modelItem => item.SkillName)
                 </b>
 
 
-                <p style="color:black;">
+                <p style="color:black;margin-left:5px;">
                     @Html.DisplayFor(modelItem => item.RaitedNote)
                 </p>
                 @for (var i = 1; i <= item.RaitedValue; i++)
@@ -115,7 +117,7 @@
                     <span class="starFadeN"></span>
                 }
 
-
+               
             </div>
 
         }

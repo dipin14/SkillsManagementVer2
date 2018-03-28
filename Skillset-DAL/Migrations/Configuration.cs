@@ -45,7 +45,7 @@ namespace Skillset_DAL.Migrations
              );
             context.Skills.AddOrUpdate(
                   p => p.SkillId,
-                   new Skill { SkillId = 1, SkillName = "Special skill", SkillDescription = "If you have any special Skills" ,Status=true}
+                   new Skill { SkillId = 1, SkillName = "Special skill", SkillDescription = "If you have any special Skills" ,Status=false}
    
                 );
 
