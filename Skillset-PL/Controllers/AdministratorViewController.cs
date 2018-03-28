@@ -28,7 +28,6 @@ namespace Skillset_PL.Controllers
             employeerecordlist = _empSkillService.ViewSearchedRecords(option, search);
 
             List<AdministratorEmployeeViewModel> recordlist = new List<AdministratorEmployeeViewModel>();
-
             foreach (var obj in employeerecordlist)
             {
                 recordlist.Add(new AdministratorEmployeeViewModel(obj.EmployeeCode, obj.Name, obj.Designation));
@@ -48,7 +47,6 @@ namespace Skillset_PL.Controllers
             skillrecordlist = _empSkillService.GetSkillDetails(id);
 
             List<AdministratorSkillViewModel> recordlist = new List<AdministratorSkillViewModel>();
-
             foreach (var obj in skillrecordlist)
             {
                 recordlist.Add(new AdministratorSkillViewModel(obj.SkillName, obj.SkillValue, obj.RatingDate));

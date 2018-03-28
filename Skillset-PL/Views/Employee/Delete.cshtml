@@ -1,5 +1,4 @@
-﻿
-@model Skillset_PL.ViewModels.EmployeeViewModel
+﻿@model Skillset_PL.ViewModels.EmployeeViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -16,7 +15,7 @@
             <dt>
                 @Html.DisplayNameFor(model => model.EmployeeCode)
             </dt>
-
+  
             <dd>
                 @Html.DisplayFor(model => model.EmployeeCode)
             </dd>
@@ -127,11 +126,10 @@
                     <input type="submit" value="Delete" class="btn btn-danger" />
                 </div>
 
-                <div class="col-md-2">
-                    @Html.ActionLink("CANCEL", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
-                </div>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-group" style="margin:15px">
+            <div class="col-md-2">
+                <input type="submit" value="Delete" class="btn btn-danger" />
             </div>
-        }
-    </div>
-    © 2018 GitHub, Inc.
 </div>

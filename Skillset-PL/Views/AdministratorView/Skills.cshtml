@@ -8,6 +8,7 @@
     <h2>Skills</h2>
     <link href="~/Content/adminview.css" rel="stylesheet" type="text/css" />
 
+<h2>Skills</h2>
     <br />
     @Html.Label("Employee Name:")
     @Html.Label(ViewData["employeename"].ToString())
@@ -17,10 +18,30 @@
     <br />
     <br />
 
-    @if (Model.Count() > 0)
-    {
-        <table class="table table-bordered table-hover table-responsive">
-            <thead>
+<label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
+<label class="control-label col-sm-3" style="float:left;display:block;text-align:center">Employee Code : @(ViewData["employeecode"]) </label>
+<label class="control-label col-sm-3" style="float:left;display:block;text-align:center;">  Employee Name : @(ViewData["employeename"]) </label>
+<br/>
+<br/>
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SkillName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SkillValue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RatingDate)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.SkillName)
@@ -32,32 +53,3 @@
                         @Html.DisplayNameFor(model => model.RatingDate)
                     </th>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SkillName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SkillValue)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RatingDate)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        @Html.Label("There is not any active skillratings for this employee")
-    }
-    <br />
-    <br />
-    <p>
-        @Html.ActionLink("Back to Employee List", "Index", null, new { @class = "buttonstyle" })
-    </p>
-</div>
