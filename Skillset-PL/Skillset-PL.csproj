@@ -301,6 +301,7 @@
     <Content Include="Views\SkillRating\EmployeeProfile.cshtml" />
     <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <Content Include="Views\Manager\ManagerRating.cshtml" />
+    <Content Include="Views\AdministratorView\Skills.cshtml" />
     <None Include="Web.Debug.config" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
