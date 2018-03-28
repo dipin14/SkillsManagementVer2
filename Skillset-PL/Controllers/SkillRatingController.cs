@@ -38,7 +38,7 @@ namespace Skillset_PL.Controllers
 
             if (ratingList != null)
             {
-                ratingList.ForEach(m => m.EmployeeId = Convert.ToInt32(Session["customerId"]));
+                ratingList.ForEach(m => { m.EmployeeId = Convert.ToInt32(Session["customerId"]); m.Status = true; });
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
 
                 return View(result);
