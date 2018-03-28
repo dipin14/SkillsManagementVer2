@@ -22,11 +22,11 @@ namespace Skillset_DAL.Repositories
             {
                 if (option == "Employee Code")
                 {
-                    return context.Employees.Where(m => m.Status == true && m.RoleId!=1 && m.EmployeeCode.Contains(searchKey)).Select(m => m).ToList();
+                    return context.Employees.Where(m => m.Status == true && m.RoleId!=1 && m.EmployeeCode.Contains(searchKey)).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();
                 }
                 else if (option == "Name")
                 {
-                    return context.Employees.Where(m => m.Status == true && m.RoleId != 1 && m.Name.Contains(searchKey)).Select(m => m).ToList();
+                    return context.Employees.Where(m => m.Status == true && m.RoleId != 1 && m.Name.Contains(searchKey)).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();
                 }
                 else if (option == "Designation")
                 {
@@ -34,11 +34,11 @@ namespace Skillset_DAL.Repositories
                                 from d in context.Designations
                                 where ((e.Status == true) && (e.RoleId != 1) && (e.DesignationId == d.Id) && (d.Name.Contains(searchKey)))
                                 select e;
-                    return query.ToList();
+                    return query.OrderBy(m => m.EmployeeCode).ToList();
                 }
                 else
                 {
-                    return context.Employees.Where(e => e.Status == true && e.RoleId != 1).Select(e => e).ToList();
+                    return context.Employees.Where(e => e.Status == true && e.RoleId != 1).Select(e => e).OrderBy(e => e.EmployeeCode).ToList();
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace Skillset_DAL.Repositories
                             from s in context.Skills
                             where (sr.EmployeeId == empId && sr.SkillId == s.SkillId && sr.Status && s.Status)
                             select sr;
-                return query.ToList();
+                return query.OrderBy(s=> s.RatingDate).ToList();
             }
         }
 
