@@ -203,7 +203,7 @@ namespace Skillset_PL.ViewModelExtensions
                 RaitedNote = employee.RaitedNote,
                 RaitedValue = employee.RaitedValue,
                 RaitedDate = employee.RaitedDate
-            }).ToList();
+            }).ToList().OrderByDescending(s=>s.RaitedDate).ThenByDescending(s=>s.RaitedValue).ToList();
         }
     }
 }

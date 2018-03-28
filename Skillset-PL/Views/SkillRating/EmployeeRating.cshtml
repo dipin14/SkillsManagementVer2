@@ -92,8 +92,10 @@
         </div>
 
         <div class="col-sm-4 well" style="background-color:#f5f5f500;">
+        @if (Model.RatedSkills.Count() > 0)
+        {
             <h4>Your skills</h4>
-        @foreach (var item in Model.RatedSkills)
+        foreach (var item in Model.RatedSkills)
         {
             <div class="panel" style="background-color:aliceblue;">
                 <span style="float:right;">
@@ -121,6 +123,14 @@
                 </div>
 
             }
+}
+else
+{
+    <br />
+                <div class="alert alert-warning fade in">
+                    <strong>No Skill Ratings !</strong><br /> Add your skills rating.
+                </div>
+}
         </div>
     </div>
 </div>

@@ -26,17 +26,17 @@ namespace Skillset_PL.Controllers
         // GET: Manager
         public ActionResult Index()
         {
-            if(Session["customercode"].ToString()!=string.Empty)
+            if (Session["customercode"].ToString() != string.Empty)
             {
                 var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
                 return View(staff);
             }
             else
             {
-             return RedirectToAction("MyProfile");
+                return RedirectToAction("MyProfile");
             }
-            
-           
+
+
         }
         public ActionResult SkillRate(string code, string name)
         {
@@ -50,7 +50,7 @@ namespace Skillset_PL.Controllers
             var profile = _reportingStaff.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
             profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
             profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
-            return View("MyProfile",profile);
+            return View("MyProfile", profile);
         }
 
         public ActionResult ManagerRating()
@@ -78,4 +78,16 @@ namespace Skillset_PL.Controllers
             var skillList = _skillService.GetAllSkills().ToViewModelList();
             return skillList;
         }
-    }}
+        /// <summary>
+        /// Delete One skill rating
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public int DeleteRating(int Id)
+        {
+
+            return _skillRatingService.Delete(Id);
+
+        }
+    }
+}
