@@ -271,7 +271,8 @@ namespace Skillset_DAL.Repositories
             {
                 string result = string.Empty;
                 string id = string.Empty;
-                var pll2 = context.SkillRatings.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+                var pll3 = context.SkillRatings.Where(x => x.Status == true).ToList();
+                var pll2 = pll3.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
                
                 foreach (var r in pll2.OrderByDescending(x => x.Id).Select(x => x.Values))
                 {
