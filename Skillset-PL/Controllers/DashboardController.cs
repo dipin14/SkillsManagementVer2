@@ -31,6 +31,10 @@ namespace Skillset_PL.Controllers
             ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkill().Select(i => i.Replace("'", "\"\"")).ToArray()));
 
             ViewBag.RatingList = _services.GetEmployeeRating();
+
+            ViewBag.SkillnameExcludeList = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkillExcludeSpecial().Select(i => i.Replace("'", "\"\"")).ToArray()));
+
+            ViewBag.RatingAverage = _services.GetRatingAverage();
             var dtoList = _services.GetRecentEmployees();
             var modelList = new List<EmployeeViewModel>();
             foreach (EmployeeDTO item in dtoList)

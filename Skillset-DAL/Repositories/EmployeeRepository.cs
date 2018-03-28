@@ -322,5 +322,73 @@ namespace Skillset_DAL.Repositories
             return employeesCount;
         }
 
+        /// <summary>
+        /// Get skill names of skills rated by employee excluding special skill
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<string> GetEmployeeRatedSkillExcludeSpecial()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            {
+                var skills = (from s in context.SkillRatings
+                              join j in context.Skills
+                              on s.SkillId equals j.SkillId
+                              where s.Status == true
+                              select new { j.SkillName, j.SkillId }).Distinct();
+
+                var skill = from s in skills
+                            orderby s.SkillId descending
+                            where s.SkillName != "Special Skill"
+                            select s.SkillName;
+
+                var b = string.Empty;
+                foreach (var c in skill)
+                {
+                    b += c;
+                }
+                var ab = b;
+                return skill;
+            }
+        }
+
+        public string GetRatingAverage()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            {
+                List<int> totalValues = new List<int>();
+                List<int> specificValues = new List<int>();
+                var result = string.Empty;
+                string id = string.Empty;
+                var pll3 = context.SkillRatings.Where(x => x.Status == true);
+                var pll2 = pll3.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+
+                foreach (var r in pll2.OrderByDescending(x => x.Id).Select(x => x.Values))
+                {
+                    totalValues.Add(r);
+                }
+
+                var pll4 = (from sr in context.SkillRatings
+                            join r in context.Ratings
+                            on sr.RatingId equals r.Id
+                            join s in context.Skills
+                            on sr.SkillId equals s.SkillId
+                            where sr.Status == true
+                            select new { sr.SkillId , r.Value });
+
+                var pll5 = pll4.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Select(s => s.Value).Sum() });
+                foreach (var r in pll5.OrderByDescending(x => x.Id).Select(x => x.Values))
+                {
+                    specificValues.Add(r);
+                }
+                for(int i =0;i<specificValues.Count;i++)
+                {
+                    float ratingAvg = (float)specificValues.ElementAt(i) / (float)totalValues.ElementAt(i);
+                    result += ratingAvg;
+                    result += ", ";
+                }
+                return result;
+
+            }
+        }
     }
 }

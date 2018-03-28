@@ -20,6 +20,16 @@
                            data: [@ViewBag.RatingList]
                        }]
                    };
+        var BarChartData =
+            {
+                labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
+                datasets: [{
+                    label: 'Skill Ratings Average',
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderWidth: 2,
+                    data: [@ViewBag.RatingAverage]
+                }]
+            };
 
         window.onload = function () {
             var ctx1 = document.getElementById("Linecanvas").getContext("2d");
@@ -38,13 +48,30 @@
                             maintainAspectRatio: true
                         }
                 });
+
+            var ctx2 = document.getElementById("Barcanvas").getContext("2d");
+            window.myBar2 = new Chart(ctx2,
+                {
+                    type: 'bar',
+                    data: BarChartData,
+                    options:
+                        {
+                            title:
+                            {
+                                display: true,
+                                text: "Skill Ratings Average"
+                            },
+                            responsive: true,
+                            maintainAspectRatio: true
+                        }
+                });
         }
     </script>
 </head>
 
 <body>
-   
-    <div class="row first" >
+
+    <div class="row first">
         <div class="col-sm-4">
             <div class="card">
                 <div style="text-align:center;background-color:lightgoldenrodyellow;height:80px;"><span class="fa fa-lightbulb-o" style="font-size:55px;margin-top:30px"></span></div>
@@ -101,6 +128,7 @@
                 <canvas id="Linecanvas"></canvas>
             </div>
         </div>
+
         <div class="col-sm-4">
             <div class="panel panel-primary">
                 <div class="panel-heading">Recent Employees</div>
@@ -117,7 +145,7 @@
                                 @if (item.Gender == "female")
                                 {
                                     <td>
-                                        <img src="~/Images/female.png" width="40" height="20"/>
+                                        <img src="~/Images/female.png" width="40" height="20" />
                                     </td>
                                 }
                                 else
@@ -126,8 +154,8 @@
                                         <img src="~/Images/male.png" width="40" height="20" />
                                     </td>
                                 }
-                                
-                                <td >
+
+                                <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
 
@@ -138,5 +166,14 @@
             </div>
         </div>
     </div>
+    <div class="row" style="margin-left:35px;margin-top:50px">
+        <div class="col-sm-8">
+            <div style="text-align: center">
+                <canvas id="Barcanvas"></canvas>
+            </div>
+        </div>
+
+        <div class="col-sm-4"></div>
+        </div>
 </body>
 </html>
