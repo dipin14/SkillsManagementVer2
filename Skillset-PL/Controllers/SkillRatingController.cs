@@ -40,6 +40,7 @@ namespace Skillset_PL.Controllers
             {
                 ratingList.ForEach(m => m.EmployeeId = Convert.ToInt32(Session["customerId"]));
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
+
                 return View(result);
             }
             return View();
