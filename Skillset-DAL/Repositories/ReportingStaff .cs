@@ -29,7 +29,6 @@ namespace Skillset_DAL.Repositories
                 else
                     return Enumerable.Empty<Designation>().ToList();
             }
-
         }
 
         /// <summary>
