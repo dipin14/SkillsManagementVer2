@@ -111,11 +111,15 @@
                 @Html.DisplayNameFor(model => model.Gender)
             </dt>
 
-    </div>
-    
 
-        <div class="col-md-2">
-            @Html.ActionLink("BACK", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
-        </div>
-
+    </dl>
+</div>
+<div class="form-group" >
+    <div class="col-md-3">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
+        &nbsp; &nbsp;
+        @Html.ActionLink("Back", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
     </div>
+ 
+    <div class="col-md-8"></div>
+</div>
