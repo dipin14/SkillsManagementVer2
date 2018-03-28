@@ -21,6 +21,32 @@ namespace Skillset_BLL.Services
         {
             return _iSkillRatingRepository.Create(skillRatingDto.ToSkillRatingModelList());
         }
+        //Get All employeee ratings to ratedDto
+        public IList<EmployeeRatedSkillsDTO> GetRatedSkills(int empId)
+        { var RatingValuesList = _iSkillRatingRepository.GetAllRatingValues();
+            var RaitingList=_iSkillRatingRepository.GetAllRatings(empId);
+            var SkillList= _iSkillRatingRepository.GetAllSkills();
+            var RatingViewList = (from r in RaitingList
+                                  join s in SkillList on r.SkillId equals s.SkillId
+                                  join rt in RatingValuesList on r.RatingId equals rt.Id
+                                  select new
+                                  {
+                                      EmployeeId = r.EmployeeId,
+                                      SkillName = s.SkillName,
+                                      RaitedValue = rt.Value,
+                                      RaitedNote=r.Note,
+                                      RaitedDate=r.RatingDate
+                                  }).ToList();
+            return RatingViewList.Select(employee => new EmployeeRatedSkillsDTO
+            {
+                EmployeeId = employee.EmployeeId,
+                SkillName = employee.SkillName,
+                RaitedNote = employee.RaitedNote,
+                RaitedValue = employee.RaitedValue,
+                RaitedDate=employee.RaitedDate
+
+            }).ToList();
+        }
 
     }
 }

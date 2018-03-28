@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Skillset_PL.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdministratorViewController : Controller
     {
         private readonly IAdminEmployeeSkillService _empSkillService;
@@ -19,7 +20,7 @@ namespace Skillset_PL.Controllers
             _empSkillService = skillService;
         }
 
-        // GET: Employee Details
+        // GET: Searched Employee Details
         [Authorize(Roles ="Admin")]
         public ActionResult Index(string option, string search)
         {
@@ -36,7 +37,7 @@ namespace Skillset_PL.Controllers
             return View(recordlist);
         }
 
-        // GET: Employee Skills Details
+        // GET: Employee Skills Details      
         [Authorize(Roles = "Admin")]
         public ActionResult Skills(string id)
         {
@@ -54,6 +55,9 @@ namespace Skillset_PL.Controllers
             {
                 recordlist.Add(new AdministratorSkillViewModel(obj.SkillName, obj.SkillValue, obj.RatingDate));
             }
+            string employeeName = _empSkillService.FindEmployeeName(id);
+            ViewData["employeename"] = employeeName;
+            ViewData["employeecode"] = id;
             return View(recordlist);
         }
     }
