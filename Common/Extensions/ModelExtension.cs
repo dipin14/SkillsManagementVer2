@@ -80,6 +80,7 @@ namespace Common.Extensions
         public static EmployeeDTO EmployeeModeltoDTO(this Employee employee)
         {
             EmployeeDTO dto = new EmployeeDTO();
+            dto.Id = employee.Id;
             dto.EmployeeCode = employee.EmployeeCode;
             dto.Name = employee.Name;
             dto.DateOfBirth = employee.DateOfBirth;

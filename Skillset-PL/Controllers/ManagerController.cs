@@ -1,5 +1,6 @@
 ﻿using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
+using Skillset_PL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,14 @@ namespace Skillset_PL.Controllers
     {
 
         private readonly IReportingStaffExtensions _reportingStaff;
+        private readonly ISkillService _skillService;
+        private ISkillRatingService _skillRatingService;
         private readonly IEmployeeServices _employeeServices;
-        public ManagerController(IReportingStaffExtensions reportingStaff, IEmployeeServices employeeServices)
+        public ManagerController(IReportingStaffExtensions reportingStaff, ISkillService skillService, ISkillRatingService skillRatingService, IEmployeeServices employeeServices)
         {
             _reportingStaff = reportingStaff;
+            _skillService = skillService;
+            _skillRatingService = skillRatingService;
             _employeeServices = employeeServices;
         }
 
@@ -41,6 +46,29 @@ namespace Skillset_PL.Controllers
             profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
             profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
             return View("MyProfile",profile);
+        }
+
+        public ActionResult ManagerRating()
+        {
+            var EmpId = Convert.ToInt32(Session["customerId"]);
+
+            EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
+            ratingObj.RatedSkills = GetRatedSkills(EmpId);
+            ratingObj.SkillRatings = EmployeeRatings();
+            return View(ratingObj);
+        }
+        public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
+        {
+            var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
+            return RatedSkills;
+        }
+        public IEnumerable<SkillViewModel> EmployeeRatings()
+        {
+
+            var skillList = _skillService.GetAllSkills().ToViewModelList();
+
+            return skillList;
+
         }
     }
 }
