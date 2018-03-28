@@ -59,6 +59,10 @@ namespace Skillset_PL.Controllers
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
         }
+        /// <summary>	
+        /// Retrieve all skills	
+        /// </summary>	
+        /// <returns>IEnumerable<SkillViewModel></returns>
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
             var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
