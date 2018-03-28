@@ -7,7 +7,7 @@ using Skillset_DAL.Models;
 using Skillset_DAL.ContextClass;
 namespace Skillset_DAL.Repositories
 {
-   public class SkillRatingRepository:ISkillRatingRepository
+    public class SkillRatingRepository : ISkillRatingRepository
     {
         public int Create(IList<SkillRating> skillRatingList)
         {
@@ -26,15 +26,13 @@ namespace Skillset_DAL.Repositories
                                 var updateObj = db.SkillRatings.Find(id);
                                 updateObj.RatingId = skillRating.RatingId;
                                 updateObj.Note = skillRating.Note;
-
                             }
                             else
                             {
                                 var obj = db.SkillRatings.Find(skillRating.SkillId);
-
                                 db.SkillRatings.Add(skillRating);
                             }
-                            }
+                        }
                         db.SaveChanges();
                     }
                     return 1;
@@ -48,14 +46,14 @@ namespace Skillset_DAL.Repositories
         }
         public IList<SkillRating> GetAllRatings(int empId)
         {
-         
+
             using (var db = new SkillsetDbContext())
             {
-                var skillRatingList = db.SkillRatings.Where(s => s.EmployeeId==empId).ToList();
+                var skillRatingList = db.SkillRatings.Where(s => s.EmployeeId == empId).ToList();
                 return skillRatingList;
             }
-        
-    }
+
+        }
         public IList<Skill> GetAllSkills()
         {
             using (var db = new SkillsetDbContext())
@@ -64,7 +62,6 @@ namespace Skillset_DAL.Repositories
                 return skillList;
             }
         }
-
         public IList<Rating> GetAllRatingValues()
         {
             using (var db = new SkillsetDbContext())
