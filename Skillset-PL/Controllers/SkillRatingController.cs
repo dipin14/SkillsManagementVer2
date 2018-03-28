@@ -39,7 +39,8 @@ namespace Skillset_PL.Controllers
 
             if (ratingList != null)
             {
-                ratingList.ForEach(m => m.EmployeeId = Convert.ToInt32(Session["customerId"]));
+                ratingList.ForEach(m => { m.EmployeeId = Convert.ToInt32(Session["customerId"]);m.Status = true; });
+
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
 
                 return View(result);
@@ -53,7 +54,6 @@ namespace Skillset_PL.Controllers
         }
         public ActionResult EmployeeRating()
         {
-
             var EmpId = Convert.ToInt32(Session["customerId"]);
             EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
@@ -64,7 +64,7 @@ namespace Skillset_PL.Controllers
         {
             var EmployeeDtoList = _skillService.GetProfile(Session["customercode"].ToString());
             var profile = EmployeeDtoList.EmployeeDTOtoViewModel();
-            Session["customerId"] = EmployeeDtoList.Id;
+            Session["customerId"] =EmployeeDtoList.Id;
             profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
             profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
             return View("EmployeeProfile", profile);
