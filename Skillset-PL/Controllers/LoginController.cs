@@ -10,11 +10,7 @@ namespace Skillset_PL.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly ILoginService logService;
-        public LoginController()
-        {
-
-        }
+        private  ILoginService logService;
         public LoginController(ILoginService logSer)
         {
             logService = logSer;
@@ -28,6 +24,12 @@ namespace Skillset_PL.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// For Loging to the system
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Login(string employeeCode, string password)
         {
@@ -67,6 +69,10 @@ namespace Skillset_PL.Controllers
                 return View();
             }
         }
+        /// <summary>
+        /// Sets authentication cookie
+        /// </summary>
+        /// <param name="authTicket"></param>
         public void  SetCode(FormsAuthenticationTicket authTicket)
         {
             string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
@@ -74,6 +80,10 @@ namespace Skillset_PL.Controllers
             System.Web.HttpContext.Current.Response.Cookies.Add(authCookie);
             
         }
+        /// <summary>
+        ///For logout purpose 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
