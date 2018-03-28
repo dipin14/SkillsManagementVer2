@@ -39,6 +39,7 @@ namespace Skillset_PL.ViewModels
         [Display(Name ="Manager")]
         public string EmployeeId { get; set; }
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
         [Required]
         public string Email { get; set; }
