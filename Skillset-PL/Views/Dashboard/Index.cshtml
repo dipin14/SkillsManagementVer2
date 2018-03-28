@@ -12,7 +12,7 @@
     <script>
         var LineChartData =
                    {
-                       labels: [@Html.Raw(ViewBag.Productname_List)],
+                       labels: [@Html.Raw(ViewBag.SkillnameList)],
                        datasets: [{
                            label: 'Skill Ratings',
                            backgroundColor: "rgba(75,192,192,0.4)",
@@ -44,7 +44,7 @@
 
 <body>
    
-    <div class="row" >
+    <div class="row first"  >
         <div class="col-sm-4">
             <div class="card">
                 <div style="text-align:center;background-color:lightgoldenrodyellow;height:80px;"><span class="fa fa-lightbulb-o" style="font-size:55px;margin-top:30px"></span></div>
@@ -95,7 +95,7 @@
     </div>
 
     @* Chart *@
-    <div class="row" style="margin-left:5px;margin-top:50px">
+    <div class="row" style="margin-left:35px;margin-top:50px">
         <div class="col-sm-8">
             <div style="text-align: center">
                 <canvas id="Linecanvas"></canvas>
