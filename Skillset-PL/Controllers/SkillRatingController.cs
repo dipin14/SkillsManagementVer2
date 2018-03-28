@@ -37,19 +37,16 @@ namespace Skillset_PL.Controllers
             return skillList;
 
         }
-
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
+        {
+            if (ratingList != null)
             {
                 ratingList.ForEach(m => m.EmployeeId = Convert.ToInt32(Session["customerId"]));
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
-
                 return View(result);
             }
             return View();
-
-        }
-
-
+        }    
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
             var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
@@ -76,5 +73,6 @@ namespace Skillset_PL.Controllers
             return View("EmployeeProfile", profile);
         }
     }
-    }
+    
+}
 
