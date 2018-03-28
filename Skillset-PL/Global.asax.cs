@@ -38,10 +38,10 @@ namespace Skillset_PL
 
             builder.RegisterType<SkillRatingService>().As<ISkillRatingService>().InstancePerRequest();
             builder.RegisterType<SkillRatingRepository>().As<ISkillRatingRepository>().InstancePerRequest();
-            builder.RegisterType<ReportingStaff>().As<IReportingStaff>().InstancePerRequest();
-            builder.RegisterType<ReportingStaffExtensions>().As<IReportingStaffExtensions>().InstancePerRequest();
+
             builder.RegisterType<LoginService>().As<ILoginService>().InstancePerRequest();
             builder.RegisterType<LoginRepository>().As<ILoginRepository>().InstancePerRequest();
+
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
@@ -67,6 +67,12 @@ namespace Skillset_PL
 
             if (Context.User != null)
                 Context.User = new GenericPrincipal(Context.User.Identity, roles);
+        }
+        protected void Application_BeginRequest()
+        {	
+           Response.Cache.SetCacheability(HttpCacheability.NoCache);	
+           Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));	
+           Response.Cache.SetNoStore();	
         }
     }
 }
