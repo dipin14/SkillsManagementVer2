@@ -197,7 +197,7 @@ namespace Skillset_PL.ViewModelExtensions
         public static IEnumerable<ViewModels.EmployeeRatedSkillsViewModel> ToSkillRatedViewmodel(this IEnumerable<Common.DTO.EmployeeRatedSkillsDTO> skillList)
         {
             return skillList.Select(employee => new ViewModels.EmployeeRatedSkillsViewModel
-            {
+            {   Id=employee.Id,
                 EmployeeId = employee.EmployeeId,
                 SkillName = employee.SkillName,
                 RaitedNote = employee.RaitedNote,

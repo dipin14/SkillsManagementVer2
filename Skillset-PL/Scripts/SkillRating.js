@@ -65,7 +65,7 @@ function SubmitRating(data,m)
         var specialSkill = document.getElementById("TxtAra").value
         if (specialSkill != "") {
             var specialScore = document.getElementById("Rating 0").value
-            var SkillID = 0;
+            var SkillID = 1;
             if (specialScore != "") {
                 var RatingObject = {};
                 RatingObject.IsSpecialSkill = true;
@@ -132,4 +132,24 @@ function reload()
 function Reset()
 {
     location.reload();
+}
+function DeleteRating(Id)
+{
+   
+    $.ajax({
+        type: "POST",
+        url: '/SkillRating/DeleteRating',
+        data: {Id:Id},
+        complete: function (result) {
+            if (result.responseText) {
+
+                Reset();
+            }
+            else {
+                alert('please check your connection');
+
+            }
+
+        }
+    });
 }
