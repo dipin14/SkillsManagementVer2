@@ -15,8 +15,9 @@ namespace Skillset_PL.Controllers
     public class SkillRatingController : Controller
     {
 
-      
-      
+        private readonly ISkillService _skillService;
+        private ISkillRatingService _skillRatingService;
+
         public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService)
         {
             _skillService = skillService;

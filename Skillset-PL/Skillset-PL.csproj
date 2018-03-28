@@ -265,6 +265,7 @@
     <Compile Include="ViewModelExtensions\ViewModelExtension.cs" />
     <Compile Include="ViewModels\EmployeeRatedSkillsViewModel.cs" />
     <Compile Include="ViewModels\EmployeeRatingScreenViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeSkillRatingViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\ReportingStaff.cs" />
     <Compile Include="ViewModels\AdministratorEmployeeViewModel.cs" />
@@ -286,21 +287,20 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\SkillRating\_EmployeeLayout.cshtml" />
     <Content Include="Views\SkillRating\EmployeeProfile.cshtml" />
-    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <Content Include="Views\AdministratorView\Skills.cshtml" />
+    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
+    <Content Include="Views\Employee\Delete.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
     <None Include="Web.Debug.config" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Manager\MyProfile.cshtml" />
     <Content Include="Views\Manager\_ManagerLayout.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
-    <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Display.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
-    <Content Include="Views\Employee\Edit.cshtml" />
-    <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

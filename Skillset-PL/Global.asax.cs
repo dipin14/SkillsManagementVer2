@@ -25,20 +25,15 @@ namespace Skillset_PL
 
             // manual registration of types;
             builder.RegisterType<EmployeeServices>().As<IEmployeeServices>();
-           
-
+            builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>();
             builder.RegisterType<SkillService>().As<ISkillService>().InstancePerRequest();
             builder.RegisterType<SkillRepository>().As<ISkillRepository>().InstancePerRequest();
-
             builder.RegisterType<ReportingStaffExtensions>().As<IReportingStaffExtensions>().InstancePerRequest();
             builder.RegisterType<ReportingStaff>().As<IReportingStaff>().InstancePerRequest();
-
             builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
             builder.RegisterType<AdminEmployeeSkillRepository>().As<IAdminEmployeeSkillRepository>().InstancePerRequest();
             builder.RegisterType<SkillRatingService>().As<ISkillRatingService>().InstancePerRequest();
             builder.RegisterType<SkillRatingRepository>().As<ISkillRatingRepository>().InstancePerRequest();
-            builder.RegisterType<ReportingStaff>().As<IReportingStaff>().InstancePerRequest();
-            builder.RegisterType<ReportingStaffExtensions>().As<IReportingStaffExtensions>().InstancePerRequest();
             builder.RegisterType<LoginService>().As<ILoginService>().InstancePerRequest();
             builder.RegisterType<LoginRepository>().As<ILoginRepository>().InstancePerRequest();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
