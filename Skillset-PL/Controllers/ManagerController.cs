@@ -24,8 +24,8 @@ namespace Skillset_PL.Controllers
             _skillRatingService = skillRatingService;
             _employeeServices = employeeServices;
         }
-        
-        
+
+
         // GET: Manager
         public ActionResult Index()
         {
@@ -33,8 +33,6 @@ namespace Skillset_PL.Controllers
             var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
             return View(staff);
         }
-        
-        
         public ActionResult SkillRate(string code, string name)
         {
             ViewBag.Code = code;
