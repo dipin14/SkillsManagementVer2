@@ -30,8 +30,17 @@ namespace Skillset_PL.Controllers
         public ActionResult Index()
         {
             //Session["empcode"] = 1;
-            var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
-            return View(staff);
+            if(Session["customercode"].ToString()!=string.Empty)
+            {
+                var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
+                return View(staff);
+            }
+            else
+            {
+             return RedirectToAction("MyProfile");
+            }
+            
+           
         }
         public ActionResult SkillRate(string code, string name)
         {
