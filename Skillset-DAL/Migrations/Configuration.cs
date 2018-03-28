@@ -35,8 +35,8 @@ namespace Skillset_DAL.Migrations
             context.Roles.AddOrUpdate(
             p => p.Id,
             new Role { Id = 1, Name = "Admin" },
-            new Role { Id = 1, Name = "Manager" },
-            new Role { Id = 1, Name = "Employee" }
+            new Role { Id = 2, Name = "Manager" },
+            new Role { Id = 3, Name = "Employee" }
            );
             context.Ratings.AddOrUpdate(
                 p => p.Id,
