@@ -17,7 +17,7 @@ namespace Skillset_DAL.Repositories
         /// <returns>List of Designations</returns>
         public IEnumerable<Designation> GetDesignationDetails(string managerCode)
         {
-            int managerId = Convert.ToInt32(managerCode);
+            int managerId = GetEmployeeId(managerCode);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 var designations = (from d in context.Designations
@@ -73,7 +73,7 @@ namespace Skillset_DAL.Repositories
         /// <returns>List of Employees</returns>
         public IEnumerable<Employee> GetEmployeeDetails(string managerCode)
         {
-            int managerId = Convert.ToInt32(managerCode);
+            int managerId = GetEmployeeId(managerCode);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 var employees = context.Employees.ToList().Where(s => s.Status && s.EmployeeId == managerId && s.Id != s.EmployeeId);
@@ -113,5 +113,18 @@ namespace Skillset_DAL.Repositories
                 return context.Employees.Where(e => e.EmployeeCode == id).FirstOrDefault();
             }
         }
+        /// <summary>
+        /// Get employee id corresponding to an employee code
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns>int</returns>
+        public int GetEmployeeId(string employeeCode)
+        {
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                var managerId = context.Employees.Where(x => x.EmployeeCode == employeeCode).Select(employee => employee.Id).FirstOrDefault();
+                return managerId;
+            }
+        }    
     }
   }
