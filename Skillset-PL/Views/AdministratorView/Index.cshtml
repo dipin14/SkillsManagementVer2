@@ -4,65 +4,65 @@
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
 }
+<div class="row first">
+    <h2>Index</h2>
+    <link href="~/Content/adminview.css" rel="stylesheet" type="text/css" />
 
-<h2>Index</h2>
-<link href="~/Content/adminview.css" rel="stylesheet" type="text/css" />
+    <p>
+        @using (Html.BeginForm("Index", "AdministratorView", FormMethod.Get))
+        {
+            <b> Search By: </b>
+            @Html.RadioButton("option", "Employee Code") <text>Employee Code</text>
+            @Html.RadioButton("option", "Name") <text> Name </text>
+            @Html.RadioButton("option", "Designation")<text>Designation</text>
+            @Html.TextBox("search")
+            <input type="submit" name="submit" value="Search" class="btn btn-primary" />
+            @Html.ActionLink("View All", "Index", null, new { @class = "buttonstyle" })
+        }
+    </p>
 
-<p>
-    @using (Html.BeginForm("Index", "AdministratorView", FormMethod.Get))
+    @if (Model.Count() > 0)
     {
-        <b> Search By: </b>
-        @Html.RadioButton("option", "Employee Code") <text>Employee Code</text>
-        @Html.RadioButton("option", "Name") <text> Name </text>
-        @Html.RadioButton("option", "Designation")<text>Designation</text>
-        @Html.TextBox("search")
-        <input type="submit" name="submit" value="Search" class="btn btn-primary" />
-        @Html.ActionLink("View All", "Index", null, new { @class = "buttonstyle" })
-    }
-</p>
-
-@if (Model.Count() > 0)
-{
-    <br />
-    <table class="table table-bordered table-hover table-responsive">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.EmployeeCode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Designation)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        <br />
+        <table class="table table-bordered table-hover table-responsive">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EmployeeCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Designation)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, new { @class = "buttonstyle" }) |
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmployeeCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Designation)
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Designation)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, new { @class = "buttonstyle" }) |
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 
-else
-{
-    @Html.Label("There is not any active employees")
-}
-
+    else
+    {
+        @Html.Label("There is not any active employees")
+    }
+</div>

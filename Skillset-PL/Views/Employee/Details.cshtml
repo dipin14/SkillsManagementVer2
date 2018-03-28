@@ -4,125 +4,127 @@
     ViewBag.Title = "Details";
 }
 
-<h2>EMPLOYEE DETAILS</h2>
+<div class="row first">
+    <h2>EMPLOYEE DETAILS</h2>
 
-<div>
-  
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeCode)
-        </dt>
+    <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeCode)
-        </dd>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeCode)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeCode)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfJoining)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateOfJoining)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateOfJoining)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DesignationId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateOfJoining)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DesignationId)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DesignationId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RoleId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DesignationId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RoleId)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.RoleId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.QualificationId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RoleId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.QualificationId)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.QualificationId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Experience)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.QualificationId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Experience)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Experience)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Experience)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EmployeeId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DateOfBirth)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EmployeeId)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MobileNumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MobileNumber)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MobileNumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MobileNumber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Gender)
+            </dt>
 
-    </dl>
-</div>
-<div class="form-group" style="margin:15px">
-    <div class="col-md-2">
-        @Html.ActionLink("EDIT", "Edit", new { id = Model.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
+
+        </dl>
     </div>
+    <div class="form-group" style="margin:15px">
+        <div class="col-md-2">
+            @Html.ActionLink("EDIT", "Edit", new { id = Model.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
+        </div>
 
-    <div class="col-md-2">
-        @Html.ActionLink("BACK", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+        <div class="col-md-2">
+            @Html.ActionLink("BACK", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+
     </div>
-
 </div>

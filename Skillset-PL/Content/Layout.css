@@ -110,6 +110,9 @@
     line-height: 50px !important;
     
   }
+   .row .first{
+      margin-left:20px;
+  }
 }
 @media (min-width: 768px) {
   .nav-side-menu .menu-list .menu-content {
@@ -119,7 +122,9 @@
   {
       overflow:hidden;
   }
-  
+   .row .first{
+      margin-left:55px;
+  }
 }
 
 
