@@ -95,7 +95,29 @@ namespace Skillset_PL.Controllers
             }
             return View(modelList);
         }
-        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult IndexSearch(string option, string search)
+        {
+            
+            //calling method to search for employee details
+            var dtoList = _services.ViewSearchRecords(option, search);
+           
+                var modelList = new List<EmployeeViewModel>();
+                List<AdministratorEmployeeViewModel> recordlist = new List<AdministratorEmployeeViewModel>();
+
+                foreach (EmployeeDTO item in dtoList)
+                {
+                    item.DesignationId = _services.GetDesignationName(item.DesignationId);
+                    item.QualificationId = _services.GetQualificationName(item.QualificationId);
+                    item.RoleId = _services.GetRoleName(item.RoleId);
+                    item.EmployeeId = _services.GetManagerName(item.EmployeeId);
+                    modelList.Add(item.EmployeeDTOtoViewModel());
+                }
+                return View("Index",modelList);
+          
+            
+        }
+
         public ActionResult Create()
         {
             ViewData["Designations"] = GetDesignations();
