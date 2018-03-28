@@ -42,7 +42,7 @@ namespace Skillset_PL.Controllers
                 return View(result);
             }
             return View();
-
+        }
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
             var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
