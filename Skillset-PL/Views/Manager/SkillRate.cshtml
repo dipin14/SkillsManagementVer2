@@ -38,7 +38,16 @@
                             @Html.DisplayFor(modelItem => item.Skill)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Rating)
+                         
+                            
+                    @for (var i = 1; i <= item.Rating; i++)
+                    {
+                        <span class="starGlowN"></span>
+                    }
+                    @for (var i = (item.Rating + 1); i <= 5; i++)
+                    {
+                        <span class="starFadeN"></span>
+                    }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RatingDate)
