@@ -229,7 +229,16 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                return context.Employees.OrderByDescending(e => e.EmployeeCode).Take(5).Where(e => e.Roles.Name != "Admin").ToList();
+                var RecentEmployees = (from s in context.SkillRatings
+                                       join j in context.Employees
+                                       on s.EmployeeId equals j.Id
+                                       where s.Status == true
+                                       orderby s.Id descending
+                                       select j).ToList();
+                var dist = RecentEmployees.Distinct().ToList();
+                var some = dist.Take(2).ToList();
+                return some;
+                //return context.Employees.OrderByDescending(e => e.EmployeeCode).Take(5).Where(e => e.Roles.Name != "Admin").ToList();
             }
         }
 

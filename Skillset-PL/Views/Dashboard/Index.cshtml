@@ -8,14 +8,17 @@
 <head>
     <link href="~/Content/Card.css" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Black Ops One' rel='stylesheet' type='text/css'>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <script>
         var LineChartData =
                    {
                        labels: [@Html.Raw(ViewBag.SkillnameList)],
                        datasets: [{
-                           label: 'Skill Ratings',
-                           backgroundColor: "rgba(75,192,192,0.4)",
+                           label: 'Skill Distribution',
+                           backgroundColor: ["rgba(75,192,192,0.4)", "LightCoral", "Crimson", "SlateBlue ", "teal"],
                            borderWidth: 2,
                            data: [@ViewBag.RatingList]
                        }]
@@ -25,7 +28,7 @@
                 labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
                 datasets: [{
                     label: 'Skill Ratings Average',
-                    backgroundColor: "rgba(75,192,192,0.4)",
+                    backgroundColor: [" #ff99bb", "LightCoral", "Crimson", "SlateBlue ", "teal"],
                     borderWidth: 2,
                     data: [@ViewBag.RatingAverage]
                 }]
@@ -35,14 +38,14 @@
             var ctx1 = document.getElementById("Linecanvas").getContext("2d");
             window.myBar = new Chart(ctx1,
                 {
-                    type: 'line',
+                    type: 'pie',
                     data: LineChartData,
                     options:
                         {
                             title:
                             {
                                 display: true,
-                                text: "Skill Ratings"
+                                text: "Skill Distribution"
                             },
                             responsive: true,
                             maintainAspectRatio: true
@@ -59,7 +62,7 @@
                             title:
                             {
                                 display: true,
-                                text: "Skill Ratings Average"
+                                text: "Average Skill Ratings"
                             },
                             responsive: true,
                             maintainAspectRatio: true
@@ -70,110 +73,71 @@
 </head>
 
 <body>
-
     <div class="row first">
         <div class="col-sm-4">
-            <div class="card">
-                <div style="text-align:center;background-color:lightgoldenrodyellow;height:80px;"><span class="fa fa-lightbulb-o" style="font-size:55px;margin-top:30px"></span></div>
-                <div class="container">
-                    <h4><b>@(ViewBag.TotalSkills)</b></h4>
-                    <p>Total Skills</p>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-warning" aria-valuenow="70"
-                             aria-valuemin="0" aria-valuemax="100" style="width:@(ViewBag.TotalSkills)%;">
-                        </div>
-                    </div>
-                </div>
+            <div class="panel panel-default">
+                <div class="panel-body">Total Skills<span style="float:right;font-size:60px;font-family:'Black Ops One';">@(ViewBag.TotalSkills)</span></div>
+            </div>
+
+            <div class="panel panel-default ">
+                <div class="panel-body">Total Employees<span style="float:right;font-size:60px;font-family:'Black Ops One';">@(ViewBag.TotalEmployees)</span></div>
             </div>
         </div>
-
         <div class="col-sm-4">
             <div class="card">
-                <div style="text-align:center;background-color:indianred;height:80px"><span class="glyphicon glyphicon-star" style="font-size:50px;margin-top:30px"></span></div>
+                <div style="text-align:center;background-color:indianred;height:80px;margin-top:-10px"><span class="starGlow" style="font-size:50px;margin-top:30px"></span></div>
                 <div class="container">
-                    <h4><b>@(ViewBag.TotalSkillRatings)</b></h4>
                     <p>Total Ratings</p>
+                    <b style="font-size:40px;font-family:Black Ops One">@(ViewBag.TotalSkillRatingsCount)</b>
+                    
                     <div class="progress">
-                        <div class="progress-bar progress-bar-danger" aria-valuenow="70"
-                             aria-valuemin="0" aria-valuemax="100" style="width:@(ViewBag.TotalSkillRatings)%;">
-
+                        <div class="progress-bar progress-bar-danger"
+                             style="width:@(ViewBag.TotalSkillRatings)%;">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="col-sm-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">Recent Employees</div>
+                <div class="panel-body">
 
-            <div class="card">
-                <div style="text-align:center;background-color:teal;height:80px"><span class="glyphicon glyphicon-user" style="font-size:50px;margin-top:30px"></span></div>
-                <div class="container">
-                    <h4><b>@(ViewBag.TotalEmployees)</b></h4>
-                    <p>Total Users</p>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-success" aria-valuenow="70"
-                             aria-valuemin="0" aria-valuemax="100" style="width:@(ViewBag.TotalEmployees)%;">
+                    @foreach (var item in Model)
+                    {
+                        if (item.Gender == "female")
+                        {
+                            <img src="~/Images/female.png" width="20" height="20" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/male.png" width="20" height="20" />
+                        }
 
-                        </div>
-                    </div>
+                        <b>@Html.DisplayFor(modelItem => item.Name)</b>
+
+                        <br/>
+                    }
                 </div>
             </div>
+
         </div>
     </div>
 
     @* Chart *@
     <div class="row" style="margin-left:35px;margin-top:50px">
-        <div class="col-sm-8">
+        <div class="col-sm-6">
+
             <div style="text-align: center">
                 <canvas id="Linecanvas"></canvas>
             </div>
         </div>
 
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Recent Employees</div>
-                <div class="panel-body">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                @if (item.Gender == "female")
-                                {
-                                    <td>
-                                        <img src="~/Images/female.png" width="40" height="20" />
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <img src="~/Images/male.png" width="40" height="20" />
-                                    </td>
-                                }
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-
-                            </tr>
-                        }
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="margin-left:35px;margin-top:50px">
-        <div class="col-sm-8">
+        <div class="col-sm-6">
             <div style="text-align: center">
                 <canvas id="Barcanvas"></canvas>
             </div>
         </div>
-
-        <div class="col-sm-4"></div>
-        </div>
+    </div>
 </body>
 </html>

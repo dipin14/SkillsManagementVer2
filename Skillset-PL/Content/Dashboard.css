@@ -82,15 +82,16 @@
 }
 @media (max-width: 767px) {
     
-  body
+  /*body
   {
       overflow:scroll;
-  }
+  }*/
   .nav-side-menu {
     position: relative;
     width: 100%;
+    margin-top:100px;
   }
-  .nav-side-menu .toggle-btn {
+  .navbar-fixed-top .toggle-btn {
     display: block;
     cursor: pointer;
     position: absolute;
@@ -120,12 +121,22 @@
   }
   body
   {
-      overflow:hidden;
+      overflow-x:hidden;
   }
   .row .first{
       margin-left:55px;
+      margin-top:70px;
   }
-  
+   .navbar-fixed-top .toggle-btn {
+    
+    background-color:transparent;
+    color:transparent;
+  }
+   .panel{
+       border-color:black;
+       height:100px;
+       width:200px;
+   }
 }
 
 
