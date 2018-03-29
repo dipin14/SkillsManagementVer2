@@ -116,7 +116,7 @@ function RateSkill() {
             if (result.responseText) {
 
                 Reload();
-              
+
             }
             else {
                 alert('Db Error!Please check your connection');
