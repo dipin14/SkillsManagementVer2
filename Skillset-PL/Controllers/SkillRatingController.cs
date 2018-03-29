@@ -10,10 +10,10 @@ namespace Skillset_PL.Controllers
     [Authorize(Roles = "Employee,Manager")]
     public class SkillRatingController : Controller
     {
-
         private readonly ISkillService _skillService;
         private readonly ISkillRatingService _skillRatingService;
         private readonly IEmployeeServices _employeeServices;
+
         public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService, IEmployeeServices employeeServices)
         {
             _skillService = skillService;
@@ -60,7 +60,8 @@ namespace Skillset_PL.Controllers
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
         }
-       public int DeleteRating(int Id)
+        
+        public int DeleteRating(int Id)
         {
             
                 return _skillRatingService.Delete(Id);
@@ -76,4 +77,4 @@ namespace Skillset_PL.Controllers
             return View("EmployeeProfile", profile);
         }
     }
-    }
+}

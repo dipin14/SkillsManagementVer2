@@ -97,13 +97,12 @@ namespace Skillset_PL.Controllers
         [HttpPost]
         public ActionResult IndexSearch(string option, string search)
         {
-            
+            search = search.Trim();
             //calling method to search for employee details
             var dtoList = _services.ViewSearchRecords(option, search);
            
                 var modelList = new List<EmployeeViewModel>();
-                List<AdministratorEmployeeViewModel> recordlist = new List<AdministratorEmployeeViewModel>();
-
+  
                 foreach (EmployeeDTO item in dtoList)
                 {
                     item.DesignationId = _services.GetDesignationName(item.DesignationId);
