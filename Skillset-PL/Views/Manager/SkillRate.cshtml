@@ -5,30 +5,25 @@
     ViewBag.Title = "SkillRate";
 }
 <div class="row first">
+    <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
+    @if (string.IsNullOrWhiteSpace(ViewBag.Code))
+    {
+        <label class="control-label col-sm-3" style="float:left;display:block;text-align:center">Employee Code : @(ViewBag.Code) </label>
+    }
+    @if (string.IsNullOrWhiteSpace(ViewBag.Name))
+    {
+        <label class="control-label col-sm-3" style="float:left;display:block;text-align:center;">  Employee Name : @(ViewBag.Name) </label>
+    }
 
-<label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
-@if (string.IsNullOrWhiteSpace(ViewBag.Code))
-{
-    <label class="control-label col-sm-3" style="float:left;display:block;text-align:center">Employee Code : @(ViewBag.Code) </label>
-}
-@if (string.IsNullOrWhiteSpace(ViewBag.Name))
-{
-    <label class="control-label col-sm-3" style="float:left;display:block;text-align:center;">  Employee Name : @(ViewBag.Name) </label>
-}
-
-@if (Model.Count() > 0)
-{
-    <table class="table table-hover table-responsive">
-        <tr>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.Skill)
-            </th>
-
-
-
-
-
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-hover table-responsive">
+            <tr>
+@foreach (var item in Model)
+                {
+               <th>
+                    @Html.DisplayNameFor(model => model.Skill)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Note)
                 </th>
@@ -36,21 +31,17 @@
                     @Html.DisplayNameFor(model => model.RatingDate)
                 </th>
 
+                }
+                </table>
+                }
 
+                else
+                {
+                <br />
+                <div class="alert alert-warning fade in">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <strong>No Skill Ratings!</strong> There is no skill ratings available.
+                </div>
+                }
 
-
-
-
-
-
-
-
-    else
-    {
-        <br />
-        <div class="alert alert-warning fade in">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>No Skill Ratings!</strong> There is no skill ratings available.
-        </div>
-
-</div>
+    </div>
