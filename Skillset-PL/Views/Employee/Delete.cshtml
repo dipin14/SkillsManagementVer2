@@ -120,10 +120,12 @@
     </div>
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-        <div class="form-group" style="margin:15px">
-            <div class="col-md-2">
-                <input type="submit" value="Delete" class="btn btn-danger" />
+        <div class="form-group">
+            <div class="col-md-3">
+                <input type="submit" value="Delete" class="btn btn-danger " />
+                &nbsp; &nbsp;
+                @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-success " })
+              
             </div>
-            </div>
+            <div class="col-md-8"></div>
 </div>
-   

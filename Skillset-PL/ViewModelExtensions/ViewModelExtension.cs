@@ -85,7 +85,7 @@ namespace Skillset_PL.ViewModelExtensions
                     Name = staff.Name,
                     Email = staff.Email,
                     Designation = staff.Designation
-                }).ToList().OrderBy(staff => staff.Name).ThenBy(staff => staff.Designation).ToList();
+                }).ToList().OrderBy(staff => staff.EmployeeCode).ThenBy(staff => staff.Name).ToList();
             }
             else
             {
@@ -197,7 +197,7 @@ namespace Skillset_PL.ViewModelExtensions
         public static IEnumerable<ViewModels.EmployeeRatedSkillsViewModel> ToSkillRatedViewmodel(this IEnumerable<Common.DTO.EmployeeRatedSkillsDTO> skillList)
         {
             return skillList.Select(employee => new ViewModels.EmployeeRatedSkillsViewModel
-            {
+            {   Id=employee.Id,
                 EmployeeId = employee.EmployeeId,
                 SkillName = employee.SkillName,
                 RaitedNote = employee.RaitedNote,

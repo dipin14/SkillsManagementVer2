@@ -10,10 +10,10 @@ namespace Skillset_PL.Controllers
     [Authorize(Roles = "Employee,Manager")]
     public class SkillRatingController : Controller
     {
-
         private readonly ISkillService _skillService;
         private readonly ISkillRatingService _skillRatingService;
         private readonly IEmployeeServices _employeeServices;
+
         public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService, IEmployeeServices employeeServices)
         {
             _skillService = skillService;
@@ -38,7 +38,8 @@ namespace Skillset_PL.Controllers
 
             if (ratingList != null)
             {
-                ratingList.ForEach(m => { m.EmployeeId = Convert.ToInt32(Session["customerId"]); m.Status = true; });
+
+                ratingList.ForEach(m => { m.EmployeeId = Convert.ToInt32(Session["customerId"]); m.Status = true; m.RatingDate = DateTime.Now; });
                 var result = _skillRatingService.Create(ratingList.ToSkillRatingDTOList());
 
                 return View(result);
@@ -58,6 +59,14 @@ namespace Skillset_PL.Controllers
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
+        }        
+        
+        
+        public int DeleteRating(int Id)
+        {
+            
+                return _skillRatingService.Delete(Id);
+              
         }
         public ActionResult EmployeeProfile()
         {
@@ -69,4 +78,4 @@ namespace Skillset_PL.Controllers
             return View("EmployeeProfile", profile);
         }
     }
-    }
+}
