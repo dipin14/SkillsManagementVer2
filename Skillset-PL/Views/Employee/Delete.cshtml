@@ -118,7 +118,8 @@
 
         </dl>
     </div>
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
         <div class="form-group">
             <div class="col-md-3">
@@ -129,3 +130,5 @@
             </div>
             <div class="col-md-8"></div>
 </div>
+    }
+    </div>

@@ -235,10 +235,8 @@ namespace Skillset_DAL.Repositories
                                        where s.Status == true
                                        orderby s.Id descending
                                        select j).ToList();
-                var dist = RecentEmployees.Distinct().ToList();
-                var some = dist.Take(2).ToList();
-                return some;
-                //return context.Employees.OrderByDescending(e => e.EmployeeCode).Take(5).Where(e => e.Roles.Name != "Admin").ToList();
+                var DistnctEmployees = RecentEmployees.Distinct().Take(2).ToList();
+                return DistnctEmployees;
             }
         }
 
@@ -259,13 +257,7 @@ namespace Skillset_DAL.Repositories
                 var skill = from s in skills
                             orderby s.SkillId descending
                             select s.SkillName;
-
-                var b = string.Empty;
-                foreach(var c in skill)
-                {
-                    b += c;
-                }
-                var ab = b;
+                
                 return skill;
             }
         }
@@ -280,10 +272,10 @@ namespace Skillset_DAL.Repositories
             {
                 string result = string.Empty;
                 string id = string.Empty;
-                var pll3 = context.SkillRatings.Where(x => x.Status == true).ToList();
-                var pll2 = pll3.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+                var rating = context.SkillRatings.Where(x => x.Status == true).ToList();
+                var groupRating = rating.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
                
-                foreach (var r in pll2.OrderByDescending(x => x.Id).Select(x => x.Values))
+                foreach (var r in groupRating.OrderByDescending(x => x.Id).Select(x => x.Values))
                 {
                     result += r;
                     result += ", ";
@@ -351,12 +343,6 @@ namespace Skillset_DAL.Repositories
                             where s.SkillName != "Special Skill"
                             select s.SkillName;
 
-                var b = string.Empty;
-                foreach (var c in skill)
-                {
-                    b += c;
-                }
-                var ab = b;
                 return skill;
             }
         }
@@ -369,15 +355,15 @@ namespace Skillset_DAL.Repositories
                 List<int> specificValues = new List<int>();
                 var result = string.Empty;
                 string id = string.Empty;
-                var pll3 = context.SkillRatings.Where(x => x.Status == true);
-                var pll2 = pll3.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+                var rating = context.SkillRatings.Where(x => x.Status == true);
+                var groupRating = rating.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
 
-                foreach (var r in pll2.OrderByDescending(x => x.Id).Select(x => x.Values))
+                foreach (var r in groupRating.OrderByDescending(x => x.Id).Select(x => x.Values))
                 {
                     totalValues.Add(r);
                 }
 
-                var pll4 = (from sr in context.SkillRatings
+                var skill = (from sr in context.SkillRatings
                             join r in context.Ratings
                             on sr.RatingId equals r.Id
                             join s in context.Skills
@@ -385,8 +371,8 @@ namespace Skillset_DAL.Repositories
                             where sr.Status == true
                             select new { sr.SkillId , r.Value });
 
-                var pll5 = pll4.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Select(s => s.Value).Sum() });
-                foreach (var r in pll5.OrderByDescending(x => x.Id).Select(x => x.Values))
+                var groupSkill = skill.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Select(s => s.Value).Sum() });
+                foreach (var r in groupSkill.OrderByDescending(x => x.Id).Select(x => x.Values))
                 {
                     specificValues.Add(r);
                 }

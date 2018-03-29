@@ -75,17 +75,17 @@
 <body>
     <div class="row first">
         <div class="col-sm-4">
-            <div class="panel panel-default">
+            <div class="panelSkill panel panel-default">
                 <div class="panel-body">Total Skills<span style="float:right;font-size:60px;font-family:'Black Ops One';">@(ViewBag.TotalSkills)</span></div>
             </div>
 
-            <div class="panel panel-default ">
+            <div class="panelSkill panel panel-default ">
                 <div class="panel-body">Total Employees<span style="float:right;font-size:60px;font-family:'Black Ops One';">@(ViewBag.TotalEmployees)</span></div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="card">
-                <div style="text-align:center;background-color:indianred;height:80px;margin-top:-10px"><span class="starGlow" style="font-size:50px;margin-top:30px"></span></div>
+                <div style="text-align:center;background-color:indianred;height:80px;margin-top:-10px"><span class="glyphicon glyphicon-star" style="font-size:50px;margin-top:30px"></span></div>
                 <div class="container">
                     <p>Total Ratings</p>
                     <b style="font-size:40px;font-family:Black Ops One">@(ViewBag.TotalSkillRatingsCount)</b>
@@ -134,7 +134,7 @@
         </div>
 
         <div class="col-sm-6">
-            <div style="text-align: center">
+            <div style="text-align: center;height:200px">
                 <canvas id="Barcanvas"></canvas>
             </div>
         </div>
