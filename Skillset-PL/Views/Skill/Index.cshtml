@@ -1,52 +1,53 @@
 ﻿﻿@using Common.Extensions
 @model PagedList.IPagedList<Skillset_PL.ViewModels.SkillViewModel>
-@using PagedList.Mvc;
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    @using PagedList.Mvc;
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-@{
-    ViewBag.Title = "Index";
-}
-<div class="row first">
-    <h2>List Of Skills</h2>
+    @{
+        ViewBag.Title = "Index";
+    }
+    <div class="row first">
+        <h2>List Of Skills</h2>
 
-    <p>
-        @Html.ActionLink("NEW SKILL", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayName("Skill Name")
-            </th>
-            <th>
-                @Html.DisplayName("Skill Description")
-            </th>
-            <th>
-                @Html.DisplayName("Operations")
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        <p>
+            @Html.ActionLink("NEW SKILL", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
+        </p>
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center"><u>Skill Details</u></label>
+        <table class="table table-bordered table-hover table-responsive">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SkillName)
-                </td>
-                <td>
-                    @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-warning" })  |
-                    @Html.ActionLink("Delete", "Delete", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-danger" })
-                </td>
+                <th>
+                    @Html.DisplayName("Skill Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Skill Description")
+                </th>
+                <th>
+                    @Html.DisplayName("Operations")
+                </th>
             </tr>
-        }
 
-    </table>
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SkillName)
+                    </td>
+                    <td>
+                        @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-warning" })  
+                        @Html.ActionLink("Delete", "Delete", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
 
-    @Html.PagedListPager(Model, page => Url.Action("Index",
+        </table>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
     new
     {
         page
     }))
-</div>
+    </div>

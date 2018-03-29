@@ -39,7 +39,7 @@ namespace Skillset_DAL.Repositories
             {
                 using (var db = new SkillsetDbContext())
                 {
-                    skill.Status = true; 
+                    skill.Status = true;
                     db.Entry(skill).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -56,8 +56,10 @@ namespace Skillset_DAL.Repositories
                 {
                     var deleteSkill = db.Skills.Find(skillId);
                     deleteSkill.Status = false;
-                    //Changin skill name of deleted skill to prevent conflict
-                    deleteSkill.SkillName += "-deleted";
+
+                    StringBuilder builder = new StringBuilder();
+                    //Changing skill name of deleted skill to prevent conflict
+                    builder.Append(deleteSkill.SkillName).Append("-deleted-").Append(deleteSkill.SkillId);
                     db.Entry(deleteSkill).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -100,5 +102,6 @@ namespace Skillset_DAL.Repositories
                 return context.Employees.Where(e => e.EmployeeCode == id).FirstOrDefault();
             }
         }
+        
     }
 }
