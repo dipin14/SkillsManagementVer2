@@ -60,7 +60,16 @@ namespace Skillset_PL.Controllers
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
         }
-       public int DeleteRating(int Id)
+        public JsonResult EmployeeRatingJS()
+        {
+
+            var EmpId = Convert.ToInt32(Session["customerId"]);
+            EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
+            ratingObj.RatedSkills = GetRatedSkills(EmpId);
+            ratingObj.SkillRatings = EmployeeRatings();
+            return Json(ratingObj);
+        }
+        public int DeleteRating(int Id)
         {
             
                 return _skillRatingService.Delete(Id);
