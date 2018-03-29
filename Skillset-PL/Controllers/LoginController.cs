@@ -22,19 +22,27 @@ namespace Skillset_PL.Controllers
         }
         public ActionResult Login()
         {
-            if (Request.IsAuthenticated &&(Session["role"].ToString()=="Admin"))
+            try
             {
-                return RedirectToAction("Index", "Dashboard");
+                if (Request.IsAuthenticated && (Session["role"].ToString() == "Admin"))
+                {
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else if (Request.IsAuthenticated && (Session["role"].ToString() == "Manager"))
+                {
+                    return RedirectToAction("Myprofile", "Manager");
+                }
+                else if (Request.IsAuthenticated && (Session["role"].ToString() == "Employee"))
+                {
+                    return RedirectToAction("EmployeeProfile", "SkillRating");
+                }
             }
-            else if (Request.IsAuthenticated && (Session["role"].ToString() == "Manager"))
+            catch (Exception ex)
             {
-                return RedirectToAction("Myprofile", "Manager");
+
             }
-            else if (Request.IsAuthenticated && (Session["role"].ToString() == "Employee"))
-            {
-                return RedirectToAction("EmployeeProfile", "SkillRating");
-            }
-            return View();
+                return View();
+            
         }
         /// <summary>
         /// For Loging to the system
@@ -50,7 +58,7 @@ namespace Skillset_PL.Controllers
                 var role = logService.GetRole(employeeCode, password);
                 if (role == "Admin")
                 {
-                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Admin");
+                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(20), false, "Admin");
                     SetCode(authTicket);
                     Session["customercode"] = employeeCode;
                     Session["role"] = "Admin";
@@ -58,7 +66,7 @@ namespace Skillset_PL.Controllers
                 }
                 else if (role == "Manager")
                 {
-                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Manager");
+                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(20), false, "Manager");
                     SetCode(authTicket);
                     Session["customercode"] = employeeCode;
                     Session["role"] = "Manager";
@@ -66,7 +74,7 @@ namespace Skillset_PL.Controllers
                 }
                 else if (role == "Employee")
                 {
-                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(10), false, "Employee");
+                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(20), false, "Employee");
                     SetCode(authTicket);
                     Session["customercode"] = employeeCode;
                     Session["role"] = "Employee";
@@ -101,6 +109,7 @@ namespace Skillset_PL.Controllers
         /// <returns></returns>
         public ActionResult Logout()
         {
+            Session.Abandon();
             FormsAuthentication.SignOut();          
             return RedirectToAction("Login");
         }
