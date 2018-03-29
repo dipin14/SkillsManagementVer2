@@ -44,48 +44,46 @@ function CRateSelected(id) {
     }
 }
 
-function SubmitRating(data,m)
-{
-   
-        var RatingList = new Array();
-        for (var i = 0; i < m; i++) {
-            var ratingSCore = document.getElementById("Rating " + data[i].skillId).value
-            var SkillID = data[i].skillId
-            var Notes = document.getElementById("TxtAra " + data[i].skillId).value
+function SubmitRating(data, m) {
 
-            if (ratingSCore != "") {
-                var RatingObject = {};
+    var RatingList = new Array();
+    for (var i = 0; i < m; i++) {
+        var ratingSCore = document.getElementById("Rating " + data[i].skillId).value
+        var SkillID = data[i].skillId
+        var Notes = document.getElementById("TxtAra " + data[i].skillId).value
 
-                RatingObject.SkillId = SkillID;
-                RatingObject.RatingScore = ratingSCore;
-                RatingObject.Note = Notes;
-                RatingList.push(RatingObject);
-            }
+        if (ratingSCore != "") {
+            var RatingObject = {};
+
+            RatingObject.SkillId = SkillID;
+            RatingObject.RatingScore = ratingSCore;
+            RatingObject.Note = Notes;
+            RatingList.push(RatingObject);
         }
-        var specialSkill = document.getElementById("TxtAra").value
-        if (specialSkill != "") {
-            var specialScore = document.getElementById("Rating 0").value
-            var SkillID = 1;
-            if (specialScore != "") {
-                var RatingObject = {};
-                RatingObject.IsSpecialSkill = true;
-                RatingObject.Note = specialSkill;
-                RatingObject.SkillId = SkillID;
-                RatingObject.RatingScore = specialScore;
-                RatingList.push(RatingObject);
-            }
-
+    }
+    var specialSkill = document.getElementById("TxtAra").value
+    if (specialSkill != "") {
+        var specialScore = document.getElementById("Rating 0").value
+        var SkillID = 1;
+        if (specialScore != "") {
+            var RatingObject = {};
+            RatingObject.IsSpecialSkill = true;
+            RatingObject.Note = specialSkill;
+            RatingObject.SkillId = SkillID;
+            RatingObject.RatingScore = specialScore;
+            RatingList.push(RatingObject);
         }
 
-        CompleteRating(RatingList);
+    }
 
-    
+    CompleteRating(RatingList);
+
+
 }
 
 /*collapsing div*/
 
-function CompleteRating(RatingList)
-{
+function CompleteRating(RatingList) {
     if (RatingList == "") {
         alert("Please enter your ratings");
     }
@@ -96,54 +94,53 @@ function CompleteRating(RatingList)
             data: { ratingList: RatingList },
             complete: function (result) {
                 if (result.responseText) {
-                 alert('submitted succesfully')
-                    reload();
+
+                    RateSkill();
+                    alert("Rating Submitted succesfully")
                 }
                 else {
-                    alert('please check your connection');
-
+                    alert("Sorry!Connection error")
                 }
 
             }
         });
     }
 }
-function reload()
-{
+function RateSkill() {
 
     $.ajax({
         type: "POST",
         url: '/SkillRating/EmployeeRating',
-        data: { },
+        data: {},
         complete: function (result) {
             if (result.responseText) {
-             
-                $('body').html(result.responseText);
+
+                Reload();
+              
             }
             else {
-                alert('please check your connection');
+                alert('Db Error!Please check your connection');
 
             }
 
         }
+
     });
 
 }
-function Reset()
-{
+function Reload() {
     location.reload();
 }
-function DeleteRating(Id)
-{
-   
+function DeleteRating(Id) {
+
     $.ajax({
         type: "POST",
         url: '/SkillRating/DeleteRating',
-        data: {Id:Id},
+        data: { Id: Id },
         complete: function (result) {
             if (result.responseText) {
 
-                Reset();
+                Reload();
             }
             else {
                 alert('please check your connection');

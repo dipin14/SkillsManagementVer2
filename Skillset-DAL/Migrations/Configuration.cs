@@ -1,6 +1,7 @@
 namespace Skillset_DAL.Migrations
 {
     using Models;
+    using System;
     using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Skillset_DAL.ContextClass.SkillsetDbContext>
@@ -45,10 +46,10 @@ namespace Skillset_DAL.Migrations
              );
             context.Skills.AddOrUpdate(
                   p => p.SkillId,
-                   new Skill { SkillId = 1, SkillName = "Special skill", SkillDescription = "If you have any special Skills" ,Status=false}
-   
-                );
+                   new Skill { SkillId = 1, SkillName = "Special skill", SkillDescription = "If you have any special Skills", Status = false }
 
+                );
+          
         }
     }
 }

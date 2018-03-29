@@ -60,7 +60,8 @@ namespace Skillset_PL.Controllers
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
         }
-       public int DeleteRating(int Id)
+        
+        public int DeleteRating(int Id)
         {
             
                 return _skillRatingService.Delete(Id);
