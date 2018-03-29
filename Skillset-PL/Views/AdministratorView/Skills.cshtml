@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Skills";
 }
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 <div class="row first">
     <h2>Skills</h2>
 
@@ -18,13 +19,13 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.SkillName)
+                        @Html.DisplayName("Skill")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.SkillValue)
+                        @Html.DisplayName("Rating")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.RatingDate)
+                        @Html.DisplayName("Rated Date")
                     </th>
                 </tr>
             </thead>
@@ -36,7 +37,17 @@
                             @Html.DisplayFor(modelItem => item.SkillName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.SkillValue)
+                            <div>
+                                @for (var i = 1; i <= item.SkillValue; i++)
+                                {
+                                    <span class="starGlow"></span>
+                                }
+                                @for (var i = (item.SkillValue + 1); i <= 5; i++)
+                                {
+                                    <span class="starFade"></span>
+                                }
+                            </div>
+
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RatingDate)
@@ -50,7 +61,7 @@
     {
         <br />
         <div class="alert alert-warning fade in">
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
+
             <strong>No Skill Ratings!</strong> There is no skill ratings available.
         </div>
     }
@@ -59,4 +70,4 @@
     <p>
         @Html.ActionLink("Back to Employee List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
     </p>
-</div>
+    </div>
