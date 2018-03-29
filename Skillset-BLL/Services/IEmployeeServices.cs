@@ -26,6 +26,8 @@ namespace Skillset_BLL.Services
         string GetManagerName(string id);
         string GetRoleName(string id);
         IQueryable<string> GetEmployeeRatedSkill();
+        IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
         string GetEmployeeRating();
+        string GetRatingAverage();
     }
 }

@@ -25,12 +25,18 @@ namespace Skillset_PL.Controllers
         public ActionResult Index()
         {
             ViewBag.TotalSkills = _services.GetSkillsCount();
-            ViewBag.TotalSkillRatings = _services.GetSkillRatingsCount();
+            ViewBag.TotalSkillRatings = ((_services.GetSkillRatingsCount()*100)/(_services.GetSkillsCount()*_services.GetEmployeesCount()));
+
+            ViewBag.TotalSkillRatingsCount = _services.GetSkillRatingsCount();
             ViewBag.TotalEmployees = _services.GetEmployeesCount();
            
             ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkill().Select(i => i.Replace("'", "\"\"")).ToArray()));
 
             ViewBag.RatingList = _services.GetEmployeeRating();
+
+            ViewBag.SkillnameExcludeList = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkillExcludeSpecial().Select(i => i.Replace("'", "\"\"")).ToArray()));
+
+            ViewBag.RatingAverage = _services.GetRatingAverage();
             var dtoList = _services.GetRecentEmployees();
             var modelList = new List<EmployeeViewModel>();
             foreach (EmployeeDTO item in dtoList)
