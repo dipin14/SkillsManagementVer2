@@ -38,16 +38,16 @@
                             @Html.DisplayFor(modelItem => item.Skill)
                         </td>
                         <td>
-                         
-                            
-                    @for (var i = 1; i <= item.Rating; i++)
+
+
+                            @for (var i = 1; i <= item.Rating; i++)
                     {
-                        <span class="starGlowN"></span>
-                    }
-                    @for (var i = (item.Rating + 1); i <= 5; i++)
+                                <span class="starGlowN"></span>
+                            }
+                            @for (var i = (item.Rating + 1); i <= 5; i++)
                     {
-                        <span class="starFadeN"></span>
-                    }
+                                <span class="starFadeN"></span>
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RatingDate)
@@ -58,4 +58,13 @@
         </table>
     }
 
- 
+    else
+    {
+        <br />
+        <div class="alert alert-warning fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>No Skill Ratings!</strong> There is no skill ratings available.
+        </div>
+    }
+
+</div>
