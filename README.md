@@ -19,4 +19,8 @@ A better version of .net MVC Application that does skill management for an organ
   * [Aimi Roy](https://github.com/aimiroy)
   * [Rizwan Ebrahim](https://github.com/RizwanEbrahim)
   * [Nikhal Rajan](https://github.com/Nikhal62)
+  
+| Username      | Password      | 
+| ------------- |:-------------:| 
+| admin         | admin         | 
  
