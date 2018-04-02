@@ -20,6 +20,8 @@ A better version of .net MVC Application that does skill management for an organ
   * [Rizwan Ebrahim](https://github.com/RizwanEbrahim)
   * [Nikhal Rajan](https://github.com/Nikhal62)
   
+**Default Admin Login**
+
 | Username      | Password      | 
 | ------------- |:-------------:| 
 | admin         | admin         | 
