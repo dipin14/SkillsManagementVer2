@@ -49,10 +49,10 @@ namespace Skillset_DAL.Migrations
                    new Skill { SkillId = 1, SkillName = "Special skill", SkillDescription = "If you have any special Skills", Status = false }
 
                 );
-                 context.Employees.AddOrUpdate(
+                context.Employees.AddOrUpdate(
                 p => p.Id,
-                new Employee { Id = 1, EmployeeCode = "E101", Name = "Raj",DateOfJoining="2017-11-01",DesignationId=1,RoleId=1,QualificationId=1,Experience=10,DateOfBirth="1996-05-05",EmployeeId=2,Address="Infopark",Email="johnhonai@gmail.com",MobileNumber="9526815652",Gender="Male",Status="true"},
-                 new Employee { Id = 2, EmployeeCode = "E102", Name = "Pradeep",DateOfJoining="2017-11-01",DesignationId=2,RoleId=2,QualificationId=2,Experience=10,DateOfBirth="1995-05-05",EmployeeId=2,Address="kakkanad",Email="pradeep@gmail.com",MobileNumber="9447142786",Gender="Female",Status="true"}
+                new Employee { Id = 1, EmployeeCode = "E101", Name = "Raj",DateOfJoining=Convert.ToDateTime("2017-11-01"),DesignationId=1,RoleId=1,QualificationId=1,Experience=10,DateOfBirth=Convert.ToDateTime("1996-05-05"),EmployeeId=2,Address="Infopark",Email="johnhonai@gmail.com",MobileNumber=9526815652,Gender="Male",Status=true},
+                 new Employee { Id = 2, EmployeeCode = "E102", Name = "Pradeep",DateOfJoining= Convert.ToDateTime("2017-11-01"),DesignationId=2,RoleId=2,QualificationId=2,Experience=10,DateOfBirth= Convert.ToDateTime("1995-05-05"),EmployeeId=2,Address="kakkanad",Email="pradeep@gmail.com",MobileNumber=9447142786,Gender="Female",Status=true}
                
                 
                 
