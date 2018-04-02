@@ -50,6 +50,8 @@ namespace Skillset_DAL.Migrations
 
                 );
 
+            context.SaveChanges();
+
             if (context.Employees.Find(1) == null)
             {
                 context.Database.ExecuteSqlCommand("INSERT INTO public.\"Employees\"(\"Id\", \"EmployeeCode\", \"Name\", \"DateOfJoining\", \"DesignationId\", \"RoleId\", \"QualificationId\", \"Experience\", \"DateOfBirth\", \"EmployeeId\", \"Address\", \"Email\", \"MobileNumber\", \"Gender\", \"Status\") VALUES(2, 'E102', 'Pradeep', '2017-11-01', 2, 2, 2, 10, '1995-05-05', 2, 'Kakkanad', 'pradeep@gmail.com', 9191919191, 'Male', true);");
