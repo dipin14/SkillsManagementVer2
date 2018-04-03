@@ -81,4 +81,6 @@ namespace Skillset_PL.Controllers
             var skillList = _skillService.GetAllSkills().ToViewModelList();
             return skillList;
         }
-    }}
+
+    }
+}
