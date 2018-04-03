@@ -25,6 +25,5 @@ A better version of .net MVC Application that does skill management for an organ
 | Username      | Password      | 
 | ------------- |:-------------:| 
 | E101          | 9876543210    | 
-| ------------- |:-------------:| 
 | E102          | 9191919191    | 
  
