@@ -15,22 +15,19 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    </div>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="row">
-            <div class="form-group">
-                
-                @Html.LabelFor(model => model.EmployeeCode, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.EmployeeCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+                    </div>
+
                 </div>
-   
+
             </div>
-
-
             <div class="row">
                 <div class="form-group">
 
@@ -39,7 +36,7 @@
                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
-                    </div>
+                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
@@ -50,8 +47,8 @@
                     </div>
                     @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                 </div>
-                    
-                     </div>
+
+            </div>
 
             <div class="row">
                 <div class="form-group">
@@ -60,7 +57,7 @@
                         @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                         @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
                     </div>
-                    </div>
+                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.DesignationId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -76,7 +73,7 @@
                         @Html.DropDownListFor(model => model.RoleId, (IEnumerable<SelectListItem>)ViewData["Roles"], "--pick--", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
                     </div>
-                    </div>
+                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.QualificationId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -92,7 +89,7 @@
                         @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control", min = "0" } })
                         @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
                     </div>
-                    </div>
+                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -108,7 +105,7 @@
                         @Html.DropDownListFor(model => model.EmployeeId, (IEnumerable<SelectListItem>)ViewData["Managers"], "--pick--", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
                     </div>
-                    </div>
+                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -124,7 +121,7 @@
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
-                    </div>
+                </div>
                 <div class="form-group">
 
                     @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -139,23 +136,23 @@
                 <div class="col-md-3"></div>
 
                 <div class="col-md-2">
-                    <input type="reset" value="RESET" class="btn btn-success" />
+                    <input type="reset" value="Reset" class="btn btn-success" />
                 </div>
                 <div class="col-md-2">
-                    <input type="submit" value="UPDATE" class="btn btn-success" onclick="OnChangeEvent();" />
+                    <input type="submit" value="Update" class="btn btn-success" onclick="OnChangeEvent();" />
                 </div>
                 <div class="col-md-2">
-                    @Html.ActionLink("CANCEL", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+                    @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
                 </div>
                 <div class="col-md-3"></div>
             </div>
 
-           
         </div>
+
     }
-    </div>
+   
 
-
+</div>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/Employee.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
