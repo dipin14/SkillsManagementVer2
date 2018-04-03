@@ -48,5 +48,13 @@ namespace Skillset_PL.Controllers
             }
             return View(modelList);
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _services.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
