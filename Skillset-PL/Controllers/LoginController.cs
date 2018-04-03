@@ -58,7 +58,7 @@ namespace Skillset_PL.Controllers
                 var role = logService.GetRole(employeeCode, password);
                 if (role == "Admin")
                 {
-                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(20), false, "Admin");
+                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(600), false, "Admin");
                     SetCode(authTicket);
                     Session["customercode"] = employeeCode;
                     Session["role"] = "Admin";
@@ -66,7 +66,7 @@ namespace Skillset_PL.Controllers
                 }
                 else if (role == "Manager")
                 {
-                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(20), false, "Manager");
+                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(600), false, "Manager");
                     SetCode(authTicket);
                     Session["customercode"] = employeeCode;
                     Session["role"] = "Manager";
@@ -74,7 +74,7 @@ namespace Skillset_PL.Controllers
                 }
                 else if (role == "Employee")
                 {
-                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(20), false, "Employee");
+                    var authTicket = new FormsAuthenticationTicket(1, employeeCode, DateTime.Now, DateTime.Now.AddMinutes(600), false, "Employee");
                     SetCode(authTicket);
                     Session["customercode"] = employeeCode;
                     Session["role"] = "Employee";
