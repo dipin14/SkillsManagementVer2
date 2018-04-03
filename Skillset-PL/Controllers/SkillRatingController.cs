@@ -70,7 +70,7 @@ namespace Skillset_PL.Controllers
         }
         public ActionResult EmployeeProfile()
         {
-            var EmployeeDtoList = _skillService.GetProfile(Session["customercode"].ToString());
+            var EmployeeDtoList = _employeeServices.GetProfile(Session["customercode"].ToString());
             var profile = EmployeeDtoList.EmployeeDTOtoViewModel();
             Session["customerId"] = EmployeeDtoList.Id;
             profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
