@@ -6,11 +6,11 @@
 }
 <div class="row first">
     <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
-    @if (string.IsNullOrWhiteSpace(ViewBag.Code))
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Code))
     {
         <label class="control-label col-sm-3" style="float:left;display:block;text-align:center">Employee Code : @(ViewBag.Code) </label>
     }
-    @if (string.IsNullOrWhiteSpace(ViewBag.Name))
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Name))
     {
         <label class="control-label col-sm-3" style="float:left;display:block;text-align:center;">  Employee Name : @(ViewBag.Name) </label>
     }
