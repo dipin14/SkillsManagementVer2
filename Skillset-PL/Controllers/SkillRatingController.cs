@@ -59,7 +59,8 @@ namespace Skillset_PL.Controllers
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
-        }
+        }        
+        
         
         public int DeleteRating(int Id)
         {

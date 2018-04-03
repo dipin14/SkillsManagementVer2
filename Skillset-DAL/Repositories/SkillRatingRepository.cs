@@ -53,7 +53,7 @@ namespace Skillset_DAL.Repositories
          
             using (var db = new SkillsetDbContext())
             {
-                var skillRatingList = db.SkillRatings.Where(s => s.EmployeeId==empId && s.Status==true).ToList();
+                var skillRatingList = db.SkillRatings.Where(s => s.EmployeeId==empId && s.Status==true).OrderByDescending(s=>s.RatingDate).ToList();
                 return skillRatingList;
             }
         
