@@ -67,5 +67,8 @@ textarea {
 	margin-top: -20px;
 	font-size: 15px;
 }
+ .panelRating {
+    word-break:break-all
+}
 
 
