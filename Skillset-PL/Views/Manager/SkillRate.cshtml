@@ -6,14 +6,15 @@
 }
 <div class="row first">
     <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
-    @if (string.IsNullOrWhiteSpace(ViewBag.Code))
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Code))
     {
-        <label class="control-label col-sm-3" style="float:left;display:block;text-align:center">Employee Code : @(ViewBag.Code) </label>
+        <label class="control-label col-sm-6" style="float:left;display:block;text-align:center">Employee Code : @(ViewBag.Code) </label>
     }
-    @if (string.IsNullOrWhiteSpace(ViewBag.Name))
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Name))
     {
-        <label class="control-label col-sm-3" style="float:left;display:block;text-align:center;">  Employee Name : @(ViewBag.Name) </label>
+        <label class="control-label col-sm-6" style="float:left;display:block;text-align:center;">  Employee Name : @(ViewBag.Name) </label>
     }
+    <br />
     @if (Model.Count() > 0)
     {
         <table class="table table-bordered table-hover table-responsive">
@@ -38,16 +39,16 @@
                             @Html.DisplayFor(modelItem => item.Skill)
                         </td>
                         <td>
-                         
-                            
-                    @for (var i = 1; i <= item.Rating; i++)
+
+
+                            @for (var i = 1; i <= item.Rating; i++)
                     {
-                        <span class="starGlowN"></span>
-                    }
-                    @for (var i = (item.Rating + 1); i <= 5; i++)
+                                <span class="starGlowN"></span>
+                            }
+                            @for (var i = (item.Rating + 1); i <= 5; i++)
                     {
-                        <span class="starFadeN"></span>
-                    }
+                                <span class="starFadeN"></span>
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RatingDate)
@@ -61,10 +62,10 @@
     else
     {
         <br />
-                <div class="alert alert-warning fade in">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <strong>No Skill Ratings!</strong> There is no skill ratings available.
-                </div>
+        <div class="alert alert-warning fade in">
+            <strong>No Skill Ratings!</strong>
+            <br />This employee have no rated skills.
+        </div>
     }
 
 </div>

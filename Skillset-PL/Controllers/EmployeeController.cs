@@ -94,7 +94,7 @@ namespace Skillset_PL.Controllers
             }
             return View(modelList);
         }
-        [HttpPost]
+        
         public ActionResult IndexSearch(string option, string search)
         {
             search = search.Trim();

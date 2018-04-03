@@ -38,7 +38,7 @@ namespace Skillset_BLL.Services
                                         Name = s.Name == null || s.Name == string.Empty ? "Not available" : s.Name,
                                         Email = s.Email == null || s.Email == string.Empty ? "Not available" : s.Email,
                                         Designation = d == null ? "Not available" : d.Name
-                                    }).ToList();
+                                    }).Distinct().ToList();
                 return staffDetails.Select(employee => new Common.DTO.ReportingStaff
                 {
                     EmployeeCode = employee.EmployeeCode,
@@ -74,7 +74,7 @@ namespace Skillset_BLL.Services
                                               Rating = r == null ? default(int) : r.Value,
                                               RatingDate = sr.RatingDate,
                                               Note = sr.Note == null || sr.Note == string.Empty ? "Not available" : sr.Note
-                                          }).ToList();
+                                          }).Distinct().ToList();
                 return skillRatingDetails;
             }
             else
