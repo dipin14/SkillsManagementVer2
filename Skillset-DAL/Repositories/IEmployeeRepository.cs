@@ -33,5 +33,6 @@ namespace Skillset_DAL.Repositories
         int GetSkillRatingsCount();
         string GetRatingAverage();
         void Dispose();
+        Employee GetProfile(string id);
     }
 }

@@ -173,5 +173,9 @@ namespace Skillset_BLL.Services
         {
             _repository.Dispose();
         }
+        public EmployeeDTO GetProfile(string id)
+        {
+            return _repository.GetProfile(id).EmployeeModeltoDTO();
+        }
     }
 }

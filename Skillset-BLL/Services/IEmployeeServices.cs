@@ -30,5 +30,6 @@ namespace Skillset_BLL.Services
         string GetEmployeeRating();
         string GetRatingAverage();
         void Dispose();
+        EmployeeDTO GetProfile(string id);
     }
 }
