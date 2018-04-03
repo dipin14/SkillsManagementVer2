@@ -69,6 +69,11 @@ namespace Skillset_DAL.Repositories
                 {
                     Employee employee = context.Employees.Where(p => p.EmployeeCode == id && p.Status == true).Single();
                     employee.Status = false;
+                    var employeeList = context.Employees.Where(p => p.EmployeeId == employee.Id && p.Status == true).ToList();
+                    employeeList.ForEach(p => p.EmployeeId = 1);
+                    foreach (var emp in employeeList)
+                        context.Entry(emp).State = EntityState.Modified;
+
                     context.Entry(employee).State = EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -191,28 +196,21 @@ namespace Skillset_DAL.Repositories
             }
         }
 
-        public IEnumerable<Employee> GetSearchRecords(string option, string search)
+        public IEnumerable<Employee> GetSearchRecords(string search)
         {
             try
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
-                    if (option == "Employee Code")
-                    { 
-                        return context.Employees.Where(p => p.Status == true && p.EmployeeCode==search && p.RoleId !=1).Select(p => p).OrderBy(p=>p.EmployeeCode).ToList();
-                    }
-                    else if (option == "Name")
+                    var employeeList= context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode == search||p.Name==search)).Select(p => p).OrderBy(p=>p.EmployeeCode).ToList();
+                    if(employeeList.Count==0)
                     {
-                        return context.Employees.Where(p => p.Status == true && p.Name==search && p.RoleId != 1).Select(p => p).OrderBy(p => p.EmployeeCode).ToList();
+                        int designationId = context.Designations.Where(p => p.Name == search).Select(p => p.Id).FirstOrDefault();
+                        employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && p.DesignationId == designationId).Select(p => p).OrderBy(p => p.EmployeeCode).ToList();
                     }
-                    else if (option == "Designation")
-                    {
-                        var employeeList = from e in context.Employees from d in context.Designations where ((e.Status == true) && (e.DesignationId == d.Id) && (d.Name.Equals(search)) && e.RoleId != 1) select e;
-                        return employeeList.OrderBy(p => p.EmployeeCode).ToList();
-                    }
-                    else
-                        return null;
+                    return employeeList;            
                 }
+                
             }
             catch
             {
