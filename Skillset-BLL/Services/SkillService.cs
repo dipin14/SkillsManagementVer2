@@ -46,9 +46,6 @@ namespace Skillset_BLL.Services
             return _iSkillRepository.Update(skill.ToModel());
         }
 
-        public EmployeeDTO GetProfile(string id)
-        {
-            return _iSkillRepository.GetProfile(id).EmployeeModeltoDTO();
-        }
+        
     }
 }

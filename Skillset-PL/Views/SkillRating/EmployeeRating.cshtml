@@ -86,7 +86,7 @@
 
             @{var data = @Html.Raw(Json.Encode(Model.SkillRatings));
                 <input type="button" class="btn btn-danger" onclick='SubmitRating(@data,@Model.SkillRatings.Count())' value="Submit Ratings">
-                <input type="button" class="btn btn-success" onclick='Reset()' value="Reset">
+                <input type="button" class="btn btn-success" onclick='Reload()' value="Reset">
             }
 
         </div>
@@ -98,7 +98,7 @@
             
                 foreach (var item in Model.RatedSkills)
                 {
-                    <div class="panel" style="background-color:aliceblue;">
+                    <div class="panel panelRating " style="background-color:aliceblue;">
                         <span style="float:right;">
                             <a class="glyphicon glyphicon-remove" id="@item.Id" onclick="DeleteRating(@item.Id)"></a>
                         </span>
@@ -108,7 +108,7 @@
                         </b>
 
 
-                        <p style="color:black;margin-left:5px;">
+                        <p style="color:black;">
                             @Html.DisplayFor(modelItem => item.RaitedNote)
                         </p>
                         @for (var i = 1; i <= item.RaitedValue; i++)

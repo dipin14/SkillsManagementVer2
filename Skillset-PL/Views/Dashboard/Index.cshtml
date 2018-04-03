@@ -12,7 +12,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <script>
-        var LineChartData =
+        var PieChartData =
                    {
                        labels: [@Html.Raw(ViewBag.SkillnameList)],
                        datasets: [{
@@ -38,7 +38,7 @@
             window.myBar = new Chart(ctx1,
                 {
                     type: 'pie',
-                    data: LineChartData,
+                    data: PieChartData,
                     options:
                         {
                             title:

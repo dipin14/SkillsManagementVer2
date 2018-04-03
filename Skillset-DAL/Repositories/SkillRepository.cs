@@ -61,6 +61,14 @@ namespace Skillset_DAL.Repositories
                     //Changing skill name of deleted skill to prevent conflict
                     builder.Append(deleteSkill.SkillName).Append("-deleted-").Append(deleteSkill.SkillId);
                     db.Entry(deleteSkill).State = EntityState.Modified;
+
+                    //Corresponding ratings in skill has to be deleted
+                    var deleteRatingSkill = db.SkillRatings.Where(s => s.SkillId == skillId).ToList();
+                    deleteRatingSkill.ForEach(a => a.Status = false);
+                    foreach(var ratingSkill in deleteRatingSkill)
+                    {
+                        db.Entry(ratingSkill).State = EntityState.Modified;
+                    }
                     db.SaveChanges();
                 }
                 return 1;
@@ -95,13 +103,7 @@ namespace Skillset_DAL.Repositories
             }
         }
 
-        public Employee GetProfile(string id)
-        {
-            using (SkillsetDbContext context = new SkillsetDbContext())
-            {
-                return context.Employees.Where(e => e.EmployeeCode == id).FirstOrDefault();
-            }
-        }
+        
         
     }
 }

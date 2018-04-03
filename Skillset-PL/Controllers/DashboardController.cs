@@ -25,7 +25,10 @@ namespace Skillset_PL.Controllers
         public ActionResult Index()
         {
             ViewBag.TotalSkills = _services.GetSkillsCount();
-            ViewBag.TotalSkillRatings = ((_services.GetSkillRatingsCount()*100)/(_services.GetSkillsCount()*_services.GetEmployeesCount()));
+             if ((_services.GetSkillsCount() * _services.GetEmployeesCount()) == 0)
+                ViewBag.TotalSkillRatings = 0;
+            else
+                ViewBag.TotalSkillRatings = ((_services.GetSkillRatingsCount()*100)/(_services.GetSkillsCount()*_services.GetEmployeesCount()));
 
             ViewBag.TotalSkillRatingsCount = _services.GetSkillRatingsCount();
             ViewBag.TotalEmployees = _services.GetEmployeesCount();
@@ -44,6 +47,14 @@ namespace Skillset_PL.Controllers
                 modelList.Add(item.EmployeeDTOtoViewModel());
             }
             return View(modelList);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _services.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
