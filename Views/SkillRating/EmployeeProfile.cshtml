@@ -1,0 +1,41 @@
+﻿@model Skillset_PL.ViewModels.EmployeeViewModel
+@{
+    Layout = "~/Views/SkillRating/_EmployeeLayout.cshtml";
+}
+<div class="row first" >
+    <div class="col-sm-2">
+        <label>@Model.Name</label>
+        @if (Model.Gender.ToLower() == "male")
+        {
+            <img src="~/Images/male.png" alt="man" width="100" height="100" />
+        }
+        else
+        {
+            <img src="~/Images/female.png" alt="man" width="100" height="100" />
+        }
+    </div>
+    <div class="col-sm-10">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Personal Information</div>
+            <div class="panel-body">
+                Name:@Model.Name<br />
+                Address:@Model.Address<br />
+                Mobile Number:@Model.MobileNumber<br />
+                Email Id:@Model.Email<br />
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Professional Information</div>
+            <div class="panel-body">
+                Designation:@Model.DesignationId<br />
+                Experience:@Model.Experience<br />
+                Role:@Model.RoleId<br />
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

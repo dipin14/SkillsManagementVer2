@@ -1,0 +1,143 @@
+﻿@model IEnumerable<Skillset_PL.ViewModels.EmployeeViewModel>
+@{
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Card.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Black Ops One' rel='stylesheet' type='text/css'>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <script>
+        var PieChartData =
+                   {
+                       labels: [@Html.Raw(ViewBag.SkillnameList)],
+                       datasets: [{
+                           label: 'Skill Distribution',
+                           backgroundColor: ["rgba(75,192,192,0.4)", "LightCoral", "Crimson", "SlateBlue ", "teal"],
+                           borderWidth: 2,
+                           data: [@ViewBag.RatingList]
+                       }]
+                   };
+        var BarChartData =
+            {
+                labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
+                datasets: [{
+                    label: 'Skill Ratings Average',
+                    backgroundColor: [" #ff99bb", "LightCoral", "Crimson", "SlateBlue ", "teal"],
+                    borderWidth: 2,
+                    data: [@ViewBag.RatingAverage]
+                }]
+            };
+
+        window.onload = function () {
+            var ctx1 = document.getElementById("Linecanvas").getContext("2d");
+            window.myBar = new Chart(ctx1,
+                {
+                    type: 'pie',
+                    data: PieChartData,
+                    options:
+                        {
+                            title:
+                            {
+                                display: true,
+                                text: "Skill Distribution"
+                            },
+                            responsive: true,
+                            maintainAspectRatio: true
+                        }
+                });
+
+            var ctx2 = document.getElementById("Barcanvas").getContext("2d");
+            window.myBar2 = new Chart(ctx2,
+                {
+                    type: 'bar',
+                    data: BarChartData,
+                    options:
+                        {
+                            title:
+                            {
+                                display: true,
+                                text: "Average Skill Ratings"
+                            },
+                            responsive: true,
+                            maintainAspectRatio: true
+                        }
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="row first">
+        <div class="col-sm-4">
+            <div class="panelSkill panel panel-default">
+                <div class="panel-body">Total Skills<span style="float:right;font-size:60px;font-family:'Black Ops One';">@(ViewBag.TotalSkills)</span></div>
+            </div>
+
+            <div class="panelSkill panel panel-default ">
+                <div class="panel-body">Total Employees<span style="float:right;font-size:60px;font-family:'Black Ops One';">@(ViewBag.TotalEmployees)</span></div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div style="text-align:center;background-color:indianred;height:80px;margin-top:-10px"><span class="glyphicon glyphicon-star" style="font-size:50px;margin-top:30px"></span></div>
+                <div class="container">
+                    <p>Total Ratings</p>
+                    <b style="font-size:40px;font-family:Black Ops One">@(ViewBag.TotalSkillRatingsCount)</b>
+                    
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-danger"
+                             style="width:@(ViewBag.TotalSkillRatings)%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">Recent Employees</div>
+                <div class="panel-body">
+
+                    @foreach (var item in Model)
+                    {
+                        if (item.Gender == "female")
+                        {
+                            <img src="~/Images/female.png" width="20" height="20" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/male.png" width="20" height="20" />
+                        }
+
+                        <b>@Html.DisplayFor(modelItem => item.Name)</b>
+
+                        <br/>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @* Chart *@
+    <div class="row" style="margin-left:35px;margin-top:50px">
+        <div class="col-sm-6">
+
+            <div style="text-align: center">
+                <canvas id="Linecanvas"></canvas>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div style="text-align: center;height:200px">
+                <canvas id="Barcanvas"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
