@@ -38,12 +38,18 @@ namespace Skillset_PL.Controllers
             
            
         }
-        public ActionResult SkillRate(string code, string name)
+          public ActionResult SkillRate(string code, string name, int? page)
         {
-            ViewBag.Code = code;
-            ViewBag.Name = name;
+            if(code!=null && name!=null)
+            {
+                ViewBag.Code = code;
+                ViewBag.Name = name;
+            }
+            
             var skill = _reportingStaff.GetSkillRatingsDetails(code).ToSkillRatingsViewmodel();
-            return View(skill);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(skill.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult MyProfile()
         {
