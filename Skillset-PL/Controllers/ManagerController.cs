@@ -24,12 +24,14 @@ namespace Skillset_PL.Controllers
             _employeeServices = employeeServices;
         }
         // GET: Manager
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             if(Session["customercode"].ToString()!=string.Empty)
             {
                 var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
-                return View(staff);
+                int pageSize = 3;
+                int pageNumber = (page ?? 1);
+                return View(staff.ToPagedList(pageNumber, pageSize));
             }
             else
             {
