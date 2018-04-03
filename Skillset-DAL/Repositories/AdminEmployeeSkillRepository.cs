@@ -75,7 +75,7 @@ namespace Skillset_DAL.Repositories
                 int empId = FindId(employeeCode);
                 var query = from sr in context.SkillRatings
                             from s in context.Skills
-                            where (sr.EmployeeId == empId && sr.SkillId == s.SkillId && sr.Status && s.Status)
+                            where (sr.EmployeeId == empId && sr.SkillId == s.SkillId && sr.Status)
                             select sr;
                 return query.OrderBy(s=> s.RatingDate).ToList();
             }
