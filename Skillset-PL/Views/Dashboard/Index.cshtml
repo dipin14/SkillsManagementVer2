@@ -42,7 +42,14 @@
 
             var ctx1 = document.getElementById("Linecanvas").getContext("2d");
 
-            if (1 < PieChartData.labels.length) {
+            if (1 > PieChartData.datasets.length) {
+                ctx1.font = "20px " + Chart.defaults.global.tooltipTitleFontFamily;
+                ctx1.textAlign = "center";
+                ctx1.textBaseline = "middle";
+                ctx1.fillStyle = Chart.defaults.global.scaleFontColor;
+                ctx1.fillText("No Primary skill ratings done", ctx1.canvas.clientWidth / 2, ctx1.canvas.clientHeight / 2);
+            }
+            else {
                 window.myBar = new Chart(ctx1,
                 {
                     type: 'pie',
@@ -60,15 +67,9 @@
                             maintainAspectRatio: true
                         }
                 });
-            } else {
-                ctx1.font = "20px " + Chart.defaults.global.tooltipTitleFontFamily;
-                ctx1.textAlign = "center";
-                ctx1.textBaseline = "middle";
-                ctx1.fillStyle = Chart.defaults.global.scaleFontColor;
-                ctx1.fillText("No Primary skill ratings done", ctx1.canvas.clientWidth / 2, ctx1.canvas.clientHeight / 2);
             }
 
-            
+
 
 
             var ctx2 = document.getElementById("Barcanvas").getContext("2d");

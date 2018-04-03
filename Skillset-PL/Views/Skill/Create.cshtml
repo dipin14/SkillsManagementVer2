@@ -12,7 +12,6 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Skill Creation</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -33,13 +32,13 @@
 
             <div class="form-group" style="margin:15px">
                 <div class="col-md-2">
-                    <input type="reset" value="RESET" class="btn btn-success" />
+                    <input type="reset" value="Reset" class="btn btn-success" />
                 </div>
                 <div class="col-md-2">
-                    <input type="submit" value="SAVE" class="btn btn-success" />
+                    <input type="submit" value="Save" class="btn btn-success" />
                 </div>
                 <div class="col-md-2">
-                    @Html.ActionLink("CANCEL", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+                    @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
                 </div>
             </div>
         </div>
