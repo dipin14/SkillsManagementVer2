@@ -272,7 +272,6 @@ namespace Skillset_DAL.Repositories
             {
                 string result = string.Empty;
                 string id = string.Empty;
-
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
