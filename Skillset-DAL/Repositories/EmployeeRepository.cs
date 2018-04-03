@@ -275,7 +275,7 @@ namespace Skillset_DAL.Repositories
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where j.Status == true
+                              where j.Status == true && s.Status==true
                               select j);
                 var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
                
