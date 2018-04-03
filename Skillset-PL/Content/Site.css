@@ -68,6 +68,7 @@ textarea {
 	font-size: 15px;
 }
 .panelRating {
-word-break:break-all
+word-break:break-all;
+padding-left: 8px;
 }
 
