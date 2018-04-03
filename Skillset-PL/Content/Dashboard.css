@@ -146,3 +146,26 @@
     padding:15px;
     margin-top:10px;
 }
+
+.paneltable .table > thead > tr > th{
+    border-right: 1px solid #ddd;
+    border-bottom:0;
+}
+
+.paneltable .table > tbody > tr > td{
+    border-right: 1px solid #ddd;
+}
+
+.paneltable .table > thead > tr > th:last-of-type {
+    border-right: 0px;
+}
+
+.paneltable .table > tbody > tr > td:last-of-type {
+    border-right: 0px;
+}
+
+.paneltable {
+    padding: 0;
+}
+
+.paneltable > .table{margin-bottom:0px;}
