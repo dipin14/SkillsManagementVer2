@@ -9,8 +9,8 @@
     <h2>Skills</h2>
 
     <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
-    <label class="control-label col-sm-3" style="float:left;display:block;text-align:center">Employee Code : @(ViewData["employeecode"]) </label>
-    <label class="control-label col-sm-3" style="float:left;display:block;text-align:center;">  Employee Name : @(ViewData["employeename"]) </label>
+    <label class="control-label col-sm-6" style="float:left;display:block;text-align:center">Employee Code : @(ViewData["employeecode"]) </label>
+    <label class="control-label col-sm-6" style="float:left;display:block;text-align:left;">  Employee Name : @(ViewData["employeename"]) </label>
     <br />
     <br />
     @if (Model.Count() > 0)
@@ -26,6 +26,9 @@
                     </th>
                     <th>
                         @Html.DisplayName("Rated Date")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Note")
                     </th>
                 </tr>
             </thead>
@@ -51,6 +54,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RatingDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Note)
                         </td>
                     </tr>
                 }

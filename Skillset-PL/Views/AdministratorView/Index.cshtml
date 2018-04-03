@@ -6,20 +6,35 @@
 }
 <div class="row first">
     <h2>Index</h2>
-
-    <p>
-        @using (Html.BeginForm("Index", "AdministratorView", FormMethod.Get))
-        {
-            <b> Search By: </b>
-            @Html.RadioButton("option", "Employee Code", new { @checked = true }) <text>Employee Code</text>
-            @Html.RadioButton("option", "Name") <text> Name </text>
-            @Html.RadioButton("option", "Designation")<text>Designation</text>
-            @Html.TextBox("search")
-            <input type="submit" name="submit" value="Search" class="btn btn-success" />
-            @Html.ActionLink("View All", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
-        }
-    </p>
-
+    <div class="panel-group">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                Search By Employee Code or Name or Designation:
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <p>
+                        @using (Html.BeginForm("Index", "AdministratorView", FormMethod.Get))
+                        {
+                            <div class="col-md-1">
+                                <b>Search</b>
+                            </div>
+                            <div class="col-md-3">
+                                @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control" } })
+                                &nbsp; &nbsp;
+                            </div>
+                            <div class="col-md-3">
+                                <input type="submit" name="submit" value="Search" class="btn btn-success" />
+                                &nbsp; &nbsp;
+                                @Html.ActionLink("Reset", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+                                &nbsp; &nbsp;
+                            </div>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     @if (Model.Count() > 0)
     {
         <br />
@@ -62,7 +77,6 @@
             </tbody>
         </table>
     }
-
     else
     {
         <div class="alert alert-warning fade in">
@@ -71,3 +85,4 @@
         </div>
     }
 </div>
+
