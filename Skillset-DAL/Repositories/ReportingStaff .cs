@@ -40,7 +40,7 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                var skills = context.Skills.Where(s => s.Status).Distinct().ToList();
+                var skills = context.Skills.Distinct().ToList();
                 if (skills.Any())
                     return skills;
                 else
