@@ -251,7 +251,7 @@ namespace Skillset_DAL.Repositories
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where s.Status == true
+                              where s.Status == true && j.Status==true
                               select new { j.SkillName, j.SkillId }).Distinct();
 
                 var skill = from s in skills
@@ -272,8 +272,12 @@ namespace Skillset_DAL.Repositories
             {
                 string result = string.Empty;
                 string id = string.Empty;
-                var rating = context.SkillRatings.Where(x => x.Status == true).ToList();
-                var groupRating = rating.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+                var skills = (from s in context.SkillRatings
+                              join j in context.Skills
+                              on s.SkillId equals j.SkillId
+                              where j.Status == true
+                              select j);
+                var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
                
                 foreach (var r in groupRating.OrderByDescending(x => x.Id).Select(x => x.Values))
                 {
@@ -335,7 +339,7 @@ namespace Skillset_DAL.Repositories
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where s.Status == true
+                              where s.Status == true && j.Status==true
                               select new { j.SkillName, j.SkillId }).Distinct();
 
                 var skill = from s in skills
@@ -368,7 +372,7 @@ namespace Skillset_DAL.Repositories
                             on sr.RatingId equals r.Id
                             join s in context.Skills
                             on sr.SkillId equals s.SkillId
-                            where sr.Status == true
+                            where sr.Status == true && s.Status==true
                             select new { sr.SkillId , r.Value });
 
                 var groupSkill = skill.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Select(s => s.Value).Sum() });
