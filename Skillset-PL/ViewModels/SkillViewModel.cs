@@ -28,6 +28,7 @@ namespace Skillset_PL.ViewModels
         }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Skill Description")]
         public string SkillDescription
         {

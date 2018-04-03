@@ -24,12 +24,14 @@ namespace Skillset_PL.Controllers
             _employeeServices = employeeServices;
         }
         // GET: Manager
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             if(Session["customercode"].ToString()!=string.Empty)
             {
                 var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
-                return View(staff);
+                int pageSize = 3;
+                int pageNumber = (page ?? 1);
+                return View(staff.ToPagedList(pageNumber, pageSize));
             }
             else
             {
@@ -38,12 +40,18 @@ namespace Skillset_PL.Controllers
             
            
         }
-        public ActionResult SkillRate(string code, string name)
+          public ActionResult SkillRate(string code, string name, int? page)
         {
-            ViewBag.Code = code;
-            ViewBag.Name = name;
+            if(code!=null && name!=null)
+            {
+                ViewBag.Code = code;
+                ViewBag.Name = name;
+            }
+            
             var skill = _reportingStaff.GetSkillRatingsDetails(code).ToSkillRatingsViewmodel();
-            return View(skill);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(skill.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult MyProfile()
         {

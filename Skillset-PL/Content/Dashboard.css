@@ -111,8 +111,13 @@
     line-height: 50px !important;
     
   }
-  .row .first{
+    .row .first{
       margin-left:20px;
+     
+  }
+    .row .second{
+      margin-left:20px;
+     margin-right:20px;
   }
 }
 @media (min-width: 768px) {
