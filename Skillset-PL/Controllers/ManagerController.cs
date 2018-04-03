@@ -1,4 +1,5 @@
-﻿using Skillset_BLL.Services;
+using PagedList;
+using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
 using Skillset_PL.ViewModels;
 using System;
