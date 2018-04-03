@@ -222,7 +222,7 @@ namespace Skillset_DAL.Repositories
         }
 
         /// <summary>
-        /// Get recently registered 5 employee details
+        /// Get recently rated 5 employee details
         /// </summary>
         /// <returns></returns>
         public List<Employee> GetRecentEmployees()
@@ -335,7 +335,7 @@ namespace Skillset_DAL.Repositories
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where s.Status == true
+                              where s.Status == true && j.Status==true
                               select new { j.SkillName, j.SkillId }).Distinct();
 
                 var skill = from s in skills
@@ -383,6 +383,13 @@ namespace Skillset_DAL.Repositories
                     result += ", ";
                 }
                 return result;
+
+            }
+        }
+        public void Dispose()
+        {
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
 
             }
         }
