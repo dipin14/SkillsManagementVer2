@@ -25,10 +25,10 @@ namespace Skillset_BLL.Services
         /// <param name="option"></param>
         /// <param name="searchKey"></param>
         /// <returns></returns>
-        public IEnumerable<AdminEmployeeDTO> ViewSearchedRecords(string option, string searchKey)
+        public IEnumerable<AdminEmployeeDTO> ViewSearchedRecords(string searchKey)
         {
             //getting list of searched employees
-            List<Employee> employeeList = _iEmpSkillRepository.GetEmployeeDetails(option, searchKey);
+            List<Employee> employeeList = _iEmpSkillRepository.GetEmployeeDetails(searchKey);
             List<string> designationList = new List<string>();
             foreach (var emp in employeeList)
             {
@@ -75,6 +75,7 @@ namespace Skillset_BLL.Services
                 skill.SkillName = skillNameList[loopVar];
                 skill.SkillValue = skillValueList[loopVar];
                 skill.RatingDate = skillList[loopVar].RatingDate;
+                skill.Note = skillList[loopVar].Note;
                 skillDetailsList.Add(skill);
             }
             return skillDetailsList;

@@ -50,6 +50,6 @@ namespace Skillset_DAL.Repositories
         /// <returns></returns>
         Skill GetSkillBySkillName(string skillName);
 
-        Employee GetProfile(string id);
+        
     }
 }

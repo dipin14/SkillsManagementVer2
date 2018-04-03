@@ -85,7 +85,7 @@ namespace Skillset_PL.ViewModelExtensions
                     Name = staff.Name,
                     Email = staff.Email,
                     Designation = staff.Designation
-                }).ToList().OrderBy(staff => staff.EmployeeCode).ThenBy(staff => staff.Name).ToList();
+                }).Distinct().ToList().OrderBy(staff => staff.EmployeeCode).ThenBy(staff => staff.Name).ToList();
             }
             else
             {
@@ -162,7 +162,7 @@ namespace Skillset_PL.ViewModelExtensions
                     Rating = skill.Rating,
                     RatingDate = skill.RatingDate,
                     Note = skill.Note
-                }).ToList().OrderByDescending(skillRating => skillRating.Rating).ThenByDescending(skillRating => skillRating.RatingDate).ToList();
+                }).Distinct().ToList().OrderByDescending(skillRating => skillRating.Rating).ThenByDescending(skillRating => skillRating.RatingDate).ToList();
 
             }
 

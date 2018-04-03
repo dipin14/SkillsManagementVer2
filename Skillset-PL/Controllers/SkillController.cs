@@ -24,7 +24,7 @@ namespace Skillset_PL.Controllers
         // GET: Skill
         public ActionResult Index(int? page)
         {
-            var skillList = _skillService.GetAllSkills().ToViewModelList().OrderByDescending(s => s.SkillName);
+            var skillList = _skillService.GetAllSkills().ToViewModelList().OrderBy(s => s.SkillName);
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);

@@ -16,29 +16,36 @@ namespace Skillset_DAL.Repositories
         /// <param name="option"></param>
         /// <param name="searchKey"></param>
         /// <returns></returns>
-        public List<Employee> GetEmployeeDetails(string option, string searchKey)
+        public List<Employee> GetEmployeeDetails(string searchKey)
         {
             using (var context = new SkillsetDbContext())
             {
-                if (option == "Employee Code")
-                {
-                    return context.Employees.Where(m => m.Status == true && m.RoleId!=1 && m.EmployeeCode.Contains(searchKey)).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();
-                }
-                else if (option == "Name")
-                {
-                    return context.Employees.Where(m => m.Status == true && m.RoleId != 1 && m.Name.Contains(searchKey)).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();
-                }
-                else if (option == "Designation")
-                {
-                    var query = from e in context.Employees
+                var searchByEmployeeCode = context.Employees.Where(m => m.Status == true && m.RoleId!=1 && m.EmployeeCode.Equals(searchKey)).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();               
+                var searchByName = context.Employees.Where(m => m.Status == true && m.RoleId != 1 && m.Name.Equals(searchKey)).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();               
+                var query = from e in context.Employees
                                 from d in context.Designations
-                                where ((e.Status == true) && (e.RoleId != 1) && (e.DesignationId == d.Id) && (d.Name.Contains(searchKey)))
+                                where ((e.Status == true) && (e.RoleId != 1) && (e.DesignationId == d.Id) && (d.Name.Equals(searchKey)))
                                 select e;
-                    return query.OrderBy(m => m.EmployeeCode).ToList();
+                var searchByDesignation = query.OrderBy(m => m.EmployeeCode).ToList();
+                if(searchByEmployeeCode.Count!=0)
+                {
+                    return searchByEmployeeCode;
+                }
+                else if (searchByName.Count != 0)
+                {
+                    return searchByName;
+                }
+                else if (searchByDesignation.Count != 0)
+                {
+                    return searchByDesignation;
+                }
+                else if (searchKey == null||searchKey==string.Empty)
+                {
+                    return context.Employees.Where(m => m.Status == true && m.RoleId != 1).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();
                 }
                 else
                 {
-                    return context.Employees.Where(e => e.Status == true && e.RoleId != 1).Select(e => e).OrderBy(e => e.EmployeeCode).ToList();
+                    return Enumerable.Empty<Employee>().ToList();
                 }
             }
         }

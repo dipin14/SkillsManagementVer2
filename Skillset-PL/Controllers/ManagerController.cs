@@ -47,7 +47,7 @@ namespace Skillset_PL.Controllers
         }
         public ActionResult MyProfile()
         {
-            var EmployeeDtoList = _skillService.GetProfile(Session["customercode"].ToString());
+            var EmployeeDtoList = _employeeServices.GetProfile(Session["customercode"].ToString());
             var profile = EmployeeDtoList.EmployeeDTOtoViewModel();
             Session["customerId"] = EmployeeDtoList.Id;
             profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
@@ -81,4 +81,6 @@ namespace Skillset_PL.Controllers
             var skillList = _skillService.GetAllSkills().ToViewModelList();
             return skillList;
         }
-    }}
+
+    }
+}

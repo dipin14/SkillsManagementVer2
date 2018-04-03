@@ -220,7 +220,7 @@ namespace Skillset_DAL.Repositories
         }
 
         /// <summary>
-        /// Get recently registered 5 employee details
+        /// Get recently rated 5 employee details
         /// </summary>
         /// <returns></returns>
         public List<Employee> GetRecentEmployees()
@@ -273,7 +273,7 @@ namespace Skillset_DAL.Repositories
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where j.Status == true
+                              where j.Status == true && s.Status == true
                               select j);
                 var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
                
@@ -385,6 +385,20 @@ namespace Skillset_DAL.Repositories
                     result += ", ";
                 }
                 return result;
+
+            }
+        }
+        public Employee GetProfile(string id)
+        {
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                return context.Employees.Where(e => e.EmployeeCode == id).FirstOrDefault();
+            }
+        }
+        public void Dispose()
+        {
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
 
             }
         }
