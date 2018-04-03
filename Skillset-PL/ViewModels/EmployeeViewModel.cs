@@ -45,6 +45,7 @@ namespace Skillset_PL.ViewModels
         public string Email { get; set; }
         [Required]
         [RegularExpression("^([0-9]){10}$", ErrorMessage = "Mobile Number should contain 10 digits")]
+        [Display(Name = "Mobile Number")]
         public double MobileNumber { get; set; }
         [Required]
         public string Gender { get; set; }
