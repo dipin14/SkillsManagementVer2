@@ -5,7 +5,7 @@
 @{
 
     Layout = "~/Views/Manager/_ManagerLayout.cshtml";
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Staff Details";
 }
 <div class="row first">
 @if (Model.Count() > 0)
@@ -57,13 +57,8 @@ else
     <div class="alert alert-warning fade in">
         <strong>No Staff Details!</strong> There is no reporting staff.
     </div>
-
 }
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-    new
-    {
-        page
-    }))
+    @Html.PagedListPager(Model, page => Url.Action("Index",new{page}))
 </div>
