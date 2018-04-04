@@ -11,7 +11,7 @@
 {
     <label class="control-label alert-success well-sm" style="display:block;text-align:center"><u>Staff Details</u></label>
     <br />
-    <table class="table table-hover table-responsive">
+    <table class="table table-hover table-responsive table-bordered">
         <tr>
             <th>
                 @Html.DisplayName("Employee Code")
@@ -52,7 +52,7 @@
 
                 <td>
 
-                   @Html.ActionLink("Skills", "SkillRate", new { code = item.EmployeeCode, name = item.Name }) 
+                   @Html.ActionLink("Skills", "SkillRate", new { code = item.EmployeeCode, name = item.Name }, htmlAttributes: new { @class = "btn btn-primary" }) 
                 </td>
             </tr>
         }
