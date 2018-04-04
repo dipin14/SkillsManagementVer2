@@ -3,10 +3,10 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     Layout = "~/Views/Manager/_ManagerLayout.cshtml";
-    ViewBag.Title = "SkillRate";
+    ViewBag.Title = "Skills";
 }
 <div class="row first">
-    <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
+    <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skills</label>
     <br />
     @if (!string.IsNullOrWhiteSpace(ViewBag.Code))
     {
@@ -30,10 +30,10 @@
                         @Html.DisplayName("Rating")
                     </th>
                     <th>
-                        @Html.DisplayName("Rated Date")
+                        @Html.DisplayName("Rated On")
                     </th>
                     <th>
-                        @Html.DisplayName("Note")
+                        @Html.DisplayName("Notes")
                     </th>
                 </tr>
             </thead>
@@ -73,7 +73,7 @@
         <br />
         <div class="alert alert-warning fade in">
             <strong>No Skill Ratings!</strong>
-            <br />This employee have no rated skills.
+            <br />Employee have no rated skills.
         </div>
     }
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
