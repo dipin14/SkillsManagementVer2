@@ -60,6 +60,7 @@ namespace Skillset_DAL.Repositories
                     StringBuilder builder = new StringBuilder();
                     //Changing skill name of deleted skill to prevent conflict
                     builder.Append(deleteSkill.SkillName).Append("-deleted-").Append(deleteSkill.SkillId);
+                    deleteSkill.SkillName = builder.ToString();
                     db.Entry(deleteSkill).State = EntityState.Modified;
 
                     //Corresponding ratings in skill has to be deleted
