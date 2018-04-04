@@ -122,16 +122,29 @@ namespace Skillset_BLL.Services
             }
             return dtoList;
         }
+
+        /// <summary>
+        /// Get recently rated employee list
+        /// </summary>
+        /// <returns></returns>
         public List<EmployeeDTO> GetRecentEmployees()
         {
             return _repository.GetRecentEmployees().ListEmployeeModeltoDTO();
         }
 
+        /// <summary>
+        /// Get skill names of skills rated by employee
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<string> GetEmployeeRatedSkill()
         {
             return _repository.GetEmployeeRatedSkill();
         }
 
+        /// <summary>
+        /// Get total ratings for each skill given by employees
+        /// </summary>
+        /// <returns></returns>
         public string GetEmployeeRating()
         {
             return _repository.GetEmployeeRating();
@@ -161,18 +174,29 @@ namespace Skillset_BLL.Services
             return _repository.GetSkillRatingsCount();
         }
 
+        /// <summary>
+        /// Get average ratings for bar chart 
+        /// </summary>
+        /// <returns></returns>
         public string GetRatingAverage()
         {
             return _repository.GetRatingAverage();
         }
+
+        /// <summary>
+        /// Get bar chart skill name list
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<string> GetEmployeeRatedSkillExcludeSpecial()
         {
             return _repository.GetEmployeeRatedSkillExcludeSpecial();
         }
-        public void Dispose()
-        {
-            _repository.Dispose();
-        }
+
+        /// <summary>
+        /// Get employee profile details
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public EmployeeDTO GetProfile(string id)
         {
             return _repository.GetProfile(id).EmployeeModeltoDTO();
