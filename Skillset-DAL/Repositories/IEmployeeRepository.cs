@@ -110,6 +110,7 @@ namespace Skillset_DAL.Repositories
         /// </summary>
         /// <returns></returns>
         int GetEmployeesCount();
+
         /// <summary>
         /// Return total skill ratings count
         /// </summary>
