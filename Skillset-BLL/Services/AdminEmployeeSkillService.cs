@@ -59,6 +59,7 @@ namespace Skillset_BLL.Services
             List<SkillRating> skillList = _iEmpSkillRepository.GetSkillDetails(employeeCode);
             List<string> skillNameList = new List<string>();
             List<int> skillValueList = new List<int>();
+            List<string> RatingNoteList = new List<string>();
             foreach (var item in skillList)
             {
                 //finding skill name from skill id
@@ -67,6 +68,16 @@ namespace Skillset_BLL.Services
                 //finding skill value from rating id
                 int skillValue = _iEmpSkillRepository.FindSkillValue(item.RatingId);
                 skillValueList.Add(skillValue);
+                string ratingNote= _iEmpSkillRepository.FindRatingNote(item.RatingId);
+                if(!string.IsNullOrWhiteSpace(ratingNote))
+                {
+                    RatingNoteList.Add(ratingNote);
+                }
+                else
+                {
+                    RatingNoteList.Add("No Description");
+                }
+                
             }
             List<AdminSkillDTO> skillDetailsList = new List<AdminSkillDTO>();
             for (int loopVar = 0; loopVar < skillList.Count; loopVar++)
@@ -74,8 +85,9 @@ namespace Skillset_BLL.Services
                 AdminSkillDTO skill = new AdminSkillDTO();
                 skill.SkillName = skillNameList[loopVar];
                 skill.SkillValue = skillValueList[loopVar];
+                skill.RatingNote = RatingNoteList[loopVar];
                 skill.RatingDate = skillList[loopVar].RatingDate;
-                skill.Note = skillList[loopVar].Note;
+                skill.Note = skillList[loopVar].Note == null || skillList[loopVar].Note == string.Empty ? "Not available" : skillList[loopVar].Note;
                 skillDetailsList.Add(skill);
             }
             return skillDetailsList;

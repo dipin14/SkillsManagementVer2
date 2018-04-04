@@ -160,6 +160,7 @@ namespace Skillset_PL.ViewModelExtensions
                 {
                     Skill = skill.Skill,
                     Rating = skill.Rating,
+                    RatingNote=skill.RatingNote,
                     RatingDate = skill.RatingDate,
                     Note = skill.Note
                 }).Distinct().ToList().OrderByDescending(skillRating => skillRating.Rating).ThenByDescending(skillRating => skillRating.RatingDate).ToList();

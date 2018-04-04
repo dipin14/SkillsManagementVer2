@@ -40,7 +40,7 @@ namespace Skillset_PL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Login", "Login");
             }
             IEnumerable<AdminSkillDTO> skillrecordlist;
             //calling method to get skill details of a particular employee
@@ -49,7 +49,7 @@ namespace Skillset_PL.Controllers
             List<AdministratorSkillViewModel> recordlist = new List<AdministratorSkillViewModel>();
             foreach (var obj in skillrecordlist)
             {
-                recordlist.Add(new AdministratorSkillViewModel(obj.SkillName, obj.SkillValue, obj.RatingDate,obj.Note));
+                recordlist.Add(new AdministratorSkillViewModel(obj.SkillName, obj.SkillValue, obj.RatingDate,obj.Note,obj.RatingNote));
             }
             string employeeName = _empSkillService.FindEmployeeName(id);
             ViewData["employeename"] = employeeName;

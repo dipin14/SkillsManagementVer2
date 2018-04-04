@@ -129,5 +129,17 @@ namespace Skillset_DAL.Repositories
                 return empId;
             }
         }
+        /// <summary>
+        ///  Finding note of a rating value from table Rating
+        /// </summary>
+        /// <param name="ratingId"></param>
+        /// <returns></returns>
+        public string FindRatingNote(int ratingId)
+        {
+            using (var context = new SkillsetDbContext())
+            {
+                return context.Ratings.Where(d => d.Id == ratingId).Select(d => d.Note).FirstOrDefault();
+            }
+        }
     }
 }
