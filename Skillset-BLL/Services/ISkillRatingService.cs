@@ -26,5 +26,11 @@ namespace Skillset_BLL.Services
         /// <param name="skill"></param>
         /// <returns></returns>
         int Delete(int SkillRatingId);
+
+        IQueryable<string> GetEmployeeRatedSkill();
+        IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
+        string GetEmployeeRating();
+        string GetRatingAverage();
+        int GetSkillRatingsCount();
     }
 }

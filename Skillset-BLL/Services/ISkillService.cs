@@ -42,6 +42,7 @@ namespace Skillset_BLL.Services
         /// </summary>
         /// <returns></returns>
         IList<SkillDTO> GetAllSkills();
-        
+
+        int GetSkillsCount();
     }
 }
