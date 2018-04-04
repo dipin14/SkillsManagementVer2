@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Skillset_DAL.Models;
 using Skillset_DAL.ContextClass;
 using System.Data.Entity;
 
 namespace Skillset_DAL.Repositories
 {
-   public class SkillRatingRepository:ISkillRatingRepository
+    public class SkillRatingRepository : ISkillRatingRepository
     {
         public int Create(IList<SkillRating> skillRatingList)
         {
@@ -33,10 +31,10 @@ namespace Skillset_DAL.Repositories
                             }
                             else
                             {
-                               
+
                                 db.SkillRatings.Add(skillRating);
                             }
-                            }
+                        }
                         db.SaveChanges();
                     }
                     return 1;
@@ -50,14 +48,14 @@ namespace Skillset_DAL.Repositories
         }
         public IList<SkillRating> GetAllRatings(int empId)
         {
-         
+
             using (var db = new SkillsetDbContext())
             {
-                var skillRatingList = db.SkillRatings.Where(s => s.EmployeeId==empId && s.Status==true).OrderByDescending(s=>s.RatingDate).ToList();
+                var skillRatingList = db.SkillRatings.Where(s => s.EmployeeId == empId && s.Status == true).OrderByDescending(s => s.RatingDate).ToList();
                 return skillRatingList;
             }
-        
-    }
+
+        }
         public IList<Skill> GetAllSkills()
         {
             using (var db = new SkillsetDbContext())
@@ -90,6 +88,115 @@ namespace Skillset_DAL.Repositories
                 return 1;
             }
             return 0;
+        }
+
+        public IQueryable<string> GetEmployeeRatedSkillExcludeSpecial()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            {
+                var skills = (from s in context.SkillRatings
+                              join j in context.Skills
+                              on s.SkillId equals j.SkillId
+                              where s.Status == true && j.Status == true
+                              select new { j.SkillName, j.SkillId }).Distinct();
+
+                var skill = from s in skills
+                            orderby s.SkillId descending
+                            where s.SkillName != "Special Skill"
+                            select s.SkillName;
+
+                return skill;
+            }
+        }
+
+        public string GetRatingAverage()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            {
+                List<int> totalValues = new List<int>();
+                List<int> specificValues = new List<int>();
+                var result = string.Empty;
+                string id = string.Empty;
+                var rating = context.SkillRatings.Where(x => x.Status == true);
+                var groupRating = rating.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+
+                foreach (var r in groupRating.OrderByDescending(x => x.Id).Select(x => x.Values))
+                {
+                    totalValues.Add(r);
+                }
+
+                var skill = (from sr in context.SkillRatings
+                             join r in context.Ratings
+                             on sr.RatingId equals r.Id
+                             join s in context.Skills
+                             on sr.SkillId equals s.SkillId
+                             where sr.Status == true && s.Status == true
+                             select new { sr.SkillId, r.Value });
+
+                var groupSkill = skill.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Select(s => s.Value).Sum() });
+                foreach (var r in groupSkill.OrderByDescending(x => x.Id).Select(x => x.Values))
+                {
+                    specificValues.Add(r);
+                }
+                for (int i = 0; i < specificValues.Count; i++)
+                {
+                    float ratingAvg = (float)specificValues.ElementAt(i) / (float)totalValues.ElementAt(i);
+                    result += ratingAvg;
+                    result += ", ";
+                }
+                return result;
+
+            }
+        }
+        
+        public string GetEmployeeRating()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            {
+                string result = string.Empty;
+                string id = string.Empty;
+                var skills = (from s in context.SkillRatings
+                              join j in context.Skills
+                              on s.SkillId equals j.SkillId
+                              where j.Status == true && s.Status == true
+                              select s);
+                var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+
+                foreach (var r in groupRating.OrderByDescending(x => x.Id).Select(x => x.Values))
+                {
+                    result += r;
+                    result += ", ";
+                }
+                return result;
+            }
+        }
+        
+        public int GetSkillRatingsCount()
+        {
+            int skillRatingsCount = default(int);
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                skillRatingsCount = context.SkillRatings.Where(s => s.Status).Where(s => s.SkillId != 1).Distinct().Count();
+            }
+            return skillRatingsCount;
+        }
+
+        public IQueryable<string> GetEmployeeRatedSkill()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            {
+                var skills = (from s in context.SkillRatings
+                              join j in context.Skills
+                              on s.SkillId equals j.SkillId
+                              where s.Status == true && j.Status == true
+                              select new { j.SkillName, j.SkillId }).Distinct();
+
+                var skill = from s in skills
+                            orderby s.SkillId descending
+                            select s.SkillName;
+
+                return skill;
+            }
         }
     }
 }

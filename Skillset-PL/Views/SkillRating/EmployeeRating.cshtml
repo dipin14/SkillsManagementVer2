@@ -1,4 +1,4 @@
-﻿@model Skillset_PL.ViewModels.EmployeeRatingScreenViewModel
+@model Skillset_PL.ViewModels.EmployeeRatingScreenViewModel
 @{
     Layout = "~/Views/SkillRating/_EmployeeLayout.cshtml";
     ViewBag.Title = "EmployeeRating";
@@ -98,7 +98,6 @@
             <h4>Your skills</h4>
             
                 foreach (var item in Model.RatedSkills)
-
                 {
                     <div class="panel panelRating " style="background-color:aliceblue;">
                         <span style="float:right;">
@@ -136,7 +135,6 @@
                 </div>
             }
 }
-
         </div>
     </div>
 </div>

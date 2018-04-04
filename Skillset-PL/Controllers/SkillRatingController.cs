@@ -29,10 +29,9 @@ namespace Skillset_PL.Controllers
         public IEnumerable<SkillViewModel> EmployeeRatings()
         {
             var skillList = _skillService.GetAllSkills().ToViewModelList();
-
             return skillList;
-
         }
+
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
         {
 
@@ -46,11 +45,13 @@ namespace Skillset_PL.Controllers
             }
             return View(); 
         }
+
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
             var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
             return RatedSkills;
         }
+
         public ActionResult EmployeeRating()
         {
             if (Session["customerId"] == null)
@@ -63,14 +64,12 @@ namespace Skillset_PL.Controllers
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
         }        
-        
-        
+                
         public int DeleteRating(int Id)
         {
-            
-                return _skillRatingService.Delete(Id);
-              
+            return _skillRatingService.Delete(Id);              
         }
+
         public ActionResult EmployeeProfile()
         {
             if (Session["customercode"] == null)
