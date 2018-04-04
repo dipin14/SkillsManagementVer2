@@ -15,5 +15,6 @@ namespace Common.DTO
         public string Note { get; set; }
         public bool IsSpecialSkill { get; set; }
         public bool Status { get; set; }
+        public string RatingNote { get; set; }
     }
 }

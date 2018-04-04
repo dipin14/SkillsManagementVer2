@@ -226,11 +226,19 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\ashstar.jpg" />
+    <Content Include="Images\ashstar.png" />
+
+    <Content Include="Images\ashstar1.png" />
+
     <Content Include="Images\female.png" />
     <Content Include="Images\male.png" />
     <Content Include="Images\rate1.png" />
     <Content Include="Images\rate2.png" />
+
     <Content Include="Images\redstar.png" />
+    <Content Include="Images\redstar1.png" />
+    <Content Include="Images\star %286%29.png" />
+
     <Content Include="Images\star1.png" />
     <Content Include="Images\StarFade.gif" />
     <Content Include="Images\StarGlow.gif" />
@@ -256,6 +264,7 @@
     <Content Include="Scripts\Employee.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -302,12 +311,12 @@
     <Content Include="Views\Skill\Delete.cshtml" />
     <Content Include="Views\AdministratorView\Index.cshtml" />
     <Content Include="Views\Manager\SkillRate.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\SkillRating\_EmployeeLayout.cshtml" />
     <Content Include="Views\SkillRating\EmployeeProfile.cshtml" />
     <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <Content Include="Views\Manager\ManagerRating.cshtml" />
     <Content Include="Views\AdministratorView\Skills.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
     <None Include="Web.Debug.config" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />

@@ -27,12 +27,12 @@ namespace Skillset_PL.Controllers
         public IEnumerable<SkillViewModel> EmployeeRatings()
         {
             var skillList = _skillService.GetAllSkills().ToViewModelList();
-
             return skillList;
-
         }
 
+
         //Action to Submit All the skill ratings to the skill rating table.Arguments passed list of skill rating objects
+
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
         {
 
@@ -47,23 +47,31 @@ namespace Skillset_PL.Controllers
             return View();
         }
 
+
         //Action To get All the ratedSkill List of the logged in employee.Parameter being the id of the logged in employee
+
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
             var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
             return RatedSkills;
         }
 
+
         //The Action on which the first hit occurs and returns the list of skills and skill ratings to the corresponding view
+
         public ActionResult EmployeeRating()
         {
-
+            if (Session["customerId"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var EmpId = Convert.ToInt32(Session["customerId"]);
             EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
             ratingObj.SkillRatings = EmployeeRatings();
             ViewBag.IsSpecial = ratingObj.RatedSkills.ToList().Any(m => m.SkillName == "Special skill");
             return View(ratingObj);
+
         }
 
         //Action TO delete selected SkillRating.Parameter passed being SkillRatingId
@@ -75,8 +83,13 @@ namespace Skillset_PL.Controllers
         }
 
         //Action to Get the Employee Profile Of the Logged in Employee
+
         public ActionResult EmployeeProfile()
         {
+            if (Session["customercode"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var EmployeeDtoList = _employeeServices.GetProfile(Session["customercode"].ToString());
             var profile = EmployeeDtoList.EmployeeDTOtoViewModel();
             Session["customerId"] = EmployeeDtoList.Id;

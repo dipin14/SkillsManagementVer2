@@ -131,32 +131,7 @@ namespace Skillset_BLL.Services
         {
             return _repository.GetRecentEmployees().ListEmployeeModeltoDTO();
         }
-
-        /// <summary>
-        /// Get skill names of skills rated by employee
-        /// </summary>
-        /// <returns></returns>
-        public IQueryable<string> GetEmployeeRatedSkill()
-        {
-            return _repository.GetEmployeeRatedSkill();
-        }
-
-        /// <summary>
-        /// Get total ratings for each skill given by employees
-        /// </summary>
-        /// <returns></returns>
-        public string GetEmployeeRating()
-        {
-            return _repository.GetEmployeeRating();
-        }
-        /// <summary>
-        /// Return total skill count
-        /// </summary>
-        /// <returns></returns>
-        public int GetSkillsCount()
-        {
-            return _repository.GetSkillsCount();
-        }
+      
         /// <summary>
         /// Return total employees count
         /// </summary>
@@ -165,33 +140,7 @@ namespace Skillset_BLL.Services
         {
             return _repository.GetEmployeesCount();
         }
-        /// <summary>
-        /// Return total skill ratings count
-        /// </summary>
-        /// <returns></returns>
-        public int GetSkillRatingsCount()
-        {
-            return _repository.GetSkillRatingsCount();
-        }
-
-        /// <summary>
-        /// Get average ratings for bar chart 
-        /// </summary>
-        /// <returns></returns>
-        public string GetRatingAverage()
-        {
-            return _repository.GetRatingAverage();
-        }
-
-        /// <summary>
-        /// Get bar chart skill name list
-        /// </summary>
-        /// <returns></returns>
-        public IQueryable<string> GetEmployeeRatedSkillExcludeSpecial()
-        {
-            return _repository.GetEmployeeRatedSkillExcludeSpecial();
-        }
-
+      
         /// <summary>
         /// Get employee profile details
         /// </summary>

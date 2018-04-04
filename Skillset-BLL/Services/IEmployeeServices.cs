@@ -18,17 +18,13 @@ namespace Skillset_BLL.Services
         List<EmployeeDTO> GetManagers();
         List<RoleDTO> GetRoles();
         List<EmployeeDTO> GetRecentEmployees();
-        int GetSkillsCount();
+        
         int GetEmployeesCount();
-        int GetSkillRatingsCount();
         string GetDesignationName(string id);
         string GetQualificationName(string id);
         string GetManagerName(string id);
         string GetRoleName(string id);
-        IQueryable<string> GetEmployeeRatedSkill();
-        IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
-        string GetEmployeeRating();
-        string GetRatingAverage();
+       
         EmployeeDTO GetProfile(string id);
     }
 }

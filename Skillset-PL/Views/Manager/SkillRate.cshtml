@@ -3,10 +3,12 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     Layout = "~/Views/Manager/_ManagerLayout.cshtml";
-    ViewBag.Title = "SkillRate";
+    ViewBag.Title = "Skills";
 }
 <div class="row first">
-    <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
+
+    <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skills</label>
+
     <br />
     @if (!string.IsNullOrWhiteSpace(ViewBag.Code))
     {
@@ -45,16 +47,17 @@
                             @Html.DisplayFor(modelItem => item.Skill)
                         </td>
                         <td>
+                            <div data-tooltip="@(item.RatingNote)" data-tooltip-position="bottom">
 
-
-                            @for (var i = 1; i <= item.Rating; i++)
-                    {
-                                <span class="starGlow"></span>
-                            }
-                            @for (var i = (item.Rating + 1); i <= 5; i++)
-                    {
-                                <span class="starFade"></span>
-                            }
+                                @for (var i = 1; i <= item.Rating; i++)
+                                {
+                                    <span class="starGlowTable"></span>
+                                }
+                                @for (var i = (item.Rating + 1); i <= 5; i++)
+                                {
+                                    <span class="starFadeTable"></span>
+                                }
+                            </div>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RatingDate)
@@ -67,20 +70,26 @@
             </tbody>
         </table>
     }
-
     else
     {
         <br />
         <div class="alert alert-warning fade in">
+
             <strong>No Skill Ratings!</strong>
-            <br />This employee have no rated skills.
+            <br />Employee have no rated skills.
+
         </div>
     }
+
+
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
 
     @Html.PagedListPager(Model, page => Url.Action("SkillRate",
     new
     {
-        code= ViewBag.Code,name= ViewBag.Name, page
+        code = ViewBag.Code,
+        name = ViewBag.Name,
+        page
     }))
 </div>

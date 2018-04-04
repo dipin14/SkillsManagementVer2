@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Skillset_PL.ViewModels.EmployeeViewModel>
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
-
+    ViewBag.Title = "Dashboard";
 }
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,11 @@
                        labels: [@Html.Raw(ViewBag.SkillnameList)],
                        datasets: [{
                            label: 'Skill Rating Distribution',
-                           backgroundColor: ["rgba(75,192,192,0.4)", "LightCoral", "Crimson", "SlateBlue ", "teal"],
+                           backgroundColor: ["rgba(75,192,192,0.4)",
+                                             "rgba(240,128,128 ,1 )",
+                                             "rgba(220,20,60 ,1 )",
+                                             "rgb(72,61,139)",
+                                             "rgba(38, 166, 154, 1)"],
                            borderWidth: 2,
                            data: [@ViewBag.RatingList]
                        }]
@@ -50,6 +54,7 @@
                 ctx1.fillText("No Primary skill ratings done", ctx1.canvas.clientWidth / 2, ctx1.canvas.clientHeight / 2);
             }
             else {
+                
                 window.myBar = new Chart(ctx1,
                 {
                     type: 'pie',
@@ -59,17 +64,38 @@
                             title:
                             {
                                 display: true,
-                                text: "Skill Rating Distribution"
+                                text: "Skill Rating Distribution",
                             },
-
+                            tooltips: {
+                                mode: 'label'
+                            },
                             responsive: true,
+                            maintainAspectRatio: true,
                             showAllTooltips: true,
-                            maintainAspectRatio: true
+                            tooltips: {
+                                callbacks: {
+                                    title: function (tooltipItem, data) {
+                                        return data['labels'][tooltipItem[0]['index']];
+                                    },
+                                    label: function (tooltipItem, data) {
+                                        return data['datasets'][0]['data'][tooltipItem['index']];
+                                    },
+                                    afterLabel: function (tooltipItem, data) {
+                                        var dataset = data['datasets'][0];
+                                        var percent = Math.round((dataset['data'][tooltipItem['index']] / dataset["_meta"][0]['total']) * 100)
+                                        return '(' + percent + '%)';
+                                    }
+                                },
+                                backgroundColor: '#FFF',
+                                titleFontSize: 16,
+                                titleFontColor: '#002633',
+                                bodyFontColor: '#000',
+                                bodyFontSize: 14,
+                                displayColors: false
+                            }
                         }
                 });
             }
-
-
 
 
             var ctx2 = document.getElementById("Barcanvas").getContext("2d");

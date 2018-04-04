@@ -1,14 +1,16 @@
-﻿@model IEnumerable<Skillset_PL.ViewModels.AdministratorEmployeeViewModel>
-
+﻿@model IPagedList<Skillset_PL.ViewModels.AdministratorEmployeeViewModel>
+@using PagedList.Mvc;
+@using PagedList;
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
-    ViewBag.Title = "Index";
+    ViewBag.Title = "View Employee Skills";
 }
 <div class="row first">
     <h2>Employee Skill List</h2>
+    <br />
     <div class="panel-group">
         <div class="panel panel-success">
-            <div class="panel-heading" style="display:block;text-align:center"><b><u>Search</u></b></div>
+            <div class="panel-heading" style="display:block;text-align:center"><b>Search</b></div>
             <div class="panel-body">
                 <div class="form-group">
                     <div class="col-md-5">
@@ -34,19 +36,20 @@
 
     @if (Model.Count() > 0)
     {
+        
         <br />
-        <label class="control-label alert-success well-sm" style="display:block;text-align:center"><u>Employee Details</u></label>
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center">Employee Details</label>
         <table class="table table-bordered table-hover table-responsive">
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.EmployeeCode)
+                        @Html.DisplayName("Employee Code")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Name)
+                        @Html.DisplayName("Name")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Designation)
+                        @Html.DisplayName("Designation")
                     </th>
                     <th>
                         @Html.DisplayName("Action")
@@ -78,8 +81,13 @@
     {
         <div class="alert alert-warning fade in">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>No Employee Details!</strong> There is no employees.
+
+            <strong>No Employees!</strong> There are no employees to display.
+
         </div>
     }
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, pageNo => Url.Action("Index", new { search = ViewBag.search,pageNo }))
 </div>
+
 
