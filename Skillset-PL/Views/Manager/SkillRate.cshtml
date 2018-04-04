@@ -7,74 +7,7 @@
 }
 <div class="row first">
     <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
-<<<<<<< HEAD
-    @if (string.IsNullOrWhiteSpace(ViewBag.Code))
-    {
-        <label class="control-label col-sm-3" style="float:left;display:block;text-align:center">Employee Code : @(ViewBag.Code) </label>
-    }
-    @if (string.IsNullOrWhiteSpace(ViewBag.Name))
-    {
-        <label class="control-label col-sm-3" style="float:left;display:block;text-align:center;">  Employee Name : @(ViewBag.Name) </label>
-    }
 
-    @if (Model.Count() > 0)
-    {
-        <table class="table table-hover table-responsive">
-            <tr>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Skill)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Rating)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Note)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.RatingDate)
-                </th>
-                <th>
-                    Star Rating
-                </th>
-
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Skill)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Rating)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Note)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RatingDate)
-                    </td>
-                    <td>
-                        @for (var i = 1; i <= item.Rating; i++)
-                        {
-                            <span class="starGlowN"></span>
-                        }
-                        @for (var i = (item.Rating + 1); i <= 5; i++)
-                        {
-                            <span class="starFadeN"></span>
-                        }
-                    </td>
-                </tr>
-            }
-
-        </table>
-    }
-=======
     <br />
     @if (!string.IsNullOrWhiteSpace(ViewBag.Code))
     {
@@ -135,26 +68,17 @@
             </tbody>
         </table>
     }
-
->>>>>>> b2cb773bd7907c30d53737f311ee120d3ba77e4f
     else
     {
         <br />
         <div class="alert alert-warning fade in">
-<<<<<<< HEAD
             <strong>No Skill Ratings!</strong><br /> There is no skill ratings available.
         </div>
     }
-    <p>
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-=======
-            <strong>No Skill Ratings!</strong>
-            <br />This employee have no rated skills.
-        </div>
-    }
+
+
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
->>>>>>> b2cb773bd7907c30d53737f311ee120d3ba77e4f
+
 
     @Html.PagedListPager(Model, page => Url.Action("SkillRate",
     new
