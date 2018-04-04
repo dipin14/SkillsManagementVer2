@@ -72,7 +72,7 @@ namespace Skillset_DAL.Repositories
         /// <returns></returns>
         List<Role> GetRole();
         /// <summary>
-        /// Get recently rated 5 employee details
+        /// Get recently rated employee details
         /// </summary>
         /// <returns></returns>
         List<Employee> GetRecentEmployees();
@@ -104,22 +104,7 @@ namespace Skillset_DAL.Repositories
         /// Get skill names of skills rated by employee
         /// </summary>
         /// <returns></returns>
-        IQueryable<string> GetEmployeeRatedSkill();
-        /// <summary>
-        /// Get skill names of skills rated by employee excluding special skill
-        /// </summary>
-        /// <returns></returns>
-        IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
-        /// <summary>
-        /// Get total ratings for each skill given by employees
-        /// </summary>
-        /// <returns></returns>
-        string GetEmployeeRating();
-        /// <summary>
-        /// Return total skill count
-        /// </summary>
-        /// <returns></returns>
-        int GetSkillsCount();
+      
         /// <summary>
         /// Return total employees count
         /// </summary>
@@ -129,8 +114,6 @@ namespace Skillset_DAL.Repositories
         /// Return total skill ratings count
         /// </summary>
         /// <returns></returns>
-        int GetSkillRatingsCount();
-        string GetRatingAverage();
         Employee GetProfile(string id);
     }
 }
