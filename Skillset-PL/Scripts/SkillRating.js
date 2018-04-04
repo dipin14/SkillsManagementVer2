@@ -86,7 +86,8 @@ function SubmitRating(RatedSkills, TotalSkills) {
 //Function to post an ajax call to the controller action passing the rating value list
 function CompleteRating(RatingList) {
     if (RatingList == "") {
-        alert("Please enter your ratings");
+        
+        ShowValidation();
     }
     else {
         $.ajax({
@@ -107,6 +108,7 @@ function CompleteRating(RatingList) {
         });
     }
 }
+
 //Function to post an ajax call to the action controller to get all the skills and skillratings from the db
 function RateSkill() {
 
@@ -117,7 +119,7 @@ function RateSkill() {
         complete: function (result) {
             if (result.responseText) {
 
-                Reload();
+                AddReload();
               
 
             }
@@ -133,8 +135,8 @@ function RateSkill() {
 }
 
 //Function to reload the current web page
-function Reload() {
-    myFunction();
+function AddReload() {
+    ShowToast();
     setTimeout(function () { location.reload(); }, 1000);
  
 }
@@ -189,7 +191,7 @@ function ShowLoader()
     setTimeout(function () { element.className = element.className.replace("loader", ""); }, 3000);
 }
 
-function myFunction() {
+function ShowToast() {
     // Get the snackbar DIV
     var x = document.getElementById("snackbar")
 
@@ -198,4 +200,21 @@ function myFunction() {
 
     // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+}
+
+function Reload()
+{
+    location.reload();
+}
+
+function ShowValidation()
+{
+    var x = document.getElementById("snackbarValidation")
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+    setTimeout(function () { location.reload(); }, 1000);
 }
