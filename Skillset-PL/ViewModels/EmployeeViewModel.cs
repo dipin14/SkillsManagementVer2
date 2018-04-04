@@ -8,6 +8,7 @@ namespace Skillset_PL.ViewModels
 {
     public class EmployeeViewModel
     {
+
         [Required]
         [Display(Name = "Code")]
         [RegularExpression("^E([0-9]){3,8}$", ErrorMessage = "Code must begin with 'E' followed by atleast 3 numbers")]
@@ -31,12 +32,12 @@ namespace Skillset_PL.ViewModels
         [Required]
         public int Experience { get; set; }
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date)]      
         [Display(Name = "Birth Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
         [Required]
-        [Display(Name ="Manager")]
+        [Display(Name = "Manager")]
         public string EmployeeId { get; set; }
         [Required]
         [DataType(DataType.MultilineText)]
