@@ -15,7 +15,7 @@ namespace Skillset_DAL.Repositories
         /// <param name="option"></param>
         /// <param name="searchKey"></param>
         /// <returns></returns>
-        List<Employee> GetEmployeeDetails(string searchKey);
+        List<Employee> GetEmployeeDetails(string searchKey, int pageNumber, int pageSize, out int totalCount);
         
         /// <summary>
         /// Finding designation from table Designation
@@ -51,5 +51,11 @@ namespace Skillset_DAL.Repositories
         /// <param name="employeeCode"></param>
         /// <returns></returns>
         string FindEmployeeName(string employeeCode);
+        /// <summary>
+        ///  Finding note of a rating value from table Rating
+        /// </summary>
+        /// <param name="ratingId"></param>
+        /// <returns></returns>
+        string FindRatingNote(int ratingId);
     }
 }

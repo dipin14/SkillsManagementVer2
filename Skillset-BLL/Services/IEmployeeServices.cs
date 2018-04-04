@@ -7,8 +7,8 @@ namespace Skillset_BLL.Services
 
     public interface IEmployeeServices
     {
-        IEnumerable<EmployeeDTO> GetAllEmployees();
-        IEnumerable<EmployeeDTO> ViewSearchRecords(string search);
+        
+        IEnumerable<EmployeeDTO> ViewSearchRecords(string search,int pageNumber, int pageSize, out int totalCount);
         int AddNewEmployee(EmployeeDTO employee);
         int EditEmployeeById(EmployeeDTO employee);
         int DeleteEmployeeById(string id);

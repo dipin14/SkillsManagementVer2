@@ -15,7 +15,7 @@ namespace Skillset_BLL.Services
         /// <param name="option"></param>
         /// <param name="searchKey"></param>
         /// <returns></returns>
-        IEnumerable<AdminEmployeeDTO> ViewSearchedRecords(string searchKey);
+        IEnumerable<AdminEmployeeDTO> ViewSearchedRecords(string searchKey, int pageNumber, int pageSize, out int totalCount);
         
         /// <summary>
         /// Get Skill details of an employee from table Skillrating

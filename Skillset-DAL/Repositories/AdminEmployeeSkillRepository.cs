@@ -16,8 +16,9 @@ namespace Skillset_DAL.Repositories
         /// <param name="option"></param>
         /// <param name="searchKey"></param>
         /// <returns></returns>
-        public List<Employee> GetEmployeeDetails(string searchKey)
+        public List<Employee> GetEmployeeDetails(string searchKey, int pageNumber, int pageSize, out int totalCount)
         {
+
             using (var context = new SkillsetDbContext())
             {
                 var searchByEmployeeCode = context.Employees.Where(m => m.Status == true && m.RoleId!=1 && m.EmployeeCode.ToUpper().Equals(searchKey.ToUpper())).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();               
@@ -26,25 +27,36 @@ namespace Skillset_DAL.Repositories
                                 from d in context.Designations
                                 where ((e.Status == true) && (e.RoleId != 1) && (e.DesignationId == d.Id) && (d.Name.ToUpper().Equals(searchKey.ToUpper())))
                                 select e;
-                var searchByDesignation = query.OrderBy(m => m.EmployeeCode).ToList();
+                var searchByDesignation = query.OrderBy(m => m.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
+                
                 if(searchByEmployeeCode.Count!=0)
                 {
+                    var a = searchByEmployeeCode.Count();
+                    totalCount = a;
                     return searchByEmployeeCode;
                 }
                 else if (searchByName.Count != 0)
                 {
+                    var a = searchByName.Count();
+                    totalCount = a;
                     return searchByName;
                 }
                 else if (searchByDesignation.Count != 0)
                 {
+                    var b = query.Count();
+                    totalCount = b;
                     return searchByDesignation;
                 }
                 else if (searchKey == null||searchKey==string.Empty)
                 {
-                    return context.Employees.Where(m => m.Status == true && m.RoleId != 1).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();
+                    var a = context.Employees.Where(e => e.RoleId != 1).Count();
+                    totalCount = a;
+                    var details= context.Employees.Where(m => m.Status == true && m.RoleId != 1).Select(m => m).OrderBy(m => m.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
+                    return details;
                 }
-                else
+                else  
                 {
+                    totalCount = 0;
                     return Enumerable.Empty<Employee>().ToList();
                 }
             }
@@ -127,6 +139,18 @@ namespace Skillset_DAL.Repositories
             {
                 int empId = context.Employees.Where(m => m.EmployeeCode == employeeCode).Select(m => m.Id).FirstOrDefault();
                 return empId;
+            }
+        }
+        /// <summary>
+        ///  Finding note of a rating value from table Rating
+        /// </summary>
+        /// <param name="ratingId"></param>
+        /// <returns></returns>
+        public string FindRatingNote(int ratingId)
+        {
+            using (var context = new SkillsetDbContext())
+            {
+                return context.Ratings.Where(d => d.Id == ratingId).Select(d => d.Note).FirstOrDefault();
             }
         }
     }

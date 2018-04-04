@@ -72,6 +72,7 @@ namespace Skillset_BLL.Services
                                           {
                                               Skill = s.SkillName == null || s.SkillName == string.Empty ? "Not available" : s.SkillName,
                                               Rating = r == null ? default(int) : r.Value,
+                                              RatingNote = r.Note == null||r.Note.Trim()==string.Empty? "No Description":r.Note,
                                               RatingDate = sr.RatingDate,
                                               Note = sr.Note == null || sr.Note == string.Empty ? "Not available" : sr.Note
                                           }).Distinct().ToList();

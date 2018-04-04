@@ -1,5 +1,4 @@
-﻿
-@model PagedList.IPagedList<Skillset_PL.ViewModels.EmployeeViewModel>
+﻿@model PagedList.IPagedList<Skillset_PL.ViewModels.EmployeeViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -22,7 +21,7 @@
                         <div class="col-md-5"><b> Search By Name/Code/Designation</b>
                         </div>
                         
-                        @using (Html.BeginForm("IndexSearch","Employee", FormMethod.Get))
+                        @using (Html.BeginForm("Index","Employee", FormMethod.Get))
                         {  
                         <div class="col-md-3">
                             @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control" } })
@@ -83,10 +82,5 @@
             </div>
             }
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-          new
-          {
-              page
-          }))
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
 </div>
