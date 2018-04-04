@@ -50,6 +50,10 @@ namespace Skillset_DAL.Repositories
         /// <returns></returns>
         Skill GetSkillBySkillName(string skillName);
 
-        
+        /// <summary>
+        /// Retrieve total skill count
+        /// </summary>
+        /// <returns></returns>
+        int GetSkillsCount();
     }
 }
