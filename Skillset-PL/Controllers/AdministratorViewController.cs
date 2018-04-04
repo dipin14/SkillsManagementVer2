@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using PagedList;
 using Skillset_BLL.Services;
 using Skillset_PL.ViewModels;
 using System;
@@ -21,18 +22,23 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Searched Employee Details
-        public ActionResult Index(string search)
+        public ActionResult Index(string search,int? pageNo)
         {
+            var pageNumber = (pageNo ?? 1)-1;
+            var totalCount = 0;
+            var pageSize = 3;
+            ViewBag.search = search;
             IEnumerable<AdminEmployeeDTO> employeerecordlist;
             //calling method to search for employee details
-            employeerecordlist = _empSkillService.ViewSearchedRecords(search);
+            employeerecordlist = _empSkillService.ViewSearchedRecords(search,pageNumber, pageSize, out totalCount);
 
             List<AdministratorEmployeeViewModel> recordlist = new List<AdministratorEmployeeViewModel>();
             foreach (var obj in employeerecordlist)
             {
                 recordlist.Add(new AdministratorEmployeeViewModel(obj.EmployeeCode, obj.Name, obj.Designation));
             }
-            return View(recordlist);
+            IPagedList<AdministratorEmployeeViewModel> pageOrders = new StaticPagedList<AdministratorEmployeeViewModel>(recordlist, pageNumber + 1, 3, totalCount);
+            return View(pageOrders);
         }
 
         // GET: Employee Skills Details      
