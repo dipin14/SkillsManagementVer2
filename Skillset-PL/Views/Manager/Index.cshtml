@@ -1,3 +1,4 @@
+
 @model PagedList.IPagedList<Skillset_PL.ViewModels.ReportingStaff>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -19,18 +20,14 @@
             <th>
                 @Html.DisplayName("Name")
             </th>
-
             <th>
                 @Html.DisplayName("Designation")
             </th>
-
             <th>
                 @Html.DisplayName("Email")
             </th>
-
             <th></th>
         </tr>
-
         @foreach (var item in Model)
         {
             <tr>
@@ -40,18 +37,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.Designation)
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-
-
                 <td>
-
                    @Html.ActionLink("Skills", "SkillRate", new { code = item.EmployeeCode, name = item.Name }, htmlAttributes: new { @class = "btn btn-primary" }) 
                 </td>
             </tr>
