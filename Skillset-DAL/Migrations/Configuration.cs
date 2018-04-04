@@ -1,6 +1,7 @@
 namespace Skillset_DAL.Migrations
 {
     using Models;
+    using System;
     using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Skillset_DAL.ContextClass.SkillsetDbContext>
@@ -45,10 +46,17 @@ namespace Skillset_DAL.Migrations
              );
             context.Skills.AddOrUpdate(
                   p => p.SkillId,
-                   new Skill { SkillId = 1, SkillName = "Special skill", SkillDescription = "If you have any special Skills" ,Status=false}
-   
+                   new Skill { SkillId = 1, SkillName = "Special skill", SkillDescription = "If you have any special Skills", Status = false }
+
                 );
 
+            context.SaveChanges();
+
+            if (context.Employees.Find(1) == null)
+            {
+                context.Database.ExecuteSqlCommand("INSERT INTO public.\"Employees\"(\"Id\", \"EmployeeCode\", \"Name\", \"DateOfJoining\", \"DesignationId\", \"RoleId\", \"QualificationId\", \"Experience\", \"DateOfBirth\", \"EmployeeId\", \"Address\", \"Email\", \"MobileNumber\", \"Gender\", \"Status\") VALUES(2, 'E102', 'Pradeep', '2017-11-01', 2, 2, 2, 10, '1995-05-05', 2, 'Kakkanad', 'pradeep@gmail.com', 9191919191, 'Male', true);");
+                context.Database.ExecuteSqlCommand("INSERT INTO public.\"Employees\"(\"Id\", \"EmployeeCode\", \"Name\", \"DateOfJoining\", \"DesignationId\", \"RoleId\", \"QualificationId\", \"Experience\", \"DateOfBirth\", \"EmployeeId\", \"Address\", \"Email\", \"MobileNumber\", \"Gender\", \"Status\") VALUES(1, 'E101', 'Raj', '2017-11-01', 1, 1, 1, 10, '1996-05-05', 2, 'Infopark', 'johnhonai@gmail.com', 9876543210, 'Male', true);");
+            }
         }
     }
 }

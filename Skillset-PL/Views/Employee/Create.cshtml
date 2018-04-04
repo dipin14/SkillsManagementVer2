@@ -6,31 +6,36 @@
 }
 
 <div class="row first">
-    <h2 style="margin-left:15px">ADD NEW EMPLOYEE</h2>
-
-    <p style="color:red;margin-left:15px"> @ViewBag.message </p>
+    <h2 >Add New Employee</h2>
+      
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
+            <p style="color:red"> @ViewBag.message </p>
 
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-2"></div>
-                    @Html.LabelFor(model => model.EmployeeCode, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-4">
-                        @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="col-md-4"></div>
+            <div class="container-fluid">
+                
+                    <div class="form-group">
+                        <div class="panel panel-success">
+                            <div class="panel-body">
+                                <div class="col-md-2"></div>
+                                @Html.LabelFor(model => model.EmployeeCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+                            </div>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row second">
                 <div class="form-group">
 
                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -49,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row second">
                 <div class="form-group">
                     @Html.LabelFor(model => model.DateOfJoining, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -64,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row second">
                 <div class="form-group">
                     @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -79,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row second">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Experience, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -96,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row second">
                 <div class="form-group">
                     @Html.LabelFor(model => model.EmployeeId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -110,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row second">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -125,28 +130,33 @@
                 </div>
             </div>
             <br />
-            <div class="row">
+            <div class="row second">
                 <div class="col-md-3"></div>
 
-                <div class="col-md-2">
-                    <input type="reset" value="RESET" class="btn btn-success" />
+                <div class="col-md-1">
+                    <input type="reset" value="Reset" class="btn btn-success" />
                 </div>
-                <div class="col-md-2">
-                    <input type="submit" value="SAVE" class="btn btn-success" onclick="OnChangeEvent()" />
+                <div class="col-md-1"></div>
+                <div class="col-md-1">
+                    <input type="submit" id="submit" value="Save" class="btn btn-success" onclick="OnChangeEvent()" />
                 </div>
-                <div class="col-md-2">
-                    @Html.ActionLink("CANCEL", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+                <div class="col-md-1"></div>
+                <div class="col-md-1">
+                    @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
                 </div>
 
                 <div class="col-md-3"></div>
             </div>
-
+           
         </div>
     }
+   
 
 
-    </div>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/Employee.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/Employee.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

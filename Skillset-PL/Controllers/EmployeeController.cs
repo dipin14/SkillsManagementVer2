@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using PagedList;
 using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
 using Skillset_PL.ViewModels;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace Skillset_PL.Controllers
 {   [Authorize(Roles ="Admin")]
@@ -80,7 +82,7 @@ namespace Skillset_PL.Controllers
             return items;
         }
         // GET: Employee
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             var dtoList = _services.GetAllEmployees();
             var modelList = new List<EmployeeViewModel>();
@@ -92,18 +94,19 @@ namespace Skillset_PL.Controllers
                 item.EmployeeId = _services.GetManagerName(item.EmployeeId);
                 modelList.Add(item.EmployeeDTOtoViewModel());
             }
-            return View(modelList);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(modelList.ToPagedList(pageNumber, pageSize));
         }
-        [HttpPost]
-        public ActionResult IndexSearch(string option, string search)
+        
+        public ActionResult IndexSearch(int? page,string search)
         {
-            
+            search = search.Trim();
             //calling method to search for employee details
-            var dtoList = _services.ViewSearchRecords(option, search);
+            var dtoList = _services.ViewSearchRecords(search);
            
                 var modelList = new List<EmployeeViewModel>();
-                List<AdministratorEmployeeViewModel> recordlist = new List<AdministratorEmployeeViewModel>();
-
+  
                 foreach (EmployeeDTO item in dtoList)
                 {
                     item.DesignationId = _services.GetDesignationName(item.DesignationId);
@@ -112,9 +115,10 @@ namespace Skillset_PL.Controllers
                     item.EmployeeId = _services.GetManagerName(item.EmployeeId);
                     modelList.Add(item.EmployeeDTOtoViewModel());
                 }
-                return View("Index",modelList);
-          
-            
+            int pageSize =4;
+            int pageNumber = (page ?? 1);
+            return View("Index", modelList.ToPagedList(pageNumber, pageSize));
+   
         }
 
         public ActionResult Create()
@@ -151,13 +155,8 @@ namespace Skillset_PL.Controllers
                 }
                 else
                 {
-                    ViewBag.message = "Successfully Added Employee";
-                    ViewData["Designations"] = GetDesignations();
-                    ViewData["Qualifications"] = GetQualifications();
-                    ViewData["Managers"] = GetManagers();
-                    ViewData["Roles"] = GetRoles();
-                    ModelState.Clear();
-                    return View();
+                    TempData["message"] = "Successfully Added Employee";                  
+                    return RedirectToAction("Index");
                 }
             }
             ViewData["Designations"] = GetDesignations();
@@ -198,7 +197,7 @@ namespace Skillset_PL.Controllers
                 ViewBag.message = "Error in deleting employee record";
                 return RedirectToAction("Delete", id);
             }
-
+            TempData["message"] = "Successfully deleted employee record";
             return RedirectToAction("Index");
         }
 
@@ -255,6 +254,7 @@ namespace Skillset_PL.Controllers
                     ViewBag.message = "Error in modifying employee record";
                     return RedirectToAction("Edit", employee);
                 }
+                TempData["message"] = "Modified employee record";
                 return RedirectToAction("Index");
             }
             return View(employee);

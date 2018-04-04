@@ -5,7 +5,7 @@
 }
 
 <div class="row first">
-    <h2>EMPLOYEE DETAILS</h2>
+    <h2>Employee Details</h2>
 
     <div>
 
@@ -110,12 +110,20 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Gender)
             </dt>
+            
+            <dd>
+                @Html.DisplayFor(model => model.Gender)
+            </dd>
 
+
+    </dl>
+</div>
+<div class="form-group" >
+    <div class="col-md-3">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
+        &nbsp; &nbsp;
+        @Html.ActionLink("Back", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
     </div>
-    
-
-        <div class="col-md-2">
-            @Html.ActionLink("BACK", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
-        </div>
-
-    </div>
+ 
+    <div class="col-md-8"></div>
+</div>

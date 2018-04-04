@@ -1,4 +1,5 @@
-﻿using Skillset_BLL.Services;
+using PagedList;
+using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
 using Skillset_PL.ViewModels;
 using System;
@@ -24,33 +25,43 @@ namespace Skillset_PL.Controllers
             _employeeServices = employeeServices;
         }
         // GET: Manager
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            if (Session["customercode"].ToString() != string.Empty)
+            if(Session["customercode"].ToString()!=string.Empty)
             {
                 var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
-                return View(staff);
+                int pageSize = 3;
+                int pageNumber = (page ?? 1);
+                return View(staff.ToPagedList(pageNumber, pageSize));
             }
             else
             {
-                return RedirectToAction("MyProfile");
+             return RedirectToAction("MyProfile");
             }
-
-
+            
+           
         }
-        public ActionResult SkillRate(string code, string name)
+          public ActionResult SkillRate(string code, string name, int? page)
         {
-            ViewBag.Code = code;
-            ViewBag.Name = name;
+            if(code!=null && name!=null)
+            {
+                ViewBag.Code = code;
+                ViewBag.Name = name;
+            }
+            
             var skill = _reportingStaff.GetSkillRatingsDetails(code).ToSkillRatingsViewmodel();
-            return View(skill);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(skill.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult MyProfile()
         {
-            var profile = _reportingStaff.GetProfile(Session["customercode"].ToString()).EmployeeDTOtoViewModel();
+            var EmployeeDtoList = _employeeServices.GetProfile(Session["customercode"].ToString());
+            var profile = EmployeeDtoList.EmployeeDTOtoViewModel();
+            Session["customerId"] = EmployeeDtoList.Id;
             profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
             profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
-            return View("MyProfile", profile);
+            return View("MyProfile",profile);
         }
 
         public ActionResult ManagerRating()
@@ -77,17 +88,6 @@ namespace Skillset_PL.Controllers
         {
             var skillList = _skillService.GetAllSkills().ToViewModelList();
             return skillList;
-        }
-        /// <summary>
-        /// Delete One skill rating
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
-        public int DeleteRating(int Id)
-        {
-
-            return _skillRatingService.Delete(Id);
-
         }
     }
 }

@@ -11,5 +11,6 @@ namespace Common.DTO
         public string SkillName { get; set; }
         public int SkillValue { get; set; }
         public DateTime RatingDate { get; set; }
+        public string Note { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Skillset_DAL.Repositories
     public interface IEmployeeRepository
     {
         IEnumerable<Employee> GetAllEmployees();
-        IEnumerable<Employee> GetSearchRecords(string option,string search);
+        IEnumerable<Employee> GetSearchRecords(string search);
         int AddEmployee(Employee employee);
         int EditEmployee(Employee employee);
         int DeleteEmployee(string id);
@@ -26,9 +26,13 @@ namespace Skillset_DAL.Repositories
         string GetManagerName(string id);
         string GetRoleName(string id);
         IQueryable<string> GetEmployeeRatedSkill();
+        IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
         string GetEmployeeRating();
         int GetSkillsCount();
         int GetEmployeesCount();
         int GetSkillRatingsCount();
+        string GetRatingAverage();
+        void Dispose();
+        Employee GetProfile(string id);
     }
 }

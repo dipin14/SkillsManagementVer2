@@ -21,11 +21,11 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Searched Employee Details
-        public ActionResult Index(string option, string search)
+        public ActionResult Index(string search)
         {
             IEnumerable<AdminEmployeeDTO> employeerecordlist;
             //calling method to search for employee details
-            employeerecordlist = _empSkillService.ViewSearchedRecords(option, search);
+            employeerecordlist = _empSkillService.ViewSearchedRecords(search);
 
             List<AdministratorEmployeeViewModel> recordlist = new List<AdministratorEmployeeViewModel>();
             foreach (var obj in employeerecordlist)
@@ -49,7 +49,7 @@ namespace Skillset_PL.Controllers
             List<AdministratorSkillViewModel> recordlist = new List<AdministratorSkillViewModel>();
             foreach (var obj in skillrecordlist)
             {
-                recordlist.Add(new AdministratorSkillViewModel(obj.SkillName, obj.SkillValue, obj.RatingDate));
+                recordlist.Add(new AdministratorSkillViewModel(obj.SkillName, obj.SkillValue, obj.RatingDate,obj.Note));
             }
             string employeeName = _empSkillService.FindEmployeeName(id);
             ViewData["employeename"] = employeeName;

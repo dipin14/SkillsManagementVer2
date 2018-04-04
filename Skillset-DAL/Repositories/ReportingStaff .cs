@@ -23,13 +23,13 @@ namespace Skillset_DAL.Repositories
                 var designations = (from d in context.Designations
                                     from e in context.Employees
                                     where (e.Status && e.EmployeeId == managerId && e.Id != e.EmployeeId && d.Id == e.DesignationId)
-                                    select d).ToList();
+                                    select d).Distinct().ToList();
                 if (designations.Any())
+
                     return designations;
                 else
                     return Enumerable.Empty<Designation>().ToList();
             }
-
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                var skills = context.Skills.Where(s => s.Status).ToList();
+                var skills = context.Skills.Distinct().ToList();
                 if (skills.Any())
                     return skills;
                 else
@@ -57,7 +57,7 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                var ratings = context.Ratings.ToList();
+                var ratings = context.Ratings.Distinct().ToList();
                 if (ratings.Any())
                     return ratings;
                 else
@@ -78,7 +78,7 @@ namespace Skillset_DAL.Repositories
             {
                 var employees = context.Employees.ToList().Where(s => s.Status && s.EmployeeId == managerId && s.Id != s.EmployeeId);
                 if (employees.Any())
-                    return employees;
+                    return employees.Distinct().ToList();
                 else
                     return Enumerable.Empty<Employee>().ToList();
             }
@@ -97,7 +97,7 @@ namespace Skillset_DAL.Repositories
                 var skillRatings = (from d in context.SkillRatings
                                     from e in context.Employees
                                     where (e.Status && e.EmployeeCode.Equals(employeeCode) && d.EmployeeId == e.Id && d.Status)
-                                    select d).ToList();
+                                    select d).Distinct().ToList();
                 if (skillRatings.Any())
                     return skillRatings;
                 else

@@ -69,6 +69,11 @@ namespace Skillset_DAL.Repositories
                 {
                     Employee employee = context.Employees.Where(p => p.EmployeeCode == id && p.Status == true).Single();
                     employee.Status = false;
+                    var employeeList = context.Employees.Where(p => p.EmployeeId == employee.Id && p.Status == true).ToList();
+                    employeeList.ForEach(p => p.EmployeeId = 1);
+                    foreach (var emp in employeeList)
+                        context.Entry(emp).State = EntityState.Modified;
+
                     context.Entry(employee).State = EntityState.Modified;
                     context.SaveChanges();
                 }
@@ -191,28 +196,21 @@ namespace Skillset_DAL.Repositories
             }
         }
 
-        public IEnumerable<Employee> GetSearchRecords(string option, string search)
+        public IEnumerable<Employee> GetSearchRecords(string search)
         {
             try
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
-                    if (option == "Employee Code")
-                    { 
-                        return context.Employees.Where(p => p.Status == true && p.EmployeeCode.Contains(search)&& p.RoleId !=1).Select(p => p).ToList();
-                    }
-                    else if (option == "Name")
+                    var employeeList= context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode == search||p.Name==search)).Select(p => p).OrderBy(p=>p.EmployeeCode).ToList();
+                    if(employeeList.Count==0)
                     {
-                        return context.Employees.Where(p => p.Status == true && p.Name.Contains(search) && p.RoleId != 1).Select(p => p).ToList();
+                        int designationId = context.Designations.Where(p => p.Name == search).Select(p => p.Id).FirstOrDefault();
+                        employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && p.DesignationId == designationId).Select(p => p).OrderBy(p => p.EmployeeCode).ToList();
                     }
-                    else if (option == "Designation")
-                    {
-                        var employeeList = from e in context.Employees from d in context.Designations where ((e.Status == true) && (e.DesignationId == d.Id) && (d.Name.Equals(search)) && e.RoleId != 1) select e;
-                        return employeeList.ToList();
-                    }
-                    else
-                        return null;
+                    return employeeList;            
                 }
+                
             }
             catch
             {
@@ -222,14 +220,21 @@ namespace Skillset_DAL.Repositories
         }
 
         /// <summary>
-        /// Get recently registered 5 employee details
+        /// Get recently rated 5 employee details
         /// </summary>
         /// <returns></returns>
         public List<Employee> GetRecentEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                return context.Employees.OrderByDescending(e => e.EmployeeCode).Take(5).Where(e => e.Roles.Name != "Admin").ToList();
+                var RecentEmployees = (from s in context.SkillRatings
+                                       join j in context.Employees
+                                       on s.EmployeeId equals j.Id
+                                       where s.Status == true
+                                       orderby s.Id descending
+                                       select j).ToList();
+                var DistnctEmployees = RecentEmployees.Distinct().Take(2).ToList();
+                return DistnctEmployees;
             }
         }
 
@@ -244,19 +249,13 @@ namespace Skillset_DAL.Repositories
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where s.Status == true
+                              where s.Status == true && j.Status==true
                               select new { j.SkillName, j.SkillId }).Distinct();
 
                 var skill = from s in skills
                             orderby s.SkillId descending
                             select s.SkillName;
-
-                var b = string.Empty;
-                foreach(var c in skill)
-                {
-                    b += c;
-                }
-                var ab = b;
+                
                 return skill;
             }
         }
@@ -271,9 +270,14 @@ namespace Skillset_DAL.Repositories
             {
                 string result = string.Empty;
                 string id = string.Empty;
-                var pll2 = context.SkillRatings.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+                var skills = (from s in context.SkillRatings
+                              join j in context.Skills
+                              on s.SkillId equals j.SkillId
+                              where j.Status == true && s.Status == true
+                              select j);
+                var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
                
-                foreach (var r in pll2.OrderByDescending(x => x.Id).Select(x => x.Values))
+                foreach (var r in groupRating.OrderByDescending(x => x.Id).Select(x => x.Values))
                 {
                     result += r;
                     result += ", ";
@@ -322,5 +326,81 @@ namespace Skillset_DAL.Repositories
             return employeesCount;
         }
 
+        /// <summary>
+        /// Get skill names of skills rated by employee excluding special skill
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<string> GetEmployeeRatedSkillExcludeSpecial()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            {
+                var skills = (from s in context.SkillRatings
+                              join j in context.Skills
+                              on s.SkillId equals j.SkillId
+                              where s.Status == true && j.Status==true
+                              select new { j.SkillName, j.SkillId }).Distinct();
+
+                var skill = from s in skills
+                            orderby s.SkillId descending
+                            where s.SkillName != "Special Skill"
+                            select s.SkillName;
+
+                return skill;
+            }
+        }
+
+        public string GetRatingAverage()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            {
+                List<int> totalValues = new List<int>();
+                List<int> specificValues = new List<int>();
+                var result = string.Empty;
+                string id = string.Empty;
+                var rating = context.SkillRatings.Where(x => x.Status == true);
+                var groupRating = rating.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+
+                foreach (var r in groupRating.OrderByDescending(x => x.Id).Select(x => x.Values))
+                {
+                    totalValues.Add(r);
+                }
+
+                var skill = (from sr in context.SkillRatings
+                            join r in context.Ratings
+                            on sr.RatingId equals r.Id
+                            join s in context.Skills
+                            on sr.SkillId equals s.SkillId
+                            where sr.Status == true && s.Status==true
+                            select new { sr.SkillId , r.Value });
+
+                var groupSkill = skill.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Select(s => s.Value).Sum() });
+                foreach (var r in groupSkill.OrderByDescending(x => x.Id).Select(x => x.Values))
+                {
+                    specificValues.Add(r);
+                }
+                for(int i =0;i<specificValues.Count;i++)
+                {
+                    float ratingAvg = (float)specificValues.ElementAt(i) / (float)totalValues.ElementAt(i);
+                    result += ratingAvg;
+                    result += ", ";
+                }
+                return result;
+
+            }
+        }
+        public Employee GetProfile(string id)
+        {
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                return context.Employees.Where(e => e.EmployeeCode == id).FirstOrDefault();
+            }
+        }
+        public void Dispose()
+        {
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+
+            }
+        }
     }
 }

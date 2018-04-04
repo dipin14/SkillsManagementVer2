@@ -4,6 +4,7 @@ using Skillset_DAL.Models;
 using Skillset_DAL.Repositories;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Skillset_BLL.Services
 {
@@ -111,9 +112,9 @@ namespace Skillset_BLL.Services
             return _repository.GetRoleName(id);
         }
 
-        public IEnumerable<EmployeeDTO> ViewSearchRecords(string option, string search)
+        public IEnumerable<EmployeeDTO> ViewSearchRecords(string search)
         {
-            var list = _repository.GetSearchRecords(option,search);
+            var list = _repository.GetSearchRecords(search);
             var dtoList = new List<EmployeeDTO>();
             foreach (Employee item in list)
             {
@@ -158,6 +159,23 @@ namespace Skillset_BLL.Services
         public int GetSkillRatingsCount()
         {
             return _repository.GetSkillRatingsCount();
+        }
+
+        public string GetRatingAverage()
+        {
+            return _repository.GetRatingAverage();
+        }
+        public IQueryable<string> GetEmployeeRatedSkillExcludeSpecial()
+        {
+            return _repository.GetEmployeeRatedSkillExcludeSpecial();
+        }
+        public void Dispose()
+        {
+            _repository.Dispose();
+        }
+        public EmployeeDTO GetProfile(string id)
+        {
+            return _repository.GetProfile(id).EmployeeModeltoDTO();
         }
     }
 }

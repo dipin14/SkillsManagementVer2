@@ -3,7 +3,7 @@ namespace Skillset_DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newskill : DbMigration
+    public partial class newSkills : DbMigration
     {
         public override void Up()
         {
