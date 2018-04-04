@@ -46,6 +46,9 @@ namespace Skillset_BLL.Services
             return _iSkillRepository.Update(skill.ToModel());
         }
 
-        
+        public int GetSkillsCount()
+        {
+            return _iSkillRepository.GetSkillsCount();
+        }
     }
 }

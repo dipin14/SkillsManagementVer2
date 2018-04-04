@@ -20,18 +20,13 @@ namespace Skillset_DAL.Repositories
         List<Qualification> GetQualifications();
         List<Employee> GetManagers();
         List<Role> GetRole();
-        List<Employee> GetRecentEmployees();
         string GetDesignationName(string id);
         string GetQualificationName(string id);
         string GetManagerName(string id);
         string GetRoleName(string id);
-        IQueryable<string> GetEmployeeRatedSkill();
-        IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
-        string GetEmployeeRating();
-        int GetSkillsCount();
+       
         int GetEmployeesCount();
-        int GetSkillRatingsCount();
-        string GetRatingAverage();
+        List<Employee> GetRecentEmployees();
         Employee GetProfile(string id);
     }
 }
