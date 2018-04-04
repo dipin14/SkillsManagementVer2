@@ -1,5 +1,6 @@
-﻿@model IEnumerable<Skillset_PL.ViewModels.AdministratorEmployeeViewModel>
-
+﻿@model IPagedList<Skillset_PL.ViewModels.AdministratorEmployeeViewModel>
+@using PagedList.Mvc;
+@using PagedList;
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "View Employee Skills";
@@ -42,13 +43,13 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.EmployeeCode)
+                        @Html.DisplayName("Employee Code")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Name)
+                        @Html.DisplayName("Name")
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Designation)
+                        @Html.DisplayName("Designation")
                     </th>
                     <th>
                         @Html.DisplayName("Action")
@@ -85,5 +86,8 @@
 
         </div>
     }
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, pageNo => Url.Action("Index", new { search = ViewBag.search,pageNo }))
 </div>
+
 

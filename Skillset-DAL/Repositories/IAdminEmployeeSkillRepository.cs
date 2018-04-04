@@ -15,7 +15,7 @@ namespace Skillset_DAL.Repositories
         /// <param name="option"></param>
         /// <param name="searchKey"></param>
         /// <returns></returns>
-        List<Employee> GetEmployeeDetails(string searchKey);
+        List<Employee> GetEmployeeDetails(string searchKey, int pageNumber, int pageSize, out int totalCount);
         
         /// <summary>
         /// Finding designation from table Designation
