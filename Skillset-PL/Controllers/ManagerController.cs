@@ -68,7 +68,6 @@ namespace Skillset_PL.Controllers
         {
             var EmpId = Convert.ToInt32(Session["customerId"]);
             EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
-
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
             ratingObj.SkillRatings = EmployeeRatings();
             return View(ratingObj);
@@ -90,6 +89,5 @@ namespace Skillset_PL.Controllers
             var skillList = _skillService.GetAllSkills().ToViewModelList();
             return skillList;
         }
-
     }
 }
