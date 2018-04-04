@@ -27,6 +27,6 @@ function OnSubmitClick()
 }
 function resetValidation()
 {
-    $(".has-error").hide();
-    $(".text-danger").hide();
+    $(".has-error").empty();
+    $(".text-danger").empty();
 }
