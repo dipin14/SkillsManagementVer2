@@ -42,7 +42,7 @@
 
             var ctx1 = document.getElementById("Linecanvas").getContext("2d");
 
-            if (1 > PieChartData.datasets.length) {
+            if (''== PieChartData.labels) {
                 ctx1.font = "20px " + Chart.defaults.global.tooltipTitleFontFamily;
                 ctx1.textAlign = "center";
                 ctx1.textBaseline = "middle";
@@ -118,7 +118,7 @@
                 <div class="container">
                     <p>Total Ratings Performed</p>
                     <div>
-                        <span style="font-size:40px;margin-left:120px;">@(ViewBag.TotalSkillRatingsCount)</span>
+                        <span style="font-size:40px;margin-left:95px;">@(ViewBag.TotalSkillRatingsCount)/@(ViewBag.MaximumRatings)</span>
                     </div>
                     <div class="progress" style="background-color: #ca42423b;">
                         <div class="progress-bar progress-bar-danger"
