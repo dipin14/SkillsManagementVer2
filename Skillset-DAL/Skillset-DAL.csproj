@@ -66,14 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextClass\SkillsetDbContext.cs" />
-    <Compile Include="Migrations\201804041717364_new.cs" />
-    <Compile Include="Migrations\201804041717364_new.Designer.cs">
-      <DependentUpon>201804041717364_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804031151169_new.cs" />
-    <Compile Include="Migrations\201804031151169_new.Designer.cs">
-      <DependentUpon>201804031151169_new.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -107,14 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804041717364_new.resx">
-      <DependentUpon>201804041717364_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804031151169_new.resx">
-      <DependentUpon>201804031151169_new.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
