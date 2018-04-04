@@ -12,37 +12,41 @@ namespace Skillset_PL.Controllers
     public class DashboardController : Controller
     {
         private IEmployeeServices _services;
-        public DashboardController(IEmployeeServices services)
+        private ISkillRatingService _ratingservices;
+        private ISkillService _skillservices;
+        public DashboardController(IEmployeeServices services,ISkillRatingService ratingservices,ISkillService skillservices)
         {
             _services = services;
+            _ratingservices = ratingservices;
+            _skillservices = skillservices;
         }
         // GET: Dashboard
       
         public ActionResult Index()
         {
             //Get total skills
-            ViewBag.TotalSkills = _services.GetSkillsCount();
+            ViewBag.TotalSkills = _skillservices.GetSkillsCount();
             ViewBag.TotalEmployees = _services.GetEmployeesCount();
 
             //Get total ratings performed 
-            if ((_services.GetSkillsCount() * _services.GetEmployeesCount()) == 0)
+            if ((_skillservices.GetSkillsCount() * _services.GetEmployeesCount()) == 0)
             {
                 ViewBag.TotalSkillRatings = 0;
             }
             else
             {
-                ViewBag.TotalSkillRatings = ((_services.GetSkillRatingsCount() * 100) / (_services.GetSkillsCount() * _services.GetEmployeesCount()));
+                ViewBag.TotalSkillRatings = ((_ratingservices.GetSkillRatingsCount() * 100) / (_skillservices.GetSkillsCount() * _services.GetEmployeesCount()));
             }
-            ViewBag.MaximumRatings = (_services.GetSkillsCount() * _services.GetEmployeesCount());
-            ViewBag.TotalSkillRatingsCount = _services.GetSkillRatingsCount();
+            ViewBag.MaximumRatings = (_skillservices.GetSkillsCount() * _services.GetEmployeesCount());
+            ViewBag.TotalSkillRatingsCount = _ratingservices.GetSkillRatingsCount();
 
 
             //Get chart data
-            ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkill().Select(i => i.Replace("'", "\"\"")).ToArray()));
-            ViewBag.RatingList = _services.GetEmployeeRating();
+            ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", _ratingservices.GetEmployeeRatedSkill().Select(i => i.Replace("'", "\"\"")).ToArray()));
+            ViewBag.RatingList = _ratingservices.GetEmployeeRating();
 
-            ViewBag.SkillnameExcludeList = string.Format("'{0}'", string.Join("','", _services.GetEmployeeRatedSkillExcludeSpecial().Select(i => i.Replace("'", "\"\"")).ToArray()));
-            ViewBag.RatingAverage = _services.GetRatingAverage();
+            ViewBag.SkillnameExcludeList = string.Format("'{0}'", string.Join("','", _ratingservices.GetEmployeeRatedSkillExcludeSpecial().Select(i => i.Replace("'", "\"\"")).ToArray()));
+            ViewBag.RatingAverage = _ratingservices.GetRatingAverage();
 
             var dtoList = _services.GetRecentEmployees();
             var modelList = new List<EmployeeViewModel>();
