@@ -148,8 +148,8 @@ textarea {
     content: attr(data-tooltip);
     display: none;
     position: absolute;
-    background: #000;
-    color: #fff;
+    background: #f0f8ff;
+    color: #4682b4;
     padding: 4px 8px;
     font-size: 14px;
     line-height: 1.4;
@@ -217,22 +217,22 @@ textarea {
 [data-tooltip-position="top"]:after {
     bottom: 100%;
     border-width: 6px 6px 0;
-    border-top-color: #000;
+    border-top-color: #f0f8ff;
 }
 [data-tooltip-position="right"]:after {
     left: 100%;
     border-width: 6px 6px 6px 0;
-    border-right-color: #000;
+    border-right-color: #f0f8ff;
 }
 [data-tooltip-position="bottom"]:after {
     top: 100%;
     border-width: 0 6px 6px;
-    border-bottom-color: #000;
+    border-bottom-color: #f0f8ff;
 }
 [data-tooltip-position="left"]:after {
     right: 100%;
     border-width: 6px 0 6px 6px;
-    border-left-color: #000;
+    border-left-color: #f0f8ff;
 }
 /* Show the tooltip when hovering */
 [data-tooltip]:hover:before,
