@@ -86,7 +86,7 @@ function SubmitRating(RatedSkills, TotalSkills) {
 //Function to post an ajax call to the controller action passing the rating value list
 function CompleteRating(RatingList) {
     if (RatingList == "") {
-        alert("Please enter your ratings");
+        
         ShowValidation();
     }
     else {
@@ -108,6 +108,7 @@ function CompleteRating(RatingList) {
         });
     }
 }
+
 //Function to post an ajax call to the action controller to get all the skills and skillratings from the db
 function RateSkill() {
 
@@ -215,4 +216,5 @@ function ShowValidation()
 
     // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+    setTimeout(function () { location.reload(); }, 1000);
 }
