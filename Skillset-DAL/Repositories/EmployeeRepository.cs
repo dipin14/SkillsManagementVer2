@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Skillset_DAL.Repositories
 {
     public class EmployeeRepository : IEmployeeRepository
-    {
+    {      
         public int AddEmployee(Employee employee)
         {
             var employeeList = new List<Employee>();
@@ -38,7 +38,7 @@ namespace Skillset_DAL.Repositories
                 return -1;
             }
         }
-
+       
         public int CheckDuplicateEmployee(List<Employee> employeeList, Employee newEmployee)
         {
             var check = new List<Employee>();
@@ -60,7 +60,7 @@ namespace Skillset_DAL.Repositories
             return 0;
 
         }
-
+       
         public int DeleteEmployee(string id)
         {
             try
@@ -84,8 +84,7 @@ namespace Skillset_DAL.Repositories
                 return 0;
             }
 
-        }
-
+        }      
         public int EditEmployee(Employee employee)
         {
             try
@@ -105,7 +104,7 @@ namespace Skillset_DAL.Repositories
                 return 0;
             }
         }
-
+        
         public IEnumerable<Employee> GetAllEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -202,10 +201,12 @@ namespace Skillset_DAL.Repositories
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
-                    var employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode == search || p.Name == search)).Select(p => p).OrderBy(p => p.EmployeeCode).ToList();
+                   
+                    var employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode.ToUpper() == search.ToUpper() || p.Name.ToUpper() == search.ToUpper())).Select(p => p).OrderBy(p => p.EmployeeCode).ToList();
                     if (employeeList.Count == 0)
                     {
-                        int designationId = context.Designations.Where(p => p.Name == search).Select(p => p.Id).FirstOrDefault();
+
+                        int designationId = context.Designations.Where(p => p.Name.ToUpper() == search.ToUpper()).Select(p => p.Id).FirstOrDefault();
                         employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && p.DesignationId == designationId).Select(p => p).OrderBy(p => p.EmployeeCode).ToList();
                     }
                     return employeeList;
@@ -218,11 +219,6 @@ namespace Skillset_DAL.Repositories
             }
 
         }
-
-        /// <summary>
-        /// Get recently rated employee details
-        /// </summary>
-        /// <returns></returns>
         public List<Employee> GetRecentEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -238,13 +234,12 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+      
 
+               
 
+        
 
-        /// <summary>
-        /// Return total employees count
-        /// </summary>
-        /// <returns></returns>
         public int GetEmployeesCount()
         {
             int employeesCount = default(int);
@@ -256,8 +251,9 @@ namespace Skillset_DAL.Repositories
             return employeesCount;
         }
 
+       
 
-        /// <summary>
+       
         /// Get profile details for employee
         /// </summary>
         /// <param name="id"></param>
