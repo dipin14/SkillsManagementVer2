@@ -54,7 +54,10 @@ namespace Skillset_PL.Controllers
 
         public ActionResult EmployeeRating()
         {
-
+            if (Session["customerId"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var EmpId = Convert.ToInt32(Session["customerId"]);
             EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
@@ -69,6 +72,10 @@ namespace Skillset_PL.Controllers
 
         public ActionResult EmployeeProfile()
         {
+            if (Session["customercode"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var EmployeeDtoList = _employeeServices.GetProfile(Session["customercode"].ToString());
             var profile = EmployeeDtoList.EmployeeDTOtoViewModel();
             Session["customerId"] = EmployeeDtoList.Id;

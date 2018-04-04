@@ -37,12 +37,12 @@
 
                             <div onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;">
                                 <input id="Rating @item.skillId" hidden />
-                                <span class="starFade" id="Rate1 @item.skillId" onclick="CRate(@item.skillId, 1)" onmouseover="CRateOver(@item.skillId,1)" onmouseout="CRateOut(@item.skillId,1)"></span>
+                                <span class="starFade" id="Rate1 @item.skillId" onclick="CRate(@item.skillId, 1)" onmouseover="CRateOver(@item.skillId,1)" onmouseout="CRateOut(@item.skillId,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
                                 <label for="Rate1 @item.skillId" title="Amazing"></label>
-                                <span class="starFade" id="Rate2 @item.skillId" onclick="CRate(@item.skillId, 2)" onmouseover="CRateOver(@item.skillId,2)" onmouseout="CRateOut(@item.skillId,2)"></span>
-                                <span class="starFade" id="Rate3 @item.skillId" onclick="CRate(@item.skillId, 3)" onmouseover="CRateOver(@item.skillId,3)" onmouseout="CRateOut(@item.skillId,3)"></span>
-                                <span class="starFade" id="Rate4 @item.skillId" onclick="CRate(@item.skillId, 4)" onmouseover="CRateOver(@item.skillId,4)" onmouseout="CRateOut(@item.skillId,4)"></span>
-                                <span class="starFade" id="Rate5 @item.skillId" onclick="CRate(@item.skillId, 5)" onmouseover="CRateOver(@item.skillId,5)" onmouseout="CRateOut(@item.skillId,5)"></span>
+                                <span class="starFade" id="Rate2 @item.skillId" onclick="CRate(@item.skillId, 2)" onmouseover="CRateOver(@item.skillId,2)" onmouseout="CRateOut(@item.skillId,2)" data-tooltip="Need help" data-tooltip-position="bottom"></span>
+                                <span class="starFade" id="Rate3 @item.skillId" onclick="CRate(@item.skillId, 3)" onmouseover="CRateOver(@item.skillId,3)" onmouseout="CRateOut(@item.skillId,3)" data-tooltip="Need reference" data-tooltip-position="bottom"></span>
+                                <span class="starFade" id="Rate4 @item.skillId" onclick="CRate(@item.skillId, 4)" onmouseover="CRateOver(@item.skillId,4)" onmouseout="CRateOut(@item.skillId,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
+                                <span class="starFade" id="Rate5 @item.skillId" onclick="CRate(@item.skillId, 5)" onmouseover="CRateOver(@item.skillId,5)" onmouseout="CRateOut(@item.skillId,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
                             </div>
                             <textarea class="form-control" id="TxtAra @item.skillId" placeholder="Enter your notes here" name="TxtAra" required style="margin:10px;"></textarea>
 
@@ -65,12 +65,12 @@
                         <div class="col-sm-5" style="color:grey;margin-top:35px;">
                             <div onmouseout="CRateSelected(0)" style="margin-left: 15px;margin-top:10px;width: 150px;">
                                 <input id="Rating 0" hidden />
-                                <span class="starFade" id="Rate1 0" onclick="CRate(0, 1)" onmouseover="CRateOver(0,1)" onmouseout="CRateOut(0,1)"></span>
+                                <span class="starFade" id="Rate1 0" onclick="CRate(0, 1)" onmouseover="CRateOver(0,1)" onmouseout="CRateOut(0,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
                                 <label for="Rate1 0" title="Amazing"></label>
-                                <span class="starFade" id="Rate2 0" onclick="CRate(0, 2)" onmouseover="CRateOver(0,2)" onmouseout="CRateOut(0,2)"></span>
-                                <span class="starFade" id="Rate3 0" onclick="CRate(0, 3)" onmouseover="CRateOver(0,3)" onmouseout="CRateOut(0,3)"></span>
-                                <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)"></span>
-                                <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)"></span>
+                                <span class="starFade" id="Rate2 0" onclick="CRate(0, 2)" onmouseover="CRateOver(0,2)" onmouseout="CRateOut(0,2)" data-tooltip="Need help" data-tooltip-position="bottom"></span>
+                                <span class="starFade" id="Rate3 0" onclick="CRate(0, 3)" onmouseover="CRateOver(0,3)" onmouseout="CRateOut(0,3)" data-tooltip="Need reference" data-tooltip-position="bottom"></span>
+                                <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
+                                <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
                             </div>
                         </div>
                     </div>

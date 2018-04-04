@@ -47,16 +47,17 @@
                             @Html.DisplayFor(modelItem => item.Skill)
                         </td>
                         <td>
+                            <div data-tooltip="@(item.RatingNote)" data-tooltip-position="bottom">
 
-
-                            @for (var i = 1; i <= item.Rating; i++)
-                    {
-                                <span class="starGlow"></span>
-                            }
-                            @for (var i = (item.Rating + 1); i <= 5; i++)
-                    {
-                                <span class="starFade"></span>
-                            }
+                                @for (var i = 1; i <= item.Rating; i++)
+                                {
+                                    <span class="starGlowTable"></span>
+                                }
+                                @for (var i = (item.Rating + 1); i <= 5; i++)
+                                {
+                                    <span class="starFadeTable"></span>
+                                }
+                            </div>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RatingDate)
@@ -87,6 +88,8 @@
     @Html.PagedListPager(Model, page => Url.Action("SkillRate",
     new
     {
-        code= ViewBag.Code,name= ViewBag.Name, page
+        code = ViewBag.Code,
+        name = ViewBag.Name,
+        page
     }))
 </div>

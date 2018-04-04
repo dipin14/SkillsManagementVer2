@@ -40,14 +40,14 @@
                             @Html.DisplayFor(modelItem => item.SkillName)
                         </td>
                         <td>
-                            <div>
+                            <div data-tooltip="@(item.RatingNote)" data-tooltip-position="bottom">
                                 @for (var i = 1; i <= item.SkillValue; i++)
                                 {
-                                    <span class="starGlow"></span>
+                                    <span class="starGlowTable"></span>
                                 }
                                 @for (var i = (item.SkillValue + 1); i <= 5; i++)
                                 {
-                                    <span class="starFade"></span>
+                                    <span class="starFadeTable"></span>
                                 }
                             </div>
 
