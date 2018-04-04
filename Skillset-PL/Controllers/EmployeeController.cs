@@ -230,7 +230,7 @@ namespace Skillset_PL.Controllers
             EmployeeDTO employee = _services.GetEmployeeDetailsById(id);
             if (employee == null)
             {
-                return HttpNotFound();
+                return HttpNotFound();  
             }
             ViewData["Designations"] = GetDesignations();
             ViewData["Qualifications"] = GetQualifications();
