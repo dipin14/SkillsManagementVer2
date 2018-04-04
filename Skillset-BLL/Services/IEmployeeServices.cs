@@ -29,7 +29,6 @@ namespace Skillset_BLL.Services
         IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
         string GetEmployeeRating();
         string GetRatingAverage();
-        void Dispose();
         EmployeeDTO GetProfile(string id);
     }
 }

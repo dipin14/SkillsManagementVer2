@@ -92,11 +92,37 @@
         </div>
 
         <div class="col-sm-4 well" style="background-color:#f5f5f500;">
+<<<<<<< HEAD
+        @if (Model.RatedSkills.Count() > 0)
+        {
+            <h4>Your skills</h4>
+        foreach (var item in Model.RatedSkills)
+        {
+            <div class="panel" style="background-color:aliceblue;">
+                <span style="float:right;">
+                    <a class="glyphicon glyphicon-remove" id="@item.Id" onclick="DeleteRating(@item.Id)"></a>
+                </span>
+
+                <b style="color:steelblue;">
+                    @Html.DisplayFor(modelItem => item.SkillName)
+                </b>
+
+
+                <p style="color:black;margin-left:5px;">
+                    @Html.DisplayFor(modelItem => item.RaitedNote)
+                </p>
+                @for (var i = 1; i <= item.RaitedValue; i++)
+                {
+                        <span class="starGlowN"></span>
+                    }
+                    @for (var i = (item.RaitedValue + 1); i <= 5; i++)
+=======
 @if (Model.RatedSkills.Count() > 0)
             {
             <h4>Your skills</h4>
             
                 foreach (var item in Model.RatedSkills)
+>>>>>>> b2cb773bd7907c30d53737f311ee120d3ba77e4f
                 {
                     <div class="panel panelRating " style="background-color:aliceblue;">
                         <span style="float:right;">
@@ -133,6 +159,14 @@
                     <br/> You have no skills rated.
                 </div>
             }
+}
+else
+{
+    <br />
+                <div class="alert alert-warning fade in">
+                    <strong>No Skill Ratings !</strong><br /> Add your skills rating.
+                </div>
+}
         </div>
     </div>
 </div>

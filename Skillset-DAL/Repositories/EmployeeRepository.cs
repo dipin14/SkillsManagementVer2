@@ -220,7 +220,7 @@ namespace Skillset_DAL.Repositories
         }
 
         /// <summary>
-        /// Get recently rated 5 employee details
+        /// Get recently rated employee details
         /// </summary>
         /// <returns></returns>
         public List<Employee> GetRecentEmployees()
@@ -274,7 +274,7 @@ namespace Skillset_DAL.Repositories
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
                               where j.Status == true && s.Status == true
-                              select j);
+                              select s);
                 var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
                
                 foreach (var r in groupRating.OrderByDescending(x => x.Id).Select(x => x.Values))
@@ -307,7 +307,7 @@ namespace Skillset_DAL.Repositories
             int skillRatingsCount = default(int);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                skillRatingsCount = context.SkillRatings.Where(s => s.Status).Distinct().Count();
+                skillRatingsCount = context.SkillRatings.Where(s => s.Status).Where(s=>s.SkillId != 1).Distinct().Count();
             }
             return skillRatingsCount;
         }
@@ -349,6 +349,10 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Returns average ratings for primary skills
+        /// </summary>
+        /// <returns></returns>
         public string GetRatingAverage()
         {
             SkillsetDbContext context = new SkillsetDbContext();
@@ -388,18 +392,17 @@ namespace Skillset_DAL.Repositories
 
             }
         }
+
+        /// <summary>
+        /// Get profile details for employee
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Employee GetProfile(string id)
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 return context.Employees.Where(e => e.EmployeeCode == id).FirstOrDefault();
-            }
-        }
-        public void Dispose()
-        {
-            using (SkillsetDbContext context = new SkillsetDbContext())
-            {
-
             }
         }
     }
