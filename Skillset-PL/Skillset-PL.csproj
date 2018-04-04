@@ -302,12 +302,12 @@
     <Content Include="Views\Skill\Delete.cshtml" />
     <Content Include="Views\AdministratorView\Index.cshtml" />
     <Content Include="Views\Manager\SkillRate.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\SkillRating\_EmployeeLayout.cshtml" />
     <Content Include="Views\SkillRating\EmployeeProfile.cshtml" />
     <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <Content Include="Views\Manager\ManagerRating.cshtml" />
     <Content Include="Views\AdministratorView\Skills.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
     <None Include="Web.Debug.config" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
