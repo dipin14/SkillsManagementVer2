@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Skillset_DAL.Repositories
 {
     public class EmployeeRepository : IEmployeeRepository
-    {
+    {      
         public int AddEmployee(Employee employee)
         {
             var employeeList = new List<Employee>();
@@ -38,7 +38,7 @@ namespace Skillset_DAL.Repositories
                 return -1;
             }
         }
-
+       
         public int CheckDuplicateEmployee(List<Employee> employeeList, Employee newEmployee)
         {
             var check = new List<Employee>();
@@ -60,7 +60,7 @@ namespace Skillset_DAL.Repositories
             return 0;
 
         }
-
+       
         public int DeleteEmployee(string id)
         {
             try
@@ -84,8 +84,7 @@ namespace Skillset_DAL.Repositories
                 return 0;
             }
 
-        }
-
+        }      
         public int EditEmployee(Employee employee)
         {
             try
@@ -105,7 +104,7 @@ namespace Skillset_DAL.Repositories
                 return 0;
             }
         }
-
+        
         public IEnumerable<Employee> GetAllEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -202,27 +201,23 @@ namespace Skillset_DAL.Repositories
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
-                    var employeeList= context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode == search||p.Name==search)).Select(p => p).OrderBy(p=>p.EmployeeCode).ToList();
-                    if(employeeList.Count==0)
+                    var employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode.ToUpper() == search.ToUpper() || p.Name.ToUpper() == search.ToUpper())).Select(p => p).OrderBy(p => p.EmployeeCode).ToList();
+                    if (employeeList.Count == 0)
                     {
-                        int designationId = context.Designations.Where(p => p.Name == search).Select(p => p.Id).FirstOrDefault();
+                        int designationId = context.Designations.Where(p => p.Name.ToUpper() == search.ToUpper()).Select(p => p.Id).FirstOrDefault();
                         employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && p.DesignationId == designationId).Select(p => p).OrderBy(p => p.EmployeeCode).ToList();
                     }
-                    return employeeList;            
+                    return employeeList;
                 }
-                
+
             }
             catch
             {
                 return null;
             }
-           
-        }
 
-        /// <summary>
-        /// Get recently rated 5 employee details
-        /// </summary>
-        /// <returns></returns>
+        }
+      
         public List<Employee> GetRecentEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -238,10 +233,7 @@ namespace Skillset_DAL.Repositories
             }
         }
 
-        /// <summary>
-        /// Get skill names of skills rated by employee
-        /// </summary>
-        /// <returns></returns>
+       
         public IQueryable<string> GetEmployeeRatedSkill()
         {
             SkillsetDbContext context = new SkillsetDbContext();
@@ -249,21 +241,18 @@ namespace Skillset_DAL.Repositories
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where s.Status == true && j.Status==true
+                              where s.Status == true && j.Status == true
                               select new { j.SkillName, j.SkillId }).Distinct();
 
                 var skill = from s in skills
                             orderby s.SkillId descending
                             select s.SkillName;
-                
+
                 return skill;
             }
         }
 
-        /// <summary>
-        /// Get total ratings for each skill given by employees
-        /// </summary>
-        /// <returns></returns>
+       
         public string GetEmployeeRating()
         {
             SkillsetDbContext context = new SkillsetDbContext();
@@ -276,7 +265,7 @@ namespace Skillset_DAL.Repositories
                               where j.Status == true && s.Status == true
                               select j);
                 var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
-               
+
                 foreach (var r in groupRating.OrderByDescending(x => x.Id).Select(x => x.Values))
                 {
                     result += r;
@@ -284,24 +273,17 @@ namespace Skillset_DAL.Repositories
                 }
                 return result;
             }
-        }
-        /// <summary>
-        /// Return total skill count
-        /// </summary>
-        /// <returns></returns>
+        }        
         public int GetSkillsCount()
         {
             int skillsCount = default(int);
-            using (SkillsetDbContext context = new SkillsetDbContext()) 
+            using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                skillsCount = context.Skills.Where(s=>s.Status).Distinct().Count();
+                skillsCount = context.Skills.Where(s => s.Status).Distinct().Count();
             }
             return skillsCount;
         }
-        /// <summary>
-        /// Return total skill ratings count
-        /// </summary>
-        /// <returns></returns>
+        
         public int GetSkillRatingsCount()
         {
             int skillRatingsCount = default(int);
@@ -311,25 +293,19 @@ namespace Skillset_DAL.Repositories
             }
             return skillRatingsCount;
         }
-        /// <summary>
-        /// Return total employees count
-        /// </summary>
-        /// <returns></returns>
+       
         public int GetEmployeesCount()
         {
             int employeesCount = default(int);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 //Exclude Admin
-                employeesCount = (context.Employees.Where(s => s.Status).Distinct().Count())-1;
+                employeesCount = (context.Employees.Where(s => s.Status).Distinct().Count()) - 1;
             }
             return employeesCount;
         }
 
-        /// <summary>
-        /// Get skill names of skills rated by employee excluding special skill
-        /// </summary>
-        /// <returns></returns>
+       
         public IQueryable<string> GetEmployeeRatedSkillExcludeSpecial()
         {
             SkillsetDbContext context = new SkillsetDbContext();
@@ -337,7 +313,7 @@ namespace Skillset_DAL.Repositories
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where s.Status == true && j.Status==true
+                              where s.Status == true && j.Status == true
                               select new { j.SkillName, j.SkillId }).Distinct();
 
                 var skill = from s in skills
@@ -366,19 +342,19 @@ namespace Skillset_DAL.Repositories
                 }
 
                 var skill = (from sr in context.SkillRatings
-                            join r in context.Ratings
-                            on sr.RatingId equals r.Id
-                            join s in context.Skills
-                            on sr.SkillId equals s.SkillId
-                            where sr.Status == true && s.Status==true
-                            select new { sr.SkillId , r.Value });
+                             join r in context.Ratings
+                             on sr.RatingId equals r.Id
+                             join s in context.Skills
+                             on sr.SkillId equals s.SkillId
+                             where sr.Status == true && s.Status == true
+                             select new { sr.SkillId, r.Value });
 
                 var groupSkill = skill.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Select(s => s.Value).Sum() });
                 foreach (var r in groupSkill.OrderByDescending(x => x.Id).Select(x => x.Values))
                 {
                     specificValues.Add(r);
                 }
-                for(int i =0;i<specificValues.Count;i++)
+                for (int i = 0; i < specificValues.Count; i++)
                 {
                     float ratingAvg = (float)specificValues.ElementAt(i) / (float)totalValues.ElementAt(i);
                     result += ratingAvg;
