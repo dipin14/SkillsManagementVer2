@@ -21,13 +21,11 @@ namespace Skillset_DAL.Repositories
 
             using (var context = new SkillsetDbContext())
             {
-                //var a = context.Employees.Where(e => e.RoleId != 1).Count();
-                //totalCount = a;
-                var searchByEmployeeCode = context.Employees.Where(m => m.Status == true && m.RoleId!=1 && m.EmployeeCode.Equals(searchKey)).Select(m => m).OrderBy(m => m.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
-                var searchByName = context.Employees.Where(m => m.Status == true && m.RoleId != 1 && m.Name.Equals(searchKey)).Select(m => m).OrderBy(m => m.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
+                var searchByEmployeeCode = context.Employees.Where(m => m.Status == true && m.RoleId!=1 && m.EmployeeCode.ToUpper().Equals(searchKey.ToUpper())).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();               
+                var searchByName = context.Employees.Where(m => m.Status == true && m.RoleId != 1 && m.Name.ToUpper().Equals(searchKey.ToUpper())).Select(m => m).OrderBy(m => m.EmployeeCode).ToList();               
                 var query = from e in context.Employees
                                 from d in context.Designations
-                                where ((e.Status == true) && (e.RoleId != 1) && (e.DesignationId == d.Id) && (d.Name.Equals(searchKey)))
+                                where ((e.Status == true) && (e.RoleId != 1) && (e.DesignationId == d.Id) && (d.Name.ToUpper().Equals(searchKey.ToUpper())))
                                 select e;
                 var searchByDesignation = query.OrderBy(m => m.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
                 
