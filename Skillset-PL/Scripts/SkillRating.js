@@ -216,5 +216,4 @@ function ShowValidation()
 
     // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
-    setTimeout(function () { location.reload(); }, 1000);
 }
