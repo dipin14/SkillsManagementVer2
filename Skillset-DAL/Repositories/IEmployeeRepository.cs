@@ -14,7 +14,7 @@ namespace Skillset_DAL.Repositories
         /// Retrieves the employee record according to the search key if no search key retreives the employee list
         /// </summary>
         /// <param name="search"></param>
-        /// <returns></returns>
+   
         IEnumerable<Employee> GetSearchRecords(string search, int pageNumber, int pageSize, out int totalCount);
         /// <summary>
         /// Adds new employee to the database

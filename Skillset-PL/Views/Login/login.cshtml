@@ -1,38 +1,48 @@
-﻿@{
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Login";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-</head>
-<body>
-    @using (Html.BeginForm())
-    {
-        <br />
-        <br />
-        <br />
-        <div class="container">
 
-            <center>
-                <div class="form-group">
-                    @Html.Label("Employee Code")
-                    @Html.Editor("EmployeeCode", new { htmlAttributes = new { @class = "form-control", placeholder = "Employee Code" } })
-                    @Html.ValidationMessage("EmployeeCode", "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.Label("Password")
-                    @Html.Editor("Password", new { htmlAttributes = new { @class = "form-control", placeholder = "Password", @type = "password" } })
-                    @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
-                    <h5 style="color:red;">@ViewBag.ErrorMessage</h5>
-                </div>
-                <input type="submit" name="submit" value="Login" class="btn btn-primary form-control" />
-                <br />
-            </center>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Login</div>
+            </div>
+            <div style="padding-top:30px " class="panel-body">
+                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                @using (Html.BeginForm())
+                {
+                    <form id="loginform" class="form-horizontal" role="form">
+                        <center>
+                            <div class="form-group">
+                                @Html.Label("Employee Code")
+                                @Html.Editor("EmployeeCode", new { htmlAttributes = new { @class = "form-control", placeholder = "Employee Code" } })
+                                @Html.ValidationMessage("EmployeeCode", "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Password")
+                                @Html.Editor("Password", new { htmlAttributes = new { @class = "form-control", placeholder = "Password", @type = "password" } })
+                                @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
+                                <h5 style="color:red;">@ViewBag.ErrorMessage</h5>
+                            </div>
+                            <div style="margin-top:10px" class="form-group">
+                                <!-- Button -->
+                                <div class="col-sm-12 controls">
+                                    <input type="submit" name="submit" value="Login" class="btn btn-primary form-control" />
+                                </div>
+                            </div>
+                        </center>
+                    </form>
+                }
+            </div>
         </div>
-    }
-</body>
-</html>
+    </div>
+</div>
+
 

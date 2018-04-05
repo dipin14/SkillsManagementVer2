@@ -115,7 +115,31 @@
       margin-left:20px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 970px) {
+ .nav-side-menu .menu-list .menu-content {
+    display: block;
+  }
+  .nav-side-menu {
+   
+    width: 20%;
+   
+  }
+  body
+  {
+      overflow-x:hidden;
+  }
+  .row .first{
+      margin-left:55px;
+      margin-top:70px;
+      margin-right:15px;
+  }
+   .navbar-fixed-top .toggle-btn {
+    
+    background-color:transparent;
+    color:transparent;
+  }
+}
+@media (min-width: 970px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
