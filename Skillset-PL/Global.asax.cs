@@ -60,7 +60,7 @@ namespace Skillset_PL
             {
                 return;
             }
-
+              
             // retrieve roles from UserData
             string[] roles = authTicket.UserData.Split(';');
 

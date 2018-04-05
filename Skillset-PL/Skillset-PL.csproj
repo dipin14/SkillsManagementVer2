@@ -243,6 +243,7 @@
     <Content Include="Images\star1.png" />
     <Content Include="Images\StarFade.gif" />
     <Content Include="Images\StarGlow.gif" />
+    <Content Include="Images\user.png" />
     <Content Include="obj\Debug\Skillset-PL.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Skillset_PL.dll" />
     <Content Include="obj\Debug\Skillset_PL.pdb" />
