@@ -42,7 +42,7 @@ namespace Skillset_PL.Controllers
 
 
             //Get chart data
-            ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", _ratingservices.GetEmployeeRatedSkill().Select(i => i.Replace("'", "\"\"")).ToArray()));
+            ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", _ratingservices.GetEmployeeRatedSkillName().Select(i => i.Replace("'", "\"\"")).ToArray()));
             ViewBag.RatingList = _ratingservices.GetEmployeeRating();
 
             ViewBag.SkillnameExcludeList = string.Format("'{0}'", string.Join("','", _ratingservices.GetEmployeeRatedSkillExcludeSpecial().Select(i => i.Replace("'", "\"\"")).ToArray()));
