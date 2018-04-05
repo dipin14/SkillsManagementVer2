@@ -20,7 +20,7 @@ namespace Skillset_PL.Controllers
         {
             _services = services;
         }
-
+        //Get list of designations
         public List<SelectListItem> GetDesignations()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -36,6 +36,7 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
+        //Get list of Qualifications
         public List<SelectListItem> GetQualifications()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -51,6 +52,7 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
+        //Get list of managers
         public List<SelectListItem> GetManagers()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -66,6 +68,7 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
+        //Get list of roles
         public List<SelectListItem> GetRoles()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -101,7 +104,7 @@ namespace Skillset_PL.Controllers
             IPagedList<EmployeeViewModel> pageOrders = new StaticPagedList<EmployeeViewModel>(modelList, pageNumber + 1, 3, totalCount);
             return View(pageOrders);
         }
-              
+        //  GET: Employees/Create  
         public ActionResult Create()
         {
             ViewData["Designations"] = GetDesignations();
@@ -110,6 +113,7 @@ namespace Skillset_PL.Controllers
             ViewData["Roles"] = GetRoles();
             return View();
         }
+        // POST: Employees/Create/{employee}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(EmployeeViewModel employee)
@@ -167,7 +171,7 @@ namespace Skillset_PL.Controllers
             return View(employee.EmployeeDTOtoViewModel());
         }
 
-        // POST: Employees/Delete/
+        // POST: Employees/Delete/{id}
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
@@ -182,7 +186,7 @@ namespace Skillset_PL.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Employees/Details/
+        // GET: Employees/Details/{id}
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -201,7 +205,7 @@ namespace Skillset_PL.Controllers
             return View(employee.EmployeeDTOtoViewModel());
         }
 
-        // GET: Employees/Edit/5
+        // GET: Employees/Edit/{id}
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -220,9 +224,7 @@ namespace Skillset_PL.Controllers
             return View(employee.EmployeeDTOtoViewModel());
         }
 
-        // POST: Employees/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Employees/Edit/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EmployeeViewModel employee)
