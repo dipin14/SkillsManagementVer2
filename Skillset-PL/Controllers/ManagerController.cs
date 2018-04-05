@@ -95,7 +95,8 @@ namespace Skillset_PL.Controllers
             var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
             return RatedSkills;
         }
-         /// <summary>
+
+        /// <summary>
         /// Retrieve all skills
         /// </summary>
         /// <returns>IEnumerable<SkillViewModel></returns>

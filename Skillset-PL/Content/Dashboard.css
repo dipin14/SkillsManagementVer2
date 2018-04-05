@@ -137,6 +137,7 @@
          margin-left:37px;
     }
 }
+
 @media (min-width: 768px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
