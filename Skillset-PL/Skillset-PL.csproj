@@ -221,24 +221,21 @@
     <Content Include="Content\Card.css" />
     <Content Include="Content\Dashboard.css" />
     <Content Include="Content\Layout.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\ashstar.jpg" />
     <Content Include="Images\ashstar.png" />
-
     <Content Include="Images\ashstar1.png" />
-
     <Content Include="Images\female.png" />
     <Content Include="Images\male.png" />
     <Content Include="Images\rate1.png" />
     <Content Include="Images\rate2.png" />
-
     <Content Include="Images\redstar.png" />
     <Content Include="Images\redstar1.png" />
     <Content Include="Images\star %286%29.png" />
-
     <Content Include="Images\star1.png" />
     <Content Include="Images\StarFade.gif" />
     <Content Include="Images\StarGlow.gif" />
