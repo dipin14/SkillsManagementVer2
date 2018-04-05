@@ -32,6 +32,7 @@
         <div class="col-sm-7">
             <div id="snackbar">Succesfully added rating</div>
             <div id="snackbarValidation">Enter your Ratings </div>
+          
             @foreach (var item in Model.SkillRatings)
             {
 
@@ -64,7 +65,7 @@
                                 <span class="starFade" id="Rate4 @item.skillId" onclick="CRate(@item.skillId, 4)" onmouseover="CRateOver(@item.skillId,4)" onmouseout="CRateOut(@item.skillId,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
                                 <span class="starFade" id="Rate5 @item.skillId" onclick="CRate(@item.skillId, 5)" onmouseover="CRateOver(@item.skillId,5)" onmouseout="CRateOut(@item.skillId,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
                             </div>
-                            <textarea class="form-control" id="TxtAra @item.skillId" placeholder="Enter your notes here" name="TxtAra" required style="margin:10px;"></textarea>
+                            <textarea class="form-control notes" id="TxtAra @item.skillId" placeholder="Enter your notes here" name="TxtAra" required style="margin:10px;"></textarea>
 
 
                         </div>
@@ -79,8 +80,8 @@
                 <div class="Ratecard">
                     <div class="row">
 
-                        <div class="col-sm-6" style="margin-left:20px;">
-                            <textarea class="form-control" rows="3" cols="50" id="TxtAra" placeholder="Enter your special skill here" name="TxtAra" required style="margin:10px;"></textarea>
+                        <div class="col-sm-6" style="margin-left:7px;">
+                            <textarea class="form-control " rows="3" cols="50" id="TxtAra" placeholder="Enter your special skill here(Mandatory)" name="TxtAra" required style="margin:10px;"></textarea>
                         </div>
                         <div class="col-sm-5" style="color:grey;margin-top:35px;">
                             <div onmouseout="CRateSelected(0)" style="margin-left: 15px;margin-top:10px;width: 150px;">
@@ -108,7 +109,7 @@
 
         </div>
 
-        <div class="col-sm-4 well" style="background-color:#f5f5f500;">
+        <div class="col-sm-4 well " style="background-color:#f5f5f500;" >
 
             @if (Model.RatedSkills.Count() > 0)
             {<div class="row" style="height:40px;">

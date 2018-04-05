@@ -10,7 +10,7 @@
 input,
 select,
 textarea {
-    max-width: 200px;
+    max-width: 180px;
 }
 /*Styles for rating stars*/
 
@@ -114,6 +114,7 @@ textarea {
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
+
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
     from {bottom: 0; opacity: 0;} 
@@ -266,6 +267,22 @@ textarea {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
 .delete{
  cursor: pointer;
 }
+@media (max-width: 285px) {
+   .form-control .notes {
+    width: 150px;
+}
+  
+}
+
+@media (max-width: 768px) {
+    .well {
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+}
+
