@@ -37,7 +37,7 @@ namespace Skillset_PL.Controllers
                     return RedirectToAction("EmployeeProfile", "SkillRating");
                 }
             }
-            catch
+            catch 
             {
                 return View();
             }
