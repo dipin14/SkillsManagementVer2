@@ -221,6 +221,7 @@
     <Content Include="Content\Card.css" />
     <Content Include="Content\Dashboard.css" />
     <Content Include="Content\Layout.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

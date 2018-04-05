@@ -1,49 +1,37 @@
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Login";
 }
 
-
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<div class="container">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="panel-title">Login</div>
-            </div>
-            <div style="padding-top:30px " class="panel-body">
-                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                @using (Html.BeginForm())
-                {
-                    <form id="loginform" class="form-horizontal" role="form">
+<link href="~/Content/login.css" rel="stylesheet" />
+<!------ Include the above in your HEAD tag ---------->
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-md-offset-4">
+                <br />               
+                <div class="account-wall">
+                    <h1 class="text-center login-title">Login</h1>
+                    <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                         alt="">
+                    <form class="form-signin">
                         <center>
-                            <div class="form-group">
-                                @Html.Label("Employee Code")
-                                @Html.Editor("EmployeeCode", new { htmlAttributes = new { @class = "form-control", placeholder = "Employee Code" } })
-                                @Html.ValidationMessage("EmployeeCode", "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="form-group">
-                                @Html.Label("Password")
-                                @Html.Editor("Password", new { htmlAttributes = new { @class = "form-control", placeholder = "Password", @type = "password" } })
-                                @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
-                                <h5 style="color:red;">@ViewBag.ErrorMessage</h5>
-                            </div>
-                            <div style="margin-top:10px" class="form-group">
-                                <!-- Button -->
-                                <div class="col-sm-12 controls">
-                                    <input type="submit" name="submit" value="Login" class="btn btn-primary form-control" />
-                                </div>
-                            </div>
+                            @Html.Editor("EmployeeCode", new { htmlAttributes = new { @class = "form-control", placeholder = "Employee Code" } })
+                            @Html.ValidationMessage("EmployeeCode", "", new { @class = "text-danger" })
+                            <br />
+                            @Html.Editor("Password", new { htmlAttributes = new { @class = "form-control", placeholder = "Password", @type = "password" } })
+                            @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
+                            <h5 style="color:red;">@ViewBag.ErrorMessage</h5>
+                            <br />
+                            <input type="submit" name="submit" value="Login" class="btn btn-primary form-control" />
                         </center>
                     </form>
-                }
+                </div>
             </div>
         </div>
-
     </div>
-</div>
-
-
+}
