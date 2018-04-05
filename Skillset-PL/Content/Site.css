@@ -268,6 +268,7 @@ textarea {
     100% { transform: rotate(360deg); }
 }
 
+
 .delete{
  cursor: pointer;
 }
@@ -284,3 +285,4 @@ textarea {
         margin-right: 20px;
     }
 }
+

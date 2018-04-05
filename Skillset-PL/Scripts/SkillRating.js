@@ -1,4 +1,4 @@
-﻿
+
 
 function CRate(id, val) {
 
@@ -206,3 +206,6 @@ function ShowValidation()
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
   //  setTimeout(function () { location.reload(); }, 1000);
 }
+
+
+
