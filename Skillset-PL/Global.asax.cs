@@ -50,8 +50,7 @@ namespace Skillset_PL
         {
             HttpCookie authCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie == null || authCookie.Value == "")
-                return;
-
+            return;
             FormsAuthenticationTicket authTicket;
             try
             {
