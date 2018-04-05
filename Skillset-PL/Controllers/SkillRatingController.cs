@@ -83,7 +83,7 @@ namespace Skillset_PL.Controllers
         }
 
         //Action to Get the Employee Profile Of the Logged in Employee
-        [Authorize(Roles = "Employee")]
+        [Authorize(Roles ="Employee")]
         public ActionResult EmployeeProfile()
         {
             if (Session["customercode"] == null)
