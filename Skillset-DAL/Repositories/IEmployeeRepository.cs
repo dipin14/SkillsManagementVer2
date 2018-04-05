@@ -19,7 +19,7 @@ namespace Skillset_DAL.Repositories
         /// </summary>
         /// <param name="search"></param>
         /// <returns></returns>
-        IEnumerable<Employee> GetSearchRecords(string search);
+        IEnumerable<Employee> GetSearchRecords(string search, int pageNumber, int pageSize, out int  totalCount);
         /// <summary>
         /// Adds new employee to the database
         /// </summary>

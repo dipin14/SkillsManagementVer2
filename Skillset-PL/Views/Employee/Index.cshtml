@@ -82,10 +82,5 @@
             </div>
             }
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-          new
-          {
-              page
-          }))
+    @Html.PagedListPager(Model, page => Url.Action("IndexSearch", new { search = ViewBag.search, page }))
 </div>

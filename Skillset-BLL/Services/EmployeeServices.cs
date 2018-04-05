@@ -112,9 +112,9 @@ namespace Skillset_BLL.Services
             return _repository.GetRoleName(id);
         }
 
-        public IEnumerable<EmployeeDTO> ViewSearchRecords(string search)
+        public IEnumerable<EmployeeDTO> ViewSearchRecords(string search, int pageNumber, int pageSize, out int totalCount)
         {
-            var list = _repository.GetSearchRecords(search);
+            var list = _repository.GetSearchRecords(search, pageNumber, pageSize, out totalCount);
             var dtoList = new List<EmployeeDTO>();
             foreach (Employee item in list)
             {

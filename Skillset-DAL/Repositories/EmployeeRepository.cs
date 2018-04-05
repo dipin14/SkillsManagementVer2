@@ -195,26 +195,28 @@ namespace Skillset_DAL.Repositories
             }
         }
 
-        public IEnumerable<Employee> GetSearchRecords(string search)
+        public IEnumerable<Employee> GetSearchRecords(string search, int pageNumber, int pageSize, out int totalCount)
         {
             try
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
                    
-                    var employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode.ToUpper() == search.ToUpper() || p.Name.ToUpper() == search.ToUpper())).Select(p => p).OrderBy(p => p.EmployeeCode).ToList();
+                    var employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode.ToUpper() == search.ToUpper() || p.Name.ToUpper() == search.ToUpper())).Select(p => p).OrderBy(p => p.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
                     if (employeeList.Count == 0)
                     {
 
                         int designationId = context.Designations.Where(p => p.Name.ToUpper() == search.ToUpper()).Select(p => p.Id).FirstOrDefault();
-                        employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && p.DesignationId == designationId).Select(p => p).OrderBy(p => p.EmployeeCode).ToList();
+                        employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && p.DesignationId == designationId).Select(p => p).OrderBy(p => p.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
                     }
+                    totalCount = context.Employees.Count();
                     return employeeList;
                 }
 
             }
             catch
             {
+                totalCount = 0;
                 return null;
             }
 

@@ -102,8 +102,12 @@ namespace Skillset_PL.Controllers
         public ActionResult IndexSearch(int? page,string search)
         {
             search = search.Trim();
+            var pageNumber = (page ?? 1) - 1;
+            var totalCount = 0;
+            var pageSize = 3;
+            ViewBag.search = search;
             //calling method to search for employee details
-            var dtoList = _services.ViewSearchRecords(search);
+            var dtoList = _services.ViewSearchRecords(search, pageNumber, pageSize, out totalCount);
            
                 var modelList = new List<EmployeeViewModel>();
   
@@ -115,10 +119,9 @@ namespace Skillset_PL.Controllers
                     item.EmployeeId = _services.GetManagerName(item.EmployeeId);
                     modelList.Add(item.EmployeeDTOtoViewModel());
                 }
-            int pageSize =4;
-            int pageNumber = (page ?? 1);
-            return View("Index", modelList.ToPagedList(pageNumber, pageSize));
-   
+            IPagedList<EmployeeViewModel> pageOrders = new StaticPagedList<EmployeeViewModel>(modelList, pageNumber + 1, 3, totalCount);
+            //return View("Index", modelList.ToPagedList(pageNumber, pageSize));
+            return View(pageOrders);
         }
 
         public ActionResult Create()
