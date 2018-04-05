@@ -1,4 +1,4 @@
-﻿
+
 
 function CRate(id, val) {
 
@@ -63,20 +63,18 @@ function SubmitRating(RatedSkills, TotalSkills) {
         }
     }
     var specialSkill = document.getElementById("TxtAra").value
-    if (specialSkill != "") {
-        var specialScore = document.getElementById("Rating 0").value
-        var SkillID = 1;
-        if (specialScore != "") {
+     var specialScore = document.getElementById("Rating 0").value
+     var SkillID = 1;
+     if (specialSkill != "" && specialScore != "") 
+     {
+       
             var RatingObject = {};
             RatingObject.IsSpecialSkill = true;
             RatingObject.Note = specialSkill;
             RatingObject.SkillId = SkillID;
             RatingObject.RatingScore = specialScore;
             RatingList.push(RatingObject);
-        }
-
-    }
-
+     }
     CompleteRating(RatingList);
 
 
@@ -96,9 +94,7 @@ function CompleteRating(RatingList) {
             data: { ratingList: RatingList },
             complete: function (result) {
                 if (result.responseText) {
-
-
-                    RateSkill();
+                RateSkill();
                 }
                 else {
                     alert("Sorry!Connection error")
@@ -191,14 +187,10 @@ function ShowLoader()
     setTimeout(function () { element.className = element.className.replace("loader", ""); }, 3000);
 }
 
-function ShowToast() {
-    // Get the snackbar DIV
+function ShowToast()
+{
     var x = document.getElementById("snackbar")
-
-    // Add the "show" class to DIV
     x.className = "show";
-
-    // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
 }
 
@@ -210,10 +202,10 @@ function Reload()
 function ShowValidation()
 {
     var x = document.getElementById("snackbarValidation")
-
-    // Add the "show" class to DIV
     x.className = "show";
-
-    // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+  //  setTimeout(function () { location.reload(); }, 1000);
 }
+
+
+
