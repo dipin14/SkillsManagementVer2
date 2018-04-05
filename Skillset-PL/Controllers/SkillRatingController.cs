@@ -58,7 +58,7 @@ namespace Skillset_PL.Controllers
 
 
         //The Action on which the first hit occurs and returns the list of skills and skill ratings to the corresponding view
-
+        [Authorize(Roles ="Employee")]
         public ActionResult EmployeeRating()
         {
             if (Session["customerId"] == null)
@@ -83,7 +83,7 @@ namespace Skillset_PL.Controllers
         }
 
         //Action to Get the Employee Profile Of the Logged in Employee
-
+        [Authorize(Roles = "Employee")]
         public ActionResult EmployeeProfile()
         {
             if (Session["customercode"] == null)
