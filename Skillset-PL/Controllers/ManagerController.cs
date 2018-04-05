@@ -96,7 +96,7 @@ namespace Skillset_PL.Controllers
             return RatedSkills;
         }
 
-         /// <summary>
+        /// <summary>
         /// Retrieve all skills
         /// </summary>
         /// <returns>IEnumerable<SkillViewModel></returns>
