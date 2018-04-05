@@ -15,6 +15,7 @@ namespace Skillset_BLL.Services
         /// <param name="pageSize"></param>
         /// <param name="totalCount"></param>
         /// <returns></returns>
+        
         IEnumerable<EmployeeDTO> ViewSearchRecords(string search,int pageNumber, int pageSize, out int totalCount);
         /// <summary>
         /// Adds new employee to the Employee table

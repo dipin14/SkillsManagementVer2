@@ -197,6 +197,7 @@ namespace Skillset_DAL.Repositories
                 {
                     if(search==null||search==string.Empty)
                     {
+                        
                         employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1).OrderBy(p => p.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
                         employeeCount = context.Employees.Where(p => p.Status == true && p.RoleId != 1).OrderBy(p => p.EmployeeCode).Count();
                     }

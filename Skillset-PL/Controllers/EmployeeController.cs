@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using ObjectsComparer;
 using PagedList;
 using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
@@ -118,8 +119,11 @@ namespace Skillset_PL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(EmployeeViewModel employee)
         {
+            employee.Name= employee.Name.Trim();
+            employee.Email=employee.Email.Trim();
+            employee.Address=employee.Address.Trim();
             if (ModelState.IsValid)
-            {
+            {               
                 int status = _services.AddNewEmployee(employee.EmployeeViewModeltoDTO());
                 if (status == 1)
                 {
@@ -221,7 +225,9 @@ namespace Skillset_PL.Controllers
             ViewData["Qualifications"] = GetQualifications();
             ViewData["Managers"] = GetManagers();
             ViewData["Roles"] = GetRoles();
-            return View(employee.EmployeeDTOtoViewModel());
+            EmployeeViewModel employeeDetails= employee.EmployeeDTOtoViewModel();
+            Session["EmployeeOriginal"] = employeeDetails;
+            return View(employeeDetails);
         }
 
         // POST: Employees/Edit/{id}
@@ -229,16 +235,31 @@ namespace Skillset_PL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EmployeeViewModel employee)
         {
+            employee.Name = employee.Name.Trim();
+            employee.Email = employee.Email.Trim();
+            employee.Address = employee.Address.Trim();
+            EmployeeViewModel originalEmployee=(EmployeeViewModel)Session["EmployeeOriginal"];
+            var comparer = new ObjectsComparer.Comparer<EmployeeViewModel>();
             if (ModelState.IsValid)
             {
-                int status = _services.EditEmployeeById(employee.EmployeeViewModeltoDTO());
-                if (status == 0)
+                //IEnumerable<Difference> differences;
+                bool isEqual = comparer.Compare(employee, originalEmployee);
+                if (!isEqual)
                 {
-                    ViewBag.message = "Error in modifying employee record";
-                    return RedirectToAction("Edit", employee);
+                    int status = _services.EditEmployeeById(employee.EmployeeViewModeltoDTO());
+                    if (status == 0)
+                    {
+                        ViewBag.message = "Error in modifying employee record";
+                        return RedirectToAction("Edit", employee);
+                    }
+                    TempData["message"] = "Modified employee record";
+                    return RedirectToAction("Index");
                 }
-                TempData["message"] = "Modified employee record";
-                return RedirectToAction("Index");
+                else
+                {
+                    TempData["message"] = "No modification applied";
+                    return RedirectToAction("Index");
+                }           
             }
             return View(employee);
            
