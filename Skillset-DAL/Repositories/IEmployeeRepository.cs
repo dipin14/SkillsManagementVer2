@@ -9,17 +9,13 @@ namespace Skillset_DAL.Repositories
 {
     public interface IEmployeeRepository
     {
+        
         /// <summary>
-        /// Retrieves all the employee record with status true
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<Employee> GetAllEmployees();
-        /// <summary>
-        /// Retrieves the employee record according to the search key
+        /// Retrieves the employee record according to the search key if no search key retreives the employee list
         /// </summary>
         /// <param name="search"></param>
-        /// <returns></returns>
-        IEnumerable<Employee> GetSearchRecords(string search, int pageNumber, int pageSize, out int  totalCount);
+   
+        IEnumerable<Employee> GetSearchRecords(string search, int pageNumber, int pageSize, out int totalCount);
         /// <summary>
         /// Adds new employee to the database
         /// </summary>

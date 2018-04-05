@@ -82,9 +82,13 @@ namespace Skillset_PL.Controllers
             return items;
         }
         // GET: Employee
-        public ActionResult Index(int? page)
+        public ActionResult Index(string search,int? page)
         {
-            var dtoList = _services.GetAllEmployees();
+            var pageNumber = (page ?? 1) - 1;
+            var totalCount = 0;
+            var pageSize = 3;
+            ViewBag.search = search;
+            var dtoList = _services.ViewSearchRecords(search,pageNumber,pageSize,out totalCount);
             var modelList = new List<EmployeeViewModel>();
             foreach (EmployeeDTO item in dtoList)
             {
@@ -94,36 +98,10 @@ namespace Skillset_PL.Controllers
                 item.EmployeeId = _services.GetManagerName(item.EmployeeId);
                 modelList.Add(item.EmployeeDTOtoViewModel());
             }
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return View(modelList.ToPagedList(pageNumber, pageSize));
-        }
-        
-        public ActionResult IndexSearch(int? page,string search)
-        {
-            search = search.Trim();
-            var pageNumber = (page ?? 1) - 1;
-            var totalCount = 0;
-            var pageSize = 3;
-            ViewBag.search = search;
-            //calling method to search for employee details
-            var dtoList = _services.ViewSearchRecords(search, pageNumber, pageSize, out totalCount);
-           
-                var modelList = new List<EmployeeViewModel>();
-  
-                foreach (EmployeeDTO item in dtoList)
-                {
-                    item.DesignationId = _services.GetDesignationName(item.DesignationId);
-                    item.QualificationId = _services.GetQualificationName(item.QualificationId);
-                    item.RoleId = _services.GetRoleName(item.RoleId);
-                    item.EmployeeId = _services.GetManagerName(item.EmployeeId);
-                    modelList.Add(item.EmployeeDTOtoViewModel());
-                }
             IPagedList<EmployeeViewModel> pageOrders = new StaticPagedList<EmployeeViewModel>(modelList, pageNumber + 1, 3, totalCount);
-            //return View("Index", modelList.ToPagedList(pageNumber, pageSize));
             return View(pageOrders);
         }
-
+              
         public ActionResult Create()
         {
             ViewData["Designations"] = GetDesignations();

@@ -105,14 +105,6 @@ namespace Skillset_DAL.Repositories
             }
         }
         
-        public IEnumerable<Employee> GetAllEmployees()
-        {
-            using (SkillsetDbContext context = new SkillsetDbContext())
-            {
-                return context.Employees.Where(p => p.Status == true && p.RoleId != 1).OrderBy(p => p.EmployeeCode).ToList();
-            }
-        }
-
         public string GetDesignationName(string id)
         {
 
@@ -199,17 +191,28 @@ namespace Skillset_DAL.Repositories
         {
             try
             {
+                var employeeList = new List<Employee>();
+                int employeeCount;
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
-                   
-                    var employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode.ToUpper() == search.ToUpper() || p.Name.ToUpper() == search.ToUpper())).Select(p => p).OrderBy(p => p.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
-                    if (employeeList.Count == 0)
+                    if(search==null||search==string.Empty)
                     {
-
-                        int designationId = context.Designations.Where(p => p.Name.ToUpper() == search.ToUpper()).Select(p => p.Id).FirstOrDefault();
-                        employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && p.DesignationId == designationId).Select(p => p).OrderBy(p => p.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
+                        
+                        employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1).OrderBy(p => p.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
+                        employeeCount = context.Employees.Where(p => p.Status == true && p.RoleId != 1).OrderBy(p => p.EmployeeCode).Count();
                     }
-                    totalCount = context.Employees.Count();
+                    else
+                    {
+                        employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode.ToUpper() == search.ToUpper() || p.Name.ToUpper() == search.ToUpper())).Select(p => p).OrderBy(p => p.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
+                        employeeCount = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && (p.EmployeeCode.ToUpper() == search.ToUpper() || p.Name.ToUpper() == search.ToUpper())).Select(p => p).OrderBy(p => p.EmployeeCode).Count();
+                        if (employeeList.Count == 0)
+                        {
+                            int designationId = context.Designations.Where(p => p.Name.ToUpper() == search.ToUpper()).Select(p => p.Id).FirstOrDefault();
+                            employeeList = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && p.DesignationId == designationId).Select(p => p).OrderBy(p => p.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
+                            employeeCount = context.Employees.Where(p => p.Status == true && p.RoleId != 1 && p.DesignationId == designationId).Select(p => p).OrderBy(p => p.EmployeeCode).Count();
+                        }
+                    }
+                    totalCount = employeeCount;
                     return employeeList;
                 }
 
