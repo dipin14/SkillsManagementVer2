@@ -13,42 +13,46 @@
     <label class="control-label alert-success well-sm" style="display:block;text-align:center">Staff Details</label>
     <br />
     <table id="skilltable" class="table table-hover table-responsive table-bordered">
-        <tr>
-            <th>
-                @Html.DisplayName("Employee Code")
-            </th>
-            <th>
-                @Html.DisplayName("Name")
-            </th>
-            <th>
-                @Html.DisplayName("Designation")
-            </th>
-            <th>
-                @Html.DisplayName("Email")
-            </th>
-            <th></th>
-        </tr>
-        @foreach (var item in Model)
-        {
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmployeeCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Designation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                   @Html.ActionLink("Skills", "SkillRate", new { code = item.EmployeeCode, name = item.Name }, htmlAttributes: new { @class = "btn btn-primary btnta" }) 
-                </td>
+                <th>
+                    @Html.DisplayName("Employee Code")
+                </th>
+                <th>
+                    @Html.DisplayName("Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Designation")
+                </th>
+                <th>
+                    @Html.DisplayName("Email")
+                </th>
+                <th></th>
             </tr>
-        }
-
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Designation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @*<a href="@Url.Action("SkillRate",new { code = item.EmployeeCode, name = item.Name })"><i class="btn fa fa-gears"></i></a>*@
+                        @Html.ActionLink("Skills","SkillRate", new { code = item.EmployeeCode, name = item.Name }, htmlAttributes: new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 }
 else
@@ -61,4 +65,5 @@ else
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
     @Html.PagedListPager(Model, page => Url.Action("Index",new{page}))
+
 </div>

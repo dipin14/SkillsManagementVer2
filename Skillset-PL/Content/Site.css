@@ -285,4 +285,7 @@ textarea {
         margin-right: 20px;
     }
 }
+ #StarRow {
+     min-width:120px;
+ }
 

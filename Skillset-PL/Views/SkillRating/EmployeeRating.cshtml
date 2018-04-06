@@ -56,7 +56,7 @@
 
                         <div class="col-sm-5" style="color:grey;">
 
-                            <div onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;">
+                            <div id="StarRow " onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;">
                                 <input id="Rating @item.skillId" hidden />
                                 <span class="starFade" id="Rate1 @item.skillId" onclick="CRate(@item.skillId, 1)" onmouseover="CRateOver(@item.skillId,1)" onmouseout="CRateOut(@item.skillId,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
                                 <label for="Rate1 @item.skillId" title="Amazing"></label>

@@ -181,7 +181,7 @@ namespace Skillset_DAL.Repositories
             return skillRatingsCount;
         }
 
-        public IQueryable<string> GetEmployeeRatedSkill()
+        public IQueryable<string> GetEmployeeRatedSkillName()
         {
             SkillsetDbContext context = new SkillsetDbContext();
             {
