@@ -139,5 +139,62 @@ namespace Skillset_BLL.Services
         {
             return _repository.GetProfile(id).EmployeeModeltoDTO();
         }
+
+
+
+        /// <summary>
+        /// Get Skill details of an employee from table Skillrating
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
+        public IEnumerable<AdminSkillDTO> GetSkillDetails(string employeeCode)
+        {
+            //getting list of skills of a particular employee
+            List<SkillRating> skillList = _repository.GetSkillDetails(employeeCode);
+            List<string> skillNameList = new List<string>();
+            List<int> skillValueList = new List<int>();
+            List<string> RatingNoteList = new List<string>();
+            foreach (var item in skillList)
+            {
+                //finding skill name from skill id
+                string skillName = _repository.FindSkillName(item.SkillId);
+                skillNameList.Add(skillName);
+                //finding skill value from rating id
+                int skillValue = _repository.FindSkillValue(item.RatingId);
+                skillValueList.Add(skillValue);
+                string ratingNote = _repository.FindRatingNote(item.RatingId);
+                if (!string.IsNullOrWhiteSpace(ratingNote))
+                {
+                    RatingNoteList.Add(ratingNote);
+                }
+                else
+                {
+                    RatingNoteList.Add("No Description");
+                }
+
+            }
+            List<AdminSkillDTO> skillDetailsList = new List<AdminSkillDTO>();
+            for (int loopVar = 0; loopVar < skillList.Count; loopVar++)
+            {
+                AdminSkillDTO skill = new AdminSkillDTO();
+                skill.SkillName = skillNameList[loopVar];
+                skill.SkillValue = skillValueList[loopVar];
+                skill.RatingNote = RatingNoteList[loopVar];
+                skill.RatingDate = skillList[loopVar].RatingDate;
+                skill.Note = skillList[loopVar].Note == null || skillList[loopVar].Note == string.Empty ? "Not available" : skillList[loopVar].Note;
+                skillDetailsList.Add(skill);
+            }
+            return skillDetailsList;
+        }
+
+        /// <summary>
+        /// Finding employee name from table Employee
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string GetEmployeeName(string id)
+        {
+            return _repository.FindEmployeeName(id);
+        }
     }
 }

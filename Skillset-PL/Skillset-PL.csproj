@@ -281,7 +281,6 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
-    <Compile Include="Controllers\AdministratorViewController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SkillRatingController.cs" />
@@ -297,7 +296,6 @@
     <Compile Include="ViewModels\EmployeeRatingScreenViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\ReportingStaff.cs" />
-    <Compile Include="ViewModels\AdministratorEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AdministratorSkillViewModel.cs" />
     <Compile Include="ViewModels\EmployeeSkillRatingViewModel.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
@@ -311,13 +309,11 @@
     <Content Include="Views\Skill\Create.cshtml" />
     <Content Include="Views\Skill\Edit.cshtml" />
     <Content Include="Views\Skill\Delete.cshtml" />
-    <Content Include="Views\AdministratorView\Index.cshtml" />
     <Content Include="Views\Manager\SkillRate.cshtml" />
     <Content Include="Views\SkillRating\_EmployeeLayout.cshtml" />
     <Content Include="Views\SkillRating\EmployeeProfile.cshtml" />
     <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <Content Include="Views\Manager\ManagerRating.cshtml" />
-    <Content Include="Views\AdministratorView\Skills.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Skills.cshtml" />
     <None Include="Web.Debug.config" />

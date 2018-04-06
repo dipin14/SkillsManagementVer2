@@ -14,15 +14,18 @@ namespace Skillset_DAL.Repositories
         public int AddEmployee(Employee employee)
         {
             var employeeList = new List<Employee>();
+            int employeeCount;
             try
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
                     employeeList = context.Employees.ToList();
+                    employeeCount = employeeList.Count();
                     int status = CheckDuplicateEmployee(employeeList, employee);
                     if (status == 0)
                     {
                         employee.Status = true;
+                        employee.Id = employeeCount + 1;
                         context.Employees.Add(employee);
                         context.SaveChanges();
                         return 0;
@@ -38,7 +41,8 @@ namespace Skillset_DAL.Repositories
                 return -1;
             }
         }
-       
+
+
         public int CheckDuplicateEmployee(List<Employee> employeeList, Employee newEmployee)
         {
             var check = new List<Employee>();
@@ -263,6 +267,86 @@ namespace Skillset_DAL.Repositories
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 return context.Employees.Where(e => e.EmployeeCode == id).FirstOrDefault();
+            }
+        }
+
+
+        /// <summary>
+        /// Get Skill details of an employee from table Skillrating
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
+        public List<SkillRating> GetSkillDetails(string employeeCode)
+        {
+            using (var context = new SkillsetDbContext())
+            {
+                int empId = FindId(employeeCode);
+                var query = from sr in context.SkillRatings
+                            from s in context.Skills
+                            where (sr.EmployeeId == empId && sr.SkillId == s.SkillId && sr.Status)
+                            select sr;
+                return query.OrderBy(s => s.RatingDate).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Finding skill name from table Skill
+        /// </summary>
+        /// <param name="skillId"></param>
+        /// <returns></returns>
+        public string FindSkillName(int skillId)
+        {
+            using (var context = new SkillsetDbContext())
+            {
+                return context.Skills.Where(d => d.SkillId == skillId).Select(d => d.SkillName).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Finding skill value from table Rating
+        /// </summary>
+        /// <param name="ratingId"></param>
+        /// <returns></returns>
+        public int FindSkillValue(int ratingId)
+        {
+            using (var context = new SkillsetDbContext())
+            {
+                return context.Ratings.Where(d => d.Id == ratingId).Select(d => d.Value).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Finding employee name from table Employee
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
+        public string FindEmployeeName(string employeeCode)
+        {
+            using (var context = new SkillsetDbContext())
+            {
+                return context.Employees.Where(d => d.EmployeeCode == employeeCode).Select(d => d.Name).FirstOrDefault();
+            }
+        }
+
+        //method to find id of the specified employees's record
+        int FindId(string employeeCode)
+        {
+            using (var context = new SkillsetDbContext())
+            {
+                int empId = context.Employees.Where(m => m.EmployeeCode == employeeCode).Select(m => m.Id).FirstOrDefault();
+                return empId;
+            }
+        }
+        /// <summary>
+        ///  Finding note of a rating value from table Rating
+        /// </summary>
+        /// <param name="ratingId"></param>
+        /// <returns></returns>
+        public string FindRatingNote(int ratingId)
+        {
+            using (var context = new SkillsetDbContext())
+            {
+                return context.Ratings.Where(d => d.Id == ratingId).Select(d => d.Note).FirstOrDefault();
             }
         }
     }

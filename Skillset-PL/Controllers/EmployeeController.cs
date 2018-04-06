@@ -18,11 +18,11 @@ namespace Skillset_PL.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeServices _services;
-        private readonly IAdminEmployeeSkillService _empSkillService;
-        public EmployeeController(IEmployeeServices services, IAdminEmployeeSkillService skillService)
+ 
+        public EmployeeController(IEmployeeServices services)
         {
             _services = services;
-            _empSkillService = skillService;
+           
         }
 
         //Get list of designations
@@ -280,14 +280,14 @@ namespace Skillset_PL.Controllers
             }
             IEnumerable<AdminSkillDTO> skillrecordlist;
             //calling method to get skill details of a particular employee
-            skillrecordlist = _empSkillService.GetSkillDetails(id);
+            skillrecordlist = _services.GetSkillDetails(id);
 
             List<AdministratorSkillViewModel> recordlist = new List<AdministratorSkillViewModel>();
             foreach (var obj in skillrecordlist)
             {
                 recordlist.Add(new AdministratorSkillViewModel(obj.SkillName, obj.SkillValue, obj.RatingDate, obj.Note, obj.RatingNote));
             }
-            string employeeName = _empSkillService.FindEmployeeName(id);
+            string employeeName = _services.GetEmployeeName(id);
             ViewData["employeename"] = employeeName;
             ViewData["employeecode"] = id;
             return View(recordlist);
