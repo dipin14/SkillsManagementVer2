@@ -104,8 +104,8 @@
      
   }
     .row .second{
-      margin-left:20px;
-     margin-right:20px;
+      
+      margin-right:20px;
   }
    
 }
@@ -123,6 +123,10 @@
   .row .first{
       margin-left:55px;
       margin-top:70px;
+      margin-right:15px;
+  }
+  .row .second{
+     
       margin-right:15px;
   }
    .navbar-fixed-top .toggle-btn {
@@ -149,6 +153,10 @@
   .row .first{
       margin-left:55px;
       margin-top:70px;
+      margin-right:15px;
+  }
+   .row .second{
+     
       margin-right:15px;
   }
    .navbar-fixed-top .toggle-btn {
