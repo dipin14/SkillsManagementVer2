@@ -77,7 +77,6 @@
     <Compile Include="DTO\QualificationDTO.cs" />
     <Compile Include="DTO\EmployeeRatedSkillsDTO.cs" />
     <Compile Include="DTO\ReportingStaff.cs" />
-    <Compile Include="DTO\AdminEmployeeDTO.cs" />
     <Compile Include="DTO\AdminSkillDTO.cs" />
     <Compile Include="DTO\RoleDTO.cs" />
     <Compile Include="DTO\SkillDTO.cs" />

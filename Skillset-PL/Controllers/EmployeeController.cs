@@ -13,14 +13,18 @@ using System.Web.Mvc;
 using System.Web.UI;
 
 namespace Skillset_PL.Controllers
-{   [Authorize(Roles ="Admin")]
+{
+    [Authorize(Roles ="Admin")]
     public class EmployeeController : Controller
     {
-        private IEmployeeServices _services;
+        private readonly IEmployeeServices _services;
+ 
         public EmployeeController(IEmployeeServices services)
         {
             _services = services;
+           
         }
+
         //Get list of designations
         public List<SelectListItem> GetDesignations()
         {
@@ -91,6 +95,8 @@ namespace Skillset_PL.Controllers
             var pageNumber = (page ?? 1) - 1;
             var totalCount = 0;
             var pageSize = 3;
+            if(search!=null)
+                search = search.Trim();
             ViewBag.search = search;
             var dtoList = _services.ViewSearchRecords(search,pageNumber,pageSize,out totalCount);
             var modelList = new List<EmployeeViewModel>();
@@ -263,6 +269,28 @@ namespace Skillset_PL.Controllers
             }
             return View(employee);
            
+        }
+
+        // GET: Employee Skills Details      
+        public ActionResult Skills(string id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            IEnumerable<AdminSkillDTO> skillrecordlist;
+            //calling method to get skill details of a particular employee
+            skillrecordlist = _services.GetSkillDetails(id);
+
+            List<AdministratorSkillViewModel> recordlist = new List<AdministratorSkillViewModel>();
+            foreach (var obj in skillrecordlist)
+            {
+                recordlist.Add(new AdministratorSkillViewModel(obj.SkillName, obj.SkillValue, obj.RatingDate, obj.Note, obj.RatingNote));
+            }
+            string employeeName = _services.GetEmployeeName(id);
+            ViewData["employeename"] = employeeName;
+            ViewData["employeecode"] = id;
+            return View(recordlist);
         }
 
     }
