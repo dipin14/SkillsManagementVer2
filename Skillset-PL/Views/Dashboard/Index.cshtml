@@ -144,7 +144,7 @@
                 <div class="container">
                     <p>Total Ratings Performed</p>
                     <div>
-                        <span style="font-size:40px;margin-left:95px;">@(ViewBag.TotalSkillRatingsCount)/@(ViewBag.MaximumRatings)</span>
+                        <span style="font-size:40px;margin-left:80px;">@(ViewBag.TotalSkillRatingsCount)/@(ViewBag.MaximumRatings)</span>
                     </div>
                     <div class="progress" style="background-color: #ca42423b;">
                         <div class="progress-bar progress-bar-danger"
@@ -155,9 +155,9 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="panel panel-danger" style="width: 218px;height: 220px;">
+            <div class="panel panel-danger " id="paneltable" >
                 <div class="panel-heading">Recently Rated Employees</div>
-                <div class="panel-body paneltable">
+                <div class="panel-body ">
                     <table class="table table-bordered">
                         <tbody>
                             @if ((Model.Count() > 0))
@@ -196,7 +196,7 @@
         </div>
 
         <div class="col-sm-6">
-            <div style="text-align: center;height:200px">
+            <div style="text-align: center;height:300px">
                 <canvas id="Barcanvas"></canvas>
             </div>
         </div>

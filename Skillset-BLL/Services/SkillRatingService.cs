@@ -56,9 +56,9 @@ namespace Skillset_BLL.Services
          
         }
         
-        public IQueryable<string> GetEmployeeRatedSkill()
+        public IQueryable<string> GetEmployeeRatedSkillName()
         {
-            return _iSkillRatingRepository.GetEmployeeRatedSkill();
+            return _iSkillRatingRepository.GetEmployeeRatedSkillName();
         }
 
         
