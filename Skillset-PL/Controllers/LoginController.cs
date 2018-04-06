@@ -20,6 +20,10 @@ namespace Skillset_PL.Controllers
         {
             return View();
         }
+        /// <summary>
+        ///Login into the system 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Login()
         {
             try
@@ -45,7 +49,7 @@ namespace Skillset_PL.Controllers
             
         }
         /// <summary>
-        /// For Loging to the system
+        /// For Login to the system
         /// </summary>
         /// <param name="employeeCode"></param>
         /// <param name="password"></param>
@@ -55,6 +59,8 @@ namespace Skillset_PL.Controllers
         {
             if (!(string.IsNullOrEmpty(employeeCode) || string.IsNullOrEmpty(password)))
             {
+                employeeCode = employeeCode.Trim();
+                password = password.Trim();
                 var role = logService.GetRole(employeeCode, password);
                 if (role == "Admin")
                 {
