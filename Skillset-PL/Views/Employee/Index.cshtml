@@ -6,6 +6,18 @@
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
 }
+@if (TempData["message"] != null)
+{
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            AlertEmployee(@TempData["message"].ToString().ToLower());
+        });
+    </script>
+}
+<div id="snackbar"></div>
 <div class="row first">
     <h2>Employee List</h2>
     <p style="text-align: right">

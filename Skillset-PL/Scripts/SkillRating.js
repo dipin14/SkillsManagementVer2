@@ -206,3 +206,10 @@ function ShowValidation()
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
   //  setTimeout(function () { location.reload(); }, 1000);
 }
+AlertEmployee()
+{
+    var x = document.getElementById("snackbar")
+    x.innerHTML = "someContent";
+    x.className = "show";
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+}
