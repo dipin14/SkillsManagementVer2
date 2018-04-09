@@ -1,17 +1,29 @@
 ﻿@model PagedList.IPagedList<Skillset_PL.ViewModels.EmployeeViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-
+<link href="~/Content/Site.css" rel="stylesheet" />
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
 }
+@if (TempData["message"] != null)
+{
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            AlertEmployee("@TempData["message"]");
+        });
+    </script>
+}
+<div id="snackbar"></div>
 <div class="row first">
     <h3>Employee List</h3>
     <p style="text-align: right">
         @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
   
-    <p style="color:red;"> @TempData["message"] </p>
+  
 
         <div class="panel-group">
             <div class="panel panel-success">
@@ -86,3 +98,4 @@
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
 </div>
+<script src="~/Scripts/SkillRating.js"></script>

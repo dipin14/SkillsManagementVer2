@@ -54,7 +54,7 @@
                 ctx1.fillText("No Primary skill ratings done", ctx1.canvas.clientWidth / 2, ctx1.canvas.clientHeight / 2);
             }
             else {
-                
+
                 window.myBar = new Chart(ctx1,
                 {
                     type: 'pie',
@@ -123,85 +123,99 @@
                             maintainAspectRatio: true
                         }
                 });
+
         }
+
     </script>
 </head>
 
 <body>
-    <div class="row first">
-        <div class="col-sm-4">
-            <div class="panelSkill panel panel-default">
-                <div class="panel-body">Total Skills<span style="float:right;font-size:60px;">@(ViewBag.TotalSkills)</span></div>
-            </div>
-
-            <div class="panelSkill panel panel-default ">
-                <div class="panel-body">Total Employees<span style="float:right;font-size:60px;">@(ViewBag.TotalEmployees)</span></div>
-            </div>
+    <div class="row">
+        <div class="col-md-4 tile-first">
+            <span class="tile-top"><i class="fa fa-user"></i>Total Users</span>
+            <div class="tile-value">2500</div>
         </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <div style="text-align:center;background-color:indianred;height:80px;margin-top:-10px"><span class="glyphicon glyphicon-star" style="font-size:50px;margin-top:15px"></span></div>
-                <div class="container">
-                    <p>Total Ratings Performed</p>
-                    <div>
-                        <span style="font-size:40px;margin-left:0px;">@(ViewBag.TotalSkillRatingsCount)/@(ViewBag.MaximumRatings)</span>
-                    </div>
-                    <div class="progress" style="background-color: #ca42423b;">
-                        <div class="progress-bar progress-bar-danger"
-                             style="width:@(ViewBag.TotalSkillRatings)%;">
-                        </div>
-                    </div>
+        <div class="col-md-4 tile-list">
+            <span class="tile-top"><i class="fa fa-user"></i>Total Skills</span>
+            <div class="tile-value">2500</div>
+        </div>
+        <div class="col-md-4 tile-list">
+            <span class="tile-top"><i class="fa fa-user"></i>Total Skills</span>
+            <div class="tile-value">2500</div>
+        </div>
+    </div>
+        @*<div class="row">
+            <div class="col-sm-4">
+                <div class="panelSkill panel panel-default">
+                    <div class="panel-body">Total Skills<span style="float:right;font-size:60px;">@(ViewBag.TotalSkills)</span></div>
+                </div>
+
+                <div class="panelSkill panel panel-default ">
+                    <div class="panel-body">Total Employees<span style="float:right;font-size:60px;">@(ViewBag.TotalEmployees)</span></div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-danger " id="paneltable" >
-                <div class="panel-heading">Recently Rated Employees</div>
-                <div class="panel-body ">
-                    <table class="table table-bordered">
-                        <tbody>
-                            @if ((Model.Count() > 0))
-                            {
-                                foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                        <td><b>@Html.DisplayFor(modelItem => item.EmployeeCode)</b></td>
-                                    </tr>
-                                }
-                            }
-                            else
-                            {
-                                <br />
-                                <div class="alert alert-warning fade in">
-                                    <strong>No Recent activity!</strong>
+            <div class="col-sm-4">*@
+                @*<div class="card">
+                        <div style="text-align:center;background-color:indianred;height:80px;margin-top:-10px"><span class="glyphicon glyphicon-star" style="font-size:50px;margin-top:15px"></span></div>
+                        <div class="container">
+                            <p>Total Ratings Performed</p>
+                            <div>
+                                <span style="font-size:40px;margin-left:0px;">@(ViewBag.TotalSkillRatingsCount)/@(ViewBag.MaximumRatings)</span>
+                            </div>
+                            <div class="progress" style="background-color: #ca42423b;">
+                                <div class="progress-bar progress-bar-danger"
+                                     style="width:@(ViewBag.TotalSkillRatings)%;">
                                 </div>
-                            }
-                        </tbody>
-                    </table>
+                            </div>
+                        </div>
+                    </div>*@
+            @*</div>
+            <div class="col-sm-4">
+                <div class="panel panel-danger " id="paneltable">
+                    <div class="panel-heading">Recently Rated Employees</div>
+                    <div class="panel-body ">
+                        <table class="table table-bordered">
+                            <tbody>
+                                @if ((Model.Count() > 0))
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                            <td><b>@Html.DisplayFor(modelItem => item.EmployeeCode)</b></td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <br />
+                                    <div class="alert alert-warning fade in">
+                                        <strong>No Recent activity!</strong>
+                                    </div>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>*@
+
+        @* Chart *@
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body" style="text-align: center">
+                        <canvas id="Linecanvas"></canvas>
+                    </div>
                 </div>
             </div>
 
-        </div>
-    </div>
-
-    @* Chart *@
-    <div class="row first" style="margin-top:25px;">
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-body" style="text-align: center">
-                    <canvas id="Linecanvas"></canvas>
+            <div class="col-sm-6">
+                <div style="text-align: center;height:338px">
+                    <canvas id="Barcanvas"></canvas>
                 </div>
             </div>
         </div>
-
-        <div class="col-sm-6">
-            <div style="text-align: center;height:300px">
-                <canvas id="Barcanvas"></canvas>
-            </div>
-        </div>
-    </div>
-
-
 </body>
 </html>

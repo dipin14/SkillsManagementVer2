@@ -6,15 +6,17 @@
     Layout = "~/Views/Manager/_ManagerLayout.cshtml";
     ViewBag.Title = "Staff Details";
 }
-<div class="row first">
+
 @if (Model.Count() > 0)
 {
     <label class="control-label alert-success well-sm" style="display:block;text-align:center">Staff Details</label>
     <br />
+     {
 
     <table id="skilltable" class="table table-hover table-responsive table-bordered">
         <thead>
             <tr>
+
 
                 <th>
                     @Html.DisplayName("Employee Code")
@@ -30,6 +32,7 @@
                 </th>
                 <th></th>
             </tr>
+
 
         </thead>
         <tbody>
@@ -67,5 +70,3 @@ else
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
     @Html.PagedListPager(Model, page => Url.Action("Index",new{page}))
-
-</div>
