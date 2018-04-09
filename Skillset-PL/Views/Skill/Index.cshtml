@@ -41,8 +41,8 @@
                             @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-warning" })
-                            @Html.ActionLink("Delete", "Delete", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-danger" })
+                            <a href="@Url.Action("Edit",new { skillName = item.SkillName })"><i class="fa fa-pencil-square-o btn-sm btn-warning" style="width:30px"></i></a>
+                            <a href="@Url.Action("Delete",new { skillName = item.SkillName })"><i class="fa fa-trash-o btn-sm btn-danger" style="width:30px"></i></a>
                         </td>
                     </tr>
                 }
