@@ -66,9 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextClass\SkillsetDbContext.cs" />
-    <Compile Include="Migrations\201804060948043_new.cs" />
-    <Compile Include="Migrations\201804060948043_new.Designer.cs">
-      <DependentUpon>201804060948043_new.cs</DependentUpon>
+    <Compile Include="Migrations\201804062316062_newseed.cs" />
+    <Compile Include="Migrations\201804062316062_newseed.Designer.cs">
+      <DependentUpon>201804062316062_newseed.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Designation.cs" />
@@ -103,8 +103,8 @@
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804060948043_new.resx">
-      <DependentUpon>201804060948043_new.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804062316062_newseed.resx">
+      <DependentUpon>201804062316062_newseed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
