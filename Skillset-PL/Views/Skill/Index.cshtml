@@ -34,13 +34,13 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
+                        <td data-title="Skill Name">
                             @Html.DisplayFor(modelItem => item.SkillName)
                         </td>
-                        <td>
+                        <td data-title="Skill Description">
                             @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
                         </td>
-                        <td>
+                        <td data-title="Operations">
                             @Html.ActionLink("Edit", "Edit", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-warning" })
                             @Html.ActionLink("Delete", "Delete", new { skillName = item.SkillName }, htmlAttributes: new { @class = "btn btn-danger" })
                         </td>

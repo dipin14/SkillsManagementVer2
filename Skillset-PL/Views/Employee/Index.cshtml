@@ -42,37 +42,38 @@
     {
         <label class="control-label alert-success well-sm" style="display:block;text-align:center">Employee Details</label>
             <table class="table table-bordered table-hover table-responsive">
-                <tr>
-                    <th>Employee Code</th>
-                    <th>Name</th>
-                    <th>Designation</th>
-                    <th>Operations</th>
-                </tr>
-
-
-
-                @foreach (var item in Model)
-                {
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EmployeeCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DesignationId)
-                        </td>
-
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
-                            @Html.ActionLink("Details", "Details", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-danger" })
-                            @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-success" })
-                        </td>
+                        <th>Employee Code</th>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Operations</th>
                     </tr>
-                }
+                </thead>
 
+                <tbody>
+                    @foreach (var item in Model)
+                {
+                        <tr>
+                            <td data-title="Employee Code">
+                                @Html.DisplayFor(modelItem => item.EmployeeCode)
+                            </td>
+                            <td data-title="Name">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td data-title="Designation">
+                                @Html.DisplayFor(modelItem => item.DesignationId)
+                            </td>
+
+                            <td data-title="Operations">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
+                                @Html.ActionLink("Details", "Details", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-success" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
             </table>
             }
             else
