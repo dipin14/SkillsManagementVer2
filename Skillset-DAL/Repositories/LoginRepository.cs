@@ -16,9 +16,11 @@ namespace Skillset_DAL.Repositories
                 using (SkillsetDbContext db = new SkillsetDbContext())
                 {
                     double pass = Convert.ToDouble(password);
+                    //get status of employee
                     var status = (from employee in db.Employees where (employee.EmployeeCode == employeecode && employee.MobileNumber == pass) select (employee.Status)).FirstOrDefault();
                     if (status == true)
                     {
+                        //get role of employee
                         var role = (from employee in db.Employees join roles in db.Roles on employee.RoleId equals roles.Id where (employee.EmployeeCode == employeecode) select roles.Name).FirstOrDefault();
                         return role;
                     }
