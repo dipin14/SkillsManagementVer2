@@ -102,6 +102,7 @@
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804090428122_abc.resx">
       <DependentUpon>201804090428122_abc.cs</DependentUpon>
