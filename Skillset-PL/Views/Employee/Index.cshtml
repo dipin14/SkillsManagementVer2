@@ -54,28 +54,9 @@
     {
         <label class="control-label alert-success well-sm" style="display:block;text-align:center">Employee Details</label>
             <table class="table table-bordered table-hover table-responsive">
-                <tr>
-                    <th>Employee Code</th>
-                    <th>Name</th>
-                    <th>Designation</th>
-                    <th>Operations</th>
                 </tr>
 
-
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EmployeeCode)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DesignationId)
-                        </td>
-
                         <td>
                             <a href="@Url.Action("Edit",new { id = item.EmployeeCode })" data-tooltip="Edit Employee" data-tooltip-position="bottom"><i class="fa fa-pencil-square-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
                             <a href="@Url.Action("Details",new { id = item.EmployeeCode })" data-tooltip="View Details" data-tooltip-position="bottom"><i class="fa fa-info" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>

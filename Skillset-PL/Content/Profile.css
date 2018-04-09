@@ -1,0 +1,10 @@
+﻿table.profileborder tr {
+    line-height: 30px;
+    border-bottom: 1px solid #DCDCDC;
+}
+table.profileborder td {
+    color:#2a3f54;
+}
+table.profileborder td.info {
+    color:#1abb9c;
+}

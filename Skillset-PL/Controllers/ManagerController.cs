@@ -41,7 +41,7 @@ namespace Skillset_PL.Controllers
             
            
         }
-          public ActionResult SkillRate(string code, string name, int? page)
+        public ActionResult SkillRate(string code, string name, int? page)
         {
             if (code == null)
             {
@@ -71,7 +71,6 @@ namespace Skillset_PL.Controllers
             profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
             return View("MyProfile",profile);
         }
-
         public ActionResult ManagerRating()
         {
             if (Session["customerId"] == null)
