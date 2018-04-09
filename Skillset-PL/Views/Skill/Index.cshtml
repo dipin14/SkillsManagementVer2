@@ -2,7 +2,7 @@
 @model PagedList.IPagedList<Skillset_PL.ViewModels.SkillViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-
+<link href="~/Content/Site.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
 }
@@ -41,8 +41,8 @@
                             @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
                         </td>
                         <td>
-                            <a href="@Url.Action("Edit",new { skillName = item.SkillName })"><i class="fa fa-pencil-square-o btn-sm btn-warning" style="width:30px"></i></a>
-                            <a href="@Url.Action("Delete",new { skillName = item.SkillName })"><i class="fa fa-trash-o btn-sm btn-danger" style="width:30px"></i></a>
+                            <a href="@Url.Action("Edit",new { skillName = item.SkillName })" data-tooltip="Edit Skill" data-tooltip-position="bottom"><i class="fa fa-pencil-square-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                            <a href="@Url.Action("Delete",new { skillName = item.SkillName })" data-tooltip="Delete Skill" data-tooltip-position="bottom"><i class="fa fa-trash-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
                         </td>
                     </tr>
                 }
