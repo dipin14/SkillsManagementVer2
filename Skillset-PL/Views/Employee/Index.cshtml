@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
 }
-<div class="row first">
+
     <h2>Employee List</h2>
     <p style="text-align: right">
         @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
@@ -84,4 +84,4 @@
             }
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
-</div>
+
