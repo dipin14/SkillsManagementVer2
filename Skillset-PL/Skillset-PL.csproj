@@ -233,6 +233,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\ashstar.png" />
+    <Content Include="Images\Check.png" />
     <Content Include="Images\female.png" />
     <Content Include="Images\male.png" />
     <Content Include="Images\redstar.png" />

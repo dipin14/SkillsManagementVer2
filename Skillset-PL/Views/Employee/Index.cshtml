@@ -1,21 +1,34 @@
 ﻿@model PagedList.IPagedList<Skillset_PL.ViewModels.EmployeeViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/theme.css" rel="stylesheet" />
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
 }
-<link href="~/Content/theme.css" rel="stylesheet" />
+@if (TempData["message"] != null)
+{
 
-   
+    <script type="text/javascript">
+
+        $(function () {
+
+            AlertEmployee("@TempData["message"]");
+        });
+    </script>
+}
+<div id="snackbar"></div>
+<div class="row first">
+    <h3>Employee List</h3>
     <p style="text-align: right">
         @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
   
-    <p style="color:red;"> @TempData["message"] </p>
+  
 
         <div class="panel-group">
             <div class="panel panel-success">
+             
                 <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;"><b>Search</b></div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -41,6 +54,7 @@
 
     @if ((Model.Count() > 0))
     {
+    
         <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</label>
             <table class="table table-bordered table-hover table-responsive">
                 <tr>
@@ -85,4 +99,5 @@
             }
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
-
+</div>
+<script src="~/Scripts/SkillRating.js"></script>
