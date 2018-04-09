@@ -1,32 +1,44 @@
 ﻿@model PagedList.IPagedList<Skillset_PL.ViewModels.EmployeeViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-
+<link href="~/Content/Site.css" rel="stylesheet" />
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
 }
-<div class="row first">
-    <h3>Employee List</h3>
-    <p style="text-align: right">
-        @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
-        <div class="row second" style="padding-bottom:10px;">
+@if (TempData["message"] != null)
+{
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            AlertEmployee("@TempData["message"]");
+        });
+    </script>
+}
+<div id="snackbar"></div>
+
+        <div class="row" style="padding-bottom:10px;">
             @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
             {
-                <div class="form-group">
-                    <div >
-                        <div class="col-xs-7">
-                            @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name/Code/Designation" } })
-                        </div>
-                        <div class="col-xs-5"> 
+
+                    <div row>
+                        <div class="form-inline col-sm-6">
+                            @Html.Editor(" search", null, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name/Code/Designation" } })
+
                             <button type="submit" name="submit" class="btn btn-success">
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                             @Html.ActionLink(" ", "Index", null, htmlAttributes: new { @class = "btn btn-success glyphicon glyphicon-refresh" })
+
+                        </div>
+                        <div class="col-sm-6">
+                            <span style="float:right">
+                                @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
+                            </span>
                         </div>
                     </div>
-                </div>
-
             }
         </div>
 
@@ -59,10 +71,10 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
-                            @Html.ActionLink("Details", "Details", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-danger" })
-                            @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-success" })
+                            <a href="@Url.Action("Edit",new { id = item.EmployeeCode })"><i class="fa fa-pencil-square-o btn-sm btn-warning" style="width:30px"></i></a>
+                            <a href="@Url.Action("Details",new { id = item.EmployeeCode })"><i class="fa fa-info btn-sm btn-primary" style="width:30px"></i></a>
+                            <a href="@Url.Action("Delete",new { id = item.EmployeeCode })"><i class="fa fa-trash-o btn-sm btn-danger" style="width:30px"></i></a>
+                            <a href="@Url.Action("Skills",new { id = item.EmployeeCode })"><i class="fa fa-lightbulb-o btn-sm btn-success" style="width:30px"></i></a>
                         </td>
                     </tr>
                 }
@@ -83,7 +95,6 @@
         }
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
         @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
-</div>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/SkillRating.js"></script>
 <script src="~/Scripts/Employee.js"></script>

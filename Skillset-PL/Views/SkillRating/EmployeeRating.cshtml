@@ -5,7 +5,7 @@
 }
 
 <head>
-
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
     <script src="~/Scripts/SkillRating.js"></script>
@@ -24,16 +24,33 @@
 
 
 
+@*<div class="loading">
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+</div>*@
 
-
-<div class="row first">
+<div class="row first" style="background-color:white;">
     <h2>  Rate your skills</h2>
-    <div class="row">
-        <div class="col-sm-7">
-            <div id="snackbar">Succesfully added rating</div>
-            <div id="snackbarValidation">Enter your Ratings </div>
-          
-            @foreach (var item in Model.SkillRatings)
+<div class="row">
+    <div class="col-sm-7">
+       
+
+
+            <div id="snackbar">
+                <b>Success</b><br />
+                Succesfully added rating
+            </div>
+            <div id="snackbarValidation">
+                @*<img src="~/Images/tick-512.png" />*@
+                <b>Warning</b><br />
+                <p>Enter your ratings</p>
+            </div>
+
+           @foreach (var item in Model.SkillRatings)
             {
 
 
@@ -74,52 +91,59 @@
                 </div>
                 <br />
             }
-            <button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>
+       
+          
+        
+        <button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>
 
-            <div id="demo" class="collapse">
-                <div class="Ratecard">
-                    <div class="row">
+        <div id="demo" class="collapse">
+            <div class="Ratecard">
+                <div class="row">
 
-                        <div class="col-sm-6" style="margin-left:7px;">
-                            <textarea class="form-control " rows="3" cols="50" id="TxtAra" placeholder="Enter your special skill here(Mandatory)" name="TxtAra" required style="margin:10px;"></textarea>
-                        </div>
-                        <div class="col-sm-5" style="color:grey;margin-top:35px;">
-                            <div onmouseout="CRateSelected(0)" style="margin-left: 15px;margin-top:10px;width: 150px;">
-                                <input id="Rating 0" hidden />
-                                <span class="starFade" id="Rate1 0" onclick="CRate(0, 1)" onmouseover="CRateOver(0,1)" onmouseout="CRateOut(0,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
-                                <label for="Rate1 0" title="Amazing"></label>
-                                <span class="starFade" id="Rate2 0" onclick="CRate(0, 2)" onmouseover="CRateOver(0,2)" onmouseout="CRateOut(0,2)" data-tooltip="Need help" data-tooltip-position="bottom"></span>
-                                <span class="starFade" id="Rate3 0" onclick="CRate(0, 3)" onmouseover="CRateOver(0,3)" onmouseout="CRateOut(0,3)" data-tooltip="Need reference" data-tooltip-position="bottom"></span>
-                                <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
-                                <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
-                            </div>
+                    <div class="col-sm-6" style="margin-left:7px;">
+                        <textarea class="form-control " rows="3" cols="50" id="TxtAra" placeholder="Enter your special skill here(Mandatory)" name="TxtAra" required style="margin:10px;"></textarea>
+                    </div>
+                    <div class="col-sm-5" style="color:grey;margin-top:35px;">
+                        <div onmouseout="CRateSelected(0)" style="margin-left: 15px;margin-top:10px;width: 150px;">
+                            <input id="Rating 0" hidden />
+                            <span class="starFade" id="Rate1 0" onclick="CRate(0, 1)" onmouseover="CRateOver(0,1)" onmouseout="CRateOut(0,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
+                            <label for="Rate1 0" title="Amazing"></label>
+                            <span class="starFade" id="Rate2 0" onclick="CRate(0, 2)" onmouseover="CRateOver(0,2)" onmouseout="CRateOut(0,2)" data-tooltip="Need help" data-tooltip-position="bottom"></span>
+                            <span class="starFade" id="Rate3 0" onclick="CRate(0, 3)" onmouseover="CRateOver(0,3)" onmouseout="CRateOut(0,3)" data-tooltip="Need reference" data-tooltip-position="bottom"></span>
+                            <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
+                            <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <br /><br />
-
-
-
-            @{var data = @Html.Raw(Json.Encode(Model.SkillRatings));
-                <input type="button" class="btn btn-danger" onclick='SubmitRating(@data,@Model.SkillRatings.Count())' value="Submit Ratings">
-                <input type="button" class="btn btn-success" onclick='Reload()' value="Reset">
-            }
-
         </div>
 
-        <div class="col-sm-4 well " style="background-color:#f5f5f500;" >
+        <br /><br />
 
-            @if (Model.RatedSkills.Count() > 0)
+
+
+        @{var data = @Html.Raw(Json.Encode(Model.SkillRatings));
+            <input type="button" class="btn btn-danger" onclick='SubmitRating(@data,@Model.SkillRatings.Count())' value="Submit Ratings">
+            <input type="button" class="btn btn-success" onclick='Reload()' value="Reset">
+        }
+
+    </div>
+
+
+
+              
+                
+                <div class="col-sm-4 well " style="background-color:white;">
+
+          @if (Model.RatedSkills.Count() > 0)
             {<div class="row" style="height:40px;">
-                <div class="col-sm-7">
-                    <span style="font-size:20px; ">Your skills</span>
-                </div>
-                <div class="col-sm-5">
-                    <div id="loading"> </div>
-                </div>
-            </div>
+                        <div class="col-sm-7">
+                            <span style="font-size:20px; ">Your skills</span>
+                        </div>
+                        <div class="col-sm-5">
+                            <div id="loading"> </div>
+                        </div>
+                    </div>
 
                 foreach (var item in Model.RatedSkills)
                 {
@@ -138,11 +162,11 @@
                         </p>
                         @for (var i = 1; i <= item.RaitedValue; i++)
                         {
-                            <span class="starGlowN"></span>
+                    <span class="starGlowN"></span>
                         }
                         @for (var i = (item.RaitedValue + 1); i <= 5; i++)
                         {
-                            <span class="starFadeN"></span>
+                    <span class="starFadeN"></span>
                         }
 
 
@@ -152,13 +176,13 @@
             }
             else
             {
-                <br />
-                <div class="alert alert-warning fade in">
-                    <strong>No Skill Ratings!</strong>
-                    <br /> You have no skills rated.
-                </div>
+                    <br />
+                    <div class="alert alert-warning fade in">
+                        <strong>No Skill Ratings!</strong>
+                        <br /> You have no skills rated.
+                    </div>
             }
-        </div>
+                </div>
 
+            </div>
     </div>
-</div>

@@ -6,15 +6,14 @@
 }
 
 <div class="row first">
-    <h2 >Add New Employee</h2>
+    
       
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <p style="color:red"> @ViewBag.message </p>
-
+        <div class="form-horizontal well">
+            <h2>Add New Employee</h2>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -22,7 +21,7 @@
                 
                     <div class="form-group">
                         <div class="panel panel-success row second" >
-                            <div class="panel-body">
+                            <div class="panel-body" style="background-color:#2a3f54;">
                                 <div class="col-md-2"></div>
                                 @Html.LabelFor(model => model.EmployeeCode, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">

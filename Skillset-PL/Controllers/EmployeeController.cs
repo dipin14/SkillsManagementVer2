@@ -96,6 +96,7 @@ namespace Skillset_PL.Controllers
             var pageNumber = (page ?? 1) - 1;
             var totalCount = 0;
             var pageSize = 5;
+            TempData["page"] = pageNumber + 1;
             if(search!=null)
                 search = search.Trim();
             ViewBag.search = search;
