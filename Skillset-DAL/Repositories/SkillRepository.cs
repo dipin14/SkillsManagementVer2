@@ -19,6 +19,11 @@ namespace Skillset_DAL.Repositories
                     using (var db = new SkillsetDbContext())
                     {
                         skill.Status = true;
+                        //Check if Skill Name exists already
+                        if (db.Skills.Where(s => s.SkillName.ToLower() == skill.SkillName.ToLower()).Count() != 0)
+                        {
+                            return -1;
+                        }
                         db.Skills.Add(skill);
                         db.SaveChanges();
                     }
@@ -39,6 +44,11 @@ namespace Skillset_DAL.Repositories
                 using (var db = new SkillsetDbContext())
                 {
                     skill.Status = true;
+                    //Check if Skill Name exists already
+                    if (db.Skills.Where(s => s.SkillName.ToLower() == skill.SkillName.ToLower()).Count() != 0)
+                    {
+                        return -1;
+                    }
                     db.Entry(skill).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -46,7 +56,7 @@ namespace Skillset_DAL.Repositories
             }
             return 0;
         }
-
+        
         public int Delete(int? skillId)
         {
             if (skillId != null)

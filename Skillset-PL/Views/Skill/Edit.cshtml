@@ -4,14 +4,16 @@
     ViewBag.Title = "Edit";
 }
 <div class="row first">
-    <h2>Edit Skill</h2>
+    
 
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(x => x.skillId)
-        <div class="form-horizontal">
+
+        <div class="form-horizontal well">
+            <h2>Edit Skill</h2>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -32,21 +34,21 @@
             </div>
 
             <div class="form-group" >
-                <div class="col-md-2">
+                <div class="col-md-4"></div>
 
+                <div class="col-md-1" style="margin-bottom:10px;">
+                    <input type="reset" value="Reset" class="btn btn-default" onclick="resetValidation()" />
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1"></div>
+                <div class="col-md-1" style="margin-bottom:10px;">
+                    @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-1" style="margin-bottom:10px;">
+                    <input type="submit" id="submit" value="Update" class="btn btn-success" onclick="OnSubmitClick()" />
+                </div>
 
-                </div>
-                <div class="col-md-2">
-                    <input type="submit" value="Update" class="btn btn-success" />
-                </div>
-                <div class="col-md-2">
-                    <input type="reset" value="Reset" class="btn btn-warning" />
-                </div>                
-                <div class="col-md-2">
-                    @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-danger" })
-                </div>
+                <div class="col-md-3"></div>
             </div>
         </div>
     }
