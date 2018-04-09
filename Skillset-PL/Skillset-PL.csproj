@@ -229,6 +229,7 @@
     <Content Include="Content\login.css" />
     <Content Include="Content\login2.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Profile.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -262,6 +263,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MenuList.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Skill.js" />
     <Content Include="Scripts\SkillRating.js" />
     <Content Include="Web.config" />
   </ItemGroup>
