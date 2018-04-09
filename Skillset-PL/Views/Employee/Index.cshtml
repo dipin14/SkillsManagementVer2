@@ -10,37 +10,31 @@
     <h3>Employee List</h3>
     <p style="text-align: right">
         @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
-  
-    <p style="color:red;"> @TempData["message"] </p>
-
-        <div class="panel-group">
-            <div class="panel panel-success">
-                <div class="panel-heading" style="display:block;text-align:center"><b>Search</b></div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="col-md-5"><b> Search By Name/Code/Designation</b>
+        <div class="row second" style="padding-bottom:10px;">
+            @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
+            {
+                <div class="form-group">
+                    <div >
+                        <div class="col-xs-7">
+                            @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name/Code/Designation" } })
                         </div>
-                        
-                        @using (Html.BeginForm("Index","Employee", FormMethod.Get))
-                        {  
-                        <div class="col-md-3">
-                            @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control" } })
-                            &nbsp; &nbsp;
+                        <div class="col-xs-5"> 
+                            <button type="submit" name="submit" class="btn btn-success">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                            @Html.ActionLink(" ", "Index", null, htmlAttributes: new { @class = "btn btn-success glyphicon glyphicon-refresh" })
                         </div>
-                        <div class="col-md-4">
-                            <input type="submit" name="submit" value="Search" class="btn btn-success" />
-                            &nbsp;
-                            @Html.ActionLink("Reset", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
-                        </div>
-                        }
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    @if ((Model.Count() > 0))
-    {
-        <label class="control-label alert-success well-sm" style="display:block;text-align:center">Employee Details</label>
+            }
+        </div>
+
+        @if ((Model.Count() > 0))
+        {
+
+            <label class="control-label alert-success well-sm" style="display:block;text-align:center">Employee Details</label>
+
             <table class="table table-bordered table-hover table-responsive">
                 <tr>
                     <th>Employee Code</th>
@@ -72,16 +66,24 @@
                         </td>
                     </tr>
                 }
+                <tr>
+                    <td colspan="2"><b>Total Number of Employees</b></td>
+                    <td colspan="2"><b>@ViewData["EmployeeCount"]</b></td>
+                </tr>
 
             </table>
-            }
-            else
-            {
+
+        }
+        else
+        {
             <br />
             <div class="alert alert-warning fade in">
                 <strong>No Employees!</strong> There are no employees to display.
             </div>
-            }
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
+        }
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
 </div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/Employee.js"></script>

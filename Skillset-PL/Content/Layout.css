@@ -80,6 +80,7 @@
   -o-transition: all .25s ease;
   transition: all .25s ease;
 }
+.table { width: 100%; }
 @media (max-width: 767px) {
     
   body
