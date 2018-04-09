@@ -5,7 +5,7 @@
 }
 
 <head>
-
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
     <script src="~/Scripts/SkillRating.js"></script>
@@ -33,12 +33,11 @@
     <div class="loading-bar"></div>
 </div>*@
 
-<div class="row first">
+<div class="row first" style="background-color:white;">
     <h2>  Rate your skills</h2>
 <div class="row">
     <div class="col-sm-7">
-        @if (Model.SkillRatings.Count() > 0)
-        {
+       
 
 
             <div id="snackbar">
@@ -51,7 +50,7 @@
                 <p>Enter your ratings</p>
             </div>
 
-            foreach (var item in Model.SkillRatings)
+           @foreach (var item in Model.SkillRatings)
             {
 
 
@@ -92,15 +91,9 @@
                 </div>
                 <br />
             }
-        }
-        else
-        {
-            <br />
-            <div class="alert alert-warning fade in">
-                <strong>No Skills Added!</strong>
-                <br /> There are no skills added.
-            </div>
-        }
+       
+          
+        
         <button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>
 
         <div id="demo" class="collapse">
@@ -140,7 +133,7 @@
 
               
                 
-                <div class="col-sm-4 well " style="background-color:#f5f5f500;">
+                <div class="col-sm-4 well " style="background-color:white;">
 
           @if (Model.RatedSkills.Count() > 0)
             {<div class="row" style="height:40px;">
@@ -192,4 +185,4 @@
                 </div>
 
             </div>
-</div>
+    </div>

@@ -51,6 +51,7 @@ textarea {
     transition: 0.3s;
     width: 95%;
     border-radius: 5px;
+    background-color:white;
 }
 
     .Ratecard:hover {
