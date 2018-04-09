@@ -80,10 +80,10 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
-                            @Html.ActionLink("Details", "Details", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-primary" })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-danger" })
-                            @Html.ActionLink("Skills", "Skills", new { id = item.EmployeeCode }, htmlAttributes: new { @class = "btn btn-success" })
+                            <a href="@Url.Action("Edit",new { id = item.EmployeeCode })"><i class="fa fa-pencil-square-o btn-sm btn-warning" style="width:30px"></i></a>
+                            <a href="@Url.Action("Details",new { id = item.EmployeeCode })"><i class="fa fa-info btn-sm btn-primary" style="width:30px"></i></a>
+                            <a href="@Url.Action("Delete",new { id = item.EmployeeCode })"><i class="fa fa-trash-o btn-sm btn-danger" style="width:30px"></i></a>
+                            <a href="@Url.Action("Skills",new { id = item.EmployeeCode })"><i class="fa fa-lightbulb-o btn-sm btn-success" style="width:30px"></i></a>
                         </td>
                     </tr>
                 }
