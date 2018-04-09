@@ -8,7 +8,7 @@ namespace Skillset_DAL.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Skillset_DAL.ContextClass.SkillsetDbContext context)
