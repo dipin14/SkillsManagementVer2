@@ -13,118 +13,122 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <script>
-        var PieChartData =
-                   {
-                       labels: [@Html.Raw(ViewBag.SkillnameList)],
-                       datasets: [{
-                           label: 'Skill Rating Distribution',
-                           backgroundColor: ["rgba(75,192,192,0.4)",
-                                             "rgba(240,128,128 ,1 )",
-                                             "rgba(220,20,60 ,1 )",
-                                             "rgb(72,61,139)",
-                                             "rgba(38, 166, 154, 1)"],
-                           borderWidth: 2,
-                           data: [@ViewBag.RatingList]
-                       }]
-                   };
+        @*var PieChartData =
+        {
+            labels: [@Html.Raw(ViewBag.SkillnameList)],
+            datasets: [{
+                    label: 'Skill Rating Distribution',
+                    backgroundColor: ["rgba(75,192,192,0.4)",
+                                      "rgba(240,128,128 ,1 )",
+                                      "rgba(220,20,60 ,1 )",
+                                      "rgb(72,61,139)",
+                                      "rgba(38, 166, 154, 1)"],
+                    borderWidth: 2,
+                    data: [@ViewBag.RatingList]
+                     }]
+        };*@
         var BarChartData =
-            {
-                labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
-                datasets: [{
-                    label: 'Skill Ratings Average',
-                    backgroundColor: ['rgba(0, 99, 132, 0.6)',
-                                      'rgba(30, 99, 132, 0.6)',
-                                      'rgba(60, 99, 132, 0.6)',
-                                      'rgba(90, 99, 132, 0.6)',
-                                      'rgba(120, 99, 132, 0.6)', ],
+        {
+                    labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
+                    datasets: [{
+                            label: 'Skill Ratings Average',
+                            backgroundColor: ['rgba(0, 99, 132, 0.6)',
+                                            'rgba(30, 99, 132, 0.6)',
+                                            'rgba(60, 99, 132, 0.6)',
+                                            'rgba(90, 99, 132, 0.6)',
+                                            'rgba(120, 99, 132, 0.6)'],
                     borderWidth: 2,
                     data: [@ViewBag.RatingAverage]
-                }]
-            };
+                            }]
+        };
 
-        window.onload = function () {
+    window.onload = function () {
 
-            var ctx1 = document.getElementById("Linecanvas").getContext("2d");
+    //    var ctx1 = document.getElementById("Linecanvas").getContext("2d");
 
-            if (''== PieChartData.labels) {
-                ctx1.font = "20px " + Chart.defaults.global.tooltipTitleFontFamily;
-                ctx1.textAlign = "center";
-                ctx1.textBaseline = "middle";
-                ctx1.fillStyle = Chart.defaults.global.scaleFontColor;
-                ctx1.fillText("No Primary skill ratings done", ctx1.canvas.clientWidth / 2, ctx1.canvas.clientHeight / 2);
-            }
-            else {
+    //    if ('' == PieChartData.labels) {
+    //        ctx1.font = "20px " + Chart.defaults.global.tooltipTitleFontFamily;
+    //        ctx1.textAlign = "center";
+    //        ctx1.textBaseline = "middle";
+    //        ctx1.fillStyle = Chart.defaults.global.scaleFontColor;
+    //        ctx1.fillText("No Primary skill ratings done", ctx1.canvas.clientWidth / 2, ctx1.canvas.clientHeight / 2);
+    //}
+    //else {
 
-                window.myBar = new Chart(ctx1,
+    //    window.myBar = new Chart(ctx1,
+    //        {
+    //            type: 'pie',
+    //            data: PieChartData,
+    //            options:
+    //            {
+    //                title:
+    //                {
+    //                    display: true,
+    //                    text: "Skill Rating Distribution",
+    //                },
+    //                tooltips: {
+    //                    mode: 'label'
+    //                },
+    //                responsive: true,
+    //                maintainAspectRatio: true,
+    //                showAllTooltips: true,
+    //                tooltips: {
+    //                    callbacks: {
+    //                        title: function (tooltipItem, data) {
+    //                            return data['labels'][tooltipItem[0]['index']];
+    //                        },
+    //                        label: function (tooltipItem, data) {
+    //                            return data['datasets'][0]['data'][tooltipItem['index']];
+    //                        },
+    //                        afterLabel: function (tooltipItem, data) {
+    //                            var dataset = data['datasets'][0];
+    //                            var percent = Math.round((dataset['data'][tooltipItem['index']] / dataset["_meta"][0]['total']) * 100)
+    //                            return '(' + percent + '%)';
+    //                        }
+    //                    },
+    //                    backgroundColor: '#FFF',
+    //                    titleFontSize: 16,
+    //                    titleFontColor: '#002633',
+    //                    bodyFontColor: '#000',
+    //                    bodyFontSize: 14,
+    //                    displayColors: false
+    //                }
+    //            }
+    //        });
+    //}
+
+
+    var ctx1 = document.getElementById("Barcanvas").getContext("2d");
+    window.myBar1 = new Chart(ctx1,
+        {
+            type: 'bar',
+            data: BarChartData,
+            options:
+            {
+                title:
                 {
-                    type: 'pie',
-                    data: PieChartData,
-                    options:
-                        {
-                            title:
-                            {
-                                display: true,
-                                text: "Skill Rating Distribution",
-                            },
-                            tooltips: {
-                                mode: 'label'
-                            },
-                            responsive: true,
-                            maintainAspectRatio: true,
-                            showAllTooltips: true,
-                            tooltips: {
-                                callbacks: {
-                                    title: function (tooltipItem, data) {
-                                        return data['labels'][tooltipItem[0]['index']];
-                                    },
-                                    label: function (tooltipItem, data) {
-                                        return data['datasets'][0]['data'][tooltipItem['index']];
-                                    },
-                                    afterLabel: function (tooltipItem, data) {
-                                        var dataset = data['datasets'][0];
-                                        var percent = Math.round((dataset['data'][tooltipItem['index']] / dataset["_meta"][0]['total']) * 100)
-                                        return '(' + percent + '%)';
-                                    }
-                                },
-                                backgroundColor: '#FFF',
-                                titleFontSize: 16,
-                                titleFontColor: '#002633',
-                                bodyFontColor: '#000',
-                                bodyFontSize: 14,
-                                displayColors: false
-                            }
-                        }
-                });
-            }
-
-
-            var ctx2 = document.getElementById("Barcanvas").getContext("2d");
-            window.myBar2 = new Chart(ctx2,
+                    display: true,
+                    text: ""
+                },
+                scales:
                 {
-                    type: 'horizontalBar',
-                    data: BarChartData,
-                    options:
-                        {
-                            title:
-                            {
-                                display: true,
-                                text: "Average Skill Ratings"
-                            },
-                            scales:
-                                {
-                                    xAxes:
-                                       [{
-                                           ticks: {
-                                               beginAtZero: true
-                                           }
-                                       }]
-                                },
-                            responsive: true,
-                            maintainAspectRatio: true
+                    yAxes:
+                    [{
+                        ticks: {
+                            beginAtZero: true
                         }
-                });
+                    }],
+                     xAxes: [{
+                        // Change here
+                        barPercentage: 0.2
+                    }]
+                },
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
 
-        }
+}
 
     </script>
 </head>
@@ -133,43 +137,43 @@
     <div class="row">
         <div class="col-md-4 tile-first">
             <span class="tile-top"><i class="fa fa-user"></i>Total Users</span>
-            <div class="tile-value">2500</div>
+            <div class="tile-value">@(ViewBag.TotalEmployees)</div>
         </div>
         <div class="col-md-4 tile-list">
             <span class="tile-top"><i class="fa fa-user"></i>Total Skills</span>
-            <div class="tile-value">2500</div>
+            <div class="tile-value">@(ViewBag.TotalSkills)</div>
         </div>
         <div class="col-md-4 tile-list">
-            <span class="tile-top"><i class="fa fa-user"></i>Total Skills</span>
-            <div class="tile-value">2500</div>
+            <span class="tile-top"><i class="fa fa-user"></i>Total Ratings</span>
+            <div class="tile-value">@(ViewBag.TotalSkillRatingsCount)</div>
         </div>
     </div>
-        @*<div class="row">
-            <div class="col-sm-4">
-                <div class="panelSkill panel panel-default">
-                    <div class="panel-body">Total Skills<span style="float:right;font-size:60px;">@(ViewBag.TotalSkills)</span></div>
-                </div>
+    @*<div class="row">
+        <div class="col-sm-4">
+            <div class="panelSkill panel panel-default">
+                <div class="panel-body">Total Skills<span style="float:right;font-size:60px;">@(ViewBag.TotalSkills)</span></div>
+            </div>
 
-                <div class="panelSkill panel panel-default ">
-                    <div class="panel-body">Total Employees<span style="float:right;font-size:60px;">@(ViewBag.TotalEmployees)</span></div>
+            <div class="panelSkill panel panel-default ">
+                <div class="panel-body">Total Employees<span style="float:right;font-size:60px;">@(ViewBag.TotalEmployees)</span></div>
+            </div>
+        </div>
+        <div class="col-sm-4">*@
+    @*<div class="card">
+            <div style="text-align:center;background-color:indianred;height:80px;margin-top:-10px"><span class="glyphicon glyphicon-star" style="font-size:50px;margin-top:15px"></span></div>
+            <div class="container">
+                <p>Total Ratings Performed</p>
+                <div>
+                    <span style="font-size:40px;margin-left:0px;">@(ViewBag.TotalSkillRatingsCount)/@(ViewBag.MaximumRatings)</span>
+                </div>
+                <div class="progress" style="background-color: #ca42423b;">
+                    <div class="progress-bar progress-bar-danger"
+                         style="width:@(ViewBag.TotalSkillRatings)%;">
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-4">*@
-                @*<div class="card">
-                        <div style="text-align:center;background-color:indianred;height:80px;margin-top:-10px"><span class="glyphicon glyphicon-star" style="font-size:50px;margin-top:15px"></span></div>
-                        <div class="container">
-                            <p>Total Ratings Performed</p>
-                            <div>
-                                <span style="font-size:40px;margin-left:0px;">@(ViewBag.TotalSkillRatingsCount)/@(ViewBag.MaximumRatings)</span>
-                            </div>
-                            <div class="progress" style="background-color: #ca42423b;">
-                                <div class="progress-bar progress-bar-danger"
-                                     style="width:@(ViewBag.TotalSkillRatings)%;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
-            @*</div>
+        </div>*@
+    @*</div>
             <div class="col-sm-4">
                 <div class="panel panel-danger " id="paneltable">
                     <div class="panel-heading">Recently Rated Employees</div>
@@ -201,21 +205,53 @@
             </div>
         </div>*@
 
-        @* Chart *@
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="panel panel-default">
-                    <div class="panel-body" style="text-align: center">
-                        <canvas id="Linecanvas"></canvas>
+    @* Chart *@
+    <div class="row">
+        <div class="col-md-8">
+            <div class="dashboard-graph">
+                <div class="row graph-title">
+                    <div class="col-md-12">
+                        <h3>Average Ratings</h3>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-6">
-                <div style="text-align: center;height:338px">
+            <div class="col-md-12" style="background:white;">
+                <div>
                     <canvas id="Barcanvas"></canvas>
                 </div>
             </div>
         </div>
+        
+        <div class="col-md-4">
+            <div class="employee_panel">
+                <div class="row  employee_title">
+                    <div class="col-md-12">
+                        <h3>Top Skilled</h3>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse_link"><i class="fa fa-chevron-up" data-toggle="collapse" data-target="#p-content"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12 panel_content" id="p-content">
+
+                    </div>
+                </div>
+            </div>
+            @*<div class="employee_panel">
+                <div class="row employee_title">
+                    <div class="col-md-12">
+                        <h3>Top Skilled</h3>
+
+
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse_link"><i class="fa fa-chevron-up"></i></a></li>
+
+                        </ul>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    
+    
+  
 </body>
 </html>
