@@ -46,8 +46,7 @@
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td data-title="">
-                        @*<a href="@Url.Action("SkillRate",new { code = item.EmployeeCode, name = item.Name })"><i class="btn fa fa-gears"></i></a>*@
-                        @Html.ActionLink("Skills", "SkillRate", new { code = item.EmployeeCode, name = item.Name }, htmlAttributes: new { @class = "btn btn-primary" })
+                        <a href="@Url.Action("SkillRate",new { code = item.EmployeeCode, name = item.Name })"><i class="fa fa-lightbulb-o btn-sm btn-success" style="width:30px"></i></a>
                     </td>
                 </tr>
             }
