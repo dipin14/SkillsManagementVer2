@@ -317,6 +317,7 @@
     }
 
 }
+*/
 
 /* 
 Max width before this PARTICULAR table gets nasty
@@ -371,7 +372,10 @@ and also iPads specifically.
         /*
 	Label the data
 	*/
-       td:before { content: attr(data-title);}
+       td:before { 
+           content: attr(data-title);
+
+       }
         
        
 }
