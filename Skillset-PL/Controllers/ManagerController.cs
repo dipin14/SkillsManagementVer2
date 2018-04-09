@@ -24,7 +24,12 @@ namespace Skillset_PL.Controllers
             _skillRatingService = skillRatingService;
             _employeeServices = employeeServices;
         }
-        // GET: Manager
+
+        /// <summary>
+        /// Redirect to view of staff details.
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns>Staff Details View</returns>
         public ActionResult Index(int? page)
         {
             if(Session["customercode"]!=null)
@@ -41,6 +46,14 @@ namespace Skillset_PL.Controllers
             
            
         }
+
+        /// <summary>
+        /// Redirect to a view of skill ratings of an employee.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="page"></param>
+        /// <returns>View of rated skills</returns>
         public ActionResult SkillRate(string code, string name, int? page)
         {
             if (code == null)
@@ -58,6 +71,11 @@ namespace Skillset_PL.Controllers
             int pageNumber = (page ?? 1);
             return View(skill.ToPagedList(pageNumber, pageSize));
         }
+
+        /// <summary>
+        /// Returns a view of logged in manager's profile.
+        /// </summary>
+        /// <returns>View of logged in user's profile</returns>
         public ActionResult MyProfile()
         {
             if (Session["customercode"] == null)
@@ -71,6 +89,11 @@ namespace Skillset_PL.Controllers
             profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
             return View("MyProfile",profile);
         }
+
+        /// <summary>
+        ///Give view a to see rated skills and to rate skills for the logged in manager.
+        /// </summary>
+        /// <returns>View to rate skills</returns>
         public ActionResult ManagerRating()
         {
             if (Session["customerId"] == null)
@@ -85,7 +108,7 @@ namespace Skillset_PL.Controllers
             return View(ratingObj);
         }
         /// <summary>
-        /// Retrieve rated skills of employee
+        /// Retrieve rated skills details of an employee from database.
         /// </summary>
         /// <param name="EmpId"></param>
         /// <returns>IEnumerable<EmployeeRatedSkillsViewModel></returns>
