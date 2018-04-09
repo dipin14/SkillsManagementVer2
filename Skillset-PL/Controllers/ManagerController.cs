@@ -27,7 +27,7 @@ namespace Skillset_PL.Controllers
         // GET: Manager
         public ActionResult Index(int? page)
         {
-            if(Session["customercode"].ToString()!=string.Empty)
+            if(Session["customercode"]!=null)
             {
                 var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
                 int pageSize = 3;
@@ -36,14 +36,18 @@ namespace Skillset_PL.Controllers
             }
             else
             {
-             return RedirectToAction("MyProfile");
+             return RedirectToAction("Login", "Login");
             }
             
            
         }
           public ActionResult SkillRate(string code, string name, int? page)
         {
-            if(code!=null && name!=null)
+            if (code == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            if (code!=null && name!=null)
             {
                 ViewBag.Code = code;
                 ViewBag.Name = name;
@@ -56,6 +60,10 @@ namespace Skillset_PL.Controllers
         }
         public ActionResult MyProfile()
         {
+            if (Session["customercode"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var EmployeeDtoList = _employeeServices.GetProfile(Session["customercode"].ToString());
             var profile = EmployeeDtoList.EmployeeDTOtoViewModel();
             Session["customerId"] = EmployeeDtoList.Id;
@@ -66,11 +74,15 @@ namespace Skillset_PL.Controllers
 
         public ActionResult ManagerRating()
         {
+            if (Session["customerId"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var EmpId = Convert.ToInt32(Session["customerId"]);
             EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
-
             ratingObj.RatedSkills = GetRatedSkills(EmpId);
             ratingObj.SkillRatings = EmployeeRatings();
+            ViewBag.IsSpecial = ratingObj.RatedSkills.ToList().Any(m => m.SkillName == "Special skill");
             return View(ratingObj);
         }
         /// <summary>
@@ -83,6 +95,9 @@ namespace Skillset_PL.Controllers
             var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
             return RatedSkills;
         }
+
+        /// <summary>
+        /// Retrieve all skills
         /// </summary>
         /// <returns>IEnumerable<SkillViewModel></returns>
         public IEnumerable<SkillViewModel> EmployeeRatings()
@@ -90,6 +105,5 @@ namespace Skillset_PL.Controllers
             var skillList = _skillService.GetAllSkills().ToViewModelList();
             return skillList;
         }
-
     }
 }

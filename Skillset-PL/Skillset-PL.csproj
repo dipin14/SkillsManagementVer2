@@ -100,6 +100,10 @@
       <HintPath>..\packages\Npgsql.EntityFramework.2.2.7\lib\net45\Npgsql.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ObjectsComparer, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectsComparer.1.1\lib\net45\ObjectsComparer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
@@ -221,19 +225,17 @@
     <Content Include="Content\Card.css" />
     <Content Include="Content\Dashboard.css" />
     <Content Include="Content\Layout.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\login2.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Images\ashstar.jpg" />
+    <Content Include="Images\ashstar.png" />
     <Content Include="Images\female.png" />
     <Content Include="Images\male.png" />
-    <Content Include="Images\rate1.png" />
-    <Content Include="Images\rate2.png" />
     <Content Include="Images\redstar.png" />
-    <Content Include="Images\star1.png" />
-    <Content Include="Images\StarFade.gif" />
-    <Content Include="Images\StarGlow.gif" />
+    <Content Include="Images\user.png" />
     <Content Include="obj\Debug\Skillset-PL.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Skillset_PL.dll" />
     <Content Include="obj\Debug\Skillset_PL.pdb" />
@@ -244,18 +246,13 @@
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\Skillset-PL.csprojResolveAssemblyReference.cache" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Images\ashstar.jpg" />
-    <Content Include="Images\rate1.png" />
-    <Content Include="Images\rate2.png" />
     <Content Include="Images\redstar.png" />
-    <Content Include="Images\star1.png" />
-    <Content Include="Images\StarFade.gif" />
-    <Content Include="Images\StarGlow.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Employee.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -270,7 +267,6 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
-    <Compile Include="Controllers\AdministratorViewController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SkillRatingController.cs" />
@@ -286,7 +282,6 @@
     <Compile Include="ViewModels\EmployeeRatingScreenViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\ReportingStaff.cs" />
-    <Compile Include="ViewModels\AdministratorEmployeeViewModel.cs" />
     <Compile Include="ViewModels\AdministratorSkillViewModel.cs" />
     <Compile Include="ViewModels\EmployeeSkillRatingViewModel.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
@@ -300,14 +295,14 @@
     <Content Include="Views\Skill\Create.cshtml" />
     <Content Include="Views\Skill\Edit.cshtml" />
     <Content Include="Views\Skill\Delete.cshtml" />
-    <Content Include="Views\AdministratorView\Index.cshtml" />
     <Content Include="Views\Manager\SkillRate.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\SkillRating\_EmployeeLayout.cshtml" />
     <Content Include="Views\SkillRating\EmployeeProfile.cshtml" />
     <Content Include="Views\SkillRating\EmployeeRating.cshtml" />
     <Content Include="Views\Manager\ManagerRating.cshtml" />
-    <Content Include="Views\AdministratorView\Skills.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\Skills.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
     <None Include="Web.Debug.config" />
     <Content Include="Views\Shared\_AdminDashboardLayout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
@@ -317,7 +312,7 @@
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\Login3.cshtml" />
     <Content Include="Views\Login\Display.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <None Include="Web.Debug.config">

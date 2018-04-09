@@ -37,5 +37,34 @@ namespace Skillset_DAL.Repositories
         /// <returns></returns>
         int Delete(int? SkillRatingId);
 
+        /// <summary>
+        /// Retrieve skill names of skills rated by employee
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<string> GetEmployeeRatedSkillName();
+
+        /// <summary>
+        /// Retrieve skill names of skills rated by employee excluding special skill
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
+
+        /// <summary>
+        /// Retrieve total ratings for each skill given by employees
+        /// </summary>
+        /// <returns></returns>
+        string GetEmployeeRating();
+
+        /// <summary>
+        /// Retrieve total skill ratings count
+        /// </summary>
+        /// <returns></returns>
+        int GetSkillRatingsCount();
+
+        /// <summary>
+        /// Retrieve average ratings for primary skills
+        /// </summary>
+        /// <returns></returns>
+        string GetRatingAverage();
     }
 }

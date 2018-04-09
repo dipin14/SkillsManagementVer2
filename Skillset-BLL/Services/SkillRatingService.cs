@@ -55,6 +55,32 @@ namespace Skillset_BLL.Services
 
          
         }
+        
+        public IQueryable<string> GetEmployeeRatedSkillName()
+        {
+            return _iSkillRatingRepository.GetEmployeeRatedSkillName();
+        }
+
+        
+        public string GetEmployeeRating()
+        {
+            return _iSkillRatingRepository.GetEmployeeRating();
+        }
+
+        public int GetSkillRatingsCount()
+        {
+            return _iSkillRatingRepository.GetSkillRatingsCount();
+        }
+        
+        public string GetRatingAverage()
+        {
+            return _iSkillRatingRepository.GetRatingAverage();
+        }
+
+        public IQueryable<string> GetEmployeeRatedSkillExcludeSpecial()
+        {
+            return _iSkillRatingRepository.GetEmployeeRatedSkillExcludeSpecial();
+        }
 
     }
 }

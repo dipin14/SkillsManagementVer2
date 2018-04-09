@@ -7,13 +7,13 @@ namespace Skillset_DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class newSkills : IMigrationMetadata
+    public sealed partial class newseed : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(newSkills));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newseed));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804021204420_newSkills"; }
+            get { return "201804062316062_newseed"; }
         }
         
         string IMigrationMetadata.Source

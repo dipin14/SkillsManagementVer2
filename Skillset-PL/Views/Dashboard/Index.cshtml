@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Skillset_PL.ViewModels.EmployeeViewModel>
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
-
+    ViewBag.Title = "Dashboard";
 }
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,11 @@
                        labels: [@Html.Raw(ViewBag.SkillnameList)],
                        datasets: [{
                            label: 'Skill Rating Distribution',
-                           backgroundColor: ["rgba(75,192,192,0.4)", "LightCoral", "Crimson", "SlateBlue ", "teal"],
+                           backgroundColor: ["rgba(75,192,192,0.4)",
+                                             "rgba(240,128,128 ,1 )",
+                                             "rgba(220,20,60 ,1 )",
+                                             "rgb(72,61,139)",
+                                             "rgba(38, 166, 154, 1)"],
                            borderWidth: 2,
                            data: [@ViewBag.RatingList]
                        }]
@@ -39,8 +43,19 @@
             };
 
         window.onload = function () {
+
             var ctx1 = document.getElementById("Linecanvas").getContext("2d");
-            window.myBar = new Chart(ctx1,
+
+            if (''== PieChartData.labels) {
+                ctx1.font = "20px " + Chart.defaults.global.tooltipTitleFontFamily;
+                ctx1.textAlign = "center";
+                ctx1.textBaseline = "middle";
+                ctx1.fillStyle = Chart.defaults.global.scaleFontColor;
+                ctx1.fillText("No Primary skill ratings done", ctx1.canvas.clientWidth / 2, ctx1.canvas.clientHeight / 2);
+            }
+            else {
+                
+                window.myBar = new Chart(ctx1,
                 {
                     type: 'pie',
                     data: PieChartData,
@@ -49,14 +64,40 @@
                             title:
                             {
                                 display: true,
-                                text: "Skill Rating Distribution"
+                                text: "Skill Rating Distribution",
                             },
-
+                            tooltips: {
+                                mode: 'label'
+                            },
                             responsive: true,
+                            maintainAspectRatio: true,
                             showAllTooltips: true,
-                            maintainAspectRatio: true
+                            tooltips: {
+                                callbacks: {
+                                    title: function (tooltipItem, data) {
+                                        return data['labels'][tooltipItem[0]['index']];
+                                    },
+                                    label: function (tooltipItem, data) {
+                                        return data['datasets'][0]['data'][tooltipItem['index']];
+                                    },
+                                    afterLabel: function (tooltipItem, data) {
+                                        var dataset = data['datasets'][0];
+                                        var percent = Math.round((dataset['data'][tooltipItem['index']] / dataset["_meta"][0]['total']) * 100)
+                                        return '(' + percent + '%)';
+                                    }
+                                },
+                                backgroundColor: '#FFF',
+                                titleFontSize: 16,
+                                titleFontColor: '#002633',
+                                bodyFontColor: '#000',
+                                bodyFontSize: 14,
+                                displayColors: false
+                            }
                         }
                 });
+            }
+
+
             var ctx2 = document.getElementById("Barcanvas").getContext("2d");
             window.myBar2 = new Chart(ctx2,
                 {
@@ -103,7 +144,7 @@
                 <div class="container">
                     <p>Total Ratings Performed</p>
                     <div>
-                        <span style="font-size:40px;margin-left:120px;">@(ViewBag.TotalSkillRatingsCount)</span>
+                        <span style="font-size:40px;margin-left:0px;">@(ViewBag.TotalSkillRatingsCount)/@(ViewBag.MaximumRatings)</span>
                     </div>
                     <div class="progress" style="background-color: #ca42423b;">
                         <div class="progress-bar progress-bar-danger"
@@ -114,9 +155,9 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="panel panel-danger" style="width: 218px;height: 220px;">
+            <div class="panel panel-danger " id="paneltable" >
                 <div class="panel-heading">Recently Rated Employees</div>
-                <div class="panel-body paneltable">
+                <div class="panel-body ">
                     <table class="table table-bordered">
                         <tbody>
                             @if ((Model.Count() > 0))
@@ -155,7 +196,7 @@
         </div>
 
         <div class="col-sm-6">
-            <div style="text-align: center;height:200px">
+            <div style="text-align: center;height:300px">
                 <canvas id="Barcanvas"></canvas>
             </div>
         </div>

@@ -28,19 +28,7 @@
   margin: 0px;
   line-height: 35px;
   cursor: pointer;
-  /*    
-    .collapsed{
-       .arrow:before{
-                 font-family: FontAwesome;
-                 content: "\f053";
-                 display: inline-block;
-                 padding-left:10px;
-                 padding-right: 10px;
-                 vertical-align: middle;
-                 float:right;
-            }
-     }
-*/
+
 }
 .nav-side-menu ul :not(collapsed) .arrow:before,
 .nav-side-menu li :not(collapsed) .arrow:before {
@@ -116,10 +104,41 @@
      
   }
     .row .second{
-      margin-left:20px;
-     margin-right:20px;
+      
+      margin-right:20px;
   }
+   
 }
+@media (min-width: 768px) and (max-width: 970px) {
+ .nav-side-menu .menu-list .menu-content {
+    display: block;
+  }
+  .nav-side-menu {
+    width: 22%;
+  }
+  body
+  {
+      overflow-x:hidden;
+  }
+  .row .first{
+      margin-left:55px;
+      margin-top:70px;
+      margin-right:15px;
+  }
+  
+   .navbar-fixed-top .toggle-btn {
+    
+    background-color:transparent;
+    color:transparent;
+  }
+    #paneltable
+    {
+         width: 218px;
+         height: 220px;
+         margin-left:37px;
+    }
+}
+
 @media (min-width: 768px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;
@@ -133,6 +152,7 @@
       margin-top:70px;
       margin-right:15px;
   }
+   
    .navbar-fixed-top .toggle-btn {
     
     background-color:transparent;
@@ -143,34 +163,8 @@
        height:100px;
        width:200px;
    }
+    #paneltable {
+        width: 218px;
+        height: 220px;
+    }
 }
-
-
-
-#sidebar {
-    padding:15px;
-    margin-top:10px;
-}
-
-.paneltable .table > thead > tr > th{
-    border-right: 1px solid #ddd;
-    border-bottom:0;
-}
-
-.paneltable .table > tbody > tr > td{
-    border-right: 1px solid #ddd;
-}
-
-.paneltable .table > thead > tr > th:last-of-type {
-    border-right: 0px;
-}
-
-.paneltable .table > tbody > tr > td:last-of-type {
-    border-right: 0px;
-}
-
-.paneltable {
-    padding: 0;
-}
-
-.paneltable > .table{margin-bottom:0px;}

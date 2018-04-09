@@ -3,7 +3,7 @@ namespace Skillset_DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newSkills : DbMigration
+    public partial class newseed : DbMigration
     {
         public override void Up()
         {
@@ -20,7 +20,7 @@ namespace Skillset_DAL.Migrations
                 "public.Employees",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         EmployeeCode = c.String(),
                         Name = c.String(),
                         DateOfJoining = c.DateTime(nullable: false),

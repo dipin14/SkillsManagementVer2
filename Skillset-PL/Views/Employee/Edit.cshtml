@@ -19,7 +19,7 @@
 
             <div class="container-fluid">
                 <div class="form-group">
-                    <div class="panel panel-success" >
+                    <div class="panel panel-success row second" >
                         <div class="panel-body">
                             <div class="col-md-2"></div>
                             @Html.LabelFor(model => model.EmployeeCode, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,14 +41,15 @@
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
                     @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        @Html.RadioButton("Gender", "Male", new { htmlAttributes = new { @class = "form-control" } })<text>Male</text>
+                    <div class="col-md-4">
+                        @Html.RadioButton("Gender", "Male", new { htmlAttributes = new { @class = "form-control" } })&nbsp;&nbsp;<text>Male</text>
+                        &nbsp; &nbsp; &nbsp;
+                        @Html.RadioButton("Gender", "Female", new { htmlAttributes = new { @class = "form-control" } })&nbsp;&nbsp;<text>Female</text>
                     </div>
-                    <div class="col-md-2">
-                        @Html.RadioButton("Gender", "Female", new { htmlAttributes = new { @class = "form-control" } })<text>Female</text>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                     </div>
-                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
-                </div>
+                 </div>
             </div>
 
             <div class="row second">
@@ -85,7 +86,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Experience, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control", min = "0" } })
+                        @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control", min = "0", max = "60" } })
                         @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
                     </div>
 
@@ -127,24 +128,25 @@
                 </div>
             </div>
             <br />
-            <div class="row second">
-                <div class="col-md-3"></div>
+            <center>
+                <div class="row second">
+                    <div class="col-md-3"></div>
 
-                <div class="col-md-1">
-                    <input type="reset" value="Reset" class="btn btn-success" />
+                    <div class="col-md-1" style="margin-bottom:10px;">
+                        <input type="reset" value="Reset" class="btn btn-default" onclick="resetValidation()" />
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-1" style="margin-bottom:10px;">
+                        @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-1" style="margin-bottom:10px;">
+                        <input type="submit" id="submit" value="Update" class="btn btn-success" onclick="OnSubmitClick()" />
+                    </div>
+                    
+                    <div class="col-md-3"></div>
                 </div>
-                <div class="col-md-1"></div>
-                <div class="col-md-1">
-                    <input type="submit" id="submit" value="Update" class="btn btn-success" onclick="OnChangeEvent()" />
-                </div>
-                <div class="col-md-1"></div>
-                <div class="col-md-1">
-                    @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
-                </div>
-
-                <div class="col-md-3"></div>
-            </div>
-
+            </center>
         </div>
     }
 
