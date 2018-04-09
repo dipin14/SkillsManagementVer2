@@ -21,7 +21,7 @@
             <div class="container-fluid">
                 
                     <div class="form-group">
-                        <div class="panel panel-success">
+                        <div class="panel panel-success row second" >
                             <div class="panel-body">
                                 <div class="col-md-2"></div>
                                 @Html.LabelFor(model => model.EmployeeCode, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -136,17 +136,17 @@
                     <div class="col-md-3"></div>
 
                     <div class="col-md-1" style="margin-bottom:10px;">
-                        <input type="reset" value="Reset" class="btn btn-warning" onclick="resetValidation()" />
+                        <input type="reset" value="Reset" class="btn btn-default" onclick="resetValidation()" />
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-1" style="margin-bottom:10px;">
+                        @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-1" style="margin-bottom:10px;">
                         <input type="submit" id="submit" value="Save" class="btn btn-success" onclick="OnSubmitClick()" />
                     </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-1" style="margin-bottom:10px;">
-                        @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-danger" })
-                    </div>
-
+                    
                     <div class="col-md-3"></div>
                 </div>
                 </center>
