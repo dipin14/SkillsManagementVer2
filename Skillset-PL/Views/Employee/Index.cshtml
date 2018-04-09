@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
 }
-
+<link href="~/Content/theme.css" rel="stylesheet" />
 
    
     <p style="text-align: right">
@@ -16,7 +16,7 @@
 
         <div class="panel-group">
             <div class="panel panel-success">
-                <div class="panel-heading" style="display:block;text-align:center"><b>Search</b></div>
+                <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;"><b>Search</b></div>
                 <div class="panel-body">
                     <div class="form-group">
                         <div class="col-md-5"><b> Search By Name/Code/Designation</b>
@@ -41,7 +41,7 @@
 
     @if ((Model.Count() > 0))
     {
-        <label class="control-label alert-success well-sm" style="display:block;text-align:center">Employee Details</label>
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</label>
             <table class="table table-bordered table-hover table-responsive">
                 <tr>
                     <th>Employee Code</th>

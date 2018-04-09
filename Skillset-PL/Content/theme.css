@@ -7,3 +7,12 @@
     background: #0A0C0E;
     border-color: #2a3f54; /*set the color you want here*/
 }
+.btn-green{
+    background:#1ABB9C;
+        color:#FFF;
+}
+.btn-green:hover{
+    color: #FFF;
+    background: #59A991;
+    border-color: #2a3f54;
+}
