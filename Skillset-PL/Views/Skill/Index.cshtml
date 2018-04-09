@@ -29,16 +29,13 @@
                     </th>
                 </tr>
             </thead>
-
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
+                    <tr>                       
                         <td data-title="Skill Name">
                             @Html.DisplayFor(modelItem => item.SkillName)
                         </td>
-                        <td>
                         <td data-title="Skill Description">
                             @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
                         </td>
