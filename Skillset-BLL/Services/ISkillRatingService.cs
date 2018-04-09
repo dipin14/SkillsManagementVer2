@@ -31,7 +31,7 @@ namespace Skillset_BLL.Services
         /// Retrieve skill names of skills rated by employee
         /// </summary>
         /// <returns></returns>
-        IQueryable<string> GetEmployeeRatedSkill();
+        IQueryable<string> GetEmployeeRatedSkillName();
 
         /// <summary>
         /// Retrieve skill names of skills rated by employee excluding special skill

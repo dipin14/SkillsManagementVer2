@@ -76,15 +76,15 @@ textarea {
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
-    background-color: #f0f8ff; /* Black background color */
-    color: #4682b4; /* White text color */
+    background-color: #000; /* Black background color */
+    color: #fff; /* White text color */
     text-align: center; /* Centered text */
     border-radius: 2px; /* Rounded borders */
     padding: 16px; /* Padding */
     position: fixed; /* Sit on top of the screen */
     z-index: 1; /* Add a z-index if needed */
     left: 50%; /* Center the snackbar */
-    bottom: 30px; /* 30px from the bottom */
+    top: 70px; /* 30px from the bottom */
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
@@ -94,7 +94,9 @@ textarea {
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 #snackbarValidation {
-    visibility: hidden; /* Hidden by default. Visible on click */
+    background-image:url(../Images/Check.png);
+    height:50px;
+    visibility: visible; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
     background-color: #000; /* Black background color */
@@ -105,7 +107,7 @@ textarea {
     position: fixed; /* Sit on top of the screen */
     z-index: 1; /* Add a z-index if needed */
     left: 50%; /* Center the snackbar */
-    bottom: 30px; /* 30px from the bottom */
+    bottom: 70px; /* 30px from the bottom */
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
@@ -117,23 +119,23 @@ textarea {
 
 /* Animations to fade the snackbar in and out */
 @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
+    from {top: 70px; opacity: 0;} 
+    to {top: 70px; opacity: 1;}
 }
 
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {top: 70px; opacity: 0;}
+    to {top: 70px; opacity: 1;}
 }
 
 @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
+    from {top: 70px; opacity: 1;} 
+    to {top: 70px; opacity: 0;}
 }
 
 @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {top: 70px; opacity: 1;}
+    to {top: 70px; opacity: 0;}
 }
 .loader {
     border: 5px solid #f0f8ff;
@@ -268,6 +270,7 @@ textarea {
     100% { transform: rotate(360deg); }
 }
 
+
 .delete{
  cursor: pointer;
 }
@@ -288,13 +291,22 @@ textarea {
   position: absolute;
   top: 50%;
   left: 50%;
+  background-color:#181a1c;
+    height: 60px;
+    width: 60px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    visibility:visible;
+        border-radius:5px;
 }
 .loading-bar {
   display: inline-block;
   width: 4px;
-  height: 18px;
-  border-radius: 4px;
+  height: 5px;
+  border-radius: 1px;
   animation: loading 1s ease-in-out infinite;
+
 }
 .loading-bar:nth-child(1) {
   background-color: #3498db;
@@ -302,15 +314,23 @@ textarea {
 }
 .loading-bar:nth-child(2) {
   background-color: #c0392b;
-  animation-delay: 0.09s;
+  animation-delay: 0.05s;
 }
 .loading-bar:nth-child(3) {
   background-color: #f1c40f;
-  animation-delay: .18s;
+  animation-delay: .10s;
 }
 .loading-bar:nth-child(4) {
   background-color: #27ae60;
-  animation-delay: .27s;
+  animation-delay: .15s;
+}
+.loading-bar:nth-child(5) {
+  background-color: chocolate;
+  animation-delay: .20s;
+}
+.loading-bar:nth-child(6) {
+  background-color: lightblue;
+  animation-delay: .30s;
 }
 
 @keyframes loading {
@@ -318,7 +338,7 @@ textarea {
     transform: scale(1);
   }
   20% {
-    transform: scale(1, 2.2);
+    transform: scale(1, 10);
   }
   40% {
     transform: scale(1);

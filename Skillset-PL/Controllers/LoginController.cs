@@ -37,11 +37,11 @@ namespace Skillset_PL.Controllers
                     return RedirectToAction("EmployeeProfile", "SkillRating");
                 }
             }
-            catch (Exception ex)
+            catch 
             {
-
-            }
                 return View();
+            }
+            return View();
             
         }
         /// <summary>
@@ -53,7 +53,7 @@ namespace Skillset_PL.Controllers
         [HttpPost]
         public ActionResult Login(string employeeCode, string password)
         {
-            if (!(string.IsNullOrEmpty(employeeCode) && string.IsNullOrEmpty(password)))
+            if (!(string.IsNullOrEmpty(employeeCode) || string.IsNullOrEmpty(password)))
             {
                 var role = logService.GetRole(employeeCode, password);
                 if (role == "Admin")

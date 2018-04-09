@@ -1,4 +1,4 @@
-﻿
+
 
 function CRate(id, val) {
 
@@ -205,11 +205,12 @@ function ShowValidation()
     x.className = "show";
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
   //  setTimeout(function () { location.reload(); }, 1000);
+
 }
-AlertEmployee()
+function AlertEmployee(Message)
 {
     var x = document.getElementById("snackbar")
-    x.innerHTML = "someContent";
+    x.innerHTML = Message;
     x.className = "show";
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
 }

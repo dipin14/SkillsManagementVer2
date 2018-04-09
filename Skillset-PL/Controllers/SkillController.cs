@@ -49,6 +49,8 @@ namespace Skillset_PL.Controllers
         {
             try
             {
+                skillViewModel.SkillName = skillViewModel.SkillName.Trim();
+                skillViewModel.SkillDescription = skillViewModel.SkillDescription.Trim();
                 var skillCreateResult = _skillService.Create(skillViewModel.ToDTO());
 
                 if (skillCreateResult == -1)
@@ -90,6 +92,8 @@ namespace Skillset_PL.Controllers
         {
             try
             {
+                skillView.SkillName = skillView.SkillName.Trim();
+                skillView.SkillDescription = skillView.SkillDescription.Trim();
                 _skillService.Update(skillView.ToDTO());
                 return RedirectToAction("Index");
             }

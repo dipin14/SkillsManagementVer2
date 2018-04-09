@@ -32,10 +32,7 @@ namespace Skillset_PL
 
             builder.RegisterType<ReportingStaffExtensions>().As<IReportingStaffExtensions>().InstancePerRequest();
             builder.RegisterType<ReportingStaff>().As<IReportingStaff>().InstancePerRequest();
-
-            builder.RegisterType<AdminEmployeeSkillService>().As<IAdminEmployeeSkillService>().InstancePerRequest();
-            builder.RegisterType<AdminEmployeeSkillRepository>().As<IAdminEmployeeSkillRepository>().InstancePerRequest();
-
+         
             builder.RegisterType<SkillRatingService>().As<ISkillRatingService>().InstancePerRequest();
             builder.RegisterType<SkillRatingRepository>().As<ISkillRatingRepository>().InstancePerRequest();
 
@@ -50,8 +47,7 @@ namespace Skillset_PL
         {
             HttpCookie authCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie == null || authCookie.Value == "")
-                return;
-
+            return;
             FormsAuthenticationTicket authTicket;
             try
             {
@@ -61,7 +57,7 @@ namespace Skillset_PL
             {
                 return;
             }
-
+              
             // retrieve roles from UserData
             string[] roles = authTicket.UserData.Split(';');
 

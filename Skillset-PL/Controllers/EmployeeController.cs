@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using ObjectsComparer;
 using PagedList;
 using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
@@ -12,15 +13,19 @@ using System.Web.Mvc;
 using System.Web.UI;
 
 namespace Skillset_PL.Controllers
-{   [Authorize(Roles ="Admin")]
+{
+    [Authorize(Roles ="Admin")]
     public class EmployeeController : Controller
     {
-        private IEmployeeServices _services;
+        private readonly IEmployeeServices _services;
+ 
         public EmployeeController(IEmployeeServices services)
         {
             _services = services;
+           
         }
 
+        //Get list of designations
         public List<SelectListItem> GetDesignations()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -36,6 +41,7 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
+        //Get list of Qualifications
         public List<SelectListItem> GetQualifications()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -51,6 +57,7 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
+        //Get list of managers
         public List<SelectListItem> GetManagers()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -66,6 +73,7 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
+        //Get list of roles
         public List<SelectListItem> GetRoles()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -87,6 +95,8 @@ namespace Skillset_PL.Controllers
             var pageNumber = (page ?? 1) - 1;
             var totalCount = 0;
             var pageSize = 3;
+            if(search!=null)
+                search = search.Trim();
             ViewBag.search = search;
             var dtoList = _services.ViewSearchRecords(search,pageNumber,pageSize,out totalCount);
             var modelList = new List<EmployeeViewModel>();
@@ -101,7 +111,7 @@ namespace Skillset_PL.Controllers
             IPagedList<EmployeeViewModel> pageOrders = new StaticPagedList<EmployeeViewModel>(modelList, pageNumber + 1, 3, totalCount);
             return View(pageOrders);
         }
-              
+        //  GET: Employees/Create  
         public ActionResult Create()
         {
             ViewData["Designations"] = GetDesignations();
@@ -110,12 +120,16 @@ namespace Skillset_PL.Controllers
             ViewData["Roles"] = GetRoles();
             return View();
         }
+        // POST: Employees/Create/{employee}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(EmployeeViewModel employee)
         {
+            employee.Name= employee.Name.Trim();
+            employee.Email=employee.Email.Trim();
+            employee.Address=employee.Address.Trim();
             if (ModelState.IsValid)
-            {
+            {               
                 int status = _services.AddNewEmployee(employee.EmployeeViewModeltoDTO());
                 if (status == 1)
                 {
@@ -167,7 +181,7 @@ namespace Skillset_PL.Controllers
             return View(employee.EmployeeDTOtoViewModel());
         }
 
-        // POST: Employees/Delete/
+        // POST: Employees/Delete/{id}
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
@@ -182,7 +196,7 @@ namespace Skillset_PL.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Employees/Details/
+        // GET: Employees/Details/{id}
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -201,7 +215,7 @@ namespace Skillset_PL.Controllers
             return View(employee.EmployeeDTOtoViewModel());
         }
 
-        // GET: Employees/Edit/5
+        // GET: Employees/Edit/{id}
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -217,29 +231,66 @@ namespace Skillset_PL.Controllers
             ViewData["Qualifications"] = GetQualifications();
             ViewData["Managers"] = GetManagers();
             ViewData["Roles"] = GetRoles();
-            return View(employee.EmployeeDTOtoViewModel());
+            EmployeeViewModel employeeDetails= employee.EmployeeDTOtoViewModel();
+            Session["EmployeeOriginal"] = employeeDetails;
+            return View(employeeDetails);
         }
 
-        // POST: Employees/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Employees/Edit/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EmployeeViewModel employee)
         {
+            employee.Name = employee.Name.Trim();
+            employee.Email = employee.Email.Trim();
+            employee.Address = employee.Address.Trim();
+            EmployeeViewModel originalEmployee=(EmployeeViewModel)Session["EmployeeOriginal"];
+            var comparer = new ObjectsComparer.Comparer<EmployeeViewModel>();
             if (ModelState.IsValid)
             {
-                int status = _services.EditEmployeeById(employee.EmployeeViewModeltoDTO());
-                if (status == 0)
+                //IEnumerable<Difference> differences;
+                bool isEqual = comparer.Compare(employee, originalEmployee);
+                if (!isEqual)
                 {
-                    ViewBag.message = "Error in modifying employee record";
-                    return RedirectToAction("Edit", employee);
+                    int status = _services.EditEmployeeById(employee.EmployeeViewModeltoDTO());
+                    if (status == 0)
+                    {
+                        ViewBag.message = "Error in modifying employee record";
+                        return RedirectToAction("Edit", employee);
+                    }
+                    TempData["message"] = "Modified employee record";
+                    return RedirectToAction("Index");
                 }
-                TempData["message"] = "Modified employee record";
-                return RedirectToAction("Index");
+                else
+                {
+                    TempData["message"] = "No modification applied";
+                    return RedirectToAction("Index");
+                }           
             }
             return View(employee);
            
+        }
+
+        // GET: Employee Skills Details      
+        public ActionResult Skills(string id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            IEnumerable<AdminSkillDTO> skillrecordlist;
+            //calling method to get skill details of a particular employee
+            skillrecordlist = _services.GetSkillDetails(id);
+
+            List<AdministratorSkillViewModel> recordlist = new List<AdministratorSkillViewModel>();
+            foreach (var obj in skillrecordlist)
+            {
+                recordlist.Add(new AdministratorSkillViewModel(obj.SkillName, obj.SkillValue, obj.RatingDate, obj.Note, obj.RatingNote));
+            }
+            string employeeName = _services.GetEmployeeName(id);
+            ViewData["employeename"] = employeeName;
+            ViewData["employeecode"] = id;
+            return View(recordlist);
         }
 
     }
