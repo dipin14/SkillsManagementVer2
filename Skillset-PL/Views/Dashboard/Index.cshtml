@@ -13,6 +13,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <script>
+     
         @*var PieChartData =
         {
             labels: [@Html.Raw(ViewBag.SkillnameList)],
@@ -44,8 +45,11 @@
 
     window.onload = function () {
 
+           
     //    var ctx1 = document.getElementById("Linecanvas").getContext("2d");
 
+           
+          
     //    if ('' == PieChartData.labels) {
     //        ctx1.font = "20px " + Chart.defaults.global.tooltipTitleFontFamily;
     //        ctx1.textAlign = "center";
@@ -55,6 +59,7 @@
     //}
     //else {
 
+                
     //    window.myBar = new Chart(ctx1,
     //        {
     //            type: 'pie',
@@ -143,6 +148,7 @@
             <span class="tile-top"><i class="fa fa-user"></i>Total Skills</span>
             <div class="tile-value">@(ViewBag.TotalSkills)</div>
         </div>
+       
         <div class="col-md-4 tile-list">
             <span class="tile-top"><i class="fa fa-user"></i>Total Ratings</span>
             <div class="tile-value">@(ViewBag.TotalSkillRatingsCount)</div>

@@ -50,7 +50,7 @@ namespace Skillset_DAL.Repositories
         }
 
         /// <summary>
-        /// Retrieve ratings
+        /// Retrieve all details regarding rating values.
         /// </summary>
         /// <returns>List of Ratings</returns>
         public IEnumerable<Rating> GetRatingDetails()
@@ -76,7 +76,8 @@ namespace Skillset_DAL.Repositories
             int managerId = GetEmployeeId(managerCode);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                var employees = context.Employees.ToList().Where(s => s.Status && s.EmployeeId == managerId && s.Id != s.EmployeeId);
+                //Retrieved all employees reporting to a manager excluding himself and admin. Admin's RoleId by default is set to 1 in Migrations/Configuration.cs
+                var employees = context.Employees.ToList().Where(s => s.Status && s.EmployeeId == managerId && s.Id != s.EmployeeId && s.RoleId!=1);
                 if (employees.Any())
                     return employees.Distinct().ToList();
                 else
