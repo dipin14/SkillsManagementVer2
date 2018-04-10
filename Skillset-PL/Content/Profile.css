@@ -1,10 +1,25 @@
 ﻿table.profileborder tr {
     line-height: 30px;
-    border-bottom: 1px solid #DCDCDC;
+    /*border-bottom: 1px solid #DCDCDC;*/
 }
 table.profileborder td {
     color:#2a3f54;
 }
 table.profileborder td.info {
     color:#1abb9c;
+    white-space:normal;
+}
+@media (min-width: 340px) and (max-width: 392px)
+{
+table.profileborder td {
+    font-size:10px;
+    white-space:normal;
+}
+}
+@media (max-width: 339px)
+{
+table.profileborder td {
+    font-size:8px;
+    white-space:normal;
+}
 }
