@@ -24,5 +24,6 @@ table.profileborder td {
     color:#2a3f54;
 }
 table.profileborder td.info {
-    color:#1abb9c;
+    color:#2a3f54;
+    font-weight:bold;
 }
