@@ -16,3 +16,13 @@
     background: #59A991;
     border-color: #2a3f54;
 }
+table.profileborder tr {
+    line-height: 30px;
+    
+}
+table.profileborder td {
+    color:#2a3f54;
+}
+table.profileborder td.info {
+    color:#1abb9c;
+}
