@@ -12,7 +12,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <script>
-     
+
         @*var PieChartData =
         {
             labels: [@Html.Raw(ViewBag.SkillnameList)],
@@ -31,24 +31,82 @@
         {
                     labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
                     datasets: [{
-                            label: 'Skill Ratings Average',
-                            backgroundColor: ['rgba(0, 99, 132, 0.6)',
-                                            'rgba(30, 99, 132, 0.6)',
-                                            'rgba(60, 99, 132, 0.6)',
-                                            'rgba(90, 99, 132, 0.6)',
-                                            'rgba(120, 99, 132, 0.6)'],
+                        label: 'Skill Ratings Average',
+                        backgroundColor: ["rgba(42, 63, 84, 1.0)",
+                        "rgba(42, 63, 84, 1.0)", "rgba(42, 63, 84, 1.0)",
+                        "rgba(42, 63, 84, 1.0)", "rgba(42, 63, 84, 1.0)",
+                        "rgba(42, 63, 84, 1.0)", "rgba(42, 63, 84, 1.0)"],
+                       
+
                     borderWidth: 2,
                     data: [@ViewBag.RatingAverage]
                             }]
         };
+        var MostSkilledPolarChartData=
+            {
+                labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
+                datasets: [{
+                    label: 'Top Rated Count',
+                    backgroundColor: ['rgba(42, 63, 84, 1.0)',
+                                      'rgba(70, 130, 180, 1 )',
+                                      'rgba(26, 187, 156, 1)',
+                                      'rgba(0, 0, 34, 1)',
+                                      'rgba(0, 148, 198, 1)',
+                                      'rgba(63, 136, 197, 1)',
+                                      'rgba(179, 123, 164, 1)',
+                                      'rgba(246, 247, 235, 1)',
 
+                                   ],
+                    borderWidth: 2,
+                    data: [@ViewBag.RatingAverage]
+                }]
+            };
+
+        var LeastSkilledPieChartData =
+            {
+                labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
+                datasets: [{
+                    label: 'Least Rated Count',
+                    backgroundColor: ['rgba(26, 187, 156, 1)',
+                                      'rgba(233, 79, 55, 1)',
+                                      'rgba(38, 42, 16, 1)',
+                                      'rgba(70, 130, 180, 1 )',
+                                      'rgba(209, 102, 102, 1)',
+                                      'rgba(63, 136, 197, 1)',
+                                      'rgba(243, 201, 105, 1)',
+                                      'rgba(113, 180, 141, 1)',
+
+                                    ],
+                    borderWidth: 2,
+                    data: [@ViewBag.RatingAverage]
+                }]
+            };
+
+        var DoughnutChartData =
+            {
+                labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
+                datasets: [{
+                    label: 'Null',
+                    backgroundColor: ['rgba(26, 187, 156, 1)',
+                                    'rgba(30, 99, 132, 0.6)',
+                                    'rgba(42, 63, 84, 1.0)',
+                                    'rgba(90, 99, 132, 0.6)',
+                                    'rgba(120, 99, 132, 0.6)',
+                                    'rgba(63, 136, 197, 1)',
+                                    'rgba(246, 247, 235, 1)',
+                                    'rgba(70, 130, 180, 1 )'
+                                    ],
+                    borderWidth: 2,
+                    data: [@ViewBag.RatingAverage]
+                }]
+            };
     window.onload = function () {
 
-           
+
     //    var ctx1 = document.getElementById("Linecanvas").getContext("2d");
 
-           
-          
+
+
     //    if ('' == PieChartData.labels) {
     //        ctx1.font = "20px " + Chart.defaults.global.tooltipTitleFontFamily;
     //        ctx1.textAlign = "center";
@@ -58,7 +116,7 @@
     //}
     //else {
 
-                
+
     //    window.myBar = new Chart(ctx1,
     //        {
     //            type: 'pie',
@@ -127,6 +185,68 @@
                         barPercentage: 0.2
                     }]
                 },
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
+
+    var ctx2 = document.getElementById("MostSkilledPolarcanvas").getContext("2d");
+    window.myBar2 = new Chart(ctx2,
+        {
+            type: 'polarArea',
+            data: MostSkilledPolarChartData,
+            options:
+            {
+                title:
+                {
+                    display: true,
+                    text: ""
+                },
+                scales:
+                {
+                   yAxes:
+                   [{
+                       ticks: {
+                           beginAtZero: true
+                       }
+                   }]
+                },
+               
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
+
+    var ctx3 = document.getElementById("LeastSkilledPiecanvas").getContext("2d");
+    window.myBar3 = new Chart(ctx3,
+        {
+            type: 'pie',
+            data: LeastSkilledPieChartData,
+            options:
+            {
+                title:
+                {
+                    display: true,
+                    text: ""
+                },
+                responsive: true,
+                maintainAspectRatio: true
+            }
+        });
+
+    var ctx4 = document.getElementById("Doughnutcanvas").getContext("2d");
+    window.myBar4 = new Chart(ctx4,
+        {
+            type: 'doughnut',
+            data: DoughnutChartData,
+            options:
+            {
+                title:
+                {
+                    display: true,
+                    text: ""
+                },
+
                 responsive: true,
                 maintainAspectRatio: true
             }
@@ -215,7 +335,7 @@
         <div class="col-md-8">
             <div class="dashboard-graph">
                 <div class="row graph-title">
-                    <div class="col-md-12">
+                    <div class="col-md-12" >
                         <h3>Average Ratings</h3>
                     </div>
                 </div>
@@ -231,16 +351,16 @@
           <div class="dashboard-card">
               <div class="row card-title">
                   <div class="col-md-8">
-                      <h3>Top Skilled</h3>
+                      <h3>Top Skilled</h3><div>Employees</div>
                   </div>
                   <div class="col-md-4 toggle-card">
                       <a class="toggle-button" style="float:right;"><i class="classi fa fa-chevron-up"></i></a>
                   </div>
               </div>
           </div>
-              <div class="col-md-12" style="background:white;height:398px;" id="show">
+              <div class="col-md-12" style="background:white;" id="show">
                   <div>
-                      <table class="employeetable table table-hover">
+                      <table class="employeetable table table-hover" style="height:242px">
                           <thead>
                               <tr>
                                   <th style="font-weight:bold;font-size:16px">Employee Name</th>
@@ -249,13 +369,13 @@
                               
                           </thead>
                           <tbody>
-                              @if ((Model.Count() > 0))
+                              @if ((ViewBag.TopSkillsTableData != null))
                               {
-                                  foreach (var item in Model)
+                                  foreach (var item in ViewBag.TopSkillsTableData)
                                   {
                                     <tr>
-                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.EmployeeCode)</td>
+                                        <td>@item.Key</td>
+                                        <td>@item.Value</td>
                                     </tr>
                                   }
                               }
@@ -274,6 +394,7 @@
               
          
       </div>
+
             @*<div class="employee_panel">
                 <div class="row employee_title">
                     <div class="col-md-12">
@@ -287,5 +408,64 @@
                     </div>
                 </div>*@
         </div>
+
+    @* 3Chart*@
+    <div class="row" style="padding-top:20px;">
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <div class="row card-title">
+                    <div class="col-md-8">
+                        <h3>Top Rated</h3><div>Employee Count</div>
+                    </div>
+                    <div class="col-md-4 toggle-card">
+                        <a class="toggle-button1" style="float:right;"><i class="classi1 fa fa-chevron-up"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="background:white;" id="show1">
+                <div>
+                    <canvas id="MostSkilledPolarcanvas"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <div class="row card-title">
+                    <div class="col-md-8">
+                        <h3>Least Rated </h3><div>Employee Count</div>
+                    </div>
+                    <div class="col-md-4 toggle-card">
+                        <a class="toggle-button2" style="float:right;"><i class="classi2 fa fa-chevron-up"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="background:white;" id="show2">
+                <div>
+                    <canvas id="LeastSkilledPiecanvas"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="dashboard-card">
+                <div class="row card-title">
+                    <div class="col-md-8">
+                        <h3>Null rated </h3><div>Employee Count</div>
+                    </div>
+                    <div class="col-md-4 toggle-card">
+                        <a class="toggle-button3" style="float:right;"><i class="classi3 fa fa-chevron-up"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="background:white;" id="show3">
+                <div>
+                    <canvas id="Doughnutcanvas"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @*End 3 chart*@
 </body>
 </html>

@@ -88,13 +88,13 @@
     
 }
 .navbar-inverse .navbar-nav>li>a .caret, .navbar-inverse .navbar-nav>li>a:hover .caret, .navbar-inverse .navbar-nav>li>a:focus .caret{
-    border-top-color:black !important;
+   /* border-top-color:black !important;*/
     border-bottom-color:black !important;
     
 }
 .caret{
-    border-right:4px solid black;
-    border-left:4px solid black;
+    /*border-right:4px solid black;
+    border-left:4px solid black;*/
 }
 
 .navbar-inverse .navbar-nav > li > a {

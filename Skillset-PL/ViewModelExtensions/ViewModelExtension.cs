@@ -1,6 +1,7 @@
 ﻿using Common.DTO;
 using Skillset_PL.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -160,7 +161,7 @@ namespace Skillset_PL.ViewModelExtensions
                 {
                     Skill = skill.Skill,
                     Rating = skill.Rating,
-                    RatingNote=skill.RatingNote,
+                    RatingNote = skill.RatingNote,
                     RatingDate = skill.RatingDate,
                     Note = skill.Note
                 }).Distinct().ToList().OrderByDescending(skillRating => skillRating.Rating).ThenByDescending(skillRating => skillRating.RatingDate).ToList();
@@ -180,13 +181,14 @@ namespace Skillset_PL.ViewModelExtensions
         public static IList<EmployeeSkillRatingDTO> ToSkillRatingDTOList(this IList<EmployeeSkillRatingViewModel> SkillRatingVMList)
         {
             return SkillRatingVMList.Select(skill => new EmployeeSkillRatingDTO
-            {   EmployeeId=skill.EmployeeId,
+            {
+                EmployeeId = skill.EmployeeId,
                 SkillId = skill.SkillId,
                 Note = skill.Note,
                 RatingDate = skill.RatingDate,
-                IsSpecialSkill=skill.IsSpecialSkill,
-                RatingScore=skill.RatingScore,
-                Status=skill.Status
+                IsSpecialSkill = skill.IsSpecialSkill,
+                RatingScore = skill.RatingScore,
+                Status = skill.Status
 
             }).ToList();
         }
@@ -198,13 +200,17 @@ namespace Skillset_PL.ViewModelExtensions
         public static IEnumerable<ViewModels.EmployeeRatedSkillsViewModel> ToSkillRatedViewmodel(this IEnumerable<Common.DTO.EmployeeRatedSkillsDTO> skillList)
         {
             return skillList.Select(employee => new ViewModels.EmployeeRatedSkillsViewModel
-            {   Id=employee.Id,
+            {
+                Id = employee.Id,
                 EmployeeId = employee.EmployeeId,
                 SkillName = employee.SkillName,
                 RaitedNote = employee.RaitedNote,
                 RaitedValue = employee.RaitedValue,
                 RaitedDate = employee.RaitedDate
-            }).ToList().OrderByDescending(s=>s.RaitedDate).ThenByDescending(s=>s.RaitedValue).ToList();
+            }).ToList().OrderByDescending(s => s.RaitedDate).ThenByDescending(s => s.RaitedValue).ToList();
         }
+
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Skillset_DAL.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -147,5 +148,13 @@ namespace Skillset_DAL.Repositories
         /// <param name="ratingId"></param>
         /// <returns></returns>
         string FindRatingNote(int ratingId);
+        
+        /// <summary>
+        /// Retrieve names of employees who recently give top rating for each skill
+        /// </summary>
+        /// <returns></returns>
+        Dictionary<string,string> GetTopRatedRecentEmployees();
+
+       
     }
 }

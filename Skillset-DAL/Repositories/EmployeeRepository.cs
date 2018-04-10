@@ -1,6 +1,7 @@
 ﻿using Skillset_DAL.ContextClass;
 using Skillset_DAL.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -244,35 +245,35 @@ namespace Skillset_DAL.Repositories
             }
         }
 
-        //public string MostSkilled()
-        //{
-        //    using (SkillsetDbContext context = new SkillsetDbContext())
-        //    {
-        //        var MaximumRatingId = context.Ratings.Where(s => s.Value == 5);
-        //        int id = Convert.ToInt32(MaximumRatingId);
-        //        //var RecentEmployees = (from s in context.SkillRatings
-        //        //                       join j in context.Employees
-        //        //                       on s.EmployeeId equals j.Id
-        //        //                       where s.Status == true && s.RatingId == id
-        //        //                       group s by new { Id = s.SkillId, EmployeeID = s.EmployeeId } into g
-        //        //                       select new { Id = g.Key.Id, EmployeeId = g.Key.EmployeeID }).ToList();
-        //        var Employees=context.SkillRatings
-        //            .Join(context.Employees,
-        //            s=>s.Id,
-        //            e=>e.Id,
-        //            (s, e) => new { s,e})
-        //            .Where(sr=>sr.s.Status==true && sr.s.RatingId==id)
-        //            .GroupBy(sr=>sr.s.SkillId,sr.e.).SelectMany(x=>x.Take(2).Select()
-        //    }
+        public Dictionary<string,string> GetTopRatedRecentEmployees()
+        {
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                StringBuilder TopRatedEmployeeName = new StringBuilder();
 
-        //}.GroupBy(x => x.Category).SelectMany(x => x.Take(3).Select(
-    //    s =>
-    //                                                 new NotificationData
-    //                                                     {
-    //                                                         Category = x.Key,
-    //                                                         Text = s.Text,
-    //                                                         Time = DateTime.Now.Subtract(s.Time)
-    //}))
+                var MaximumRatingId = context.Ratings.Where(s => s.Value == 5).Select(s => s.Id).FirstOrDefault();
+                int RatingId = Convert.ToInt32(MaximumRatingId);
+                var skill = (from sr in context.SkillRatings
+                             join e in context.Employees
+                             on sr.EmployeeId equals e.Id
+                             join r in context.Ratings
+                             on sr.RatingId equals r.Id
+                             join s in context.Skills
+                             on sr.SkillId equals s.SkillId
+                             where sr.Status == true && s.Status == true && sr.RatingId == RatingId
+                             orderby sr.RatingId descending
+                             select new { s.SkillName, e.Name });
+                var groupSkill = skill.GroupBy(x => x.SkillName).Select(x => new { SkillName = x.Key, EmployeeName = x.Select(s => s.Name).FirstOrDefault() }).ToList();
+                var a = groupSkill;
+                Dictionary<string, string> topSkills = new Dictionary<string, string>();
+                foreach (var skillEmp in groupSkill)
+                {
+                    topSkills.Add(skillEmp.SkillName, skillEmp.EmployeeName);
+                }
+                return topSkills;
+            }
+        }
+        
         public int GetEmployeesCount()
         {
             int employeesCount = default(int);
@@ -378,5 +379,7 @@ namespace Skillset_DAL.Repositories
                 return context.Ratings.Where(d => d.Id == ratingId).Select(d => d.Note).FirstOrDefault();
             }
         }
+
+       
     }
 }

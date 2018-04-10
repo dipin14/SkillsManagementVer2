@@ -2,6 +2,7 @@
 using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
 using Skillset_PL.ViewModels;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -24,6 +25,7 @@ namespace Skillset_PL.Controllers
       
         public ActionResult Index()
         {
+            IEnumerable l;
             //Get total skills
             ViewBag.TotalSkills = _skillservices.GetSkillsCount();
             ViewBag.TotalEmployees = _services.GetEmployeesCount();
@@ -47,6 +49,10 @@ namespace Skillset_PL.Controllers
 
             ViewBag.SkillnameExcludeList = string.Format("'{0}'", string.Join("','", _ratingservices.GetEmployeeRatedSkillExcludeSpecial().Select(i => i.Replace("'", "\"\"")).ToArray()));
             ViewBag.RatingAverage = _ratingservices.GetRatingAverage();
+            ViewBag.TopSkillsTableData= _services.GetTopRatedRecentEmployees();
+            //Get table data
+            //ViewBag.EmployeeList = _services.GetTopRatedRecentEmployeeName();
+            //ViewBag.SkillList = _services.GetTopRatedRecentEmployeeSkill();
 
             var dtoList = _services.GetRecentEmployees();
             var modelList = new List<EmployeeViewModel>();
