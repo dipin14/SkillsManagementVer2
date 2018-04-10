@@ -6,15 +6,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="~/Content/Profile.css" rel="stylesheet" />
 <div class="row first">
-    <h2>Delete Employee</h2>
+    <h3 style="padding-left:15px">Delete Employee</h3>
     <p style="color:red"> @ViewBag.message </p>
 
-    <h3>Are you sure you want to delete this Employee?</h3>
+    <h3 style="padding-left:15px">Are you sure you want to delete this Employee?</h3>
         <div class="col-sm-6">
-            <div class="panel-group">
+            @*<div class="panel-group">
                 <div class="panel panel-success">
                     <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</div>
-                    <div class="panel-body">
+                    <div class="panel-body">*@
+            <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</label>
+            <div class="well" style="background-color:#fff">
                         <div class="row">
                             <table class="table-responsive profileborder" style="width: 100%">
                                 <tr>
@@ -68,8 +70,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+   
+ 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
