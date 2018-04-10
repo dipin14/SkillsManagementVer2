@@ -3,8 +3,7 @@
 @{
     ViewBag.Title = "Edit";
 }
-<div class="row first">
-    <h2 >Edit Employee</h2>
+<link href="~/Content/theme.css" rel="stylesheet" />
 
 
     @using (Html.BeginForm())
@@ -132,15 +131,15 @@
                     <div class="col-md-3"></div>
 
                     <div class="col-md-1" style="margin-bottom:10px;">
-                        <input type="reset" value="Reset" class="btn btn-default" onclick="resetValidation()" />
+                        <input type="reset" value="Reset" class="btn btn-aqua" onclick="resetValidation()" />
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-1" style="margin-bottom:10px;">
-                        @Html.ActionLink("Cancel", "Index", null,htmlAttributes: new { @class = "btn btn-default" })
+                        @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-aqua" })
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-1" style="margin-bottom:10px;">
-                        <input type="submit" id="submit" value="Update" class="btn btn-success" onclick="OnSubmitClick()" />
+                        <input type="submit" id="submit" value="Update" class="btn btn-green" onclick="OnSubmitClick()" />
                     </div>
                     
                     <div class="col-md-3"></div>

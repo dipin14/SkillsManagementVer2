@@ -24,7 +24,6 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -230,7 +229,9 @@
     <Content Include="Content\login2.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Profile.css" />
+    <Content Include="Content\Search.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\theme.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\ashstar.png" />
@@ -261,7 +262,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\MenuList.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Skill.js" />
     <Content Include="Scripts\SkillRating.js" />
@@ -318,7 +318,6 @@
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Login\Login3.cshtml" />
-    <Content Include="Views\Login\Display.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

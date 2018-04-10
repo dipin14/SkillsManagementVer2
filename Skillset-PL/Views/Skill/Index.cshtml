@@ -2,50 +2,51 @@
 @model PagedList.IPagedList<Skillset_PL.ViewModels.SkillViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-
+<link href="~/Content/Site.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
 }
 
-   
-
-    <p style="text-align: right">
+    <span style="float:right;">
         @Html.ActionLink("New Skill", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
-    </p>
-    <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skill Details</label>
-    @if (Model.Count() > 0)
-    {
-        <table class="table table-bordered table-hover table-responsive">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayName("Skill Name")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Skill Description")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Operations")
-                    </th>
-                </tr>
-            </thead>
+    </span>
 
-            <tbody>
+
+<br /><br />
+<label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Skill Details</label>
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Skill Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Skill Description")
+                </th>
+                <th>
+                    @Html.DisplayName("Operations")
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            
                 @foreach (var item in Model)
                 {
                     <tr>
-                     
                         <td data-title="Skill Name">
                             @Html.DisplayFor(modelItem => item.SkillName)
                         </td>
-                   
+                        
                         <td data-title="Skill Description">
                             @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
                         </td>
-                  
-                        <td data-title="Operations">
-                           <a href="@Url.Action("Edit",new { skillName = item.SkillName })"><i class="fa fa-pencil-square-o btn-sm btn-warning" style="width:30px"></i></a>
-                            <a href="@Url.Action("Delete",new { skillName = item.SkillName })"><i class="fa fa-trash-o btn-sm btn-danger" style="width:30px"></i></a>
+                        <td>
+                            <a href="@Url.Action("Edit",new { skillName = item.SkillName })" data-tooltip="Edit Skill" data-tooltip-position="bottom"><i class="fa fa-pencil-square-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                            <a href="@Url.Action("Delete",new { skillName = item.SkillName })" data-tooltip="Delete Skill" data-tooltip-position="bottom"><i class="fa fa-trash-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
                         </td>
                     </tr>
                 }
@@ -59,7 +60,7 @@
             <strong>No Skills!</strong>
             <br />There are no skills to display
         </div>
-    }
+}
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
     @Html.PagedListPager(Model, page => Url.Action("Index",
