@@ -7,10 +7,11 @@
 <head>
     <link href="~/Content/Layout.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
-    <link href="~/Content/RatingStyle.css" rel="stylesheet" />
+   
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
     <script src="~/Scripts/SkillRating.js"></script>
+    <link href="~/Content/RatingStyle.css" rel="stylesheet" />
 </head>
 @if (ViewBag.IsSpecial != null)
 {
@@ -46,12 +47,11 @@
 
 
             <div id="snackbar">
-                <b>Success</b><br />
-                Succesfully added rating
+              Succesfully added rating
             </div>
             <div id="snackbarValidation">
-                @*<img src="~/Images/tick-512.png" />*@
-                <b>Warning</b><br />
+             
+             
                 <p>Enter your ratings</p>
             </div>
             @foreach(var item in Model.SkillRatings)
@@ -77,7 +77,7 @@
 
                             <div class="col-sm-5" style="color:grey;">
 
-                                <div id="StarRow " onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;">
+                                <div class="str" id="StarRow " onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;min-width:120px;">
                                     <input id="Rating @item.skillId" hidden />
                                     <span class="starFade" id="Rate1 @item.skillId" onclick="CRate(@item.skillId, 1)" onmouseover="CRateOver(@item.skillId,1)" onmouseout="CRateOut(@item.skillId,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
                                     <label for="Rate1 @item.skillId" title="Amazing"></label>
@@ -86,7 +86,7 @@
                                     <span class="starFade" id="Rate4 @item.skillId" onclick="CRate(@item.skillId, 4)" onmouseover="CRateOver(@item.skillId,4)" onmouseout="CRateOut(@item.skillId,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
                                     <span class="starFade" id="Rate5 @item.skillId" onclick="CRate(@item.skillId, 5)" onmouseover="CRateOver(@item.skillId,5)" onmouseout="CRateOut(@item.skillId,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
                                 </div>
-                                <textarea class="form-control notes" id="TxtAra @item.skillId" placeholder="Enter your notes here" name="TxtAra" required style="margin:10px;"></textarea>
+                                <textarea class="txtSkill" id="TxtAra @item.skillId" placeholder="Enter your notes here" required style=" margin:10px;"></textarea>
 
 
                             </div>
@@ -105,11 +105,11 @@
                 <div class="Ratecard">
                     <div class="row">
 
-                        <div class="col-sm-6" style="margin-left:7px;">
-                            <textarea class="form-control " rows="3" cols="50" id="TxtAra" placeholder="Enter your special skill here(Mandatory)" name="TxtAra" required style="margin:10px;"></textarea>
+                        <div class="col-sm-6" style="margin-left:20px;">
+                            <textarea class="txtSkillSpecial"id="TxtAra" placeholder="Enter your special skill here(Mandatory)"></textarea>
                         </div>
-                        <div class="col-sm-5" style="color:grey;margin-top:35px;">
-                            <div onmouseout="CRateSelected(0)" style="margin-left: 15px;margin-top:10px;width: 150px;">
+                        <div class="col-sm-5" style="color:grey; class=specialskillrating">
+                            <div onmouseout="CRateSelected(0)" style="margin-left:20px;margin-top:10px;min-width:120px;">
                                 <input id="Rating 0" hidden />
                                 <span class="starFade" id="Rate1 0" onclick="CRate(0, 1)" onmouseover="CRateOver(0,1)" onmouseout="CRateOut(0,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
                                 <label for="Rate1 0" title="Amazing"></label>
@@ -138,12 +138,12 @@
 
 
         <div class="col-sm-5">
-            <div class="panel panel-heading" id="containerRating" style="margin-bottom:0px;:block;text-align:center;background-color:#2a3f54;color:#FFF;">
+            <div class="panel panel-heading" id="containerRating" style="margin-bottom:0px;display:block;text-align:center;background-color:#2a3f54;color:#FFF;">
                
                 <div class="row">
 
 
-                    <div class="col-sm-7">
+                    <div class="col-sm-7" style="padding-left:13px;">
                       Rated Skills
                     </div>
                     <div class="col-sm-5">
@@ -159,7 +159,7 @@
             {
 
 
-                    <span class="panel" style="font-size:20px; ">Your skills</span>
+                    
 
 
                     foreach (var item in Model.RatedSkills)
@@ -202,4 +202,5 @@
             </div>
             </div>
         </div>
+    </div>
 
