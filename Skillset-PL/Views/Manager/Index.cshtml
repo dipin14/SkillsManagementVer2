@@ -9,8 +9,8 @@
 
 @if (Model.Count() > 0)
 {
-    <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Staff Details</label>
-    <br />
+    <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Staff Details</label>
+    
     <div class="panel panel-default">
         <table class="table table-hover table-responsive size-response">
             <thead style="background-color:#2a3f54;color:white">
@@ -58,8 +58,9 @@
 else
 {
 
-    <div class="alert alert-warning fade in">
-        <strong>No Staff Details!</strong> There is no reporting staff.
+    <div class="alert alert-warning fade in" style="color:#2a3f54;background-color:whitesmoke;border-color:#2a3f54">
+        <strong>No Staff Details!</strong> 
+        <br/>There is no reporting staff.
     </div>
 }
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount

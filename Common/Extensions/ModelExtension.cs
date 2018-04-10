@@ -123,7 +123,7 @@ namespace Common.Extensions
             }
             return dto;
         }
-/// <summary>
+        /// <summary>
         /// Convert IList of SkillRatingDTO model to SkillRatingModel
         /// </summary>
         /// <param name="skillRatingDTOList"></param>

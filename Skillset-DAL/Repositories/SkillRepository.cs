@@ -10,6 +10,11 @@ namespace Skillset_DAL.Repositories
 {
     public class SkillRepository : ISkillRepository
     {
+        /// <summary>
+        /// Insert skill into Skill table
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
         public int Create(Skill skill)
         {
             try
@@ -37,6 +42,11 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Update skill in Skill table
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
         public int Update(Skill skill)
         {
             if (skill != null)
@@ -56,7 +66,12 @@ namespace Skillset_DAL.Repositories
             }
             return 0;
         }
-        
+
+        /// <summary>
+        /// Sets status of skill to false using Skill Is
+        /// </summary>
+        /// <param name="skill Id"></param>
+        /// <returns></returns>
         public int Delete(int? skillId)
         {
             if (skillId != null)
@@ -87,6 +102,10 @@ namespace Skillset_DAL.Repositories
             return 0;
         }
 
+        /// <summary>
+        /// Retrieve all skills from Skill table
+        /// </summary>
+        /// <returns></returns>
         public IList<Skill> GetAllSkills()
         {
             using (var db = new SkillsetDbContext())
@@ -96,6 +115,11 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieve skill id using unique skill name
+        /// </summary>
+        /// <param name="skillName"></param>
+        /// <returns></returns>
         public int GetIdBySkillName(string skillName)
         {
             using (var db = new SkillsetDbContext())
@@ -105,6 +129,11 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieve skill object using skill name
+        /// </summary>
+        /// <param name="skillName"></param>
+        /// <returns></returns>
         public Skill GetSkillBySkillName(string skillName)
         {
             using (var db = new SkillsetDbContext())
@@ -114,6 +143,10 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieve total skill count
+        /// </summary>
+        /// <returns></returns>
         public int GetSkillsCount()
         {
             int skillsCount = default(int);

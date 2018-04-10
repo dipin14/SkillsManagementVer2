@@ -16,12 +16,20 @@ namespace Skillset_PL.Controllers
     {
         private readonly ISkillService _skillService;
 
+        /// <summary>
+        /// Dependency injection for Skill Service
+        /// </summary>
+        /// <param name="skillService"></param>
         public SkillController(ISkillService skillService)
         {
             _skillService = skillService;
         }
-        
-        // GET: Skill
+
+        /// <summary>
+        /// Shows list of skills taking pagenumber as argument
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public ActionResult Index(int? page)
         {
             //List of skills are ordered by Skill Name
@@ -33,19 +41,20 @@ namespace Skillset_PL.Controllers
             return View(skillList.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Skill/Details/5
-        public ActionResult Details(string name)
-        {
-            return View();
-        }
-
-        // GET: Skill/Create
+        /// <summary>
+        ///  Does GET for Creating Skill
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Skill/Create
+        /// <summary>
+        /// POST for Creating Skill using SkillViewModel
+        /// </summary>
+        /// <param name="skillViewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Create(SkillViewModel skillViewModel)
         {
@@ -76,13 +85,18 @@ namespace Skillset_PL.Controllers
             }
         }
 
-        // GET: Skill/Edit/5
+        /// <summary>
+        /// Gets Skill values using SkillName
+        /// </summary>
+        /// <param name="skillName"></param>
+        /// <returns></returns>
         public ActionResult Edit(string skillName)
         {
             if (skillName == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //Skill values returned from GetBySkillName is assigned to skillView
             SkillViewModel skillView = _skillService.GetBySkillName(skillName).ToViewModel();
             if (skillView == null)
             {
@@ -91,7 +105,12 @@ namespace Skillset_PL.Controllers
             return View(skillView);
         }
 
-        // POST: Skill/Edit/5
+        /// <summary>
+        /// Updates Skill values with values from SkillViewModel
+        /// </summary>
+        /// <param name="skillView"></param>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SkillViewModel skillView, FormCollection collection)
@@ -118,7 +137,11 @@ namespace Skillset_PL.Controllers
             }
         }
 
-        // GET: Skill/Delete/5
+        /// <summary>
+        /// GETS Skill values using Skill Name
+        /// </summary>
+        /// <param name="skillName"></param>
+        /// <returns></returns>
         public ActionResult Delete(string skillName)
         {
             if (skillName == null)
@@ -132,7 +155,12 @@ namespace Skillset_PL.Controllers
             }
         }
 
-        // POST: Skill/Delete/5
+        /// <summary>
+        /// Deletes Skill record using Skill Id
+        /// </summary>
+        /// <param name="skillView"></param>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(SkillViewModel skillView, FormCollection collection)

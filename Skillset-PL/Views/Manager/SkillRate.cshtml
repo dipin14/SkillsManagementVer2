@@ -10,21 +10,17 @@
 
     <div class="panel-group">
         <div class="panel panel-success">
-            <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">
-                <b>Skills</b>
-            </div>
             <div class="panel-body">
                 <div class="form-group">
                     <div class="col-md-12">
-                        <label class="control-label col-sm-6" style="float:left;display:block;text-align:left">Employee Code : @(ViewBag.Code) </label>
+                        <label class="control-label col-sm-6" style="float:left;display:block;text-align:left">Employee Code : @(ViewBag.Code)</label>
                         <label class="control-label col-sm-6" style="float:left;display:block;text-align:left;">  Employee Name : @(ViewBag.Name) </label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <br />
-    <br />
+    
     @if (Model.Count() > 0)
     {
         <br />
@@ -81,7 +77,7 @@
             else
             {
             <br />
-            <div class="alert alert-warning">
+            <div class="alert alert-warning" style="color:#2a3f54;background-color:whitesmoke;border-color:#2a3f54">
 
                 <strong>No Skill Ratings!</strong>
                 <br />Employee has no rated skills.
@@ -100,4 +96,9 @@
         name = ViewBag.Name,
         page
     }))
-        
+
+<br />
+<br />
+<span>
+    <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-primary" style="background-color:whitesmoke;color:#2a3f54; border-color:#2a3f54">Back</a>
+</span>

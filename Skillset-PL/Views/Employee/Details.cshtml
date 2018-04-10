@@ -4,73 +4,78 @@
     ViewBag.Title = "Details";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="~/Content/Profile.css" rel="stylesheet" />
+<link href="~/Content/theme.css" rel="stylesheet" />
 <div class="row first">
-    <div class="col-sm-6">
-        @*<div class="panel-group">
-            <div class="panel panel-success">
-                <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</div>
-                <div class="panel-body">*@
-        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</label>
-        <div class="well" style="background-color:#fff;">
-            <div class="row">
-                <table class="table-responsive profileborder" style="width: 100%">
-                    <tr>
-                        <td style="width:5%"><span class="fa fa-envelope-o"></span></td>
-                        <td>Email Id: </td>
-                        <td class="info">@Model.Email</td>
-                    </tr>
-                    <tr>
-                        <td style="width:5%"><span class="fa fa-intersex"></span></td>
-                        <td>Gender: </td>
-                        <td class="info">@Model.Gender</td>
-                    </tr>
-                    <tr>
-                        <td style="width:5%"><span class="fa fa-phone"></span></td>
-                        <td>Mobile Number: </td>
-                        <td class="info">@Model.MobileNumber</td>
-                    </tr>
-                    <tr>
-                        <td style="width:5%"><span class="fa fa-calendar"></span></td>
-                        <td>Date Of Birth:</td>
-                        <td class="info">@Model.DateOfBirth.ToString("dd/M/yyyy")</td>
-                    </tr>
-                    <tr>
-                        <td style="width:5%"><span class="fa fa-calendar"></span></td>
-                        <td>Date Of Joining:</td>
-                        <td class="info">@Model.DateOfJoining.ToString("dd/M/yyyy")</td>
-                    </tr>
-                    <tr>
-                        <td style="width:5%"><span class="fa fa-cog"></span></td>
-                        <td>Designation: </td>
-                        <td class="info">@Model.DesignationId</td>
-                    </tr>
-                    <tr>
-                        <td style="width:5%"><span class="fa fa-black-tie"></span></td>
-                        <td>Experience: </td>
-                        <td class="info">@Model.Experience years</td>
-                    </tr>
-                    <tr>
-                        <td style="width:5%"><span class="fa fa-briefcase"></span></td>
-                        <td>Role: </td>
-                        <td class="info">@Model.RoleId</td>
-                    </tr>
+    <div class="col-sm-2"></div>
+        <div class="col-sm-8">
 
-                    <tr>
-                        <td style="width:5%"><span class="fa fa-address-card-o"></span></td>
-                        <td>Address: </td>
-                        <td class="info">@Model.Address</td>
-                    </tr>
-                </table>
+            @*<div class="panel-group">
+                <div class="panel panel-success">
+                    <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</div>
+                    <div class="panel-body">*@
+            <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px">Employee Details</label>
+            <div class="well" style="background-color:#fff;">
+                <div class="row">
+                    <table class="table-responsive profileborder" style="width: 100%">
+                        <tr>
+                            <td style="width:5%"><span class="fa fa-envelope-o"></span></td>
+                            <td>Email Id: </td>
+                            <td class="info">@Model.Email</td>
+                        </tr>
+                        <tr>
+                            <td style="width:5%"><span class="fa fa-intersex"></span></td>
+                            <td>Gender: </td>
+                            <td class="info">@Model.Gender</td>
+                        </tr>
+                        <tr>
+                            <td style="width:5%"><span class="fa fa-phone"></span></td>
+                            <td>Mobile Number: </td>
+                            <td class="info">@Model.MobileNumber</td>
+                        </tr>
+                        <tr>
+                            <td style="width:5%"><span class="fa fa-calendar"></span></td>
+                            <td>Date Of Birth:</td>
+                            <td class="info">@Model.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                        <tr>
+                            <td style="width:5%"><span class="fa fa-calendar"></span></td>
+                            <td>Date Of Joining:</td>
+                            <td class="info">@Model.DateOfJoining.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                        <tr>
+                            <td style="width:5%"><span class="fa fa-cog"></span></td>
+                            <td>Designation: </td>
+                            <td class="info">@Model.DesignationId</td>
+                        </tr>
+                        <tr>
+                            <td style="width:5%"><span class="fa fa-black-tie"></span></td>
+                            <td>Experience: </td>
+                            <td class="info">@Model.Experience years</td>
+                        </tr>
+                        <tr>
+                            <td style="width:5%"><span class="fa fa-briefcase"></span></td>
+                            <td>Role: </td>
+                            <td class="info">@Model.RoleId</td>
+                        </tr>
+
+                        <tr>
+                            <td style="width:5%"><span class="fa fa-address-card-o"></span></td>
+                            <td>Address: </td>
+                            <td class="info">@Model.Address</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-        @*</div>
+
+<br/>
+    <div class="col-sm-2"></div>
+<div class="col-sm-8">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning", @style = "background-color:#2a3f54;color:#FFF; border-color:#2a3f54" })
+    &nbsp; &nbsp;
+    <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-primary" style="background-color:whitesmoke;color:#2a3f54; border-color:#2a3f54">Back</a>
+
     </div>
-</div>*@
-    
-            @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
-            &nbsp; &nbsp;
-            @Html.ActionLink("Back", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+
     
