@@ -72,5 +72,5 @@
     
             @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning" })
             &nbsp; &nbsp;
-            @Html.ActionLink("Back", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+            <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-primary">Back</a>
     

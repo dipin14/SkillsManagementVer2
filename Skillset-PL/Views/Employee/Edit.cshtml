@@ -11,7 +11,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal well">
-           <h2>Edit Employee</h2>
+           <h2 style="padding-left:0;">Edit Employee</h2>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -135,7 +135,7 @@
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-1" style="margin-bottom:10px;">
-                        @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-aqua" })
+                        <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-aqua">Cancel</a>
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-1" style="margin-bottom:10px;">

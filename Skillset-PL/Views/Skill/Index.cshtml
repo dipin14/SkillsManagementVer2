@@ -1,22 +1,33 @@
-﻿@using Common.Extensions
+﻿
+@using Common.Extensions
 @model PagedList.IPagedList<Skillset_PL.ViewModels.SkillViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/Site.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @{
     ViewBag.Title = "Index";
 }
+@if (TempData["message"] != null)
+{
 
-    <span style="float:right;">
-        @Html.ActionLink("New Skill", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
-    </span>
+    <script type="text/javascript">
 
+        $(function () {
 
-<br /><br />
+            AlertEmployee("@TempData["message"]");
+        });
+    </script>
+}
+<div id="snackbar"></div>
+<p style="text-align: right">
+    <a href="@Url.Action("Create", "Skill")" class="btn btn-new"><span class="fa fa-plus fa-lg"></span><span> <b>Skill</b></span></a>
+</p>
 <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Skill Details</label>
 
 @if (Model.Count() > 0)
 {
+
     <div class="panel panel-default">
         <table class="table table-hover table-responsive size-response">
             <thead style="background-color:#2a3f54;color:white">
@@ -29,7 +40,6 @@
                     </th>
                     <th>
                         @Html.DisplayName("Operations")
-                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -55,14 +65,15 @@
 else
 {
     <br />
-        <div class="alert alert-warning fade in">
-            <strong>No Skills!</strong>
-            <br />There are no skills to display
-        </div>
+    <div class="alert alert-warning fade in" style="color:#2a3f54;background-color:whitesmoke;border-color:#2a3f54">
+        <strong>No Skills!</strong>
+        <br />There are no skills to display
+    </div>
 }
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
         @Html.PagedListPager(Model, page => Url.Action("Index",
+
     new
     {
         page

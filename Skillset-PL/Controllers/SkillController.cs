@@ -62,6 +62,7 @@ namespace Skillset_PL.Controllers
                 {
                     ViewBag.Message = "Db Creation Error! Please Restart Application";
                 }
+                TempData["message"] = "Successfully Added Skill";
                 return RedirectToAction("Index");
             }
             catch
@@ -95,11 +96,12 @@ namespace Skillset_PL.Controllers
                 skillView.SkillName = skillView.SkillName.Trim();
                 skillView.SkillDescription = skillView.SkillDescription.Trim();
                 _skillService.Update(skillView.ToDTO());
+                TempData["message"] = "Modified skill record";
                 return RedirectToAction("Index");
             }
             catch
             {
-                ModelState.AddModelError("SkillName", "Skillname already exists");
+                ModelState.AddModelError("SkillName", "Skill Name already exists");
                 return View(skillView);
             }
         }
@@ -132,6 +134,7 @@ namespace Skillset_PL.Controllers
                 else
                 {
                     var deleteResult = _skillService.Delete(skillView.SkillName);
+                    TempData["message"] = "Successfully deleted skill record";
                     return RedirectToAction("Index");
                 }
             }
