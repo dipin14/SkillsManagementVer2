@@ -6,11 +6,22 @@
 }
 <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 
-<h2>Skills</h2>
 
-<label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Skills</label>
-<label class="control-label col-sm-6" style="float:left;display:block;text-align:center">Employee Code : @(ViewData["employeecode"]) </label>
-<label class="control-label col-sm-6" style="float:left;display:block;text-align:left;">  Employee Name : @(ViewData["employeename"]) </label>
+<div class="panel-group">
+    <div class="panel panel-success">
+        <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">
+            <b>Skills</b>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label class="control-label col-sm-6" style="float:left;display:block;text-align:left">Employee Code : @(ViewData["employeecode"]) </label>
+                    <label class="control-label col-sm-6" style="float:left;display:block;text-align:left;">  Employee Name : @(ViewData["employeename"]) </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <br />
 <br />
 @if (Model.Count() > 0)
@@ -63,18 +74,18 @@
                 }
             </tbody>
         </table>
-        </div>
-        }
-        else
-        {
-        <br />
+    </div>
+}
+else
+{
+    <br />
         <div class="alert alert-warning fade in">
 
             <strong>No Skill Ratings!</strong> There is no skill ratings available.
         </div>
-        }
-        <br />
-        <br />
-        <p>
-            @Html.ActionLink("Back to Employee List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
-        </p>
+}
+<br />
+<br />
+<p>
+    @Html.ActionLink("Back to Employee List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
+</p>
