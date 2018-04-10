@@ -1,4 +1,4 @@
-﻿﻿@using Common.Extensions
+﻿@using Common.Extensions
 @model PagedList.IPagedList<Skillset_PL.ViewModels.SkillViewModel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -28,7 +28,6 @@
                     </th>
                 </tr>
             </thead>
-
             <tbody>
                 @foreach (var item in Model)
                 {
