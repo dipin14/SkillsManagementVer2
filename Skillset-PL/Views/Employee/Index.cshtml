@@ -101,7 +101,8 @@
 else
 {
         <div class="alert alert-warning fade in" style="color:#2a3f54;background-color:whitesmoke;border-color:#2a3f54">
-            <strong>No Employees!</strong> There are no employees to display.
+            <strong>No Employees!</strong> 
+            <br/>There are no employees to display.
         </div>
 }
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
@@ -110,6 +111,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 
     new
     {
+        search = ViewBag.search,
         page
     }))
 <script src="~/Scripts/SkillRating.js"></script>
