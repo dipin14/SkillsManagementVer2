@@ -111,7 +111,7 @@ namespace Skillset_PL.Controllers
             ViewData["EmployeeCount"] = _services.GetEmployeesCount();
             var pageNumber = (page ?? 1) - 1;
             var totalCount = 0;
-            var pageSize = 5;
+            var pageSize = 2;
             TempData["page"] = pageNumber + 1;
             if(search!=null)
                 search = search.Trim();
