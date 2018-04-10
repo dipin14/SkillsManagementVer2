@@ -275,7 +275,7 @@ namespace Skillset_PL.Controllers
         }
 
         // GET: Employee Skills Details      
-        public ActionResult Skills(string id)
+        public ActionResult Skills(string id, int? page)
         {
             if (id == null)
             {
@@ -293,7 +293,9 @@ namespace Skillset_PL.Controllers
             string employeeName = _services.GetEmployeeName(id);
             ViewData["employeename"] = employeeName;
             ViewData["employeecode"] = id;
-            return View(recordlist);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(recordlist.ToPagedList(pageNumber, pageSize));
         }
 
     }
