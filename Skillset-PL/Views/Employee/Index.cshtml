@@ -19,7 +19,6 @@
     </script>
 }
 <div id="snackbar"></div>
-<div class="row first">
     <h3>Employee List</h3>
     <p style="text-align: right">
         @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
@@ -63,9 +62,9 @@
 
     
         <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</label>
-
-            <table class="table table-hover table-responsive table-bordered size-response">
-                <thead>
+        <div class="panel panel-default">
+            <table class="table table-hover table-responsive size-response">
+                <thead style="background-color:#2a3f54;color:white">
                     <tr>
                         <th>Employee Code</th>
                         <th>Name</th>
@@ -101,17 +100,16 @@
                     }
                 </tbody>
             </table>
-
-        }
-        else
-        {
+            </div>
+            }
+            else
+            {
             <br />
             <div class="alert alert-warning fade in">
                 <strong>No Employees!</strong> There are no employees to display.
             </div>
 
-        }
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
-</div>
+            }
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
 <script src="~/Scripts/SkillRating.js"></script>

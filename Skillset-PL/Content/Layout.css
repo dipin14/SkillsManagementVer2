@@ -187,7 +187,7 @@ and also iPads specifically.
         border: 1px solid #ccc;
     }
 
-table.table.table-hover.table-responsive.table-bordered.size-response td{
+table.table.table-hover.table-responsive.size-response td{
        /* Behave  like a "row" */
         border: none;
         border-bottom: 1px solid #eee;
