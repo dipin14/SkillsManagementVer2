@@ -45,7 +45,7 @@ namespace Skillset_DAL.Repositories
                 {
                     skill.Status = true;
                     //Check if Skill Name exists already
-                    if (db.Skills.Where(s => s.SkillName.ToLower() == skill.SkillName.ToLower()).Count() != 0)
+                    if (db.Skills.Where(s => s.SkillName.ToLower() == skill.SkillName.ToLower() && s.SkillId != skill.SkillId).Count() != 0)
                     {
                         return -1;
                     }

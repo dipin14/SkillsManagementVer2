@@ -24,8 +24,10 @@ namespace Skillset_PL.Controllers
         // GET: Skill
         public ActionResult Index(int? page)
         {
+            //List of skills are ordered by Skill Name
             var skillList = _skillService.GetAllSkills().ToViewModelList().OrderBy(s => s.SkillName);
 
+            //Limited the number of rows per page to 3
             int pageSize = 3;
             int pageNumber = (page ?? 1);
             return View(skillList.ToPagedList(pageNumber, pageSize));
@@ -49,10 +51,12 @@ namespace Skillset_PL.Controllers
         {
             try
             {
+                //Leading and trailing empty spaces are trimmed
                 skillViewModel.SkillName = skillViewModel.SkillName.Trim();
                 skillViewModel.SkillDescription = skillViewModel.SkillDescription.Trim();
                 var skillCreateResult = _skillService.Create(skillViewModel.ToDTO());
 
+                //-1 is returned if new Skill has already existing Skill Name
                 if (skillCreateResult == -1)
                 {
                     ModelState.AddModelError("SkillName", "Skill Name Already Exists");
@@ -62,6 +66,7 @@ namespace Skillset_PL.Controllers
                 {
                     ViewBag.Message = "Db Creation Error! Please Restart Application";
                 }
+                //Notification Message is stored in tempdata
                 TempData["message"] = "Successfully Added Skill";
                 return RedirectToAction("Index");
             }
@@ -95,7 +100,14 @@ namespace Skillset_PL.Controllers
             {
                 skillView.SkillName = skillView.SkillName.Trim();
                 skillView.SkillDescription = skillView.SkillDescription.Trim();
-                _skillService.Update(skillView.ToDTO());
+                var skillUpdateResult = _skillService.Update(skillView.ToDTO());
+                //-1 is returned if the updated Skill Name already exists
+                if(skillUpdateResult == -1)
+                {
+                    ModelState.AddModelError("SkillName", "Skill Name already exists");
+                    return View(skillView);
+                }
+                //Notification Message is stored in tempdata
                 TempData["message"] = "Modified skill record";
                 return RedirectToAction("Index");
             }
@@ -134,6 +146,7 @@ namespace Skillset_PL.Controllers
                 else
                 {
                     var deleteResult = _skillService.Delete(skillView.SkillName);
+                    //Notification Message is stored in tempdata
                     TempData["message"] = "Successfully deleted skill record";
                     return RedirectToAction("Index");
                 }
