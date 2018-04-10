@@ -36,13 +36,16 @@
                 {
                     <tr>
                         <td>
+                        <td data-title="Skill Name">
                             @Html.DisplayFor(modelItem => item.SkillName)
                         </td>
                         <td>
+                        <td data-title="Skill Description">
                             @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
                         </td>
                         <td>
-                            <a href="@Url.Action("Edit",new { skillName = item.SkillName })"><i class="fa fa-pencil-square-o btn-sm btn-warning" style="width:30px"></i></a>
+                        <td data-title="Operations">
+                           <a href="@Url.Action("Edit",new { skillName = item.SkillName })"><i class="fa fa-pencil-square-o btn-sm btn-warning" style="width:30px"></i></a>
                             <a href="@Url.Action("Delete",new { skillName = item.SkillName })"><i class="fa fa-trash-o btn-sm btn-danger" style="width:30px"></i></a>
                         </td>
                     </tr>

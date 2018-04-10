@@ -1,4 +1,3 @@
-
 @model PagedList.IPagedList<Skillset_PL.ViewModels.ReportingStaff>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -7,47 +6,51 @@
     Layout = "~/Views/Manager/_ManagerLayout.cshtml";
     ViewBag.Title = "Staff Details";
 }
+
 @if (Model.Count() > 0)
 {
     <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Staff Details</label>
     <br />
-    <table class="table table-hover table-responsive table-bordered">
-        <tr>
-            <th>
-                @Html.DisplayName("Employee Code")
-            </th>
-            <th>
-                @Html.DisplayName("Name")
-            </th>
-            <th>
-                @Html.DisplayName("Designation")
-            </th>
-            <th>
-                @Html.DisplayName("Email")
-            </th>
-            <th></th>
-        </tr>
-        @foreach (var item in Model)
-        {
+    <table id="skilltable" class="table table-hover table-responsive table-bordered">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmployeeCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Designation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                   @Html.ActionLink("Skills", "SkillRate", new { code = item.EmployeeCode, name = item.Name }, htmlAttributes: new { @class = "btn btn-primary" }) 
-                </td>
+                <th>
+                    @Html.DisplayName("Employee Code")
+                </th>
+                <th>
+                    @Html.DisplayName("Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Designation")
+                </th>
+                <th>
+                    @Html.DisplayName("Email")
+                </th>
+                <th></th>
             </tr>
-        }
-
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td data-title="Employee Code">
+                        @Html.DisplayFor(modelItem => item.EmployeeCode)
+                    </td>
+                    <td data-title="Name">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td data-title="Designation">
+                        @Html.DisplayFor(modelItem => item.Designation)
+                    </td>
+                    <td data-title="Email">
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td data-title="">
+                        <a href="@Url.Action("SkillRate",new { code = item.EmployeeCode, name = item.Name })"><i class="fa fa-lightbulb-o btn-sm btn-success" style="width:30px"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 }
 else
@@ -60,4 +63,3 @@ else
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
     @Html.PagedListPager(Model, page => Url.Action("Index",new{page}))
-
