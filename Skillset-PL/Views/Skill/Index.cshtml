@@ -1,4 +1,4 @@
-﻿﻿
+﻿
 @using Common.Extensions
 @model PagedList.IPagedList<Skillset_PL.ViewModels.SkillViewModel>
 @using PagedList.Mvc;
@@ -19,7 +19,6 @@
         <table class="table table-hover table-responsive size-response">
             <thead style="background-color:#2a3f54;color:white">
                 <tr>
-
                     <th>
                         @Html.DisplayName("Skill Name")
                     </th>
@@ -28,10 +27,8 @@
                     </th>
                     <th>
                         @Html.DisplayName("Operations")
-                    </th>                </tr>
-
+                </tr>
             </thead>
-
             <tbody>
                 @foreach (var item in Model)
                 {
@@ -59,13 +56,12 @@
             <strong>No Skills!</strong>
             <br />There are no skills to display
         </div>
-
         }
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
         @Html.PagedListPager(Model, page => Url.Action("Index",
+
     new
     {
         page
-
     }))
