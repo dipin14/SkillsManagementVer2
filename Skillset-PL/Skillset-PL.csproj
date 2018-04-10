@@ -225,9 +225,9 @@
     <Content Include="Content\Card.css" />
     <Content Include="Content\Dashboard.css" />
     <Content Include="Content\Layout.css" />
-    <Content Include="Content\login2.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\PagedList.css" />
-   <Content Include="Content\Profile.css" />
+    <Content Include="Content\Profile.css" />
     <Content Include="Content\RatingStyle.css" />
     <Content Include="Content\Search.css" />
     <Content Include="Content\Site.css" />

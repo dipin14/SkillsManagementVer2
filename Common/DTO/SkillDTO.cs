@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Common.DTO
 {
+    /// <summary>
+    /// A Data Transfer Object for mapping Skill model to Skill ViewModel
+    /// </summary>
     public class SkillDTO
     {
         int skillId;
