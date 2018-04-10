@@ -244,6 +244,35 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        //public string MostSkilled()
+        //{
+        //    using (SkillsetDbContext context = new SkillsetDbContext())
+        //    {
+        //        var MaximumRatingId = context.Ratings.Where(s => s.Value == 5);
+        //        int id = Convert.ToInt32(MaximumRatingId);
+        //        //var RecentEmployees = (from s in context.SkillRatings
+        //        //                       join j in context.Employees
+        //        //                       on s.EmployeeId equals j.Id
+        //        //                       where s.Status == true && s.RatingId == id
+        //        //                       group s by new { Id = s.SkillId, EmployeeID = s.EmployeeId } into g
+        //        //                       select new { Id = g.Key.Id, EmployeeId = g.Key.EmployeeID }).ToList();
+        //        var Employees=context.SkillRatings
+        //            .Join(context.Employees,
+        //            s=>s.Id,
+        //            e=>e.Id,
+        //            (s, e) => new { s,e})
+        //            .Where(sr=>sr.s.Status==true && sr.s.RatingId==id)
+        //            .GroupBy(sr=>sr.s.SkillId,sr.e.).SelectMany(x=>x.Take(2).Select()
+        //    }
+
+        //}.GroupBy(x => x.Category).SelectMany(x => x.Take(3).Select(
+    //    s =>
+    //                                                 new NotificationData
+    //                                                     {
+    //                                                         Category = x.Key,
+    //                                                         Text = s.Text,
+    //                                                         Time = DateTime.Now.Subtract(s.Time)
+    //}))
         public int GetEmployeesCount()
         {
             int employeesCount = default(int);

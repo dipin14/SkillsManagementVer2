@@ -154,12 +154,12 @@
 }
 
 /* Dropdown*/
-.dropdown-menu > li > a {
+/*.dropdown-menu > li > a {
     color: #5A738E !important;
 }
 .pull-right{
     float:right !important;
-}
+}*/
 
 /* Graph*/
 .dashboard-graph {
@@ -172,30 +172,27 @@ h3{
     font-weight:400;
 }
 
-/*Panel*/
-.employee_panel {
+/*Employee Card*/
+.toggle-card a , .toggle-card a:hover, .toggle-card a:focus {
+    padding-top:25px;
+    color: #C5C7CB;
+    font-size: 13px;
+    cursor:pointer;
+}
+
+.dashboard-card {
     background: #fff;
     padding: 7px 10px;
     border-bottom: 2px solid #E6E9ED;
 }
-.employee_title {
+
+table.employeetable {
+    width: 100%;
     border-bottom: 2px solid #E6E9ED;
-    padding: 1px 5px 6px;
-    margin-bottom: 10px;
 }
-.employee_title h2 {
-        margin: 5px 0 6px;
-        float: left;
-        display: block;
-    }
-.panel_toolbox{
-    margin-right:0px;
-}
-.panel_toolbox > li > a {
-    padding: 5px;
-    color: #C5C7CB;
-    font-size: 13px;
-    float:right;
+
+table.employeetable > thead > tr > th {
+        border-bottom: 2px solid #E6E9ED;
 }
     /*.navbar-inverse
 .nav-side-menu .brand {
@@ -357,16 +354,14 @@ h3{
 
 }
 */
-
-/* 
+    /* 
 Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
-@media only screen and (max-width: 540px) {
-
-    /* Force table to not be like tables anymore */
-    table, thead, tbody, th, td, tr {
+    @media only screen and (max-width: 540px) {
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
         display: block;
     }
     /* Zebra striping */

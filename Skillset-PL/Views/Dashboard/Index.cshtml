@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="~/Content/Card.css" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Black Ops One' rel='stylesheet' type='text/css'>
 
@@ -228,20 +227,53 @@
             </div>
         </div>
         
-        <div class="col-md-4">
-            <div class="employee_panel">
-                <div class="row  employee_title">
-                    <div class="col-md-12">
-                        <h3>Top Skilled</h3>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse_link"><i class="fa fa-chevron-up" data-toggle="collapse" data-target="#p-content"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-12 panel_content" id="p-content">
-
-                    </div>
-                </div>
-            </div>
+      <div class="col-md-4">
+          <div class="dashboard-card">
+              <div class="row card-title">
+                  <div class="col-md-8">
+                      <h3>Top Skilled</h3>
+                  </div>
+                  <div class="col-md-4 toggle-card">
+                      <a class="toggle-button" style="float:right;"><i class="classi fa fa-chevron-up"></i></a>
+                  </div>
+              </div>
+          </div>
+              <div class="col-md-12" style="background:white;height:398px;" id="show">
+                  <div>
+                      <table class="employeetable table table-hover">
+                          <thead>
+                              <tr>
+                                  <th style="font-weight:bold;font-size:16px">Employee Name</th>
+                                  <th style="font-weight:bold;font-size:16px">Skill</th>
+                              </tr>
+                              
+                          </thead>
+                          <tbody>
+                              @if ((Model.Count() > 0))
+                              {
+                                  foreach (var item in Model)
+                                  {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.EmployeeCode)</td>
+                                    </tr>
+                                  }
+                              }
+                              else
+                              {
+                                 
+                                  <tr>
+                                      <td>No recent activity!</td>
+                                      <td></td>
+                                  </tr>
+                              }
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              
+         
+      </div>
             @*<div class="employee_panel">
                 <div class="row employee_title">
                     <div class="col-md-12">
@@ -254,10 +286,6 @@
                         </ul>
                     </div>
                 </div>*@
-            </div>
         </div>
-    
-    
-  
 </body>
 </html>
