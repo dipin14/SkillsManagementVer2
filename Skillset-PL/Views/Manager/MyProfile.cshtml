@@ -11,7 +11,6 @@
             <div class="panel-heading" style="color:#fff;background-color:#2a3f54;border-color:#2a3f54">Profile : <label style="font-size:larger;color:#fff;">@Model.Name</label></div>
             <div class="panel-body">
                 <div class="row">
-
                     <div class="col-sm-5">
                         @if (Model.Gender.ToLower() == "male")
                         {
@@ -22,11 +21,8 @@
                             <img class="border border-dark table-bordered" src="~/Images/female.png" alt="man" width="100%" height="100%" />
                         }
                     </div>
-                    <div class="col-sm-7">
-                        <table class="table-responsive profileborder" style="width: 100%">
-                            @*<tr>
-                                <td><label style="font-size:larger;color:dodgerblue">@Model.Name</label></td>
-                            </tr>*@
+                    <div class="col-sm-6">
+                        <table class="table-responsive profileborder" style="height: 100%">
                             <tr>
                                 <td style="width:5%"><span class="fa fa-envelope-o"></span></td>
                                 <td>&nbsp;Email Id: </td>
@@ -57,7 +53,6 @@
                                 <td>&nbsp;Role: </td>
                                 <td class="info">@Model.RoleId</td>
                             </tr>
-
                             <tr>
                                 <td style="width:5%"><span class="fa fa-address-card-o"></span></td>
                                 <td>&nbsp;Address: </td>
