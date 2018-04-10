@@ -84,7 +84,11 @@ function SubmitRating(RatedSkills, TotalSkills) {
 //Function to post an ajax call to the controller action passing the rating value list
 function CompleteRating(RatingList) {
     if (RatingList == "") {
-        
+        var specialSkill = document.getElementById("TxtAra").value
+        var specialScore = document.getElementById("Rating 0").value
+        if (specialSkill == "" && specialScore!="")
+            AlertEmployee("Special skill name is mandatory")
+        else
         ShowValidation();
     }
     else {
@@ -97,7 +101,7 @@ function CompleteRating(RatingList) {
                 RateSkill();
                 }
                 else {
-                    alert("Sorry!Connection error")
+                   AlertEmployee("Sorry!Connection error")
                 }
 
             }
@@ -120,7 +124,7 @@ function RateSkill() {
 
             }
             else {
-                alert('Db Error!Please check your connection');
+                AlertEmployee('Db Error!Please check your connection');
 
             }
          
@@ -136,11 +140,7 @@ function AddReload() {
     setTimeout(function () { location.reload(); }, 1000);
  
 }
-function DeleteReload() {
-    ShowLoader();
-    setTimeout(function () { location.reload(); }, 1000);
 
-}
 //Function to Delete a skill rating already done,argument passed Id being the skillRatingId
 function DeleteRating(SkillRatingId)
 {
@@ -154,9 +154,10 @@ function DeleteRating(SkillRatingId)
             if (result.responseText) {
               
                 DeleteReload();
+                AlertEmployee("Succesfully removed rating")
             }
             else {
-                alert('please check your connection');
+               AlertEmployee('please check your connection');
 
             }
 
@@ -164,17 +165,23 @@ function DeleteRating(SkillRatingId)
     });
 }
 
-
+function DeleteReload() {
+    ShowLoader();
+    setTimeout(function () { location.reload(); }, 1000);
+   
+}
 //Function To enable and Disable special skill button based on the condition that special skill already rated or not.
 function EnableSpecial(IsSpecial) {
     var specialSKill = document.getElementById("specialSkillBtn")
     
     if (IsSpecial == true) {
-
-        specialSKill.disabled = true;
+        //document.getElementById("test").style.display = "none";
+        specialSKill.style.display = "none";
+        //specialSKill.style.cursor = no-drop;
     }
     else {
         specialSKill.disabled = false;
+       
     }
 
 
