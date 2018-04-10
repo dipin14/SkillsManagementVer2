@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -69,7 +70,6 @@ namespace Skillset_BLL.Services
         /// <returns></returns>
         List<RoleDTO> GetRoles();
 
-        List<EmployeeDTO> GetRecentEmployees();
         
         int GetEmployeesCount();
         string GetDesignationName(string id);
@@ -92,5 +92,8 @@ namespace Skillset_BLL.Services
         /// <param name="id"></param>
         /// <returns></returns>
         string GetEmployeeName(string id);
+        List<KeyValuePair<string, string>> GetTopRatedRecentEmployees();
+
+
     }
 }

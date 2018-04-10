@@ -253,6 +253,7 @@
     <Content Include="Images\redstar.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Employee.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -262,6 +263,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MenuList.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Skill.js" />
     <Content Include="Scripts\SkillRating.js" />
@@ -291,6 +293,7 @@
     <Compile Include="ViewModels\EmployeeSkillRatingViewModel.cs" />
     <Compile Include="ViewModels\SkillViewModel.cs" />
     <Compile Include="ViewModels\StaffSkills.cs" />
+    <Compile Include="ViewModels\TopEmployeeSkills.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

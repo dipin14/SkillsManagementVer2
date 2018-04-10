@@ -2,6 +2,7 @@
 using Skillset_BLL.Services;
 using Skillset_PL.ViewModelExtensions;
 using Skillset_PL.ViewModels;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -24,6 +25,7 @@ namespace Skillset_PL.Controllers
       
         public ActionResult Index()
         {
+            IEnumerable l;
             //Get total skills
             ViewBag.TotalSkills = _skillservices.GetSkillsCount();
             ViewBag.TotalEmployees = _services.GetEmployeesCount();
@@ -42,19 +44,18 @@ namespace Skillset_PL.Controllers
 
 
             //Get chart data
-            ViewBag.SkillnameList = string.Format("'{0}'", string.Join("','", _ratingservices.GetEmployeeRatedSkillName().Select(i => i.Replace("'", "\"\"")).ToArray()));
-            ViewBag.RatingList = _ratingservices.GetEmployeeRating();
-
             ViewBag.SkillnameExcludeList = string.Format("'{0}'", string.Join("','", _ratingservices.GetEmployeeRatedSkillExcludeSpecial().Select(i => i.Replace("'", "\"\"")).ToArray()));
             ViewBag.RatingAverage = _ratingservices.GetRatingAverage();
 
-            var dtoList = _services.GetRecentEmployees();
-            var modelList = new List<EmployeeViewModel>();
-            foreach (EmployeeDTO item in dtoList)
-            {
-                modelList.Add(item.EmployeeDTOtoViewModel());
-            }
-            return View(modelList);
+            //Get table data
+            ViewBag.TopSkillsTableData= _services.GetTopRatedRecentEmployees();
+
+            //Get Polar chart data
+            ViewBag.TopRatedEmployees = _ratingservices.GetTopEmployeeRating();
+
+            //Get Pie chart data
+            ViewBag.LeastRatedEmployees = _ratingservices.GetLeastEmployeeRating();
+            return View();
         }
     }
 }
