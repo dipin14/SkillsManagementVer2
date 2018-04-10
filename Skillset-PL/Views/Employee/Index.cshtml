@@ -19,22 +19,25 @@
     </script>
 }
 <div id="snackbar"></div>
-<div class="row first">
     <h3>Employee List</h3>
     <p style="text-align: right">
         @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
+ 
 
 
 
         <div class="panel-group">
             <div class="panel panel-success">
+
              
                 <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;"><b>Search</b></div>
                 <div class="panel-body">
                     <div class="form-group">
+
                         <div class="col-md-5">
                             <b> Search By Name/Code/Designation</b>
                         </div>
+
 
                         @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
                         {
@@ -53,12 +56,15 @@
             </div>
         </div>
 
+
     @if ((Model.Count() > 0))
     {
+
     
         <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</label>
-            <table class="table table-bordered table-hover table-responsive">
-                <thead>
+        <div class="panel panel-default">
+            <table class="table table-hover table-responsive size-response">
+                <thead style="background-color:#2a3f54;color:white">
                     <tr>
                         <th>Employee Code</th>
                         <th>Name</th>
@@ -84,6 +90,7 @@
 
 
                             <td data-title="Operations">
+
                                 <a href="@Url.Action("Edit",new { id = item.EmployeeCode })" data-tooltip="Edit Employee" data-tooltip-position="bottom"><i class="fa fa-pencil-square-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
                                 <a href="@Url.Action("Details",new { id = item.EmployeeCode })" data-tooltip="View Details" data-tooltip-position="bottom"><i class="fa fa-info" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
                                 <a href="@Url.Action("Delete",new { id = item.EmployeeCode })" data-tooltip="Delete Employee" data-tooltip-position="bottom"><i class="fa fa-trash-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
@@ -93,15 +100,16 @@
                     }
                 </tbody>
             </table>
-        }
-        else
-        {
+            </div>
+            }
+            else
+            {
             <br />
             <div class="alert alert-warning fade in">
                 <strong>No Employees!</strong> There are no employees to display.
             </div>
-        }
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
-</div>
+
+            }
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
 <script src="~/Scripts/SkillRating.js"></script>
