@@ -16,3 +16,30 @@
     background: #59A991;
     border-color: #2a3f54;
 }
+table.profileborder tr {
+    line-height: 30px;
+    
+}
+table.profileborder td {
+    color:#2a3f54;
+}
+table.profileborder td.info {
+    color:#2a3f54;
+    font-weight:bold;
+    white-space:normal;
+}
+@media (max-width: 339px)
+{
+table.profileborder td {
+    font-size:11px;
+    white-space:normal;
+}
+
+}
+@media (min-width: 340px) and (max-width: 392px)
+{
+table.profileborder td {
+    font-size:12px;
+    white-space:normal;
+}
+}

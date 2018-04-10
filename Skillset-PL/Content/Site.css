@@ -1,4 +1,18 @@
-﻿
+﻿/* Custom button css*/
+.btn-new {
+    background: #1abb9c;
+    border-radius: 0px;
+    color: #FFF;
+	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+}
+    .btn-new:hover, .btn-new:focus, .btn-new:active, .btn-new.active, .open>.dropdown-toggle.btn-new {
+    color: #1abb9c;
+    background-color: #f7f7f7;
+    border-color: #1abb9c; /*set the color you want here*/
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

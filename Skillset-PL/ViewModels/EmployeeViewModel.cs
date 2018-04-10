@@ -43,6 +43,8 @@ namespace Skillset_PL.ViewModels
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
         [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
         public string Email { get; set; }
         [Required]
         [RegularExpression("^([0-9]){10}$", ErrorMessage = "Mobile Number should contain 10 digits")]

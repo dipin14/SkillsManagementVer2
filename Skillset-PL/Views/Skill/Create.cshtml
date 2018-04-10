@@ -4,14 +4,13 @@
     ViewBag.Title = "Create";
 }
 <link href="~/Content/theme.css" rel="stylesheet" />
-<div class="row first">
-    
+
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal well">
-            <h2>Add New Skill</h2>
+            <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Add New Skill</label>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">

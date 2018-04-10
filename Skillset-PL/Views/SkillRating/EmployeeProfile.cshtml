@@ -5,10 +5,9 @@
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="~/Content/Profile.css" rel="stylesheet" />
-<div class="row first">
     <div class="col-sm-10">
         <div class="panel panel-default">
-            <div class="panel-heading">Profile : <label style="font-size:larger;color:#1abb9c">@Model.Name</label></div>
+            <div class="panel-heading" style="color:#fff;background-color:#2a3f54;border-color:#2a3f54">Profile : <label style="font-size:larger;color:#fff;">@Model.Name</label></div>
             <div class="panel-body">
                 <div class="row">
 
@@ -29,38 +28,38 @@
                                 </tr>*@
                             <tr>
                                 <td style="width:5%"><span class="fa fa-envelope-o"></span></td>
-                                <td>&nbsp;Email Id: </td>
+                                <td class="title">&nbsp;Email Id: </td>
                                 <td class="info">@Model.Email</td>
                             </tr>
                             <tr>
                                 <td style="width:5%"><span class="fa fa-intersex"></span></td>
-                                <td>&nbsp;Gender: </td>
+                                <td class="title">&nbsp;Gender: </td>
                                 <td class="info">@Model.Gender</td>
                             </tr>
                             <tr>
                                 <td style="width:5%"><span class="fa fa-phone"></span></td>
-                                <td>&nbsp;Mobile Number: </td>
+                                <td class="title">&nbsp;Mobile Number: </td>
                                 <td class="info">@Model.MobileNumber</td>
                             </tr>
                             <tr>
                                 <td style="width:5%"><span class="fa fa-cog"></span></td>
-                                <td>&nbsp;Designation: </td>
+                                <td class="title">&nbsp;Designation: </td>
                                 <td class="info">@Model.DesignationId</td>
                             </tr>
                             <tr>
                                 <td style="width:5%"><span class="fa fa-black-tie"></span></td>
-                                <td>&nbsp;Experience: </td>
+                                <td class="title">&nbsp;Experience: </td>
                                 <td class="info">@Model.Experience years</td>
                             </tr>
                             <tr>
                                 <td style="width:5%"><span class="fa fa-briefcase"></span></td>
-                                <td>&nbsp;Role: </td>
+                                <td class="title">&nbsp;Role: </td>
                                 <td class="info">@Model.RoleId</td>
                             </tr>
 
                             <tr>
                                 <td style="width:5%"><span class="fa fa-address-card-o"></span></td>
-                                <td>&nbsp;Address: </td>
+                                <td class="title">&nbsp;Address: </td>
                                 <td class="info">@Model.Address</td>
                             </tr>
                         </table>
@@ -69,7 +68,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 
 
