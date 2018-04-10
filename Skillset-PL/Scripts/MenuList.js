@@ -8,6 +8,10 @@
 
     }).parent().addClass('active').parent().parent().addClass('active');
 
+    $('.tog').click(function () {
+        $('#employeesidebar').addClass('active');
+    });
+
     $(".toggle-button").click(function () {
         $("#show").toggle();
         $(".classi").toggleClass("fa fa-chevron-up fa fa-chevron-down")
