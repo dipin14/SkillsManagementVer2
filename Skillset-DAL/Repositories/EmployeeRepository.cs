@@ -22,7 +22,9 @@ namespace Skillset_DAL.Repositories
                 {
                     employeeList = context.Employees.ToList();
                     employeeCount = employeeList.Count();
+                    //checks for duplicate employee
                     int status = CheckDuplicateEmployee(employeeList, employee);
+                    //if duplicate employee is not found
                     if (status == 0)
                     {
                         employee.Status = true;
@@ -47,16 +49,19 @@ namespace Skillset_DAL.Repositories
         public int CheckDuplicateEmployee(List<Employee> employeeList, Employee newEmployee)
         {
             var check = new List<Employee>();
+            //Gets the list of employees with same employeecode
             check = employeeList.Where(p => p.EmployeeCode == newEmployee.EmployeeCode).ToList();
             if (check.Count != 0)
             {
                 return 1;
             }
+            //Gets the list of employees with same mobilenumber
             check = employeeList.Where(p => p.MobileNumber == newEmployee.MobileNumber).ToList();
             if (check.Count != 0)
             {
                 return 2;
             }
+            //Gets the list of employees with same email
             check = employeeList.Where(p => p.Email == newEmployee.Email).ToList();
             if (check.Count != 0)
             {
@@ -72,9 +77,12 @@ namespace Skillset_DAL.Repositories
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
+                    //Get the Employee record
                     Employee employee = context.Employees.Where(p => p.EmployeeCode == id && p.Status == true).Single();
                     employee.Status = false;
+                    //Get the list of employees whose manager is the employee to be deleted
                     var employeeList = context.Employees.Where(p => p.EmployeeId == employee.Id && p.Status == true).ToList();
+                    //Managerid of all employees in the list is changed to 1
                     employeeList.ForEach(p => p.EmployeeId = 1);
                     foreach (var emp in employeeList)
                         context.Entry(emp).State = EntityState.Modified;
@@ -96,6 +104,7 @@ namespace Skillset_DAL.Repositories
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
+                    //gets the id of the employee
                     int id = Convert.ToInt32(context.Employees.Where(p => p.EmployeeCode == employee.EmployeeCode).Select(p => p.Id).Single());
                     employee.Id = id;
                     employee.Status = true;
@@ -202,6 +211,7 @@ namespace Skillset_DAL.Repositories
                   search=search.ToUpper();
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
+                    //if no search value is there
                     if (search == null || search == string.Empty)
                     {
 
@@ -210,6 +220,7 @@ namespace Skillset_DAL.Repositories
                     }
                     else
                     {
+                        //Query to get the list of employees whose name code or designation matches the search key
                         var query = from e in context.Employees
                                     from d in context.Designations
                                     where (e.DesignationId == d.Id && e.Status == true && e.RoleId != 1 && d.Id != 1 && (e.Name.ToUpper().Contains(search)||d.Name.ToUpper().Contains(search)||e.EmployeeCode.ToUpper().Contains(search)))

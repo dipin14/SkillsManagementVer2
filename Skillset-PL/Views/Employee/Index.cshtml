@@ -31,9 +31,9 @@
                 </div>
                 <div class="col-md-3" id="searchButton">
                     <button type="submit" name="submit" class="btn" style="background-color:white;color:#2a3f54;font-size:20px;" data-tooltip="Search Employee" data-tooltip-position="bottom">
-                        <i class="glyphicon glyphicon-search"></i>
+                        <i class="fa fa-search"></i>
                     </button>
-                    <a href="@Url.Action("Index")" data-tooltip="Refresh Search" data-tooltip-position="bottom" style="background-color:white;color:#2a3f54;font-size:20px;" class="btn"><div class="glyphicon glyphicon-refresh"></div></a>
+                    <a href="@Url.Action("Index")" data-tooltip="Refresh Search" data-tooltip-position="bottom" style="background-color:white;color:#2a3f54;font-size:20px;" class="btn"><div class="fa fa-refresh"></div></a>
                 </div>
                 <div class="col-md-6" id="newEmployeeDiv">
                     <span>
@@ -45,7 +45,7 @@
     }
 </div>
 
-<label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</label>
+<label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Employee Details</label>
 
 @if ((Model.Count() > 0))
 {
@@ -101,7 +101,8 @@
 else
 {
         <div class="alert alert-warning fade in" style="color:#2a3f54;background-color:whitesmoke;border-color:#2a3f54">
-            <strong>No Employees!</strong> There are no employees to display.
+            <strong>No Employees!</strong> 
+            <br/>There are no employees to display.
         </div>
 }
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
@@ -110,6 +111,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 
     new
     {
+        search = ViewBag.search,
         page
     }))
 <script src="~/Scripts/SkillRating.js"></script>

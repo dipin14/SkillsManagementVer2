@@ -25,7 +25,10 @@ namespace Skillset_PL.Controllers
            
         }
 
-        //Get list of designations
+        /// <summary>
+        /// Retrieves the list of Designations
+        /// </summary>
+        /// <returns></returns>
         public List<SelectListItem> GetDesignations()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -41,7 +44,11 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
-        //Get list of Qualifications
+
+        /// <summary>
+        /// Retrieves the list of Qualifications
+        /// </summary>
+        /// <returns></returns>
         public List<SelectListItem> GetQualifications()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -57,7 +64,11 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
-        //Get list of managers
+
+        /// <summary>
+        /// Retrieves the list of managers
+        /// </summary>
+        /// <returns></returns>
         public List<SelectListItem> GetManagers()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -73,7 +84,11 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
-        //Get list of roles
+        
+        /// <summary>
+        /// Retrieves the list of Roles
+        /// </summary>
+        /// <returns></returns>
         public List<SelectListItem> GetRoles()
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -89,24 +104,30 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
+
         // GET: Employee
         public ActionResult Index(string search,int? page)
         {
             ViewData["EmployeeCount"] = _services.GetEmployeesCount();
             var pageNumber = (page ?? 1) - 1;
             var totalCount = 0;
-            var pageSize = 5;
+            var pageSize = 2;
             TempData["page"] = pageNumber + 1;
             if(search!=null)
                 search = search.Trim();
             ViewBag.search = search;
+            //get the list of employees according to the search key
             var dtoList = _services.ViewSearchRecords(search,pageNumber,pageSize,out totalCount);
             var modelList = new List<EmployeeViewModel>();
             foreach (EmployeeDTO item in dtoList)
             {
+                //get designation name corresponding to id
                 item.DesignationId = _services.GetDesignationName(item.DesignationId);
+                //get qualification name corresponding to id
                 item.QualificationId = _services.GetQualificationName(item.QualificationId);
+                //get role name corresponding to id
                 item.RoleId = _services.GetRoleName(item.RoleId);
+                //get manager name corresponding to id
                 item.EmployeeId = _services.GetManagerName(item.EmployeeId);
                 modelList.Add(item.EmployeeDTOtoViewModel());
             }
@@ -192,7 +213,7 @@ namespace Skillset_PL.Controllers
             int status = _services.DeleteEmployeeById(id);
             if (status == 0)
             {
-                ViewBag.message = "Error in deleting employee record";
+                TempData["message"] = "Error in deleting employee record";
                 return RedirectToAction("Delete", id);
             }
             TempData["message"] = "Successfully deleted employee record";
@@ -206,6 +227,7 @@ namespace Skillset_PL.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //get employee details for a particular employee code
             EmployeeDTO employee = _services.GetEmployeeDetailsById(id);
             employee.DesignationId = _services.GetDesignationName(employee.DesignationId);
             employee.QualificationId = _services.GetQualificationName(employee.QualificationId);
@@ -251,14 +273,14 @@ namespace Skillset_PL.Controllers
             var comparer = new ObjectsComparer.Comparer<EmployeeViewModel>();
             if (ModelState.IsValid)
             {
-                //IEnumerable<Difference> differences;
+                
                 bool isEqual = comparer.Compare(employee, originalEmployee);
                 if (!isEqual)
                 {
                     int status = _services.EditEmployeeById(employee.EmployeeViewModeltoDTO());
                     if (status == 0)
                     {
-                        ViewBag.message = "Error in modifying employee record";
+                        TempData["message"] = "Error in modifying employee record";
                         return RedirectToAction("Edit", employee);
                     }
                     TempData["message"] = "Modified employee record";

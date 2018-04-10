@@ -11,18 +11,18 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal well">
-           <h2 style="padding-left:0;">Edit Employee</h2>
+            <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px">Edit Employee</label>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="container-fluid">
                 <div class="form-group">
-                    <div class="panel panel-success row second" >
-                        <div class="panel-body" style="background-color:#2a3f54;">
+                    <div class="panel">
+                        <div class="panel-body" style="background-color:whitesmoke;border-color:#2a3f54">
                             <div class="col-md-2"></div>
                             @Html.LabelFor(model => model.EmployeeCode, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control",@readonly="readonly" } })
+                                @Html.EditorFor(model => model.EmployeeCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.EmployeeCode, "", new { @class = "text-danger" })
                             </div>
                         </div>
