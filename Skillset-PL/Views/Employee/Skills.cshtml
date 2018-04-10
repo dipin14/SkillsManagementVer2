@@ -1,5 +1,7 @@
-﻿@model IEnumerable<Skillset_PL.ViewModels.AdministratorSkillViewModel>
+﻿@model PagedList.IPagedList<Skillset_PL.ViewModels.AdministratorSkillViewModel>
 ﻿@using Common.Extensions
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Skills";
@@ -79,13 +81,23 @@
 else
 {
     <br />
-        <div class="alert alert-warning fade in">
-
-            <strong>No Skill Ratings!</strong> There is no skill ratings available.
+        <div class="alert alert-warning fade in" style="color:#2a3f54;background-color:whitesmoke;border-color:#2a3f54">
+            <strong>No Skill Ratings!</strong> 
+            <br/>There is no skill ratings available.
         </div>
 }
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+
+            @Html.PagedListPager(Model, page => Url.Action("SkillRate",
+    new
+    {
+        code = ViewBag.Code,
+        name = ViewBag.Name,
+        page
+    }))
 <br />
 <br />
-<p>
-    @Html.ActionLink("Back to Employee List", "Index", null, htmlAttributes: new { @class = "btn btn-primary" })
-</p>
+<span>
+    <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-primary" style="background-color:whitesmoke;color:#2a3f54; border-color:#2a3f54">Back</a>
+</span>
