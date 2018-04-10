@@ -42,12 +42,6 @@ namespace Skillset_BLL.Services
         IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
 
         /// <summary>
-        /// Retrieve total ratings for each skill given by employees
-        /// </summary>
-        /// <returns></returns>
-        string GetEmployeeRating();
-
-        /// <summary>
         /// Retrieve total skill ratings count
         /// </summary>
         /// <returns></returns>
@@ -58,5 +52,17 @@ namespace Skillset_BLL.Services
         /// </summary>
         /// <returns></returns>
         int GetSkillRatingsCount();
+
+        /// <summary>
+        /// Retrieve count of top ratings for each skill given by employees
+        /// </summary>
+        /// <returns></returns>
+        string GetTopEmployeeRating();
+
+        /// <summary>
+        /// Retrieve count of least ratings for each skill given by employees
+        /// </summary>
+        /// <returns></returns>
+        string GetLeastEmployeeRating();
     }
 }

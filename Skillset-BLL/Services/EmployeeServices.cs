@@ -117,15 +117,6 @@ namespace Skillset_BLL.Services
         }
 
         /// <summary>
-        /// Get recently rated employee list
-        /// </summary>
-        /// <returns></returns>
-        public List<EmployeeDTO> GetRecentEmployees()
-        {
-            return _repository.GetRecentEmployees().ListEmployeeModeltoDTO();
-        }
-      
-        /// <summary>
         /// Return total employees count
         /// </summary>
         /// <returns></returns>
@@ -201,7 +192,7 @@ namespace Skillset_BLL.Services
             return _repository.FindEmployeeName(id);
         }
 
-        public Dictionary<string, string> GetTopRatedRecentEmployees()
+        public List<KeyValuePair<string, string>> GetTopRatedRecentEmployees()
         {
             return _repository.GetTopRatedRecentEmployees();
         }

@@ -42,7 +42,7 @@ namespace Skillset_DAL.Repositories
                 return -1;
             }
         }
-      
+
 
         public int CheckDuplicateEmployee(List<Employee> employeeList, Employee newEmployee)
         {
@@ -230,22 +230,8 @@ namespace Skillset_DAL.Repositories
             }
 
         }
-        public List<Employee> GetRecentEmployees()
-        {
-            using (SkillsetDbContext context = new SkillsetDbContext())
-            {
-                var RecentEmployees = (from s in context.SkillRatings
-                                       join j in context.Employees
-                                       on s.EmployeeId equals j.Id
-                                       where s.Status == true
-                                       orderby s.Id descending
-                                       select j).ToList();
-                var DistnctEmployees = RecentEmployees.Distinct().Take(2).ToList();
-                return DistnctEmployees;
-            }
-        }
 
-        public Dictionary<string,string> GetTopRatedRecentEmployees()
+        public List<KeyValuePair<string, string>> GetTopRatedRecentEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
@@ -262,14 +248,16 @@ namespace Skillset_DAL.Repositories
                              on sr.SkillId equals s.SkillId
                              where sr.Status == true && s.Status == true && sr.RatingId == RatingId
                              orderby sr.RatingId descending
-                             select new { s.SkillName, e.Name });
-                var groupSkill = skill.GroupBy(x => x.SkillName).Select(x => new { SkillName = x.Key, EmployeeName = x.Select(s => s.Name).FirstOrDefault() }).ToList();
-                var a = groupSkill;
-                Dictionary<string, string> topSkills = new Dictionary<string, string>();
-                foreach (var skillEmp in groupSkill)
+                             select new { s.SkillName, e.Name }).ToList();
+                //var groupSkill = skill.GroupBy(x => x.SkillName).Select(x => new { SkillName = x.Key, EmployeeName = x.Select(s => s.Name).FirstOrDefault() }).ToList();
+
+                List<KeyValuePair<string, string>> topSkills = new List<KeyValuePair<string, string>>();
+
+                foreach (var skillEmp in skill)
                 {
-                    topSkills.Add(skillEmp.SkillName, skillEmp.EmployeeName);
+                    topSkills.Add(new KeyValuePair<string, string>(skillEmp.SkillName, skillEmp.Name));
                 }
+
                 return topSkills;
             }
         }

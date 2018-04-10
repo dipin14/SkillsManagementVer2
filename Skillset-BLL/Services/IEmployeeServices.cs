@@ -70,7 +70,6 @@ namespace Skillset_BLL.Services
         /// <returns></returns>
         List<RoleDTO> GetRoles();
 
-        List<EmployeeDTO> GetRecentEmployees();
         
         int GetEmployeesCount();
         string GetDesignationName(string id);
@@ -93,7 +92,7 @@ namespace Skillset_BLL.Services
         /// <param name="id"></param>
         /// <returns></returns>
         string GetEmployeeName(string id);
-        Dictionary<string, string> GetTopRatedRecentEmployees();
+        List<KeyValuePair<string, string>> GetTopRatedRecentEmployees();
 
 
     }
