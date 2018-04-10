@@ -8,6 +8,6 @@ namespace Skillset_PL.ViewModels
     public class EmployeeRatingScreenViewModel
     {
        public IEnumerable<EmployeeRatedSkillsViewModel> RatedSkills { get; set; }
-      public  IEnumerable<SkillViewModel> SkillRatings { get; set; }
+       public  IEnumerable<SkillViewModel> SkillRatings { get; set; }
     }
 }
