@@ -107,6 +107,11 @@ namespace Skillset_DAL.Repositories
 
         }
 
+        /// <summary>
+        /// Retrieve details of an employee corresponding to an Employee Code
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Employee</returns>
         public Employee GetProfile(string id)
         {
             using (SkillsetDbContext context = new SkillsetDbContext())

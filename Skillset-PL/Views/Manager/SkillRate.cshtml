@@ -1,3 +1,4 @@
+﻿﻿@using Common.Extensions
 @model PagedList.IPagedList<Skillset_PL.ViewModels.StaffSkills>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -5,7 +6,7 @@
     Layout = "~/Views/Manager/_ManagerLayout.cshtml";
     ViewBag.Title = "Skills";
 }
-<div class="row first">
+
 
     <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Skills</label>
 
@@ -22,74 +23,76 @@
     @if (Model.Count() > 0)
     {
         <br />
-        <table class="table table-bordered table-hover table-responsive table-bordered">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayName("Skill")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Rating")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Rated On")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Notes")
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+        <div class="panel panel-default">
+            <table class="table table-hover table-responsive size-response">
+                <thead style="background-color:#2a3f54;color:white">
                     <tr>
-                        <td data-title="Skill">
-                            @Html.DisplayFor(modelItem => item.Skill)
-                        </td>
-                        <td data-title="Rating">
-                            <div data-tooltip="@(item.RatingNote)" data-tooltip-position="bottom">
-
-                                @for (var i = 1; i <= item.Rating; i++)
-                                {
-                                    <span class="starGlowTable"></span>
-                                }
-                                @for (var i = (item.Rating + 1); i <= 5; i++)
-                                {
-                                    <span class="starFadeTable"></span>
-                                }
-                            </div>
-                        </td>
-                        <td data-title="Rated On">
-                            @Html.DisplayFor(modelItem => item.RatingDate)
-                        </td>
-                        <td data-title="Notes">
-                            @Html.DisplayFor(modelItem => item.Note)
-                        </td>
+                        <th>
+                            @Html.DisplayName("Skill")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Rating")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Rated On")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Notes")
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <br />
-        <div class="alert alert-warning">
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                {
+                        <tr>
+                            <td data-title="Skill">
+                                @Html.DisplayFor(modelItem => item.Skill)
+                            </td>
+                            <td data-title="Rating">
+                                <div data-tooltip="@(item.RatingNote)" data-tooltip-position="bottom">
 
-            <strong>No Skill Ratings!</strong>
-            <br />Employee has no rated skills.
+                                    @for (var i = 1; i <= item.Rating; i++)
+                                    {
+                                        <span class="starGlowTable"></span>
+                                    }
+                                    @for (var i = (item.Rating + 1); i <= 5; i++)
+                                    {
+                                        <span class="starFadeTable"></span>
+                                    }
+                                </div>
+                            </td>
+                            <td data-title="Rated On">
+                                @Html.DisplayFor(modelItem => item.RatingDate)
+                            </td>
+                            <td data-title="Notes">
+                                @Html.DisplayWithBreaksFor(modelItem => item.Note)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+            }
+            else
+            {
+            <br />
+            <div class="alert alert-warning">
 
-        </div>
-    }
+                <strong>No Skill Ratings!</strong>
+                <br />Employee has no rated skills.
+
+            </div>
+            }
 
 
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
 
-    @Html.PagedListPager(Model, page => Url.Action("SkillRate",
+            @Html.PagedListPager(Model, page => Url.Action("SkillRate",
     new
     {
         code = ViewBag.Code,
         name = ViewBag.Name,
         page
     }))
-</div>
+        
