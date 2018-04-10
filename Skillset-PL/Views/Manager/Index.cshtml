@@ -11,27 +11,57 @@
 {
     <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Staff Details</label>
     <br />
-
+    <div class="panel panel-default">
+        <table class="table table-hover table-responsive size-response">
+            <thead style="background-color:#2a3f54;color:white">
                 <tr>
-
-                    <td data-title="Employee Code">
-                        @Html.DisplayFor(modelItem => item.EmployeeCode)
-                    </td>
-                    <td data-title="Name">
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td data-title="Designation">
-                        @Html.DisplayFor(modelItem => item.Designation)
-                    </td>
-                    <td data-title="Email">
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td data-title="">
-                        <a href="@Url.Action("SkillRate",new { code = item.EmployeeCode, name = item.Name })" data-tooltip="View Skills" data-tooltip-position="bottom"><i class="fa fa-lightbulb-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
-                    </td>
+                    <th>
+                        @Html.DisplayName("Employee Code")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Designation")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Email")
+                    </th>
+                    <th></th>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td data-title="Employee Code">
+                            @Html.DisplayFor(modelItem => item.EmployeeCode)
+                        </td>
+                        <td data-title="Name">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td data-title="Designation">
+                            @Html.DisplayFor(modelItem => item.Designation)
+                        </td>
+                        <td data-title="Email">
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td data-title="">
+                            <a href="@Url.Action("SkillRate",new { code = item.EmployeeCode, name = item.Name })" data-tooltip="View Skills" data-tooltip-position="bottom"><i class="fa fa-lightbulb-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
 
+    <div class="alert alert-warning fade in">
+        <strong>No Staff Details!</strong> There is no reporting staff.
+    </div>
+}
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-
-
-    @Html.PagedListPager(Model, page => Url.Action("Index",new{page}))
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
