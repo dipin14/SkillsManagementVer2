@@ -72,10 +72,10 @@ namespace Skillset_PL.ViewModelExtensions
         }
 
         /// <summary>
-        /// Staff details dto to viewmodel.
+        ///Convert staff details dto list of datatype IEnumerable<Common.DTO.ReportingStaff> ReportingStaff to viewmodel of datatype IEnumerable<ViewModels.ReportingStaff>.
         /// </summary>
         /// <param name="managerCode"></param>
-        /// <returns></returns>
+        /// <returns>IEnumerable<ViewModels.ReportingStaff></returns>
         public static IEnumerable<ViewModels.ReportingStaff> ToReportingStaffViewmodel(this IEnumerable<Common.DTO.ReportingStaff> staffList)
         {
             if (staffList != null && staffList.Any())
@@ -124,7 +124,7 @@ namespace Skillset_PL.ViewModelExtensions
         /// convert dto model to employee view model
         /// </summary>
         /// <param name="dto"></param>
-        /// <returns></returns>
+        /// <returns>EmployeeViewModel</returns>
         public static EmployeeViewModel EmployeeDTOtoViewModel(this EmployeeDTO dto)
         {
             EmployeeViewModel employee = new EmployeeViewModel();
@@ -147,10 +147,10 @@ namespace Skillset_PL.ViewModelExtensions
 
 
         /// <summary>
-        /// skill ratings of an employee dto to viewmodel.
+        /// Convert skill ratings of an employee in StaffSkills dto to StaffSkills viewmodel.
         /// </summary>
         /// <param name="employeeCode"></param>
-        /// <returns></returns>
+        /// <returns>IEnumerable<ViewModels.StaffSkills></returns>
         public static IEnumerable<ViewModels.StaffSkills> ToSkillRatingsViewmodel(this IEnumerable<Common.DTO.StaffSkills> skillList)
         {
             if (skillList != null && skillList.Any())
@@ -177,7 +177,7 @@ namespace Skillset_PL.ViewModelExtensions
         /// Convert IList of EmployeeRatingViewModel to EmployeeRatingDto
         /// </summary>
         /// <param name="SkillRatingVMList"></param>
-        /// <returns></returns>
+        /// <returns>IList<EmployeeSkillRatingDTO></returns>
         public static IList<EmployeeSkillRatingDTO> ToSkillRatingDTOList(this IList<EmployeeSkillRatingViewModel> SkillRatingVMList)
         {
             return SkillRatingVMList.Select(skill => new EmployeeSkillRatingDTO
@@ -196,7 +196,7 @@ namespace Skillset_PL.ViewModelExtensions
         /// Convert Ilist of RatedSkilldto to RatedSkillViewModel 
         /// </summary>
         /// <param name="SkillRatedListDto"></param>
-        /// <returns></returns>
+        /// <returns>IEnumerable<ViewModels.EmployeeRatedSkillsViewModel></returns>
         public static IEnumerable<ViewModels.EmployeeRatedSkillsViewModel> ToSkillRatedViewmodel(this IEnumerable<Common.DTO.EmployeeRatedSkillsDTO> skillList)
         {
             return skillList.Select(employee => new ViewModels.EmployeeRatedSkillsViewModel

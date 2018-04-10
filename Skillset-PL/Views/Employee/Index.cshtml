@@ -1,7 +1,9 @@
 ﻿@model PagedList.IPagedList<Skillset_PL.ViewModels.EmployeeViewModel>
 @using PagedList.Mvc;
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Search.css" rel="stylesheet" />
 <link href="~/Content/Site.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/theme.css" rel="stylesheet" />
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
@@ -19,89 +21,95 @@
     </script>
 }
 <div id="snackbar"></div>
-<div class="row first">
-    <h3>Employee List</h3>
-    <p style="text-align: right">
-        @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
-
-
-
-        <div class="panel-group">
-            <div class="panel panel-success">
-             
-                <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;"><b>Search</b></div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <div class="col-md-5">
-                            <b> Search By Name/Code/Designation</b>
-                        </div>
-
-                        @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
-                        {
-                            <div class="col-md-3">
-                                @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control" } })
-                                &nbsp; &nbsp;
-                            </div>
-                            <div class="col-md-4">
-                                <input type="submit" name="submit" value="Search" class="btn btn-success" />
-                                &nbsp;
-                                @Html.ActionLink("Reset", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
-                            </div>
-                        }
-                    </div>
+<div style="padding-bottom:10px;">
+    @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="col-md-12" style="margin-right:0;margin-left:0;">
+                <div class="col=md-3" style="float:left;">
+                    @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name/Code/Designation" } })
+                </div>
+                <div class="col-md-3" id="searchButton">
+                    <button type="submit" name="submit" class="btn" style="background-color:white;color:#2a3f54;font-size:20px;" data-tooltip="Search Employee" data-tooltip-position="bottom">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                    <a href="@Url.Action("Index")" data-tooltip="Refresh Search" data-tooltip-position="bottom" style="background-color:white;color:#2a3f54;font-size:20px;" class="btn"><div class="glyphicon glyphicon-refresh"></div></a>
+                </div>
+                <div class="col-md-6" id="newEmployeeDiv">
+                    <span>
+                        <a href="@Url.Action("Create", "Employee")" class="btn btn-new"><span class="fa fa-plus fa-lg"></span><span> <b>Employee</b></span></a>
+                    </span>
                 </div>
             </div>
         </div>
+    }
+</div>
 
-    @if ((Model.Count() > 0))
-    {
-    
-        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</label>
-            <table class="table table-bordered table-hover table-responsive">
-                <thead>
-                    <tr>
-                        <th>Employee Code</th>
-                        <th>Name</th>
-                        <th>Designation</th>
-                        <th>Operations</th>
-                    </tr>
-                </thead>
+<label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</label>
 
-                <tbody>
-                    @foreach (var item in Model)
+@if ((Model.Count() > 0))
+{
+
+    <div class="panel panel-default">
+        <table class="table table-hover table-responsive size-response">
+            <thead style="background-color:#2a3f54;color:white">
+                <tr>
+                    <th>
+                        @Html.DisplayName("Employee Code")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Designation")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Operations")
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
                 {
 
-                        <tr>
-                            <td data-title="Employee Code">
-                                @Html.DisplayFor(modelItem => item.EmployeeCode)
-                            </td>
-                            <td data-title="Name">
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td data-title="Designation">
-                                @Html.DisplayFor(modelItem => item.DesignationId)
-                            </td>
+                    <tr>
+                        <td data-title="Employee Code">
+                            @Html.DisplayFor(modelItem => item.EmployeeCode)
+                        </td>
+                        <td data-title="Name">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td data-title="Designation">
+                            @Html.DisplayFor(modelItem => item.DesignationId)
+                        </td>
 
+                        <td data-title="Operations">
+                            <a href="@Url.Action("Edit",new { id = item.EmployeeCode })" data-tooltip="Edit Employee" data-tooltip-position="bottom"><i class="fa fa-pencil-square-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                            <a href="@Url.Action("Details",new { id = item.EmployeeCode })" data-tooltip="View Details" data-tooltip-position="bottom"><i class="fa fa-info" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                            <a href="@Url.Action("Delete",new { id = item.EmployeeCode })" data-tooltip="Delete Employee" data-tooltip-position="bottom"><i class="fa fa-trash-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                            <a href="@Url.Action("Skills",new { id = item.EmployeeCode })" data-tooltip="View Skills" data-tooltip-position="bottom"><i class="fa fa-lightbulb-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                        </td>
+                    </tr>
+                }
+                
+            </tbody>
+        </table>
+    </div>
+   
 
-                            <td data-title="Operations">
-                                <a href="@Url.Action("Edit",new { id = item.EmployeeCode })" data-tooltip="Edit Employee" data-tooltip-position="bottom"><i class="fa fa-pencil-square-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
-                                <a href="@Url.Action("Details",new { id = item.EmployeeCode })" data-tooltip="View Details" data-tooltip-position="bottom"><i class="fa fa-info" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
-                                <a href="@Url.Action("Delete",new { id = item.EmployeeCode })" data-tooltip="Delete Employee" data-tooltip-position="bottom"><i class="fa fa-trash-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
-                                <a href="@Url.Action("Skills",new { id = item.EmployeeCode })" data-tooltip="View Skills" data-tooltip-position="bottom"><i class="fa fa-lightbulb-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <br />
-            <div class="alert alert-warning fade in">
-                <strong>No Employees!</strong> There are no employees to display.
-            </div>
-        }
-        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
-</div>
+}
+else
+{
+        <div class="alert alert-warning fade in" style="color:#2a3f54;background-color:whitesmoke;border-color:#2a3f54">
+            <strong>No Employees!</strong> There are no employees to display.
+        </div>
+}
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+
+    new
+    {
+        page
+    }))
 <script src="~/Scripts/SkillRating.js"></script>

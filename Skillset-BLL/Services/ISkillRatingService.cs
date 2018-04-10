@@ -14,12 +14,14 @@ namespace Skillset_BLL.Services
         /// <param name="skillRating"></param>
         /// <returns></returns>
         int Create(IList< EmployeeSkillRatingDTO> skillRating);
+
         /// <summary>
         /// Get all rated skills of employee
         /// </summary>
         /// <param name="employeeId"></param>
         /// <returns></returns>
         IList<EmployeeRatedSkillsDTO> GetRatedSkills(int empId);
+
         /// <summary>
         /// Remove skillrating from table Skillrating
         /// </summary>
