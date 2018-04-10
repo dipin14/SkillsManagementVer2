@@ -7,7 +7,7 @@
 }
 <div class="row first">
 
-    <label class="control-label alert-success well-sm" style="display:block;text-align:center">Skills</label>
+    <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Skills</label>
 
     <br />
     @if (!string.IsNullOrWhiteSpace(ViewBag.Code))
@@ -43,10 +43,10 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
+                        <td data-title="Skill">
                             @Html.DisplayFor(modelItem => item.Skill)
                         </td>
-                        <td>
+                        <td data-title="Rating">
                             <div data-tooltip="@(item.RatingNote)" data-tooltip-position="bottom">
 
                                 @for (var i = 1; i <= item.Rating; i++)
@@ -59,10 +59,10 @@
                                 }
                             </div>
                         </td>
-                        <td>
+                        <td data-title="Rated On">
                             @Html.DisplayFor(modelItem => item.RatingDate)
                         </td>
-                        <td>
+                        <td data-title="Notes">
                             @Html.DisplayFor(modelItem => item.Note)
                         </td>
                     </tr>
@@ -73,7 +73,7 @@
     else
     {
         <br />
-        <div class="alert alert-warning fade in">
+        <div class="alert alert-warning">
 
             <strong>No Skill Ratings!</strong>
             <br />Employee has no rated skills.

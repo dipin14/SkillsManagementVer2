@@ -26,14 +26,14 @@
 
 
 
-@*<div class="loading">
-    <div class="loading-bar"></div>
-    <div class="loading-bar"></div>
-    <div class="loading-bar"></div>
-    <div class="loading-bar"></div>
-    <div class="loading-bar"></div>
-    <div class="loading-bar"></div>
-</div>*@
+    @*<div class="loading">
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+        </div>*@
 
 <div class="row first" style="background-color:white;padding:30px;padding-top:0px;margin:10px;">
     <h2>  Rate your skills</h2>
@@ -52,13 +52,12 @@
                 <b>Warning</b><br />
                 <p>Enter your ratings</p>
             </div>
-
-            @foreach (var item in Model.SkillRatings)
+            @foreach(var item in Model.SkillRatings)
             {
 
 
-                <div class="Ratecard">
-                    <div class="row">
+                    <div class="Ratecard">
+                        <div class="row">
 
                         <div class="col-sm-6" style="margin-left:20px;">
                             <h4>
@@ -70,28 +69,29 @@
                                 @Html.DisplayFor(modelItem => item.SkillDescription)
                             </p>
 
-                        </div>
-
-
-
-                        <div class="col-sm-5" style="color:grey;">
-
-                            <div id="StarRow " onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;">
-                                <input id="Rating @item.skillId" hidden />
-                                <span class="starFade" id="Rate1 @item.skillId" onclick="CRate(@item.skillId, 1)" onmouseover="CRateOver(@item.skillId,1)" onmouseout="CRateOut(@item.skillId,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
-                                <label for="Rate1 @item.skillId" title="Amazing"></label>
-                                <span class="starFade" id="Rate2 @item.skillId" onclick="CRate(@item.skillId, 2)" onmouseover="CRateOver(@item.skillId,2)" onmouseout="CRateOut(@item.skillId,2)" data-tooltip="Need help" data-tooltip-position="bottom"></span>
-                                <span class="starFade" id="Rate3 @item.skillId" onclick="CRate(@item.skillId, 3)" onmouseover="CRateOver(@item.skillId,3)" onmouseout="CRateOut(@item.skillId,3)" data-tooltip="Need reference" data-tooltip-position="bottom"></span>
-                                <span class="starFade" id="Rate4 @item.skillId" onclick="CRate(@item.skillId, 4)" onmouseover="CRateOver(@item.skillId,4)" onmouseout="CRateOut(@item.skillId,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
-                                <span class="starFade" id="Rate5 @item.skillId" onclick="CRate(@item.skillId, 5)" onmouseover="CRateOver(@item.skillId,5)" onmouseout="CRateOut(@item.skillId,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
                             </div>
-                            <textarea class="form-control notes" id="TxtAra @item.skillId" placeholder="Enter your notes here" name="TxtAra" required style="margin:10px;"></textarea>
 
+
+
+                            <div class="col-sm-5" style="color:grey;">
+
+                                <div id="StarRow " onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;">
+                                    <input id="Rating @item.skillId" hidden />
+                                    <span class="starFade" id="Rate1 @item.skillId" onclick="CRate(@item.skillId, 1)" onmouseover="CRateOver(@item.skillId,1)" onmouseout="CRateOut(@item.skillId,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
+                                    <label for="Rate1 @item.skillId" title="Amazing"></label>
+                                    <span class="starFade" id="Rate2 @item.skillId" onclick="CRate(@item.skillId, 2)" onmouseover="CRateOver(@item.skillId,2)" onmouseout="CRateOut(@item.skillId,2)" data-tooltip="Need help" data-tooltip-position="bottom"></span>
+                                    <span class="starFade" id="Rate3 @item.skillId" onclick="CRate(@item.skillId, 3)" onmouseover="CRateOver(@item.skillId,3)" onmouseout="CRateOut(@item.skillId,3)" data-tooltip="Need reference" data-tooltip-position="bottom"></span>
+                                    <span class="starFade" id="Rate4 @item.skillId" onclick="CRate(@item.skillId, 4)" onmouseover="CRateOver(@item.skillId,4)" onmouseout="CRateOut(@item.skillId,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
+                                    <span class="starFade" id="Rate5 @item.skillId" onclick="CRate(@item.skillId, 5)" onmouseover="CRateOver(@item.skillId,5)" onmouseout="CRateOut(@item.skillId,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
+                                </div>
+                                <textarea class="form-control notes" id="TxtAra @item.skillId" placeholder="Enter your notes here" name="TxtAra" required style="margin:10px;"></textarea>
+
+
+                            </div>
 
                         </div>
-
                     </div>
-                </div>
+             
                 <br />
             }
 
@@ -200,8 +200,7 @@
             </div>
             </div>
         </div>
-    </div>
-</div>
+    
 
 
          
