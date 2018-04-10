@@ -19,7 +19,6 @@
     </script>
 }
 <div id="snackbar"></div>
-    <h3>Employee List</h3>
     <p style="text-align: right">
         @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
  
@@ -106,7 +105,8 @@
             {
             <br />
             <div class="alert alert-warning fade in">
-                <strong>No Employees!</strong> There are no employees to display.
+                <strong>No Employees!</strong> 
+                <br/>There are no employees to display.
             </div>
 
             }
