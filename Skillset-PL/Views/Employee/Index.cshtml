@@ -23,8 +23,8 @@
     <h3>Employee List</h3>
     <p style="text-align: right">
         @Html.ActionLink("New Employee", "Create", null, htmlAttributes: new { @class = "btn btn-success" })
-  
-  
+
+
 
         <div class="panel-group">
             <div class="panel panel-success">
@@ -32,25 +32,26 @@
                 <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;"><b>Search</b></div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <div class="col-md-5"><b> Search By Name/Code/Designation</b>
+                        <div class="col-md-5">
+                            <b> Search By Name/Code/Designation</b>
                         </div>
-                        
-                        @using (Html.BeginForm("Index","Employee", FormMethod.Get))
-                        {  
-                        <div class="col-md-3">
-                            @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control" } })
-                            &nbsp; &nbsp;
-                        </div>
-                        <div class="col-md-4">
-                            <input type="submit" name="submit" value="Search" class="btn btn-success" />
-                            &nbsp;
-                            @Html.ActionLink("Reset", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
-                        </div>
+
+                        @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
+                        {
+                            <div class="col-md-3">
+                                @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control" } })
+                                &nbsp; &nbsp;
+                            </div>
+                            <div class="col-md-4">
+                                <input type="submit" name="submit" value="Search" class="btn btn-success" />
+                                &nbsp;
+                                @Html.ActionLink("Reset", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
+                            </div>
                         }
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     @if ((Model.Count() > 0))
     {
@@ -83,24 +84,24 @@
 
 
                             <td data-title="Operations">
-                               <a href="@Url.Action("Edit",new { id = item.EmployeeCode })"><i class="fa fa-pencil-square-o btn-sm btn-warning" style="width:30px"></i></a>
-                            <a href="@Url.Action("Details",new { id = item.EmployeeCode })"><i class="fa fa-info btn-sm btn-primary" style="width:30px"></i></a>
-                            <a href="@Url.Action("Delete",new { id = item.EmployeeCode })"><i class="fa fa-trash-o btn-sm btn-danger" style="width:30px"></i></a>
-                                <a href="@Url.Action("Skills",new { id = item.EmployeeCode })"><i class="fa fa-lightbulb-o btn-sm btn-success" style="width:30px"></i></a>
+                                <a href="@Url.Action("Edit",new { id = item.EmployeeCode })" data-tooltip="Edit Employee" data-tooltip-position="bottom"><i class="fa fa-pencil-square-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                                <a href="@Url.Action("Details",new { id = item.EmployeeCode })" data-tooltip="View Details" data-tooltip-position="bottom"><i class="fa fa-info" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                                <a href="@Url.Action("Delete",new { id = item.EmployeeCode })" data-tooltip="Delete Employee" data-tooltip-position="bottom"><i class="fa fa-trash-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                                <a href="@Url.Action("Skills",new { id = item.EmployeeCode })" data-tooltip="View Skills" data-tooltip-position="bottom"><i class="fa fa-lightbulb-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-            }
-            else
-            {
+        }
+        else
+        {
             <br />
             <div class="alert alert-warning fade in">
                 <strong>No Employees!</strong> There are no employees to display.
             </div>
-            }
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
+        }
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
 </div>
 <script src="~/Scripts/SkillRating.js"></script>
