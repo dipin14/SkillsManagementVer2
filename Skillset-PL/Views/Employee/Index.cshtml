@@ -106,24 +106,6 @@ else
         </div>
 }
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-                                <a href="@Url.Action("Edit",new { id = item.EmployeeCode })" data-tooltip="Edit Employee" data-tooltip-position="bottom"><i class="fa fa-pencil-square-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
-                                <a href="@Url.Action("Details",new { id = item.EmployeeCode })" data-tooltip="View Details" data-tooltip-position="bottom"><i class="fa fa-info" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
-                                <a href="@Url.Action("Delete",new { id = item.EmployeeCode })" data-tooltip="Delete Employee" data-tooltip-position="bottom"><i class="fa fa-trash-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
-                                <a href="@Url.Action("Skills",new { id = item.EmployeeCode })" data-tooltip="View Skills" data-tooltip-position="bottom"><i class="fa fa-lightbulb-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            </div>
-            }
-            else
-            {
-            <br />
-            <div class="alert alert-warning fade in" style="color:#2a3f54;background-color:whitesmoke;border-color:#2a3f54">
-                <strong>No Employees!</strong> There are no employees to display.
-            </div>
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new
     {
