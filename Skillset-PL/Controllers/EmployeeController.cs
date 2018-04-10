@@ -92,9 +92,11 @@ namespace Skillset_PL.Controllers
         // GET: Employee
         public ActionResult Index(string search,int? page)
         {
+            ViewData["EmployeeCount"] = _services.GetEmployeesCount();
             var pageNumber = (page ?? 1) - 1;
             var totalCount = 0;
-            var pageSize = 3;
+            var pageSize = 5;
+            TempData["page"] = pageNumber + 1;
             if(search!=null)
                 search = search.Trim();
             ViewBag.search = search;
@@ -108,7 +110,7 @@ namespace Skillset_PL.Controllers
                 item.EmployeeId = _services.GetManagerName(item.EmployeeId);
                 modelList.Add(item.EmployeeDTOtoViewModel());
             }
-            IPagedList<EmployeeViewModel> pageOrders = new StaticPagedList<EmployeeViewModel>(modelList, pageNumber + 1, 3, totalCount);
+            IPagedList<EmployeeViewModel> pageOrders = new StaticPagedList<EmployeeViewModel>(modelList, pageNumber + 1, pageSize, totalCount);
             return View(pageOrders);
         }
         //  GET: Employees/Create  
@@ -133,19 +135,20 @@ namespace Skillset_PL.Controllers
                 int status = _services.AddNewEmployee(employee.EmployeeViewModeltoDTO());
                 if (status == 1)
                 {
-                    ViewBag.message = "Employee code exists";
+                    ModelState.AddModelError("EmployeeCode", "Employee code exists");
+
                 }
                 else if (status == 2)
                 {
-                    ViewBag.message = "Mobile number already exists";
+                    ModelState.AddModelError("MobileNumber", "Mobile number already exists");                 
                 }
                 else if (status == 3)
                 {
-                    ViewBag.message = "Email already exists";
+                    ModelState.AddModelError("Email", "Email already exists");
                 }
                 else if (status == -1)
                 {
-                    ViewBag.message = "Error in creating new employee";
+                    TempData["message"] = "Error in creating new employee";
 
                 }
                 else
