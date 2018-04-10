@@ -44,8 +44,22 @@
                         <a href="@Url.Action("Delete",new { skillName = item.SkillName })" data-tooltip="Delete Skill" data-tooltip-position="bottom"><i class="fa fa-trash-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
                     </td>
                 </tr>
+            }
+        </tbody>
+    </table>
 }
-</tbody>
-        </div>}
+else
+{
+    <br />
+        <div class="alert alert-warning fade in">
+            <strong>No Skills!</strong>
+            <br />There are no skills to display
+        </div>
+}
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new
+    {
+        page
     }))
