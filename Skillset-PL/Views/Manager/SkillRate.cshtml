@@ -7,17 +7,22 @@
 }
 <div class="row first">
 
-    <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Skills</label>
-
+    <div class="panel-group">
+        <div class="panel panel-success">
+            <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">
+                <b>Skills</b>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="control-label col-sm-6" style="float:left;display:block;text-align:left">Employee Code : @(ViewBag.Code) </label>
+                        <label class="control-label col-sm-6" style="float:left;display:block;text-align:left;">  Employee Name : @(ViewBag.Name) </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <br />
-    @if (!string.IsNullOrWhiteSpace(ViewBag.Code))
-    {
-        <label class="control-label col-sm-6" style="float:left;display:block;text-align:center">Employee Code : @(ViewBag.Code) </label>
-    }
-    @if (!string.IsNullOrWhiteSpace(ViewBag.Name))
-    {
-        <label class="control-label col-sm-6" style="float:left;display:block;text-align:center;">  Employee Name : @(ViewBag.Name) </label>
-    }
     <br />
     @if (Model.Count() > 0)
     {

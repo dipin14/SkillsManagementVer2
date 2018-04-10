@@ -46,7 +46,7 @@
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td data-title="">
-                        <a href="@Url.Action("SkillRate",new { code = item.EmployeeCode, name = item.Name })"><i class="fa fa-lightbulb-o btn-sm btn-success" style="width:30px"></i></a>
+                        <a href="@Url.Action("SkillRate",new { code = item.EmployeeCode, name = item.Name })" data-tooltip="View Skills" data-tooltip-position="bottom"><i class="fa fa-lightbulb-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
                     </td>
                 </tr>
             }
