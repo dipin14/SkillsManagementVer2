@@ -1,5 +1,7 @@
-﻿@model IEnumerable<Skillset_PL.ViewModels.AdministratorSkillViewModel>
+﻿@model PagedList.IPagedList<Skillset_PL.ViewModels.AdministratorSkillViewModel>
 ﻿@using Common.Extensions
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Skills";
@@ -80,6 +82,16 @@ else
             <br/>There is no skill ratings available.
         </div>
 }
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+
+            @Html.PagedListPager(Model, page => Url.Action("SkillRate",
+    new
+    {
+        code = ViewBag.Code,
+        name = ViewBag.Name,
+        page
+    }))
 <br />
 <br />
 <span>
