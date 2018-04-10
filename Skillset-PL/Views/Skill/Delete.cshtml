@@ -3,42 +3,48 @@
 @{
     ViewBag.Title = "Delete";
 }
+<link href="~/Content/theme.css" rel="stylesheet" />
 <div class="row first">
-    @Html.HiddenFor(x => x.skillId)
-    <div>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.SkillName)
-            </dt>
+    <p style="color:red"> @ViewBag.message </p>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        @*<div class="panel-group">
+            <div class="panel panel-success">
+                <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</div>
+                <div class="panel-body">*@
 
-            <dd>
-                @Html.DisplayFor(model => model.SkillName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.SkillDescription)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.SkillDescription)
-            </dd>
-
-        </dl>
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-group" style="margin:15px">
-                <div class="col-md-2">
-                    <input type="submit" value="Delete" class="btn btn-danger" />
-                </div>
-
-                <div class="col-md-2">
-                    @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-success" })
-                </div>
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Skill Details</label>
+        <div class="well" style="background-color:#fff">
+            <div class="row">
+                <table class="table-responsive profileborder" style="width: 100%">
+                    <tr>
+                        <td style="width:5%"><span class="fa fa-lightbulb-o"></span></td>
+                        <td>Skill Name: </td>
+                        <td class="info">@Model.SkillName</td>
+                    </tr>
+                    <tr>
+                        <td style="width:5%"><span class="fa fa-align-justify"></span></td>
+                        <td>Description: </td>
+                        <td class="info">@Model.SkillDescription</td>
+                    </tr>
+                </table>
             </div>
-        }
+        </div>
+
     </div>
 </div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-6">
+            <input type="submit" value="Delete" class="btn btn-danger" style="background-color:#1abb9c;color:#FFF; border-color:#1abb9c" />
+            &nbsp; &nbsp;
+            @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-success", @style = "background-color:#2a3f54;color:#FFF; border-color:#2a3f54;" })
+        </div>
+    </div>
+}
