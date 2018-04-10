@@ -95,8 +95,5 @@ else
         <strong>No Employees!</strong> There are no employees to display.
     </div>
 }
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { search = ViewBag.search, page }))
-
-    <script src="~/Scripts/SkillRating.js"></script>
-    <script src="~/Scripts/Employee.js"></script>
+ 
+<script src="~/Scripts/SkillRating.js"></script>

@@ -20,10 +20,10 @@ namespace Skillset_BLL.Services
         }
 
         /// <summary>
-        /// Staff details combined.
+        /// Retrieve details of an employee along with designation.
         /// </summary>
         /// <param name="managerCode"></param>
-        /// <returns></returns>
+        /// <returns>IEnumerable<Common.DTO.ReportingStaff></returns>
         public IEnumerable<Common.DTO.ReportingStaff> GetEmployeeDetails(string managerCode)
         {
             var designations = _reportingStaff.GetDesignationDetails(managerCode);
@@ -53,11 +53,12 @@ namespace Skillset_BLL.Services
                 return Enumerable.Empty<Common.DTO.ReportingStaff>().ToList();
 
         }
+
         /// <summary>
-        /// skill ratings of an employee combined.
+        /// Returns skill ratings of an employee along with rating value corresponding to an employee code.
         /// </summary>
         /// <param name="employeeCode"></param>
-        /// <returns></returns>
+        /// <returns>IEnumerable<StaffSkills></returns>
         public IEnumerable<StaffSkills> GetSkillRatingsDetails(string employeeCode)
         {
             var ratings = _reportingStaff.GetRatingDetails();
@@ -82,6 +83,11 @@ namespace Skillset_BLL.Services
                 return Enumerable.Empty<StaffSkills>().ToList();
         }
 
+        /// <summary>
+        /// Return employee profile corresponding to an employee code.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>EmployeeDTO</returns>
         public EmployeeDTO GetProfile(string id)
         {
             return _reportingStaff.GetProfile(id).EmployeeModeltoDTO();

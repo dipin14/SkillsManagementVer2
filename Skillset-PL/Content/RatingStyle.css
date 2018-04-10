@@ -1,0 +1,24 @@
+﻿
+/*@media (max-width: 993px) {
+    .col-sm-5 {
+        width:40%;
+    }
+}*/
+@media (max-width: 768px) {
+    #StarRow {
+        min-width: 120px;
+      
+    }
+}
+@media (max-width: 400px) {
+    .notes {
+        width:80%;
+      
+    }
+}
+@media (max-width: 320px) {
+    .notes {
+       margin:0px;
+      
+    }
+}

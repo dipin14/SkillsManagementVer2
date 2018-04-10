@@ -13,7 +13,7 @@ namespace Skillset_PL.ViewModels
         public int SkillId { get; set; }
         public int RatingScore { get; set; }
         public DateTime RatingDate { get; set; }
-       public string Note { get; set; }
+        public string Note { get; set; }
         [DefaultValue(true)]
         public bool IsSpecialSkill { get; set; }
         public bool Status { get; set; }
