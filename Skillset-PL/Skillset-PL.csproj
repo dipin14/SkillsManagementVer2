@@ -229,6 +229,7 @@
     <Content Include="Content\PagedList.css" />
    <Content Include="Content\Profile.css" />
     <Content Include="Content\RatingStyle.css" />
+    <Content Include="Content\Search.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\theme.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

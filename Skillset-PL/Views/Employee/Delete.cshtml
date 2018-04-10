@@ -9,10 +9,6 @@
     <p style="color:red"> @ViewBag.message </p>
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
-        @*<div class="panel-group">
-            <div class="panel panel-success">
-                <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</div>
-                <div class="panel-body">*@
 
         <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</label>
         <div class="well" style="background-color:#fff">
@@ -67,8 +63,8 @@
                 </table>
             </div>
         </div>
-
     </div>
+    <div class="col-sm-2"></div>
 </div>
 
 @using (Html.BeginForm())
@@ -77,11 +73,14 @@
     <div class="form-group">
         <div class="col-sm-2"></div>
         <div class="col-sm-6">
-            <input type="submit" value="Delete" class="btn btn-danger" style="background-color:#1abb9c;color:#FFF; border-color:#1abb9c" />
+            <input type="submit" value="Delete" class="btn btn-danger " style="background-color:#1abb9c;color:#FFF; border-color:#1abb9c" />
             &nbsp; &nbsp;
-            @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-success", @style = "background-color:#2a3f54;color:#FFF; border-color:#2a3f54;padding-left:10px;" })
+            <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-primary" style="background-color:#2a3f54;color:#FFF; border-color:#2a3f54;padding-left:10px;">Cancel</a>
+
         </div>
-       
+        <div class="col-md-4"></div>
     </div>
+
+
 }
 
