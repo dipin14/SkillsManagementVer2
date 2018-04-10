@@ -372,7 +372,6 @@ table.table.table-hover.table-responsive.size-response td{
            content: attr(data-title);
 
        }
-        
        
 }
 @media only screen and (max-width: 350px) {
