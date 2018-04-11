@@ -151,7 +151,7 @@ namespace Skillset_DAL.Repositories
         
         public string GetTopEmployeeRating()
         {
-            SkillsetDbContext context = new SkillsetDbContext();
+            using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 string result = string.Empty;
                 string id = string.Empty;
@@ -161,7 +161,7 @@ namespace Skillset_DAL.Repositories
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where j.Status == true && s.Status == true && s.RatingId==RatingId
+                              where j.Status == true && s.Status == true && s.RatingId == RatingId
                               select s);
                 var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
 
@@ -176,7 +176,7 @@ namespace Skillset_DAL.Repositories
 
         public string GetLeastEmployeeRating()
         {
-            SkillsetDbContext context = new SkillsetDbContext();
+            using (SkillsetDbContext context = new SkillsetDbContext())
             {
                 string result = string.Empty;
                 string id = string.Empty;
@@ -186,7 +186,7 @@ namespace Skillset_DAL.Repositories
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where j.Status == true && s.Status == true && s.RatingId==RatingId
+                              where j.Status == true && s.Status == true && s.RatingId == RatingId
                               select s);
                 var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
 
