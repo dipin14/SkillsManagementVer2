@@ -13,20 +13,6 @@
     <meta name="viewport" content="width=device-width" />
     <script>
 
-        @*var PieChartData =
-        {
-            labels: [@Html.Raw(ViewBag.SkillnameList)],
-            datasets: [{
-                    label: 'Skill Rating Distribution',
-                    backgroundColor: ["rgba(75,192,192,0.4)",
-                                      "rgba(240,128,128 ,1 )",
-                                      "rgba(220,20,60 ,1 )",
-                                      "rgb(72,61,139)",
-                                      "rgba(38, 166, 154, 1)"],
-                    borderWidth: 2,
-                    data: [@ViewBag.RatingList]
-                     }]
-        };*@
         var BarChartData =
         {
             labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
@@ -42,64 +28,7 @@
                 data: [@ViewBag.RatingAverage]
             }]
         };
-        var MostSkilledPolarChartData =
-            {
-                labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
-                datasets: [{
-                    label: 'Top Rated Count',
-                    backgroundColor: ['rgba(42, 63, 84, 1.0)',
-                                      'rgba(70, 130, 180, 1 )',
-                                      'rgba(26, 187, 156, 1)',
-                                      'rgba(0, 0, 34, 1)',
-                                      'rgba(0, 148, 198, 1)',
-                                      'rgba(63, 136, 197, 1)',
-                                      'rgba(179, 123, 164, 1)',
-                                      'rgba(246, 247, 235, 1)',
-
-                    ],
-                    borderWidth: 2,
-                    data: [@ViewBag.TopRatedEmployees]
-                }]
-            };
-
-        var LeastSkilledPieChartData =
-            {
-                labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
-                datasets: [{
-                    label: 'Least Rated Count',
-                    backgroundColor: ['rgba(26, 187, 156, 1)',
-                                      'rgba(233, 79, 55, 1)',
-                                      'rgba(38, 42, 16, 1)',
-                                      'rgba(70, 130, 180, 1 )',
-                                      'rgba(209, 102, 102, 1)',
-                                      'rgba(63, 136, 197, 1)',
-                                      'rgba(243, 201, 105, 1)',
-                                      'rgba(113, 180, 141, 1)',
-
-                    ],
-                    borderWidth: 2,
-                    data: [@ViewBag.LeastRatedEmployees]
-                }]
-            };
-
-        var DoughnutChartData =
-            {
-                labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
-                datasets: [{
-                    label: 'Null',
-                    backgroundColor: ['rgba(26, 187, 156, 1)',
-                                    'rgba(30, 99, 132, 0.6)',
-                                    'rgba(42, 63, 84, 1.0)',
-                                    'rgba(90, 99, 132, 0.6)',
-                                    'rgba(120, 99, 132, 0.6)',
-                                    'rgba(63, 136, 197, 1)',
-                                    'rgba(246, 247, 235, 1)',
-                                    'rgba(70, 130, 180, 1 )'
-                    ],
-                    borderWidth: 2,
-                    data: [@ViewBag.RatingAverage]
-                }]
-            };
+      
         window.onload = function () {
 
             var ctx1 = document.getElementById("Barcanvas").getContext("2d");
@@ -132,70 +61,7 @@
                     }
                 });
 
-            var ctx2 = document.getElementById("MostSkilledPolarcanvas").getContext("2d");
-            window.myBar2 = new Chart(ctx2,
-                {
-                    type: 'polarArea',
-                    data: MostSkilledPolarChartData,
-                    options:
-                    {
-                        title:
-                        {
-                            display: true,
-                            text: ""
-                        },
-                        scales:
-                        {
-                            yAxes:
-                            [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        },
-
-                        responsive: true,
-                        maintainAspectRatio: true
-                    }
-                });
-
-            var ctx3 = document.getElementById("LeastSkilledPiecanvas").getContext("2d");
-            window.myBar3 = new Chart(ctx3,
-                {
-                    type: 'pie',
-                    data: LeastSkilledPieChartData,
-                    options:
-                    {
-                        title:
-                        {
-                            display: true,
-                            text: ""
-                        },
-                        responsive: true,
-                        maintainAspectRatio: true
-                    }
-                });
-
-            var ctx4 = document.getElementById("Doughnutcanvas").getContext("2d");
-            window.myBar4 = new Chart(ctx4,
-                {
-                    type: 'doughnut',
-                    data: DoughnutChartData,
-                    options:
-                    {
-                        title:
-                        {
-                            display: true,
-                            text: ""
-                        },
-
-                        responsive: true,
-                        maintainAspectRatio: true
-                    }
-                });
-
         }
-
     </script>
 </head>
 
@@ -206,19 +72,19 @@
             <div class="tile-value">@(ViewBag.TotalEmployees)</div>
         </div>
         <div class="col-md-4 tile-list">
-            <span class="tile-top"><i class="fa fa-user"></i>Total Skills</span>
+            <span class="tile-top"><i class="fa fa-lightbulb-o"></i>Total Skills</span>
             <div class="tile-value">@(ViewBag.TotalSkills)</div>
         </div>
 
         <div class="col-md-4 tile-list">
-            <span class="tile-top"><i class="fa fa-user"></i>Total Ratings</span>
+            <span class="tile-top"><i class="fa fa-star"></i>Total Ratings</span>
             <div class="tile-value">@(ViewBag.TotalSkillRatingsCount)</div>
         </div>
     </div>
 
     @* Chart *@
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 " >
             <div class="dashboard-graph">
                 <div class="row graph-title">
                     <div class="col-md-12">
@@ -245,8 +111,8 @@
                 </div>
             </div>
             <div class="col-md-12" style="background:white;" id="show">
-                <div>
-                    <table class="employeetable table table-hover" style="height:242px;margin-bottom:10px">
+                <div id="collapse1">
+                    <table class="employeetable table table-hover table-responsive" style="margin-bottom:10px">
                         <thead>
                             <tr>
                                 <th style="font-weight:bold;font-size:16px">Employee Name</th>
@@ -265,11 +131,10 @@
                                     </tr>
                                 }
                             }
-                            else
+                            @if (ViewBag.TopSkillsTableData.Count <= 0)
                             {
-
                                 <tr>
-                                    <td>No recent activity!</td>
+                                    <td>No top ratings!</td>
                                     <td></td>
                                 </tr>
                             }
@@ -278,69 +143,8 @@
                 </div>
             </div>
 
-
-        </div>
-
-
-    </div>
-
-    @* 3Chart*@
-    <div class="row" style="padding-top:20px;">
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <div class="row card-title">
-                    <div class="col-md-8">
-                        <h3>Top Rated</h3><div>Employee Count</div>
-                    </div>
-                    <div class="col-md-4 toggle-card">
-                        <a class="toggle-button1" style="float:right;"><i class="classi1 fa fa-chevron-up"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12" style="background:white;" id="show1">
-                <div>
-                    <canvas id="MostSkilledPolarcanvas"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <div class="row card-title">
-                    <div class="col-md-8">
-                        <h3>Least Rated </h3><div>Employee Count</div>
-                    </div>
-                    <div class="col-md-4 toggle-card">
-                        <a class="toggle-button2" style="float:right;"><i class="classi2 fa fa-chevron-up"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12" style="background:white;" id="show2">
-                <div>
-                    <canvas id="LeastSkilledPiecanvas"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="dashboard-card">
-                <div class="row card-title">
-                    <div class="col-md-8">
-                        <h3>Null rated </h3><div>Employee Count</div>
-                    </div>
-                    <div class="col-md-4 toggle-card">
-                        <a class="toggle-button3" style="float:right;"><i class="classi3 fa fa-chevron-up"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12" style="background:white;" id="show3">
-                <div>
-                    <canvas id="Doughnutcanvas"></canvas>
-                </div>
-            </div>
         </div>
 
     </div>
-    @*End 3 chart*@
 </body>
 </html>
