@@ -183,6 +183,7 @@ h3{
 table.employeetable {
     width: 100%;
     border-bottom: 2px solid #E6E9ED;
+
 }
 
 table.employeetable > thead > tr > th {
@@ -191,7 +192,7 @@ table.employeetable > thead > tr > th {
 
 #collapse1 {
     overflow-y: scroll;
-    height:280px;
+    height:269px;
 }
 /* 
 Max width before this PARTICULAR table gets nasty
