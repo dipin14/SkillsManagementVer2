@@ -10,6 +10,11 @@ namespace Skillset_BLL.Services
     public class LoginService:ILoginService
     {
         private readonly ILoginRepository logRepository;
+
+        /// <summary>
+        /// Dependency Injection for ILoginRepository
+        /// </summary>
+        /// <param name="logRepo"></param>
         public LoginService(ILoginRepository logRepo)
         {
             logRepository = logRepo;
