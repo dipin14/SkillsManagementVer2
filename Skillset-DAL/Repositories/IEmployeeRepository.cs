@@ -21,8 +21,6 @@ namespace Skillset_DAL.Repositories
         /// <returns></returns>
         IEnumerable<Employee> GetSearchRecords(string search, int pageNumber, int pageSize, out int totalCount);
 
-       
-        
         /// <summary>
         /// Adds new employee to the Employee table
         /// </summary>
@@ -36,9 +34,9 @@ namespace Skillset_DAL.Repositories
         /// <param name="employee"></param>
         /// <returns></returns>
         int EditEmployee(Employee employee);
-        
+
         /// <summary>
-        /// Set the status of employee to false
+        /// Delete employee by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -60,52 +58,52 @@ namespace Skillset_DAL.Repositories
         int CheckDuplicateEmployee(List<Employee> employeeList, Employee newEmployee);
        
         /// <summary>
-        /// retrieves the list of designations
+        /// Retrieves the list of designations
         /// </summary>
         /// <returns></returns>
         List<Designation> GetDesignations();
        
         /// <summary>
-        /// retrieves the list of qualifications
+        /// Retrieves the list of qualifications
         /// </summary>
         /// <returns></returns>
         List<Qualification> GetQualifications();
        
         /// <summary>
-        /// retrieves the list of managers
+        /// Retrieves the list of managers
         /// </summary>
         /// <returns></returns>
         List<Employee> GetManagers();
-        
+
         /// <summary>
-        /// retrieves the list of roles
+        /// Retrieves the list of roles
         /// </summary>
         /// <returns></returns>
         List<Role> GetRole();
         
         /// <summary>
-        /// retrieve the name for a particular designation id
+        /// Retrieve the name for a particular designation id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         string GetDesignationName(string id);
-       
+
         /// <summary>
-        /// retrieve the name for a particular qualification id
+        /// Retrieve the name for a particular qualification id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         string GetQualificationName(string id);
-       
+
         /// <summary>
-        /// retrieve the name for a particular manager id
+        /// Retrieve the name for a particular manager id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         string GetManagerName(string id);
-        
+
         /// <summary>
-        /// retrieve the name for a particular role id
+        /// Retrieve the name for a particular role id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -113,13 +111,13 @@ namespace Skillset_DAL.Repositories
 
 
         /// <summary>
-        /// retrieve total employees count
+        /// Retrieve total employees count
         /// </summary>
         /// <returns></returns>
         int GetEmployeesCount();
 
         /// <summary>
-        /// retrieve the employee deails according to id
+        /// Retrieve the employee details according to id
         /// </summary>
         /// <returns></returns>
         Employee GetProfile(string id);
