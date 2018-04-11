@@ -59,7 +59,7 @@ namespace Skillset_BLL.Services
         /// <returns></returns>
         public SkillDTO GetBySkillName(string skillName)
         {
-            return _iSkillRepository.GetSkillBySkillName(skillName).ToDTO(); 
+            return _iSkillRepository.GetSkillBySkillName(skillName).ToDTO();
 
         }
 

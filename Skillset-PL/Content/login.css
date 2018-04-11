@@ -1,4 +1,7 @@
 ﻿
+.left-side h3 {
+    padding-top: 40% !important;
+}
 
 #playground-container {
     height: 500px;
@@ -17,7 +20,10 @@
 .fb:focus, .fb:hover {
     color: FFF !important;
 }
-
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 .left-side {
     padding: 0px 0px 0px;
@@ -84,6 +90,10 @@
         color: #000;
         padding: 10px 50px 10px 50px;
     }
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 .form {
     padding: 10px 50px 10px 50px;
@@ -115,3 +125,15 @@
         background-color: #FFF;
         border-color: #2a3f54; /*set the color you want here*/
     }
+
+@media (min-width: 380px) and (max-width: 991px) {
+    .left-side h3 {
+        padding-top: 20% !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .left-side h3 {
+        font-size: 40px !important;
+    }
+}

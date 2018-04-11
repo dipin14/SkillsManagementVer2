@@ -16,35 +16,60 @@ namespace Skillset_BLL.Services
         /// Dependency Injection for IEmployeeRepository
         /// </summary>
         /// <param name="repository"></param>
+        /// <summary>
+        /// Dependency injection for Employee repository
+        /// </summary>
+        /// <param name="repository"></param>
         public EmployeeServices(IEmployeeRepository repository)
         {
             _repository = repository;
         }
 
+        /// <summary>
+        /// Adds new employee to the Employee table
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         public int AddNewEmployee(EmployeeDTO employee)
         {
             return _repository.AddEmployee(employee.EmployeeDTOtoModel());
         }
 
-       
-       
-
+        /// <summary>
+        ///Delete employee by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int DeleteEmployeeById(string id)
         {
             return _repository.DeleteEmployee(id);
         }
 
+        /// <summary>
+        ///Updates the employee record by id
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         public int EditEmployeeById(EmployeeDTO employee)
         {
             return _repository.EditEmployee(employee.EmployeeDTOtoModel());
 
         }
 
+        /// <summary>
+        /// Retrieve the details of the employee with particular id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public EmployeeDTO GetEmployeeDetailsById(string id)
         {
             return _repository.GetEmployeeDetails(id).EmployeeModeltoDTO();
         }
 
+        /// <summary>
+        /// Retrieves the list of designations
+        /// </summary>
+        /// <returns></returns>     
         public List<DesignationDTO> GetDesignations()
         {
             var list = _repository.GetDesignations();
@@ -56,6 +81,10 @@ namespace Skillset_BLL.Services
             return dto;
         }
 
+        /// <summary>
+        /// Retrieves the list of qualifications
+        /// </summary>
+        /// <returns></returns>
         public List<QualificationDTO> GetQualifications()
         {
             var list = _repository.GetQualifications();
@@ -67,6 +96,10 @@ namespace Skillset_BLL.Services
             return dto;
         }
 
+        /// <summary>
+        /// Retrieves the list of managers
+        /// </summary>
+        /// <returns></returns>
         public List<EmployeeDTO> GetManagers()
         {
             var list = _repository.GetManagers();
@@ -77,6 +110,11 @@ namespace Skillset_BLL.Services
             }
             return dto;
         }
+
+        /// <summary>
+        /// Retrieves the list of roles
+        /// </summary>
+        /// <returns></returns>
         public List<RoleDTO> GetRoles()
         {
             var list = _repository.GetRole();
@@ -88,26 +126,54 @@ namespace Skillset_BLL.Services
             return dto;
         }
 
+        /// <summary>
+        /// Retrieve the name for a particular designation id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetDesignationName(string id)
         {
             return _repository.GetDesignationName(id);
         }
 
+        /// <summary>
+        /// Retrieve the name for a particular qualification id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetQualificationName(string id)
         {
             return _repository.GetQualificationName(id);
         }
 
+        /// <summary>
+        /// Retrieve the name for a particular Manager id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetManagerName(string id)
         {
             return _repository.GetManagerName(id);
         }
 
+        /// <summary>
+        /// Retrieve the name for a particular role id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetRoleName(string id)
         {
             return _repository.GetRoleName(id);
         }
 
+        /// <summary>
+        /// Retrieves the employee record according to the search key if no search key retreives the employee list
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalCount"></param>
+        /// <returns></returns>  
         public IEnumerable<EmployeeDTO> ViewSearchRecords(string search, int pageNumber, int pageSize, out int totalCount)
         {
             
@@ -121,7 +187,8 @@ namespace Skillset_BLL.Services
         }
 
         /// <summary>
-        /// Return total employees count
+
+        /// Retrieve total employees count
         /// </summary>
         /// <returns></returns>
         public int GetEmployeesCount()
@@ -196,6 +263,10 @@ namespace Skillset_BLL.Services
             return _repository.FindEmployeeName(id);
         }
 
+        /// <summary>
+        /// Retrieve employee name and skill name of those employee who top rated that skill
+        /// </summary>
+        /// <returns></returns>
         public List<KeyValuePair<string, string>> GetTopRatedRecentEmployees()
         {
             return _repository.GetTopRatedRecentEmployees();

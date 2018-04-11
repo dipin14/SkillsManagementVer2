@@ -1,114 +1,110 @@
 ﻿
-/*@media (max-width: 993px) {
-    .col-sm-5 {
-        width:40%;
+@media (max-width: 850px) and (min-width:767px)
+{
+    .col-sm-5{
+        padding-left:0px;
     }
-}*/
+    .Ratecard .row .col-sm-5{
+        padding-left:0px;
+    }
+}
 
-
-/*@media (max-width: 768px)
-{  .col-sm-7{
+@media (max-width: 767px)
+{ 
+     .col-sm-6{
     float: left;
-}}*/
-@media (max-width: 850px) and (min-width:767px) {
-    .col-sm-5 {
-        padding-left: 0px;
-    }
+}
+   .col-sm-5{float:right;width:100%}
 
-    .Ratecard .row .col-sm-5 {
-        padding-left: 0px;
-    }
 }
 
-@media (max-width: 767px) {
-    .col-sm-6 {
-        float: left;
-    }
-
-    .col-sm-5 {
-        float: right;
-    }
-}
-
-@media (max-width: 555px) {
-    .col-sm-5 {
-        float: left;
-        margin-right: 20px;
-    }
-
+@media (max-width: 555px) 
+{  
+   .col-sm-5{float:left;
+             margin-right:20px;    
+   }
     .col-sm-6 {
         margin-left: 40px;
     }
 }
-
-@media (max-width: 768px) and (min-width:555px) {
-    .specialskillrating {
-        float: left;
-        margin-right: 55px;
+@media (max-width: 768px) and (min-width:555px)
+{
+     .specialskillrating{
+         float:left;
+        margin-right:55px;
     }
 }
 
-@media (max-width:367px) {
-    .starGlow {
-        background-image: url('/Images/redstarSmall.png');
-        min-width: 15px;
-        min-height: 15px;
-        display: inline-block;
-        cursor: pointer;
-    }
 
-    .starFade {
-        background-image: url('/Images/ashstarSmall.png');
-        min-width: 15px;
-        min-height: 15px;
-        display: inline-block;
-        cursor: pointer;
+@media (max-width:367px)
+{
+    .starGlow{
+      background-image: url('/Images/redstarSmall.png');
+      min-width: 15px;
+      min-height: 15px;
+      display: inline-block;
+      cursor: pointer;
     }
-
-    .starGlowN {
-        background-image: url('/Images/redstarSmall.png');
-        min-width: 15px;
-        min-height: 15px;
-        display: inline-block;
-        cursor: none;
+    .starFade{
+         background-image: url('/Images/ashstarSmall.png');
+      min-width: 15px;
+      min-height: 15px;
+      display: inline-block;
+      cursor: pointer;
     }
-
-    .starFadeN {
-        background-image: url('/Images/ashstarSmall.png');
-        min-width: 15px;
-        min-height: 15px;
-        display: inline-block;
-        cursor: none;
+    .starGlowN{
+  background-image: url('/Images/redstarSmall.png');
+      min-width: 15px;
+      min-height: 15px;
+      display: inline-block;
+      cursor: none;
     }
+    .starFadeN{
+  background-image: url('/Images/ashstarSmall.png');
+      min-width: 15px;
+      min-height: 15px;
+      display: inline-block;
+      cursor: none;
+    }
+  
 }
-
-.txtSkill {
-    display: block;
-    width: 80%;
-    height: 50px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.428571429;
-    color: #555555;
-    vertical-align: middle;
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+.txtSkill{
+  display: block;
+ width: 80%;
+  height: 50px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
-
-.txtSkillSpecial {
-    margin-left: 0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: block;
+.txtSkillSpecial{
+    margin-left:0px;
+    margin-top:10px;
+    margin-bottom:10px;
+     display: block;
     width: 80%;
     height: 80px;
     padding: 6px 12px;
     font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
     line-height: 1.428571429;
     color: #555555;
     vertical-align: middle;

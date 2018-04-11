@@ -11,6 +11,9 @@ using PagedList;
 
 namespace Skillset_PL.Controllers
 {
+    /// <summary>
+    /// Controller for managing Skills authorized to Admin only
+    /// </summary>
     [Authorize(Roles = "Admin")]
     public class SkillController : Controller
     {
@@ -35,7 +38,7 @@ namespace Skillset_PL.Controllers
             //List of skills are ordered by Skill Name
             var skillList = _skillService.GetAllSkills().ToViewModelList().OrderBy(s => s.SkillName);
 
-            //Limited the number of rows per page to 3
+            //Limited the number of rows per page to 8
             int pageSize = 8;
             int pageNumber = (page ?? 1);
             return View(skillList.ToPagedList(pageNumber, pageSize));
@@ -121,7 +124,7 @@ namespace Skillset_PL.Controllers
                 skillView.SkillDescription = skillView.SkillDescription.Trim();
                 var skillUpdateResult = _skillService.Update(skillView.ToDTO());
                 //-1 is returned if the updated Skill Name already exists
-                if(skillUpdateResult == -1)
+                if (skillUpdateResult == -1)
                 {
                     ModelState.AddModelError("SkillName", "Skill Name already exists");
                     return View(skillView);

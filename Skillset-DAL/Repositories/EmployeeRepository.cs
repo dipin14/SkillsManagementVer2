@@ -11,7 +11,12 @@ using System.Threading.Tasks;
 namespace Skillset_DAL.Repositories
 {
     public class EmployeeRepository : IEmployeeRepository
-    {      
+    {
+        /// <summary>
+        /// Adds new employee to the Employee table
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>  
         public int AddEmployee(Employee employee)
         {
             var employeeList = new List<Employee>();
@@ -45,7 +50,12 @@ namespace Skillset_DAL.Repositories
             }
         }
 
-
+        /// <summary>
+        /// Checks if duplicate employee exist with same employee code, mobile number or email
+        /// </summary>
+        /// <param name="employeeList"></param>
+        /// <param name="newEmployee"></param>
+        /// <returns></returns>
         public int CheckDuplicateEmployee(List<Employee> employeeList, Employee newEmployee)
         {
             var check = new List<Employee>();
@@ -70,7 +80,12 @@ namespace Skillset_DAL.Repositories
             return 0;
 
         }
-       
+
+        /// <summary>
+        /// Delete employee by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public int DeleteEmployee(string id)
         {
             try
@@ -97,7 +112,13 @@ namespace Skillset_DAL.Repositories
                 return 0;
             }
 
-        }      
+        }
+
+        /// <summary>
+        ///Updates the employee record
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>    
         public int EditEmployee(Employee employee)
         {
             try
@@ -118,7 +139,12 @@ namespace Skillset_DAL.Repositories
                 return 0;
             }
         }
-        
+
+        /// <summary>
+        /// Retrieve the name for a particular designation id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetDesignationName(string id)
         {
 
@@ -131,6 +157,10 @@ namespace Skillset_DAL.Repositories
 
         }
 
+        /// <summary>
+        /// Retrieves the list of designations
+        /// </summary>
+        /// <returns></returns>
         public List<Designation> GetDesignations()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -139,6 +169,11 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieve the details of the employee with particular id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Employee GetEmployeeDetails(string id)
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -147,6 +182,11 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieve the name for a particular manager id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetManagerName(string id)
         {
             int managerId = Convert.ToInt32(id);
@@ -157,6 +197,10 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieves the list of managers
+        /// </summary>
+        /// <returns></returns>
         public List<Employee> GetManagers()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -165,6 +209,11 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieve the name for a particular qualification id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetQualificationName(string id)
         {
             int qualificationId = Convert.ToInt32(id);
@@ -175,6 +224,10 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieves the list of qualifications
+        /// </summary>
+        /// <returns></returns>
         public List<Qualification> GetQualifications()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -183,6 +236,10 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieves the list of roles
+        /// </summary>
+        /// <returns></returns>
         public List<Role> GetRole()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
@@ -191,6 +248,11 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieve the name for a particular role id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GetRoleName(string id)
         {
             int roleId = Convert.ToInt32(id);
@@ -201,6 +263,14 @@ namespace Skillset_DAL.Repositories
             }
         }
 
+        /// <summary>
+        /// Retrieves the employee record according to the search key if no search key retreives the employee list
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="totalCount"></param>
+        /// <returns></returns>  
         public IEnumerable<Employee> GetSearchRecords(string search, int pageNumber, int pageSize, out int totalCount)
         {
             var employeeList = new List<Employee>();
@@ -242,14 +312,19 @@ namespace Skillset_DAL.Repositories
 
         }
 
+        /// <summary>
+        /// Retrieve names of skills and employees who give top rating for skill
+        /// </summary>
+        /// <returns></returns>
         public List<KeyValuePair<string, string>> GetTopRatedRecentEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                StringBuilder TopRatedEmployeeName = new StringBuilder();
-
+                //Get rating id with top rating value
                 var MaximumRatingId = context.Ratings.Where(s => s.Value == 5).Select(s => s.Id).FirstOrDefault();
                 int RatingId = Convert.ToInt32(MaximumRatingId);
+
+                //Get skill name and employee name of those employee whose rating id matches with top rating id.
                 var skill = (from sr in context.SkillRatings
                              join e in context.Employees
                              on sr.EmployeeId equals e.Id
@@ -260,36 +335,37 @@ namespace Skillset_DAL.Repositories
                              where sr.Status == true && s.Status == true && sr.RatingId == RatingId
                              orderby sr.RatingId descending
                              select new { s.SkillName, e.Name }).ToList();
-                //var groupSkill = skill.GroupBy(x => x.SkillName).Select(x => new { SkillName = x.Key, EmployeeName = x.Select(s => s.Name).FirstOrDefault() }).ToList();
 
                 List<KeyValuePair<string, string>> topSkills = new List<KeyValuePair<string, string>>();
 
                 foreach (var skillEmp in skill)
                 {
+                    //Add skill name and employee name as key value pair
                     topSkills.Add(new KeyValuePair<string, string>(skillEmp.SkillName, skillEmp.Name));
                 }
 
                 return topSkills;
             }
         }
-        
+
+        /// <summary>
+        /// Retrieve total employees count
+        /// </summary>
+        /// <returns></returns>
         public int GetEmployeesCount()
         {
             int employeesCount = default(int);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                //Exclude Admin
+                //Employee count excluding admin
                 employeesCount = (context.Employees.Where(s => s.Status).Distinct().Count()) - 1;
             }
             return employeesCount;
         }
 
-       
-
-       
-        /// Get profile details for employee
+        /// <summary>
+        /// Retrieve the employee details according to id
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         public Employee GetProfile(string id)
         {
