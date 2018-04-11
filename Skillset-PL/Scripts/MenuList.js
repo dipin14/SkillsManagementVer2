@@ -4,13 +4,9 @@
     var url = window.location;
 
     $('.menu-list ul li a').filter(function () {
-        return this.href == url;
+        return this.href == url;       
 
     }).parent().addClass('active').parent().parent().addClass('active');
-
-    $('.tog').click(function () {
-        $('#employeesidebar').addClass('active');
-    });
 
     $(".toggle-button").click(function () {
         $("#show").toggle();

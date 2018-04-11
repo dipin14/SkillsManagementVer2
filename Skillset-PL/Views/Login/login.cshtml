@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css?family=Lobster|Raleway" rel="stylesheet">
 <link href="~/Content/login.css" rel="stylesheet" />
 
-<body style="background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);">
+<body style="background-color:whitesmoke;">
     @using (Html.BeginForm())
     {
         <div class="container">
@@ -49,7 +49,7 @@
                             </div>
                         }
                         <div class="text-xs-center">
-                            <button class="btn btn-aqua">Login</button>
+                            <button class="btn btn-aqua" id="mvc-action-button">Login</button>
                         </div>
 
                     </div>
@@ -60,4 +60,21 @@
 
         </div>
     }
+    <div id="overlay" class="overlay">
+        <div class="loading">
+            <div class="loader"></div>
+            <div class="loader"></div>
+            <div class="loader"></div>
+            <div class="loader"></div>
+            <div class="loader"></div>
+            <div class="loader"></div>
+        </div>
+        <!-- Alternatively you can have some text here -->
+    </div>
+    <script>
+        document.getElementById('mvc-action-button')
+    .addEventListener('click', function (e) {
+        document.getElementById('overlay').style.display = 'flex';
+    });
+    </script>
 </body>

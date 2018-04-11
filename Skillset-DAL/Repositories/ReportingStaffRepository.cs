@@ -8,7 +8,7 @@ using Skillset_DAL.ContextClass;
 
 namespace Skillset_DAL.Repositories
 {
-    public class ReportingStaff : IReportingStaff
+    public class ReportingStaff : IReportingStaffRepository
     {
         /// <summary>
         /// Retrieve designations of employees under a manager
