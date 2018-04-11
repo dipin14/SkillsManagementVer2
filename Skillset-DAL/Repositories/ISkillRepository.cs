@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Skillset_DAL.Repositories
 {
+    /// <summary>
+    /// Repository interface for Skill manage
+    /// </summary>
     public interface ISkillRepository
     {
         /// <summary>
