@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Skillset_BLL.Services
 {
+    /// <summary>
+    /// Service interface for Skill manage
+    /// </summary>
     public interface ISkillService
     {
         /// <summary>
