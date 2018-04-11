@@ -7,7 +7,7 @@
 <head>
     <link href="~/Content/Layout.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
-   
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
     <script src="~/Scripts/SkillRating.js"></script>
@@ -25,39 +25,41 @@
     </script>
 }
 
-<div class="row first" style="background-color:white;padding:30px;padding-top:0px;margin:10px;">
-    <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Rate Your Skills</label>
-    <div class="row">
-        <div class="col-sm-7">
-            <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;"><b>Skills</b></div>
+
+    <div class="row first" style="background-color:white;padding:30px;padding-top:30px;margin:10px;">
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Rate Your Skills</label>
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="panel-heading" style="display:block;background-color:#2a3f54;color:#FFF;"><b>Skills</b></div>
 
 
 
 
-            <div id="snackbar">
-              Succesfully added rating
-            </div>
-            <div id="snackbarValidation">
-             
-             
-                <p>Enter your ratings</p>
-            </div>
-            @foreach(var item in Model.SkillRatings)
-            {
+
+                <div id="snackbar">
+                    Succesfully added rating
+                </div>
+                <div id="snackbarValidation">
+
+
+                    <p>Enter your ratings</p>
+                </div>
+                @foreach (var item in Model.SkillRatings)
+                {
 
 
                     <div class="Ratecard">
                         <div class="row">
 
-                        <div class="col-sm-6" style="margin-left:20px;">
-                            <h4>
-                                <b style="color:#2a3f54;">
-                                    @Html.DisplayFor(modelItem => item.SkillName)
-                                </b>
-                            </h4>
-                            <p style="color:black;">
-                                @Html.DisplayFor(modelItem => item.SkillDescription)
-                            </p>
+                            <div class="col-sm-6" style="margin-left:20px;">
+                                <h4>
+                                    <b style="color:#2a3f54;">
+                                        @Html.DisplayFor(modelItem => item.SkillName)
+                                    </b>
+                                </h4>
+                                <p style="color:black;">
+                                    @Html.DisplayFor(modelItem => item.SkillDescription)
+                                </p>
 
                             </div>
 
@@ -81,113 +83,122 @@
 
                         </div>
                     </div>
-             
-                <br />
-            }
 
 
+                    <br />
+                }
 
-            <button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>
 
-            <div id="demo" class="collapse">
-                <div class="Ratecard">
                     <div class="row">
+                <button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>
+      <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
+                <div id="demo" class="collapse">
+                    <div class="Ratecard">
+                        <div class="row">
 
-                        <div class="col-sm-6" style="margin-left:20px;">
-                            <textarea class="txtSkillSpecial"id="TxtAra" placeholder="Enter your special skill here(Mandatory)"></textarea>
-                        </div>
-                        <div class="col-sm-5" style="color:grey; class=specialskillrating">
-                            <div onmouseout="CRateSelected(0)" style="margin-left:20px;margin-top:10px;min-width:120px;">
-                                <input id="Rating 0" hidden />
-                                <span class="starFade" id="Rate1 0" onclick="CRate(0, 1)" onmouseover="CRateOver(0,1)" onmouseout="CRateOut(0,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
-                                <label for="Rate1 0" title="Amazing"></label>
-                                <span class="starFade" id="Rate2 0" onclick="CRate(0, 2)" onmouseover="CRateOver(0,2)" onmouseout="CRateOut(0,2)" data-tooltip="Need help" data-tooltip-position="bottom"></span>
-                                <span class="starFade" id="Rate3 0" onclick="CRate(0, 3)" onmouseover="CRateOver(0,3)" onmouseout="CRateOut(0,3)" data-tooltip="Need reference" data-tooltip-position="bottom"></span>
-                                <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
-                                <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
+                            <div class="col-sm-6" style="margin-left:20px;">
+                                <textarea class="txtSkillSpecial" id="TxtAra" placeholder="Enter your special skill here"></textarea>
+                            </div>
+                            <div class="col-sm-5" style="color:grey; class=specialskillrating">
+                                <div onmouseout="CRateSelected(0)" style="margin-left:20px;margin-top:10px;min-width:120px;">
+                                    <input id="Rating 0" hidden />
+                                    <span class="starFade" id="Rate1 0" onclick="CRate(0, 1)" onmouseover="CRateOver(0,1)" onmouseout="CRateOut(0,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
+                                    <label for="Rate1 0" title="Amazing"></label>
+                                    <span class="starFade" id="Rate2 0" onclick="CRate(0, 2)" onmouseover="CRateOver(0,2)" onmouseout="CRateOut(0,2)" data-tooltip="Need help" data-tooltip-position="bottom"></span>
+                                    <span class="starFade" id="Rate3 0" onclick="CRate(0, 3)" onmouseover="CRateOver(0,3)" onmouseout="CRateOut(0,3)" data-tooltip="Need reference" data-tooltip-position="bottom"></span>
+                                    <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
+                                    <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <br /><br />
+
+
+
+
+                @{var data = @Html.Raw(Json.Encode(Model.SkillRatings));
+                    <input type="button" class="btn btn-info" style="background-color:#1abb9c;border-color:rgb(26, 187, 156);" onclick='SubmitRating(@data,@Model.SkillRatings.Count())' value="Submit Ratings">
+
+                    <input type="button" class="btn btn-info " style="background-color:#2a3f54;border-color:#2a3f54;margin-bottom:20px;" onclick='Reload()' value="Reset">
+                }
+
             </div>
 
-            <br /><br />
+
+            <div class="col-sm-5">
+                <div class="panel panel-heading" id="containerRating" style="margin-bottom:0px;display:block;text-align:center;background-color:#2a3f54;color:#FFF;">
 
 
-
-            @{var data = @Html.Raw(Json.Encode(Model.SkillRatings));
-                <input type="button" class="btn btn-info" style="background-color:#1abb9c;border-color:rgb(26, 187, 156);" onclick='SubmitRating(@data,@Model.SkillRatings.Count())' value="Submit Ratings">
-                
-                <input type="button" class="btn btn-info "  style="background-color:#2a3f54;border-color:#2a3f54;margin-bottom:20px;" onclick='Reload()' value="Reset">
-            }
-
-        </div>
+                    <div class="row">
 
 
+                        <div class="col-sm-7" style="padding-left:13px;text-align:left">
+                           <b> Rated Skills</b>
+                        </div>
+                        <div class="col-sm-5">
 
-        <div class="col-sm-5">
-            <div class="panel panel-heading" id="containerRating" style="margin-bottom:0px;display:block;text-align:center;background-color:#2a3f54;color:#FFF;">
-               
-                <div class="row">
-
-
-                    <div class="col-sm-7" style="padding-left:13px;">
-                      Rated Skills
+                            <div id="loading"> </div>
+                        </div>
                     </div>
-                    <div class="col-sm-5">
 
-                        <div id="loading"> </div>
-                    </div>
+
                 </div>
 
-            </div>
-        <div class="panel panel-body" style="border-color:whitesmoke;">
-                @if (Model.RatedSkills.Count() > 0)
-            {
-
-
-                    
-
-
-                    foreach (var item in Model.RatedSkills)
+                <div class="panel panel-body" style="border-color:whitesmoke;">
+                    @if (Model.RatedSkills.Count() > 0)
                     {
-                        <div class="panel panelRating " style="background-color:aliceblue;">
-                            <span style="float:right;">
-                                <a class="glyphicon glyphicon-remove delete" id="@item.Id" onclick="DeleteRating(@item.Id)"></a>
-                            </span>
-
-                            <b style="color:#2a3f54;">
-                                @Html.DisplayFor(modelItem => item.SkillName)
-                            </b>
 
 
-                            <p style="color:black;">
-                                @Html.DisplayFor(modelItem => item.RaitedNote)
-                            </p>
-                            @for (var i = 1; i <= item.RaitedValue; i++)
+
+
+
+                        foreach (var item in Model.RatedSkills)
+                        {
+                            <div class="panel panelRating " style="background-color:aliceblue;">
+                                <span style="float:right;">
+                                    <a class="glyphicon glyphicon-remove delete" id="@item.Id" onclick="DeleteRating(@item.Id)"></a>
+                                </span>
+
+                                <b style="color:#2a3f54;">
+                                    @Html.DisplayFor(modelItem => item.SkillName)
+                                </b>
+
+
+
+                                <p style="color:black;">
+                                    @Html.DisplayFor(modelItem => item.RaitedNote)
+                                </p>
+                                @for (var i = 1; i <= item.RaitedValue; i++)
                     {
-                                <span class="starGlowN"></span>
-                            }
-                            @for (var i = (item.RaitedValue + 1); i <= 5; i++)
+
+                                    <span class="starGlowN"></span>
+                                }
+                                @for (var i = (item.RaitedValue + 1); i <= 5; i++)
                     {
-                                <span class="starFadeN"></span>
-                            }
+
+                                    <span class="starFadeN"></span>
+                                }
 
 
-                        </div>
 
+                            </div>
+
+                        }
                     }
-                }
-                else
-                {
-                    <br />
-                    <div class="alert alert-warning fade in" style="background-color:whitesmoke;border-color:#2a3f54;color:#2a3f54">
-                        <strong>No Skill Ratings!</strong>
-                        <br /> You have no skills rated.
-                    </div>
-                }
+
+                    else
+                    {
+                        <br />
+                        <div class="alert alert-warning fade in" style="background-color:whitesmoke;border-color:#2a3f54;color:#2a3f54">
+                            <strong>No skill ratings!</strong>
+                            <br /> You have no skills rated.
+                        </div>
+                    }
+                </div>
             </div>
-            </div>
+
         </div>
     </div>
-

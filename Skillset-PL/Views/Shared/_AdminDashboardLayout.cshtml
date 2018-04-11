@@ -19,21 +19,6 @@
     <link href="https://fonts.googleapis.com/css?family=Lobster|Raleway" rel="stylesheet">
 </head>
 <body class="body-contents">
-    @*<nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid ">
-                <div class="navbar-header ">
-                    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
-                    <span class="navbar-brand" style="color:white">Skill Management</span>
-                </div>
-
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li><a href="~/Login/Logout" style="color:red"><span class="glyphicon glyphicon-log-out btn-sm btn-danger"></span></a></li>
-                </ul>
-
-            </div>
-        </nav>*@
     <div class="main_container">
         
         <div class="nav-side-menu">
@@ -44,18 +29,18 @@
                     </a>
                 </div>
                 <ul class="nav side-list">
-                    <li>
-                        <a href="~/Dashboard/Index" class="top-dashboard" id="dashboard">
+                    <li id="dashboardsidebar">
+                        <a href="~/Dashboard/Index" class="top-dashboard" >
                             <i class="fa fa-home"></i><div>Dashboard</div>
                         </a>
                     </li>
-                    <li>
-                        <a href="~/Employee/Index" class="dashboard-list" id="employee">
+                    <li id="employeesidebar">
+                        <a href="~/Employee/Index" class="dashboard-list" >
                             <i class="fa fa-user"></i><div>Manage Employees</div>
                         </a>
                     </li>
-                    <li>
-                        <a href="~/Skill/Index" class="dashboard-list" id="skills">
+                    <li id="skillssidebar">
+                        <a href="~/Skill/Index" class="dashboard-list" >
                             <i class="fa fa-lightbulb-o"></i><div>Manage Skills</div>
                         </a>
                     </li>
@@ -81,34 +66,6 @@
         </nav>
     </div>
 
-    @*<div class="nav-side-menu">
-            <div class="brand" style="color:white;">Hi Admin</div>
-
-            <div class="menu-list">
-
-                <ul id="menu-content" class="menu-content collapse">
-                    <li>
-                        <a href="~/Dashboard/Index">
-                            <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="~/Employee/Index">
-                            <i class="glyphicon glyphicon-user"></i> Manage Employees
-                        </a>
-                    </li>
-                    <li>
-                        <a href="~/Skill/Index">
-                            <i class="fa fa-lightbulb-o" style="font-size:15px"></i> Manage Skills
-                        </a>
-                    </li>
-
-
-                </ul>
-            </div>
-        </div>*@
-
- 
     <div class="container-fluid content">
         @RenderBody()
     </div>
