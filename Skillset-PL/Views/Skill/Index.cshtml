@@ -54,7 +54,7 @@
                             @Html.DisplayWithBreaksFor(modelItem => item.SkillDescription)
                         </td>
                         <td data-title="Operations">
-                            <a href="@Url.Action("Edit",new { skillName = item.SkillName })" data-tooltip="Edit Skill" data-tooltip-position="bottom"><i class="fa fa-pencil-square-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
+                            <a href="@Url.Action("Edit",new { skillName = item.SkillName , page = ViewBag.CurrentPage })" data-tooltip="Edit Skill" data-tooltip-position="bottom"><i class="fa fa-pencil-square-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
                             <a href="@Url.Action("Delete",new { skillName = item.SkillName })" data-tooltip="Delete Skill" data-tooltip-position="bottom"><i class="fa fa-trash-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
                         </td>
                     </tr>
