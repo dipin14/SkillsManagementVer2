@@ -7,7 +7,7 @@
 <script src="~/Scripts/Skill.js"></script>
 
 @using (Html.BeginForm())
-{
+{    
     @Html.AntiForgeryToken()
     @Html.HiddenFor(x => x.skillId)
 
@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-1" style="margin-bottom:10px;">
-                <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-aqua">Cancel</a>
+                @Html.ActionLink("Cancel", "Index", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-aqua" })
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-1" style="margin-bottom:10px;">
