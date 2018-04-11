@@ -11,7 +11,11 @@ namespace Skillset_BLL.Services
     public class EmployeeServices : IEmployeeServices
     {
         private IEmployeeRepository _repository;
-        
+
+        /// <summary>
+        /// Dependency Injection for IEmployeeRepository
+        /// </summary>
+        /// <param name="repository"></param>
         /// <summary>
         /// Dependency injection for Employee repository
         /// </summary>
@@ -183,6 +187,7 @@ namespace Skillset_BLL.Services
         }
 
         /// <summary>
+
         /// Retrieve total employees count
         /// </summary>
         /// <returns></returns>

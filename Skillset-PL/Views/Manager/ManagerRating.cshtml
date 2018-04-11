@@ -24,27 +24,11 @@
     </script>
 }
 
-
-
-    @*<div class="loading">
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-            <div class="loading-bar"></div>
-        </div>*@
-
-
     <div class="row first" style="background-color:white;padding:30px;padding-top:0px;margin:10px;">
         <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Rate Your Skills</label>
-
         <div class="row">
             <div class="col-sm-7">
                 <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;"><b>Skills</b></div>
-
-
-
 
                 <div id="snackbar">
                     <b>Success</b><br />
@@ -55,9 +39,10 @@
                     <b>Warning</b><br />
                     <p>Enter your ratings</p>
                 </div>
-                @foreach (var item in Model.SkillRatings)
-                {
-
+              @if (Model.SkillRatings.Count() > 0)
+              {
+                  foreach (var item in Model.SkillRatings)
+                  {
 
                     <div class="Ratecard">
                         <div class="row">
@@ -96,9 +81,17 @@
                     </div>
 
                     <br />
-                }
 
+                  }
 
+              }
+              else
+              { <br />
+                <div class="alert alert-warning fade in" style="background-color:whitesmoke;border-color:#2a3f54;color:#2a3f54">
+                    <strong>No primary skills!</strong>
+                    <br /> Please enter your special skill(if any).
+                </div>
+              }
 
                 <button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>
 
@@ -174,15 +167,15 @@
                                     @Html.DisplayFor(modelItem => item.SkillName)
                                 </b>
 
-
                                 <p style="color:black;">
-                                    @Html.DisplayFor(modelItem => item.RaitedNote)
+                                    @Html.DisplayFor(modelItem => item.RatedNote)
                                 </p>
-                                @for (var i = 1; i <= item.RaitedValue; i++)
+                                @for (var i = 1; i <= item.RatedValue; i++)
+
                     {
                                     <span class="starGlowN"></span>
                                 }
-                                @for (var i = (item.RaitedValue + 1); i <= 5; i++)
+                                @for (var i = (item.RatedValue + 1); i <= 5; i++)
                     {
                                     <span class="starFadeN"></span>
                                 }
@@ -202,4 +195,5 @@
                     }
                 </div>
             </div>
+        </div>
         </div>
