@@ -50,10 +50,16 @@ namespace Skillset_DAL.Repositories
         IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
 
         /// <summary>
-        /// Retrieve total ratings for each skill given by employees
+        /// Retrieve count of top ratings for each skill given by employees
         /// </summary>
         /// <returns></returns>
-        string GetEmployeeRating();
+        string GetTopEmployeeRating();
+
+        /// <summary>
+        /// Retrieve count of least ratings for each skill given by employees
+        /// </summary>
+        /// <returns></returns>
+        string GetLeastEmployeeRating();
 
         /// <summary>
         /// Retrieve total skill ratings count

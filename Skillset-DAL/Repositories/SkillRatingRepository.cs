@@ -111,7 +111,7 @@ namespace Skillset_DAL.Repositories
 
         public string GetRatingAverage()
         {
-            SkillsetDbContext context = new SkillsetDbContext();
+            using(SkillsetDbContext context = new SkillsetDbContext())
             {
                 List<int> totalValues = new List<int>();
                 List<int> specificValues = new List<int>();
@@ -149,16 +149,19 @@ namespace Skillset_DAL.Repositories
             }
         }
         
-        public string GetEmployeeRating()
+        public string GetTopEmployeeRating()
         {
             SkillsetDbContext context = new SkillsetDbContext();
             {
                 string result = string.Empty;
                 string id = string.Empty;
+                var MaximumRatingId = context.Ratings.Where(s => s.Value == 5).Select(s => s.Id).FirstOrDefault();
+                int RatingId = Convert.ToInt32(MaximumRatingId);
+
                 var skills = (from s in context.SkillRatings
                               join j in context.Skills
                               on s.SkillId equals j.SkillId
-                              where j.Status == true && s.Status == true
+                              where j.Status == true && s.Status == true && s.RatingId==RatingId
                               select s);
                 var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
 
@@ -170,7 +173,32 @@ namespace Skillset_DAL.Repositories
                 return result;
             }
         }
-        
+
+        public string GetLeastEmployeeRating()
+        {
+            SkillsetDbContext context = new SkillsetDbContext();
+            {
+                string result = string.Empty;
+                string id = string.Empty;
+                var MaximumRatingId = context.Ratings.Where(s => s.Value == 1).Select(s => s.Id).FirstOrDefault();
+                int RatingId = Convert.ToInt32(MaximumRatingId);
+
+                var skills = (from s in context.SkillRatings
+                              join j in context.Skills
+                              on s.SkillId equals j.SkillId
+                              where j.Status == true && s.Status == true && s.RatingId==RatingId
+                              select s);
+                var groupRating = skills.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
+
+                foreach (var r in groupRating.OrderByDescending(x => x.Id).Select(x => x.Values))
+                {
+                    result += r;
+                    result += ", ";
+                }
+                return result;
+            }
+        }
+
         public int GetSkillRatingsCount()
         {
             int skillRatingsCount = default(int);

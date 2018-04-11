@@ -31,9 +31,9 @@
                 </div>
                 <div class="col-md-3" id="searchButton">
                     <button type="submit" name="submit" class="btn" style="background-color:white;color:#2a3f54;font-size:20px;" data-tooltip="Search Employee" data-tooltip-position="bottom">
-                        <i class="glyphicon glyphicon-search"></i>
+                        <i class="fa fa-search"></i>
                     </button>
-                    <a href="@Url.Action("Index")" data-tooltip="Refresh Search" data-tooltip-position="bottom" style="background-color:white;color:#2a3f54;font-size:20px;" class="btn"><div class="glyphicon glyphicon-refresh"></div></a>
+                    <a href="@Url.Action("Index")" data-tooltip="Refresh Search" data-tooltip-position="bottom" style="background-color:white;color:#2a3f54;font-size:20px;" class="btn"><div class="fa fa-refresh"></div></a>
                 </div>
                 <div class="col-md-6" id="newEmployeeDiv">
                     <span>
@@ -106,11 +106,10 @@ else
         </div>
 }
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
 @Html.PagedListPager(Model, page => Url.Action("Index",
-
     new
     {
+        search = ViewBag.search,
         page
     }))
 <script src="~/Scripts/SkillRating.js"></script>
