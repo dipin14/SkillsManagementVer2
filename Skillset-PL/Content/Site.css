@@ -262,22 +262,22 @@ textarea {
 [data-tooltip-position="top"]:after {
     bottom: 100%;
     border-width: 6px 6px 0;
-    border-top-color: #f0f8ff;
+    border-top-color: #2a3f54;
 }
 [data-tooltip-position="right"]:after {
     left: 100%;
     border-width: 6px 6px 6px 0;
-    border-right-color: #f0f8ff;
+    border-right-color: #2a3f54;
 }
 [data-tooltip-position="bottom"]:after {
     top: 100%;
     border-width: 0 6px 6px;
-    border-bottom-color: #f0f8ff;
+    border-bottom-color: #2a3f54;
 }
 [data-tooltip-position="left"]:after {
     right: 100%;
     border-width: 6px 0 6px 6px;
-    border-left-color: #f0f8ff;
+    border-left-color: #2a3f54;
 }
 /* Show the tooltip when hovering */
 [data-tooltip]:hover:before,
@@ -320,4 +320,8 @@ textarea {
 input[type=button] {
     color:white;
     margin-bottom:20px;
+}
+td
+{
+word-break: break-all;
 }
