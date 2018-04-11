@@ -6,6 +6,9 @@ using System.Web;
 
 namespace Skillset_PL.ViewModels
 {
+    /// <summary>
+    /// ViewModel that is used to map DTO to View
+    /// </summary>
     public class SkillViewModel
     {
         public int skillId { get; set; }

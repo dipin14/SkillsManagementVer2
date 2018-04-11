@@ -11,6 +11,9 @@ using PagedList;
 
 namespace Skillset_PL.Controllers
 {
+    /// <summary>
+    /// Controller for managing Skills authorized to Admin only
+    /// </summary>
     [Authorize(Roles = "Admin")]
     public class SkillController : Controller
     {
