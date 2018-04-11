@@ -212,7 +212,7 @@ table.table.table-hover.table-responsive.size-response td{
         
        
 }
-@media only screen and (max-width: 335px) {
+@media only screen and (max-width: 350px) {
 
      /* Force table to not be like tables anymore */
   .size-response table,.size-response thead,.size-response tbody,.size-response th,.size-response td,.size-response tr {

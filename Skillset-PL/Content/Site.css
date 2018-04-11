@@ -296,11 +296,11 @@ textarea {
  cursor: pointer;
  color:#2a3f54
 }
-@media (max-width: 285px) {
-   .form-control .notes {
-    width: 150px;
-}
-  
+
+ @media only screen and (max-width: 350px) {
+   .panel-body {
+    font-size: 10px;
+} 
 }
 
 /*@media (max-width: 768px) {
