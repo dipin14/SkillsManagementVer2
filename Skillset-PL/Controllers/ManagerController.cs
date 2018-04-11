@@ -35,7 +35,7 @@ namespace Skillset_PL.Controllers
             if(Session["customercode"]!=null)
             {
                 var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
-                int pageSize = 3;
+                int pageSize = 8;
                 int pageNumber = (page ?? 1);
                 return View(staff.ToPagedList(pageNumber, pageSize));
             }
