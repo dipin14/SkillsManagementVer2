@@ -13,11 +13,11 @@ namespace Skillset_PL.Controllers
     [Authorize(Roles = "Manager")]
     public class ManagerController : Controller
     {
-        private readonly IReportingStaffExtensions _reportingStaff;
+        private readonly IReportingStaffService _reportingStaff;
         private readonly ISkillService _skillService;
         private ISkillRatingService _skillRatingService;
         private readonly IEmployeeServices _employeeServices;
-        public ManagerController(IReportingStaffExtensions reportingStaff, ISkillService skillService, ISkillRatingService skillRatingService, IEmployeeServices employeeServices)
+        public ManagerController(IReportingStaffService reportingStaff, ISkillService skillService, ISkillRatingService skillRatingService, IEmployeeServices employeeServices)
         {
             _reportingStaff = reportingStaff;
             _skillService = skillService;
@@ -32,7 +32,7 @@ namespace Skillset_PL.Controllers
         /// <returns>Staff Details View</returns>
         public ActionResult Index(int? page)
         {
-            if(Session["customercode"]!=null)
+            if (Session["customercode"] != null)
             {
                 var staff = _reportingStaff.GetEmployeeDetails(Session["customercode"].ToString()).ToReportingStaffViewmodel();
                 int pageSize = 8;
@@ -41,10 +41,10 @@ namespace Skillset_PL.Controllers
             }
             else
             {
-             return RedirectToAction("Login", "Login");
+                return RedirectToAction("Login", "Login");
             }
-            
-           
+
+
         }
 
         /// <summary>
@@ -60,12 +60,12 @@ namespace Skillset_PL.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-            if (code!=null && name!=null)
+            if (code != null && name != null)
             {
                 ViewBag.Code = code;
                 ViewBag.Name = name;
             }
-            
+
             var skill = _reportingStaff.GetSkillRatingsDetails(code).ToSkillRatingsViewmodel();
             int pageSize = 3;
             int pageNumber = (page ?? 1);
@@ -87,7 +87,7 @@ namespace Skillset_PL.Controllers
             Session["customerId"] = EmployeeDtoList.Id;
             profile.DesignationId = _employeeServices.GetDesignationName(profile.DesignationId);
             profile.RoleId = _employeeServices.GetRoleName(profile.RoleId);
-            return View("MyProfile",profile);
+            return View("MyProfile", profile);
         }
 
         /// <summary>

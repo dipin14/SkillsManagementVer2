@@ -11,7 +11,11 @@ namespace Skillset_BLL.Services
     public class EmployeeServices : IEmployeeServices
     {
         private IEmployeeRepository _repository;
-        
+
+        /// <summary>
+        /// Dependency Injection for IEmployeeRepository
+        /// </summary>
+        /// <param name="repository"></param>
         public EmployeeServices(IEmployeeRepository repository)
         {
             _repository = repository;
