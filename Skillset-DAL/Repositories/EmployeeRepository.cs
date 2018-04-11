@@ -92,18 +92,29 @@ namespace Skillset_DAL.Repositories
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
+
                     //Get the Employee record
                     Employee employee = context.Employees.Where(p => p.EmployeeCode == id && p.Status == true).Single();
-                    employee.Status = false;
-                    //Get the list of employees whose manager is the employee to be deleted
-                    var employeeList = context.Employees.Where(p => p.EmployeeId == employee.Id && p.Status == true).ToList();
-                    //Managerid of all employees in the list is changed to 1
-                    employeeList.ForEach(p => p.EmployeeId = 1);
-                    foreach (var emp in employeeList)
-                        context.Entry(emp).State = EntityState.Modified;
+                    int managerCount = GetManagers().Count();
+                    //if the employee to be deleted is the only manager
+                    if(managerCount==1&&employee.RoleId==2)
+                    {
+                        return 2;
+                    }
+                    else
+                    {
+                        employee.Status = false;
+                        //Get the list of employees whose manager is the employee to be deleted
+                        var employeeList = context.Employees.Where(p => p.EmployeeId == employee.Id && p.Status == true).ToList();
+                        //Managerid of all employees in the list is changed to 1
+                        employeeList.ForEach(p => p.EmployeeId = 1);
+                        foreach (var emp in employeeList)
+                            context.Entry(emp).State = EntityState.Modified;
 
-                    context.Entry(employee).State = EntityState.Modified;
-                    context.SaveChanges();
+                        context.Entry(employee).State = EntityState.Modified;
+                        context.SaveChanges();
+                    }
+                    
                 }
                 return 1;
             }
@@ -125,12 +136,22 @@ namespace Skillset_DAL.Repositories
             {
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
-                    //gets the id of the employee
-                    int id = Convert.ToInt32(context.Employees.Where(p => p.EmployeeCode == employee.EmployeeCode).Select(p => p.Id).Single());
-                    employee.Id = id;
-                    employee.Status = true;
-                    context.Entry(employee).State = EntityState.Modified;
-                    context.SaveChanges();
+                    int managerCount = GetManagers().Count();
+                    //if the employee to be edited is the only manager and attempts to change role
+                    if (managerCount == 1 && employee.RoleId != 2)
+                    {
+                        return 2;
+                    }
+                    else
+                    {
+                        //gets the id of the employee
+                        int id = Convert.ToInt32(context.Employees.Where(p => p.EmployeeCode == employee.EmployeeCode).Select(p => p.Id).Single());
+                        employee.Id = id;
+                        employee.Status = true;
+                        context.Entry(employee).State = EntityState.Modified;
+                        context.SaveChanges();
+                    }
+                   
                 }
                 return 1;
             }
