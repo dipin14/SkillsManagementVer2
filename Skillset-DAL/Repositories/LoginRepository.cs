@@ -9,6 +9,12 @@ namespace Skillset_DAL.Repositories
 {
     public class LoginRepository:ILoginRepository
     {
+        /// <summary>
+        /// To get role of a user
+        /// </summary>
+        /// <param name="employeecode"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public string GetRole(string employeecode, string password)
         {
             try
