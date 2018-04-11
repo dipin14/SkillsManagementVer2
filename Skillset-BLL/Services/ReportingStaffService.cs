@@ -10,11 +10,15 @@ using Skillset_DAL.Models;
 
 namespace Skillset_BLL.Services
 {
-    public class ReportingStaffExtensions : IReportingStaffExtensions
+    public class ReportingStaffService : IReportingStaffService
     {
 
-        private readonly IReportingStaff _reportingStaff;
-        public ReportingStaffExtensions(IReportingStaff reportingStaff)
+        private readonly IReportingStaffRepository _reportingStaff;
+        /// <summary>
+        /// Dependency Injection for IReportingStaffRepository
+        /// </summary>
+        /// <param name="reportingStaff"></param>
+        public ReportingStaffService(IReportingStaffRepository reportingStaff)
         {
             this._reportingStaff = reportingStaff;
         }
