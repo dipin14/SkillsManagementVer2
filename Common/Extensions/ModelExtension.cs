@@ -37,7 +37,11 @@ namespace Common.Extensions
                 SkillName = skill.SkillName
             }).ToList(); ;
         }
-
+        /// <summary>
+        /// Convert IList of Skill model to SkillDTO
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
         public static SkillDTO ToDTO(this Skill skill)
         {
             return new SkillDTO
@@ -75,7 +79,7 @@ namespace Common.Extensions
         /// <summary>
         /// Convert employee  datalayer model to dto
         /// </summary>
-        /// <param name="dto"></param>
+        /// <param name="employee"></param>
         /// <returns></returns>
         public static EmployeeDTO EmployeeModeltoDTO(this Employee employee)
         {

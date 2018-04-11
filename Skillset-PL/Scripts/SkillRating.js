@@ -87,9 +87,9 @@ function CompleteRating(RatingList) {
         var specialSkill = document.getElementById("TxtAra").value
         var specialScore = document.getElementById("Rating 0").value
         if (specialSkill == "" && specialScore!="")
-            AlertEmployee("Special skill name is mandatory")
+            ValidateEmployee("Special skill name is mandatory")
         else
-        ShowValidation();
+            ValidateEmployee("Enter your ratings");
     }
     else {
         $.ajax({
@@ -101,7 +101,7 @@ function CompleteRating(RatingList) {
                 RateSkill();
                 }
                 else {
-                   AlertEmployee("Sorry!Connection error")
+                    ValidateEmployee("Sorry!Connection error")
                 }
 
             }
@@ -124,7 +124,7 @@ function RateSkill() {
 
             }
             else {
-                AlertEmployee('Db Error!Please check your connection');
+                ValidateEmployee('Db Error!Please check your connection');
 
             }
          
@@ -136,7 +136,7 @@ function RateSkill() {
 
 //Function to reload the current web page
 function AddReload() {
-    ShowToast();
+    AlertEmployee("Succesfully added rating");
     setTimeout(function () { location.reload(); }, 1000);
  
 }
@@ -157,7 +157,7 @@ function DeleteRating(SkillRatingId)
                 AlertEmployee("Succesfully removed rating")
             }
             else {
-               AlertEmployee('please check your connection');
+                ValidateEmployee('please check your connection');
 
             }
 
@@ -194,29 +194,23 @@ function ShowLoader()
     setTimeout(function () { element.className = element.className.replace("loader", ""); }, 3000);
 }
 
-function ShowToast()
-{
-    var x = document.getElementById("snackbar")
-    x.className = "show";
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
-}
+
 
 function Reload()
 {
     location.reload();
 }
 
-function ShowValidation()
-{
-    var x = document.getElementById("snackbarValidation")
-    x.className = "show";
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
-  //  setTimeout(function () { location.reload(); }, 1000);
 
-}
 function AlertEmployee(Message)
 {
     var x = document.getElementById("snackbar")
+    x.innerHTML = Message;
+    x.className = "show";
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+}
+function ValidateEmployee(Message) {
+    var x = document.getElementById("snackbarValidation")
     x.innerHTML = Message;
     x.className = "show";
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
