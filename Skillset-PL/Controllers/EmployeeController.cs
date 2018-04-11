@@ -233,7 +233,14 @@ namespace Skillset_PL.Controllers
                 TempData["message"] = "Error in deleting Employee record";
                 return RedirectToAction("Delete", id);
             }
-            TempData["message"] = "Successfully deleted Employee record";
+            if(status==2)
+            {
+                TempData["message"] = "Employee record cannot be deleted";
+            }
+            if(status==1)
+            {
+                TempData["message"] = "Successfully deleted Employee record";
+            }
             return RedirectToAction("Index");
         }
 
@@ -299,7 +306,14 @@ namespace Skillset_PL.Controllers
                         TempData["message"] = "Error in modifying Employee record";
                         return RedirectToAction("Edit", employee);
                     }
-                    TempData["message"] = "Modified Employee record";
+                    if(status==1)
+                    {
+                        TempData["message"] = "Modified Employee record";
+                    }
+                    if (status == 2)
+                    {
+                        TempData["message"] = "Role for this employee cannot be changed";
+                    }
                     return RedirectToAction("Index");
                 }
                 else
