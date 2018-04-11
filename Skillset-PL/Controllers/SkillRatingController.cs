@@ -14,6 +14,13 @@ namespace Skillset_PL.Controllers
         private readonly ISkillRatingService _skillRatingService;
         private readonly IEmployeeServices _employeeServices;
 
+        /// <summary>
+        /// Dependency injection for Skill Service,skillRatingService and employeeServices
+        /// </summary>
+        /// <param name="skillService"></param>
+        /// <param name="skillRatingService"></param>
+        ///  <param name="employeeServices"></param>
+        ///  <returns></returns>
         public SkillRatingController(ISkillService skillService, ISkillRatingService skillRatingService, IEmployeeServices employeeServices)
         {
             _skillService = skillService;
@@ -22,8 +29,10 @@ namespace Skillset_PL.Controllers
         }
 
 
-
-        //Action to Get all The skills from the skill table
+        /// <summary>
+        /// Get all The skills from the skill table
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<SkillViewModel> EmployeeRatings()
         {
             var skillList = _skillService.GetAllSkills().ToViewModelList();
@@ -31,8 +40,11 @@ namespace Skillset_PL.Controllers
         }
 
 
-        //Action to Submit All the skill ratings to the skill rating table.Arguments passed list of skill rating objects
-
+        /// <summary>
+        /// POST for Creating skill ratings using EmployeeSkillRaingViewModel
+        /// </summary>
+        /// <param name="ratingList"></param>
+        /// <returns></returns>
         public ActionResult RateSkills(List<EmployeeSkillRatingViewModel> ratingList)
         {
 
@@ -48,8 +60,11 @@ namespace Skillset_PL.Controllers
         }
 
 
-        //Action To get All the ratedSkill List of the logged in employee.Parameter being the id of the logged in employee
-
+        /// <summary>
+        /// get All the ratedSkill List of the logged in employee using EmployeeRatedSkillsViewModel
+        /// </summary>
+        /// <param name="EmpId"></param>
+        /// <returns></returns>
         public IEnumerable<EmployeeRatedSkillsViewModel> GetRatedSkills(int EmpId)
         {
             var RatedSkills = _skillRatingService.GetRatedSkills(EmpId).ToSkillRatedViewmodel();
@@ -57,8 +72,12 @@ namespace Skillset_PL.Controllers
         }
 
 
-        //The Action on which the first hit occurs and returns the list of skills and skill ratings to the corresponding view
-        [Authorize(Roles ="Employee")]
+
+        /// <summary>
+        /// Get all The skills from the skill table
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "Employee")]
         public ActionResult EmployeeRating()
         {
             if (Session["customerId"] == null)
@@ -74,7 +93,11 @@ namespace Skillset_PL.Controllers
 
         }
 
-        //Action TO delete selected SkillRating.Parameter passed being SkillRatingId
+        /// <summary>
+        /// Deletes SkillRating record using SkillRatingId
+        /// </summary>
+        /// <param name="SkillRatingId"></param>
+        /// <returns></returns>
         public int DeleteRating(int SkillRatingId)
         {
 
@@ -82,8 +105,11 @@ namespace Skillset_PL.Controllers
 
         }
 
-        //Action to Get the Employee Profile Of the Logged in Employee
-        [Authorize(Roles ="Employee")]
+        /// <summary>
+        /// Get Employee details of the loggded in employee
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "Employee")]
         public ActionResult EmployeeProfile()
         {
             if (Session["customercode"] == null)

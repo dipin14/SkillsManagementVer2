@@ -9,31 +9,35 @@ namespace Skillset_DAL.Repositories
     public interface ISkillRatingRepository
     {
         /// <summary>
-        /// Insert skill into Skill table
+        /// Insert skillRating into SkillRating table
         /// </summary>
-        /// <param name="skill"></param>
+        /// <param name="skillRating"></param>
         /// <returns></returns>
         int Create(IList<SkillRating> skillRating);
+       
         /// <summary>
         /// Get all skillratings from skillrating table
         /// </summary>
-        /// <param name="employee id"></param>
+        /// <param name="empId "></param>
         /// <returns></returns>
         IList<SkillRating> GetAllRatings(int empId);
+       
         /// <summary>
         /// Get all skills
         /// </summary
         /// <returns></returns>
          IList<Skill> GetAllSkills();
+      
         /// <summary>
         /// Get all Rating values
         /// </summary
         /// <returns></returns>
        IList<Rating> GetAllRatingValues();
+
         /// <summary>
         /// Sets status of skillrating to false
         /// </summary>
-        /// <param name="skillrating Id"></param>
+        /// <param name="SkillRatingId"></param>
         /// <returns></returns>
         int Delete(int? SkillRatingId);
 
