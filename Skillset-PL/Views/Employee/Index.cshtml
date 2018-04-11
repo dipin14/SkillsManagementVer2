@@ -21,7 +21,19 @@
         });
     </script>
 }
+@if (TempData["error"] != null)
+{
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            ValidateEmployee("@TempData["error"]");
+        });
+    </script>
+}
 <div id="snackbar"></div>
+<div id="snackbarValidation"></div>
 <div style="padding-bottom:10px;">
     @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
     {
