@@ -161,7 +161,7 @@ namespace Skillset_DAL.Repositories
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                return context.Employees.Where(p => p.RoleId != 3 && p.Status == true).ToList();
+                return context.Employees.Where(p => p.RoleId == 2 && p.Status == true).ToList();
             }
         }
 

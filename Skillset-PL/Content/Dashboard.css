@@ -183,6 +183,7 @@ h3{
 table.employeetable {
     width: 100%;
     border-bottom: 2px solid #E6E9ED;
+
 }
 
 table.employeetable > thead > tr > th {

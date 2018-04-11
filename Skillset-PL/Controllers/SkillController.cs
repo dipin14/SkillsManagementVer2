@@ -36,7 +36,7 @@ namespace Skillset_PL.Controllers
             var skillList = _skillService.GetAllSkills().ToViewModelList().OrderBy(s => s.SkillName);
 
             //Limited the number of rows per page to 3
-            int pageSize = 3;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
             return View(skillList.ToPagedList(pageNumber, pageSize));
         }
