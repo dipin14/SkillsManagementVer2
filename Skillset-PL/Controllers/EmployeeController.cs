@@ -111,7 +111,7 @@ namespace Skillset_PL.Controllers
             ViewData["EmployeeCount"] = _services.GetEmployeesCount();
             var pageNumber = (page ?? 1) - 1;
             var totalCount = 0;
-            var pageSize = 2;
+            var pageSize = 8;
             TempData["page"] = pageNumber + 1;
             if(search!=null)
                 search = search.Trim();
@@ -169,12 +169,12 @@ namespace Skillset_PL.Controllers
                 }
                 else if (status == -1)
                 {
-                    TempData["message"] = "Error in creating new employee";
+                    TempData["message"] = "Error in creating new Employee record";
 
                 }
                 else
                 {
-                    TempData["message"] = "Successfully Added Employee";                  
+                    TempData["message"] = "Successfully added Employee record";                  
                     return RedirectToAction("Index");
                 }
             }
@@ -213,10 +213,10 @@ namespace Skillset_PL.Controllers
             int status = _services.DeleteEmployeeById(id);
             if (status == 0)
             {
-                TempData["message"] = "Error in deleting employee record";
+                TempData["message"] = "Error in deleting Employee record";
                 return RedirectToAction("Delete", id);
             }
-            TempData["message"] = "Successfully deleted employee record";
+            TempData["message"] = "Successfully deleted Employee record";
             return RedirectToAction("Index");
         }
 
@@ -280,10 +280,10 @@ namespace Skillset_PL.Controllers
                     int status = _services.EditEmployeeById(employee.EmployeeViewModeltoDTO());
                     if (status == 0)
                     {
-                        TempData["message"] = "Error in modifying employee record";
+                        TempData["message"] = "Error in modifying Employee record";
                         return RedirectToAction("Edit", employee);
                     }
-                    TempData["message"] = "Modified employee record";
+                    TempData["message"] = "Modified Employee record";
                     return RedirectToAction("Index");
                 }
                 else
@@ -315,7 +315,7 @@ namespace Skillset_PL.Controllers
             string employeeName = _services.GetEmployeeName(id);
             ViewData["employeename"] = employeeName;
             ViewData["employeecode"] = id;
-            int pageSize = 3;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
             return View(recordlist.ToPagedList(pageNumber, pageSize));
         }
