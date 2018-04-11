@@ -147,14 +147,6 @@
     font-weight:600;
 }
 
-/* Dropdown*/
-/*.dropdown-menu > li > a {
-    color: #5A738E !important;
-}
-.pull-right{
-    float:right !important;
-}*/
-
 /* Graph*/
 .dashboard-graph {
     background: #fff;

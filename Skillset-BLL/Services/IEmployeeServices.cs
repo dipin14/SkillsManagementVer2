@@ -70,8 +70,12 @@ namespace Skillset_BLL.Services
         /// <returns></returns>
         List<RoleDTO> GetRoles();
 
-        
+        /// <summary>
+        /// Retrive total employees count
+        /// </summary>
+        /// <returns></returns>
         int GetEmployeesCount();
+
         string GetDesignationName(string id);
         string GetQualificationName(string id);
         string GetManagerName(string id);
@@ -92,6 +96,11 @@ namespace Skillset_BLL.Services
         /// <param name="id"></param>
         /// <returns></returns>
         string GetEmployeeName(string id);
+
+        /// <summary>
+        /// Retrieve employee name and skill name of those employee who top rated that skill
+        /// </summary>
+        /// <returns></returns>
         List<KeyValuePair<string, string>> GetTopRatedRecentEmployees();
 
 

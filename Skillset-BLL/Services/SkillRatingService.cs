@@ -52,40 +52,35 @@ namespace Skillset_BLL.Services
         {
             //Retrieves skill id from unique skill name
             return _iSkillRatingRepository.Delete(SkillRatingId);
-
-         
-        }
-        
-        public IQueryable<string> GetEmployeeRatedSkillName()
-        {
-            return _iSkillRatingRepository.GetEmployeeRatedSkillName();
+            
         }
 
-        
+        /// <summary>
+        /// Retrieve total ratings count
+        /// </summary>
+        /// <returns></returns>
         public int GetSkillRatingsCount()
         {
             return _iSkillRatingRepository.GetSkillRatingsCount();
         }
-        
+
+        /// <summary>
+        /// Retrieve average ratings for primary skills
+        /// </summary>
+        /// <returns></returns>
         public string GetRatingAverage()
         {
             return _iSkillRatingRepository.GetRatingAverage();
         }
 
+        /// <summary>
+        /// Retrieve skill names of skills rated by employee excluding special skill
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<string> GetEmployeeRatedSkillExcludeSpecial()
         {
             return _iSkillRatingRepository.GetEmployeeRatedSkillExcludeSpecial();
         }
-        
-        public string GetTopEmployeeRating()
-        {
-            return _iSkillRatingRepository.GetTopEmployeeRating();
-        }
-
-        public string GetLeastEmployeeRating()
-        {
-            return _iSkillRatingRepository.GetLeastEmployeeRating();
-
-        }
+    
     }
 }

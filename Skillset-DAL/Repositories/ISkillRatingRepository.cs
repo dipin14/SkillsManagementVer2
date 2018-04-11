@@ -38,28 +38,10 @@ namespace Skillset_DAL.Repositories
         int Delete(int? SkillRatingId);
 
         /// <summary>
-        /// Retrieve skill names of skills rated by employee
-        /// </summary>
-        /// <returns></returns>
-        IQueryable<string> GetEmployeeRatedSkillName();
-
-        /// <summary>
         /// Retrieve skill names of skills rated by employee excluding special skill
         /// </summary>
         /// <returns></returns>
         IQueryable<string> GetEmployeeRatedSkillExcludeSpecial();
-
-        /// <summary>
-        /// Retrieve count of top ratings for each skill given by employees
-        /// </summary>
-        /// <returns></returns>
-        string GetTopEmployeeRating();
-
-        /// <summary>
-        /// Retrieve count of least ratings for each skill given by employees
-        /// </summary>
-        /// <returns></returns>
-        string GetLeastEmployeeRating();
 
         /// <summary>
         /// Retrieve total skill ratings count
