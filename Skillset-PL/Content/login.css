@@ -90,6 +90,10 @@
         color: #000;
         padding: 10px 50px 10px 50px;
     }
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 .form {
     padding: 10px 50px 10px 50px;
