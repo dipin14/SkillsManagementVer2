@@ -44,8 +44,10 @@
             <div id="snackbarValidation">
 
             </div>
-            @foreach (var item in Model.SkillRatings)
-            {
+          @if (Model.SkillRatings.Count() > 0)
+          {
+              foreach (var item in Model.SkillRatings)
+              {
 
 
                 <div class="Ratecard">
@@ -85,9 +87,16 @@
                 </div>
 
                     <br />
-            }
+              }
 
-
+          }
+          else
+          { <br />
+            <div class="alert alert-warning fade in" style="background-color:whitesmoke;border-color:#2a3f54;color:#2a3f54">
+                <strong>No primary skills!</strong>
+                <br /> Please enter your special skill(if any).
+            </div>
+          }
 
             <button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>
 
