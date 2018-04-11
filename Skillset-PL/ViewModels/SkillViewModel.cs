@@ -14,7 +14,7 @@ namespace Skillset_PL.ViewModels
         public int skillId { get; set; }
         string skillName;
         string skillDescription;
-        
+
         [Required]
         [Display(Name = "Skill Name")]
         public string SkillName
