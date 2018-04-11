@@ -3,7 +3,7 @@ using Common.DTO;
 
 namespace Skillset_BLL.Services
 {
-    public interface IReportingStaffExtensions
+    public interface IReportingStaffService
     {
         /// <summary>
         /// Retrieve details of an employee along with designation.
