@@ -189,6 +189,10 @@ table.employeetable > thead > tr > th {
         border-bottom: 2px solid #E6E9ED;
 }
 
+#collapse1 {
+    overflow-y: scroll;
+    height:280px;
+}
 /* 
 Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
@@ -243,6 +247,16 @@ table.table.table-hover.table-responsive.size-response td{
 
        }
        
+}
+@media only screen and (max-width: 990px)
+{
+    .tile-first{
+        border-left: 2px solid #ADB2B5; 
+        padding-bottom:0px;
+    }
+    .tile-list {
+        padding-top:0px;
+    }
 }
 @media only screen and (max-width: 350px) {
 
