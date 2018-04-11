@@ -22,7 +22,7 @@ namespace Skillset_PL.ViewModels
         {
 
         }
-        public AdministratorSkillViewModel(string skillName, int skillValue, DateTime ratingDate,string note, string ratingNote)
+        public AdministratorSkillViewModel(string skillName, int skillValue, DateTime ratingDate, string note, string ratingNote)
         {
             SkillName = skillName;
             SkillValue = skillValue;

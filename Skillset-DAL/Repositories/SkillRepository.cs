@@ -152,6 +152,7 @@ namespace Skillset_DAL.Repositories
             int skillsCount = default(int);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
+                //Get distinct count of skills where status of skill is true
                 skillsCount = context.Skills.Where(s => s.Status).Distinct().Count();
             }
             return skillsCount;

@@ -183,7 +183,7 @@ namespace Skillset_BLL.Services
         }
 
         /// <summary>
-        /// Return total employees count
+        /// Retrieve total employees count
         /// </summary>
         /// <returns></returns>
         public int GetEmployeesCount()
@@ -258,6 +258,10 @@ namespace Skillset_BLL.Services
             return _repository.FindEmployeeName(id);
         }
 
+        /// <summary>
+        /// Retrieve employee name and skill name of those employee who top rated that skill
+        /// </summary>
+        /// <returns></returns>
         public List<KeyValuePair<string, string>> GetTopRatedRecentEmployees()
         {
             return _repository.GetTopRatedRecentEmployees();
