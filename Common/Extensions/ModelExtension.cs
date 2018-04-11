@@ -101,7 +101,11 @@ namespace Common.Extensions
 
             return dto;
         }
-
+        /// <summary>
+        /// Convert employee  datalayer model to dto
+        /// </summary>
+        /// <param name="employees"></param>
+        /// <returns></returns>
         public static List<EmployeeDTO> ListEmployeeModeltoDTO(this List<Employee> employees)
         {
             var dto = new List<EmployeeDTO>();
