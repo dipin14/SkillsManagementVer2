@@ -25,10 +25,12 @@
     </script>
 }
 
+
 <div class="row first" style="background-color:white;padding:30px;padding-top:30px;margin:10px;">
     <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Rate Your Skills</label>
     <div class="row">
         <div class="col-sm-7">
+
             <div class="panel-heading" style="display:block;background-color:#2a3f54;color:#FFF;"><b>Skills</b></div>
 
 
@@ -43,6 +45,7 @@
               foreach (var item in Model.SkillRatings)
               {
 
+
                 <div class="Ratecard">
                     <div class="row">
 
@@ -56,8 +59,10 @@
                                 @Html.DisplayFor(modelItem => item.SkillDescription)
                             </p>
 
+{
 
                         </div>
+
 
 
 
@@ -83,6 +88,7 @@
 
                     <br />
 
+
               }
 
           }
@@ -96,9 +102,11 @@
 
             <button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>
 
+
             <div id="demo" class="collapse">
                 <div class="Ratecard">
                     <div class="row">
+
 
                         <div class="col-sm-6" style="margin-left:20px;">
                             <textarea class="txtSkillSpecial" id="TxtAra" placeholder="Enter your special skill here"></textarea>
@@ -113,6 +121,7 @@
                                 <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
                                 <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -126,7 +135,9 @@
                 <input type="button" class="btn btn-info " style="background-color:#2a3f54;border-color:#2a3f54;margin-bottom:20px;" onclick='Reload()' value="Reset">
             }
 
+
         </div>
+
 
 
         <div class="col-sm-5">
@@ -145,10 +156,15 @@
                 </div>
 
 
+
+
             </div>
+
             <div class="panel panel-body" style="border-color:whitesmoke;">
                 @if (Model.RatedSkills.Count() > 0)
+
                 {
+
 
                     foreach (var item in Model.RatedSkills)
                     {
@@ -168,16 +184,19 @@
                             @for (var i = 1; i <= item.RatedValue; i++)
                     {
 
+
                                 <span class="starGlowN"></span>
                             }
                             @for (var i = (item.RatedValue + 1); i <= 5; i++)
                     {
+
 
                                 <span class="starFadeN"></span>
                             }
                         </div>
 
                     }
+
 
                 }
                 else
@@ -187,6 +206,7 @@
                             <strong>No skill ratings!</strong>
                             <br /> You have no skills rated.
                         </div>
+
 
                 }
             </div>
