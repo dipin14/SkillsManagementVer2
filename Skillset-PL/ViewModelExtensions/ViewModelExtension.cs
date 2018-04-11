@@ -204,10 +204,10 @@ namespace Skillset_PL.ViewModelExtensions
                 Id = employee.Id,
                 EmployeeId = employee.EmployeeId,
                 SkillName = employee.SkillName,
-                RaitedNote = employee.RaitedNote,
-                RaitedValue = employee.RaitedValue,
-                RaitedDate = employee.RaitedDate
-            }).ToList().OrderByDescending(s => s.RaitedDate).ThenByDescending(s => s.RaitedValue).ToList();
+                RatedNote = employee.RatedNote,
+                RatedValue = employee.RatedValue,
+                RatedDate = employee.RatedDate
+            }).ToList().OrderByDescending(s => s.RatedDate).ThenByDescending(s => s.RatedValue).ToList();
         }
 
 
