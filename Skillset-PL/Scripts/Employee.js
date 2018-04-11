@@ -15,8 +15,9 @@ function OnChangeEvent()
     }
  
 }
-
-
+$(document).ready(function ()  {
+    $("ul li:eq(1) a").parent().addClass('active').parent().parent().addClass('active');
+});
 function ShowValidation()
 {
     $(".has-error").show();
