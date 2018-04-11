@@ -14,15 +14,18 @@ using System.Web.UI;
 
 namespace Skillset_PL.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeServices _services;
- 
+        /// <summary>
+        /// Dependency injection for Employee Services
+        /// </summary>
+        /// <param name="services"></param>
         public EmployeeController(IEmployeeServices services)
         {
             _services = services;
-           
+
         }
 
         /// <summary>
@@ -33,7 +36,9 @@ namespace Skillset_PL.Controllers
         {
             List<SelectListItem> items = new List<SelectListItem>();
             var list = new List<DesignationDTO>();
+            //Get the list of designations with id and name
             list = _services.GetDesignations();
+            //Sets id as value and name as text for SelectListItem
             for (int i = 0; i < list.Count; i++)
             {
                 items.Add(new SelectListItem
@@ -53,7 +58,9 @@ namespace Skillset_PL.Controllers
         {
             List<SelectListItem> items = new List<SelectListItem>();
             var list = new List<QualificationDTO>();
+            //Get the list of qualifications with id and name
             list = _services.GetQualifications();
+            //Sets id as value and name as text for SelectListItem
             for (int i = 0; i < list.Count; i++)
             {
                 items.Add(new SelectListItem
@@ -73,7 +80,9 @@ namespace Skillset_PL.Controllers
         {
             List<SelectListItem> items = new List<SelectListItem>();
             var list = new List<EmployeeDTO>();
+            //Get the list of qualifications with id and name
             list = _services.GetManagers();
+            //Sets id as value and name as text for SelectListItem
             for (int i = 0; i < list.Count; i++)
             {
                 items.Add(new SelectListItem
@@ -84,7 +93,7 @@ namespace Skillset_PL.Controllers
             }
             return items;
         }
-        
+
         /// <summary>
         /// Retrieves the list of Roles
         /// </summary>
@@ -93,7 +102,9 @@ namespace Skillset_PL.Controllers
         {
             List<SelectListItem> items = new List<SelectListItem>();
             var list = new List<RoleDTO>();
+            //Get the list of qualifications with id and name
             list = _services.GetRoles();
+            //Sets id as value and name as text for SelectListItem
             for (int i = 0; i < list.Count; i++)
             {
                 items.Add(new SelectListItem
@@ -105,36 +116,35 @@ namespace Skillset_PL.Controllers
             return items;
         }
 
-        // GET: Employee
-        public ActionResult Index(string search,int? page)
+        /// <summary>
+        /// Displays list of employees according to search key with pagination.
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ActionResult Index(string search, int? page)
         {
-            ViewData["EmployeeCount"] = _services.GetEmployeesCount();
             var pageNumber = (page ?? 1) - 1;
             var totalCount = 0;
             var pageSize = 8;
-            TempData["page"] = pageNumber + 1;
-            if(search!=null)
+            if (search != null)
                 search = search.Trim();
             ViewBag.search = search;
-            //get the list of employees according to the search key
-            var dtoList = _services.ViewSearchRecords(search,pageNumber,pageSize,out totalCount);
+            var dtoList = _services.ViewSearchRecords(search, pageNumber, pageSize, out totalCount);
             var modelList = new List<EmployeeViewModel>();
+            //Converts and add each dto item to viewmodel
             foreach (EmployeeDTO item in dtoList)
-            {
-                //get designation name corresponding to id
+            {             
                 item.DesignationId = _services.GetDesignationName(item.DesignationId);
-                //get qualification name corresponding to id
                 item.QualificationId = _services.GetQualificationName(item.QualificationId);
-                //get role name corresponding to id
                 item.RoleId = _services.GetRoleName(item.RoleId);
-                //get manager name corresponding to id
                 item.EmployeeId = _services.GetManagerName(item.EmployeeId);
                 modelList.Add(item.EmployeeDTOtoViewModel());
             }
             IPagedList<EmployeeViewModel> pageOrders = new StaticPagedList<EmployeeViewModel>(modelList, pageNumber + 1, pageSize, totalCount);
             return View(pageOrders);
         }
-        //  GET: Employees/Create  
+           
         public ActionResult Create()
         {
             ViewData["Designations"] = GetDesignations();
@@ -143,38 +153,45 @@ namespace Skillset_PL.Controllers
             ViewData["Roles"] = GetRoles();
             return View();
         }
+
+       
         // POST: Employees/Create/{employee}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(EmployeeViewModel employee)
         {
-            employee.Name= employee.Name.Trim();
-            employee.Email=employee.Email.Trim();
-            employee.Address=employee.Address.Trim();
+            employee.Name = employee.Name.Trim();
+            employee.Email = employee.Email.Trim();
+            employee.Address = employee.Address.Trim();
             if (ModelState.IsValid)
-            {               
+            {
                 int status = _services.AddNewEmployee(employee.EmployeeViewModeltoDTO());
+                //If employee code already exists
                 if (status == 1)
                 {
                     ModelState.AddModelError("EmployeeCode", "Employee code exists");
 
                 }
+                //If mobile number already exists 
                 else if (status == 2)
                 {
-                    ModelState.AddModelError("MobileNumber", "Mobile number already exists");                 
+                    ModelState.AddModelError("MobileNumber", "Mobile number already exists");
                 }
+                //If email already exists
                 else if (status == 3)
                 {
                     ModelState.AddModelError("Email", "Email already exists");
                 }
+                //If some error occur during creation of employee record
                 else if (status == -1)
                 {
                     TempData["message"] = "Error in creating new Employee record";
 
                 }
+                //If employee is successfully added
                 else
                 {
-                    TempData["message"] = "Successfully added Employee record";                  
+                    TempData["message"] = "Successfully added Employee record";
                     return RedirectToAction("Index");
                 }
             }
@@ -227,7 +244,6 @@ namespace Skillset_PL.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //get employee details for a particular employee code
             EmployeeDTO employee = _services.GetEmployeeDetailsById(id);
             employee.DesignationId = _services.GetDesignationName(employee.DesignationId);
             employee.QualificationId = _services.GetQualificationName(employee.QualificationId);
@@ -250,13 +266,13 @@ namespace Skillset_PL.Controllers
             EmployeeDTO employee = _services.GetEmployeeDetailsById(id);
             if (employee == null)
             {
-                return HttpNotFound();  
+                return HttpNotFound();
             }
             ViewData["Designations"] = GetDesignations();
             ViewData["Qualifications"] = GetQualifications();
             ViewData["Managers"] = GetManagers();
             ViewData["Roles"] = GetRoles();
-            EmployeeViewModel employeeDetails= employee.EmployeeDTOtoViewModel();
+            EmployeeViewModel employeeDetails = employee.EmployeeDTOtoViewModel();
             Session["EmployeeOriginal"] = employeeDetails;
             return View(employeeDetails);
         }
@@ -269,11 +285,11 @@ namespace Skillset_PL.Controllers
             employee.Name = employee.Name.Trim();
             employee.Email = employee.Email.Trim();
             employee.Address = employee.Address.Trim();
-            EmployeeViewModel originalEmployee=(EmployeeViewModel)Session["EmployeeOriginal"];
+            EmployeeViewModel originalEmployee = (EmployeeViewModel)Session["EmployeeOriginal"];
             var comparer = new ObjectsComparer.Comparer<EmployeeViewModel>();
             if (ModelState.IsValid)
             {
-                
+
                 bool isEqual = comparer.Compare(employee, originalEmployee);
                 if (!isEqual)
                 {
@@ -290,10 +306,10 @@ namespace Skillset_PL.Controllers
                 {
                     TempData["message"] = "No modification applied";
                     return RedirectToAction("Index");
-                }           
+                }
             }
             return View(employee);
-           
+
         }
 
         // GET: Employee Skills Details      
@@ -319,6 +335,5 @@ namespace Skillset_PL.Controllers
             int pageNumber = (page ?? 1);
             return View(recordlist.ToPagedList(pageNumber, pageSize));
         }
-
     }
 }

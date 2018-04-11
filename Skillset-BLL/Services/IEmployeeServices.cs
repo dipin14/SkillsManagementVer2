@@ -26,14 +26,14 @@ namespace Skillset_BLL.Services
         int AddNewEmployee(EmployeeDTO employee);
 
         /// <summary>
-        ///Updates the employee record
+        ///Updates the employee record by id
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
         int EditEmployeeById(EmployeeDTO employee);
         
         /// <summary>
-        /// Set the status of employee to false
+        ///Delete employee by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -47,34 +47,61 @@ namespace Skillset_BLL.Services
         EmployeeDTO GetEmployeeDetailsById(string id);
         
         /// <summary>
-        /// retrieves the list of designations
+        /// Retrieves the list of designations
         /// </summary>
         /// <returns></returns>      
         List<DesignationDTO> GetDesignations();
-       
+
         /// <summary>
-        /// retrieves the list of qualifications
+        /// Retrieves the list of qualifications
         /// </summary>
         /// <returns></returns>
         List<QualificationDTO> GetQualifications();
-        
+
         /// <summary>
-        /// retrieves the list of managers
+        /// Retrieves the list of managers
         /// </summary>
         /// <returns></returns>
         List<EmployeeDTO> GetManagers();
-        
+
         /// <summary>
-        /// retrieves the list of roles
+        /// Retrieves the list of roles
         /// </summary>
         /// <returns></returns>
         List<RoleDTO> GetRoles();
 
-        
+        /// <summary>
+        /// Retrieve total employees count
+        /// </summary>
+        /// <returns></returns>
         int GetEmployeesCount();
+
+        /// <summary>
+        /// Retrieve the name for a particular designation id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         string GetDesignationName(string id);
+
+        /// <summary>
+        /// Retrieve the name for a particular qualification id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         string GetQualificationName(string id);
+
+        /// <summary>
+        /// Retrieve the name for a particular Manager id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         string GetManagerName(string id);
+
+        /// <summary>
+        /// Retrieve the name for a particular role id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         string GetRoleName(string id);
        
         EmployeeDTO GetProfile(string id);
