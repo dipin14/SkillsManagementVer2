@@ -90,9 +90,9 @@ textarea {
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
-      height:50px;
+    height:50px;
     visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 200px; /* Set a default minimum width */
+    width: 200px; /* Set a default minimum width */
    /* Divide value of min-width by 2 */
    font-family:Arial, Helvetica, sans-serif;
     background-color: #2a3f54; /* Black background color */
@@ -102,7 +102,7 @@ textarea {
     padding: 15px; /* Padding */
     position: fixed; /* Sit on top of the screen */
     z-index: 1; /* Add a z-index if needed */
-    left: 70%; /* Center the snackbar */
+    left: 100px; /* Center the snackbar */
     bottom: 20px; /* 30px from the bottom */
 }
 
@@ -112,21 +112,22 @@ textarea {
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
+
 #snackbarValidation {
-    
+ 
     height:50px;
     visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 200px; /* Set a default minimum width */
+    width: 200px; /* Set a default minimum width */
    /* Divide value of min-width by 2 */
    font-family:Arial, Helvetica, sans-serif;
-    background-color: #2a3f54; /* Black background color */
+     background-color:palevioletred ; /* Black background color */
     color: #f0f8ff; /* White text color */
     text-align: left; /* Centered text */
     border-radius: 2px; /* Rounded borders */
     padding: 15px; /* Padding */
     position: fixed; /* Sit on top of the screen */
     z-index: 1; /* Add a z-index if needed */
-    left: 70%; /* Center the snackbar */
+    left: 100px;/* Center the snackbar */
     bottom: 20px; /* 30px from the bottom */
 }
 

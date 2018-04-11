@@ -28,7 +28,7 @@
                 data: [@ViewBag.RatingAverage]
             }]
         };
-      
+
         window.onload = function () {
 
             var ctx1 = document.getElementById("Barcanvas").getContext("2d");
@@ -84,7 +84,7 @@
 
     @* Chart *@
     <div class="row">
-        <div class="col-md-8 " >
+        <div class="col-md-8 ">
             <div class="dashboard-graph">
                 <div class="row graph-title">
                     <div class="col-md-12">
@@ -103,7 +103,7 @@
             <div class="dashboard-card">
                 <div class="row card-title">
                     <div class="col-md-8">
-                        <h3>Top Skilled</h3>
+                        <h3>Top Skilled</h3><div>Employees</div>
                     </div>
                     <div class="col-md-4 toggle-card">
                         <a class="toggle-button" style="float:right;"><i class="classi fa fa-chevron-up"></i></a>
@@ -134,7 +134,7 @@
                             @if (ViewBag.TopSkillsTableData.Count <= 0)
                             {
                                 <tr>
-                                    <td>No recent activity!</td>
+                                    <td style="color:#2a3f54"><strong>No employees with top skill ratings!</strong></td>
                                     <td></td>
                                 </tr>
                             }
