@@ -26,7 +26,7 @@ namespace Common.Extensions
             //model = Regex.Replace(model, "(.{" + 50 + "})", "$1" + "<br />");
             model = string.Join("<br />", model.Split()
     .Select((word, index) => new { word, index })
-    .GroupBy(x => x.index / 9)
+    .GroupBy(x => x.index / 15)
     .Select(grp => string.Join(" ", grp.Select(x => x.word))));
 
             if (String.IsNullOrEmpty(model))
