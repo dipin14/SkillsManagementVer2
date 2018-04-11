@@ -14,28 +14,23 @@
 </head>
 @if (ViewBag.IsSpecial != null)
 {
-
     <script type="text/javascript">
-
-        $(function () {
-
+        $(function ()
+        {
             EnableSpecial(@ViewBag.IsSpecial.ToString().ToLower());
         });
     </script>
 }
-
     <div class="row first" style="background-color:white;padding:30px;padding-top:0px;margin:10px;">
         <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Rate Your Skills</label>
         <div class="row">
             <div class="col-sm-7">
                 <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;"><b>Skills</b></div>
-
                 <div id="snackbar">
                     <b>Success</b><br />
                     Succesfully added rating
                 </div>
-                <div id="snackbarValidation">
-                    @*<img src="~/Images/tick-512.png" />*@
+                <div id="snackbarValidation">    
                     <b>Warning</b><br />
                     <p>Enter your ratings</p>
                 </div>
@@ -43,10 +38,8 @@
               {
                   foreach (var item in Model.SkillRatings)
                   {
-
                     <div class="Ratecard">
                         <div class="row">
-
                             <div class="col-sm-6" style="margin-left:20px;">
                                 <h4>
                                     <b style="color:#2a3f54;">
@@ -56,13 +49,8 @@
                                 <p style="color:black;">
                                     @Html.DisplayFor(modelItem => item.SkillDescription)
                                 </p>
-
                             </div>
-
-
-
                             <div class="col-sm-5" style="color:grey;">
-
                                 <div id="StarRow " onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;">
                                     <input id="Rating @item.skillId" hidden />
                                     <span class="starFade" id="Rate1 @item.skillId" onclick="CRate(@item.skillId, 1)" onmouseover="CRateOver(@item.skillId,1)" onmouseout="CRateOut(@item.skillId,1)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
@@ -73,17 +61,11 @@
                                     <span class="starFade" id="Rate5 @item.skillId" onclick="CRate(@item.skillId, 5)" onmouseover="CRateOver(@item.skillId,5)" onmouseout="CRateOut(@item.skillId,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
                                 </div>
                                 <textarea class="form-control notes" id="TxtAra @item.skillId" placeholder="Enter your notes here" name="TxtAra" required style="margin:10px;"></textarea>
-
-
                             </div>
-
                         </div>
                     </div>
-
                     <br />
-
                   }
-
               }
               else
               { <br />
@@ -92,13 +74,10 @@
                     <br /> Please enter your special skill(if any).
                 </div>
               }
-
                 <button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>
-
                 <div id="demo" class="collapse">
                     <div class="Ratecard">
                         <div class="row">
-
                             <div class="col-sm-6" style="margin-left:7px;">
                                 <textarea class="form-control " rows="3" cols="50" id="TxtAra" placeholder="Enter your special skill here(Mandatory)" name="TxtAra" required style="margin:10px;"></textarea>
                             </div>
@@ -116,45 +95,28 @@
                         </div>
                     </div>
                 </div>
-
                 <br /><br />
-
-
-
                 @{var data = @Html.Raw(Json.Encode(Model.SkillRatings));
                     <input type="button" class="btn btn-info" style="background-color:#1abb9c;border-color:rgb(26, 187, 156);" onclick='SubmitRating(@data,@Model.SkillRatings.Count())' value="Submit Ratings">
 
                     <input type="button" class="btn btn-info " style="background-color:#2a3f54;border-color:#2a3f54;margin-bottom:20px;" onclick='Reload()' value="Reset">
                 }
-
             </div>
-
-
-
             <div class="col-sm-5">
                 <div class="panel panel-heading" id="containerRating" style="margin-bottom:0px;:block;text-align:center;background-color:#2a3f54;color:#FFF;">
-
                     <div class="row">
-
-
                         <div class="col-sm-7">
                             Rated Skills
                         </div>
                         <div class="col-sm-5">
-
                             <div id="loading"> </div>
                         </div>
                     </div>
-
-                </div>
-                @*<div class="col-sm-4 well " style="background-color:white;">*@
+                </div>              
                 <div class="panel panel-body" style="border-color:whitesmoke;">
                     @if (Model.RatedSkills.Count() > 0)
-            {
-
-
+                    {
                         <span class="panel" style="font-size:20px; ">Your skills</span>
-
 
                         foreach (var item in Model.RatedSkills)
                         {
@@ -172,17 +134,14 @@
                                 </p>
                                 @for (var i = 1; i <= item.RatedValue; i++)
 
-                    {
+                                {
                                     <span class="starGlowN"></span>
                                 }
                                 @for (var i = (item.RatedValue + 1); i <= 5; i++)
-                    {
+                                {
                                     <span class="starFadeN"></span>
                                 }
-
-
-                            </div>
-
+                            </div>    
                         }
                     }
                     else
