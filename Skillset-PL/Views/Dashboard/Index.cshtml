@@ -28,7 +28,7 @@
                 data: [@ViewBag.RatingAverage]
             }]
         };
-      
+
         window.onload = function () {
 
             var ctx1 = document.getElementById("Barcanvas").getContext("2d");
@@ -84,7 +84,7 @@
 
     @* Chart *@
     <div class="row">
-        <div class="col-md-8 " >
+        <div class="col-md-8 ">
             <div class="dashboard-graph">
                 <div class="row graph-title">
                     <div class="col-md-12">
@@ -134,7 +134,7 @@
                             @if (ViewBag.TopSkillsTableData.Count <= 0)
                             {
                                 <tr>
-                                    <td>No top ratings!</td>
+                                    <td style="color:#2a3f54"><strong>No employees with top skill ratings!</strong></td>
                                     <td></td>
                                 </tr>
                             }

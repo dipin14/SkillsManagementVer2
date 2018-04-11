@@ -242,14 +242,19 @@ namespace Skillset_DAL.Repositories
 
         }
 
+        /// <summary>
+        /// Retrieve names of skills and employees who give top rating for skill
+        /// </summary>
+        /// <returns></returns>
         public List<KeyValuePair<string, string>> GetTopRatedRecentEmployees()
         {
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                StringBuilder TopRatedEmployeeName = new StringBuilder();
-
+                //Get rating id with top rating value
                 var MaximumRatingId = context.Ratings.Where(s => s.Value == 5).Select(s => s.Id).FirstOrDefault();
                 int RatingId = Convert.ToInt32(MaximumRatingId);
+
+                //Get skill name and employee name of those employee whose rating id matches with top rating id.
                 var skill = (from sr in context.SkillRatings
                              join e in context.Employees
                              on sr.EmployeeId equals e.Id
@@ -260,25 +265,29 @@ namespace Skillset_DAL.Repositories
                              where sr.Status == true && s.Status == true && sr.RatingId == RatingId
                              orderby sr.RatingId descending
                              select new { s.SkillName, e.Name }).ToList();
-                //var groupSkill = skill.GroupBy(x => x.SkillName).Select(x => new { SkillName = x.Key, EmployeeName = x.Select(s => s.Name).FirstOrDefault() }).ToList();
 
                 List<KeyValuePair<string, string>> topSkills = new List<KeyValuePair<string, string>>();
 
                 foreach (var skillEmp in skill)
                 {
+                    //Add skill name and employee name as key value pair
                     topSkills.Add(new KeyValuePair<string, string>(skillEmp.SkillName, skillEmp.Name));
                 }
 
                 return topSkills;
             }
         }
-        
+
+        /// <summary>
+        /// retrieve total employees count
+        /// </summary>
+        /// <returns></returns>
         public int GetEmployeesCount()
         {
             int employeesCount = default(int);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                //Exclude Admin
+                //Employee count excluding admin
                 employeesCount = (context.Employees.Where(s => s.Status).Distinct().Count()) - 1;
             }
             return employeesCount;
