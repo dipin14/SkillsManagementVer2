@@ -3,14 +3,15 @@ using Common.Extensions;
 using Skillset_DAL.Models;
 using Skillset_DAL.Repositories;
 using System.Collections.Generic;
-
+using System;
+using System.Collections;
 
 namespace Skillset_BLL.Services
 {
     public class EmployeeServices : IEmployeeServices
     {
         private IEmployeeRepository _repository;
-
+        
         public EmployeeServices(IEmployeeRepository repository)
         {
             _repository = repository;
@@ -116,15 +117,6 @@ namespace Skillset_BLL.Services
         }
 
         /// <summary>
-        /// Get recently rated employee list
-        /// </summary>
-        /// <returns></returns>
-        public List<EmployeeDTO> GetRecentEmployees()
-        {
-            return _repository.GetRecentEmployees().ListEmployeeModeltoDTO();
-        }
-      
-        /// <summary>
         /// Return total employees count
         /// </summary>
         /// <returns></returns>
@@ -199,5 +191,12 @@ namespace Skillset_BLL.Services
         {
             return _repository.FindEmployeeName(id);
         }
+
+        public List<KeyValuePair<string, string>> GetTopRatedRecentEmployees()
+        {
+            return _repository.GetTopRatedRecentEmployees();
+        }
+
+       
     }
 }

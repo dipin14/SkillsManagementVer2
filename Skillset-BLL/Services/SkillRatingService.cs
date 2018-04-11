@@ -62,11 +62,6 @@ namespace Skillset_BLL.Services
         }
 
         
-        public string GetEmployeeRating()
-        {
-            return _iSkillRatingRepository.GetEmployeeRating();
-        }
-
         public int GetSkillRatingsCount()
         {
             return _iSkillRatingRepository.GetSkillRatingsCount();
@@ -81,6 +76,16 @@ namespace Skillset_BLL.Services
         {
             return _iSkillRatingRepository.GetEmployeeRatedSkillExcludeSpecial();
         }
+        
+        public string GetTopEmployeeRating()
+        {
+            return _iSkillRatingRepository.GetTopEmployeeRating();
+        }
 
+        public string GetLeastEmployeeRating()
+        {
+            return _iSkillRatingRepository.GetLeastEmployeeRating();
+
+        }
     }
 }

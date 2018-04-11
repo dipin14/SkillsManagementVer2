@@ -24,7 +24,7 @@ namespace Skillset_DAL.Repositories
         int Update(Skill skill);
 
         /// <summary>
-        /// Sets status of skill to false
+        /// Sets status of skill to false using skill Id
         /// </summary>
         /// <param name="skill Id"></param>
         /// <returns></returns>

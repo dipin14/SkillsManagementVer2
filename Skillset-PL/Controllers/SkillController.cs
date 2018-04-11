@@ -16,43 +16,56 @@ namespace Skillset_PL.Controllers
     {
         private readonly ISkillService _skillService;
 
+        /// <summary>
+        /// Dependency injection for Skill Service
+        /// </summary>
+        /// <param name="skillService"></param>
         public SkillController(ISkillService skillService)
         {
             _skillService = skillService;
         }
-        
-        // GET: Skill
+
+        /// <summary>
+        /// Shows list of skills taking pagenumber as argument
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public ActionResult Index(int? page)
         {
+            //List of skills are ordered by Skill Name
             var skillList = _skillService.GetAllSkills().ToViewModelList().OrderBy(s => s.SkillName);
 
-            int pageSize = 5;
+            //Limited the number of rows per page to 3
+            int pageSize = 3;
             int pageNumber = (page ?? 1);
             return View(skillList.ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Skill/Details/5
-        public ActionResult Details(string name)
-        {
-            return View();
-        }
-
-        // GET: Skill/Create
+        /// <summary>
+        ///  Does GET for Creating Skill
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Skill/Create
+        /// <summary>
+        /// POST for Creating Skill using SkillViewModel
+        /// </summary>
+        /// <param name="skillViewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Create(SkillViewModel skillViewModel)
         {
             try
             {
+                //Leading and trailing empty spaces are trimmed
                 skillViewModel.SkillName = skillViewModel.SkillName.Trim();
                 skillViewModel.SkillDescription = skillViewModel.SkillDescription.Trim();
                 var skillCreateResult = _skillService.Create(skillViewModel.ToDTO());
 
+                //-1 is returned if new Skill has already existing Skill Name
                 if (skillCreateResult == -1)
                 {
                     ModelState.AddModelError("SkillName", "Skill Name Already Exists");
@@ -62,6 +75,7 @@ namespace Skillset_PL.Controllers
                 {
                     ViewBag.Message = "Db Creation Error! Please Restart Application";
                 }
+                //Notification Message is stored in tempdata
                 TempData["message"] = "Successfully Added Skill";
                 return RedirectToAction("Index");
             }
@@ -71,13 +85,18 @@ namespace Skillset_PL.Controllers
             }
         }
 
-        // GET: Skill/Edit/5
+        /// <summary>
+        /// Gets Skill values using SkillName
+        /// </summary>
+        /// <param name="skillName"></param>
+        /// <returns></returns>
         public ActionResult Edit(string skillName)
         {
             if (skillName == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //Skill values returned from GetBySkillName is assigned to skillView
             SkillViewModel skillView = _skillService.GetBySkillName(skillName).ToViewModel();
             if (skillView == null)
             {
@@ -86,7 +105,12 @@ namespace Skillset_PL.Controllers
             return View(skillView);
         }
 
-        // POST: Skill/Edit/5
+        /// <summary>
+        /// Updates Skill values with values from SkillViewModel
+        /// </summary>
+        /// <param name="skillView"></param>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SkillViewModel skillView, FormCollection collection)
@@ -95,7 +119,14 @@ namespace Skillset_PL.Controllers
             {
                 skillView.SkillName = skillView.SkillName.Trim();
                 skillView.SkillDescription = skillView.SkillDescription.Trim();
-                _skillService.Update(skillView.ToDTO());
+                var skillUpdateResult = _skillService.Update(skillView.ToDTO());
+                //-1 is returned if the updated Skill Name already exists
+                if(skillUpdateResult == -1)
+                {
+                    ModelState.AddModelError("SkillName", "Skill Name already exists");
+                    return View(skillView);
+                }
+                //Notification Message is stored in tempdata
                 TempData["message"] = "Modified skill record";
                 return RedirectToAction("Index");
             }
@@ -106,7 +137,11 @@ namespace Skillset_PL.Controllers
             }
         }
 
-        // GET: Skill/Delete/5
+        /// <summary>
+        /// GETS Skill values using Skill Name
+        /// </summary>
+        /// <param name="skillName"></param>
+        /// <returns></returns>
         public ActionResult Delete(string skillName)
         {
             if (skillName == null)
@@ -120,7 +155,12 @@ namespace Skillset_PL.Controllers
             }
         }
 
-        // POST: Skill/Delete/5
+        /// <summary>
+        /// Deletes Skill record using Skill Id
+        /// </summary>
+        /// <param name="skillView"></param>
+        /// <param name="collection"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(SkillViewModel skillView, FormCollection collection)
@@ -134,6 +174,7 @@ namespace Skillset_PL.Controllers
                 else
                 {
                     var deleteResult = _skillService.Delete(skillView.SkillName);
+                    //Notification Message is stored in tempdata
                     TempData["message"] = "Successfully deleted skill record";
                     return RedirectToAction("Index");
                 }
