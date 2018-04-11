@@ -12,16 +12,29 @@ namespace Skillset_BLL.Services
     {
         private readonly ISkillRatingRepository _iSkillRatingRepository;
 
-        //DI to UserRepository
+        /// <summary>
+        /// Dependency Injection for SkillRating Repository
+        /// </summary>
+        /// <param name="skillRatingRepository"></param>
         public SkillRatingService(ISkillRatingRepository skillRatingRepository)
         {
             _iSkillRatingRepository = skillRatingRepository;
         }
+        /// <summary>
+        /// Insert skillRatings into table SkillRatings
+        /// </summary>
+        /// <param name="skillRatingDto"></param>
+        /// <returns></returns>
         public int Create(IList<EmployeeSkillRatingDTO>skillRatingDto)
         {    
             return _iSkillRatingRepository.Create(skillRatingDto.ToSkillRatingModelList());
         }
-        //Get All employeee ratings to ratedDto
+
+        /// <summary>
+        /// Retrieve all SkillRatings from SkillRating table
+        /// </summary>
+        /// <param name="empId"></param>
+        /// <returns></returns>
         public IList<EmployeeRatedSkillsDTO> GetRatedSkills(int empId)
         { var RatingValuesList = _iSkillRatingRepository.GetAllRatingValues();
             var RaitingList=_iSkillRatingRepository.GetAllRatings(empId);
@@ -48,6 +61,11 @@ namespace Skillset_BLL.Services
 
             }).ToList();
         }
+        /// <summary>
+        /// Remove skillRatings from table SkillRatings
+        /// </summary>
+        /// <param name="SkillRatingId"></param>
+        /// <returns></returns>
         public int Delete(int SkillRatingId)
         {
             //Retrieves skill id from unique skill name

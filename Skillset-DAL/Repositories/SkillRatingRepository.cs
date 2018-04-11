@@ -9,7 +9,11 @@ using System.Text;
 namespace Skillset_DAL.Repositories
 {
     public class SkillRatingRepository : ISkillRatingRepository
-    {
+    {  /// <summary>
+       /// Insert skillRatings into SkillRating table
+       /// </summary>
+       /// <param name="skillRatingList"></param>
+       /// <returns></returns>
         public int Create(IList<SkillRating> skillRatingList)
         {
             try
@@ -47,6 +51,10 @@ namespace Skillset_DAL.Repositories
                 return -1;
             }
         }
+        /// <summary>
+        /// Retrieve all skillsRatings from SkillRatings table
+        /// </summary>
+        /// <returns></returns>
         public IList<SkillRating> GetAllRatings(int empId)
         {
 
@@ -57,6 +65,10 @@ namespace Skillset_DAL.Repositories
             }
 
         }
+        /// <summary>
+        /// Retrieve all skills from Skill table
+        /// </summary>
+        /// <returns></returns>
         public IList<Skill> GetAllSkills()
         {
             using (var db = new SkillsetDbContext())
@@ -65,7 +77,10 @@ namespace Skillset_DAL.Repositories
                 return skillList;
             }
         }
-
+        /// <summary>
+        /// Retrieve all skillsRatingsValues from Rating table
+        /// </summary>
+        /// <returns></returns>
         public IList<Rating> GetAllRatingValues()
         {
             using (var db = new SkillsetDbContext())
@@ -74,6 +89,13 @@ namespace Skillset_DAL.Repositories
                 return RatingValues;
             }
         }
+
+
+        /// <summary>
+        /// Sets status of skillRating to false using SkillRating table
+        /// </summary>
+        /// <param name="SkillRatingId "></param>
+        /// <returns></returns>
         public int Delete(int? SkillRatingId)
         {
             if (SkillRatingId != null)
