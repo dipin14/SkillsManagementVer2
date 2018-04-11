@@ -316,63 +316,7 @@ textarea {
       
     }
 }*/
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background-color:#181a1c;
-    height: 60px;
-    width: 60px;
-    padding-left: 10px;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    visibility:visible;
-        border-radius:5px;
-}
-.loading-bar {
-  display: inline-block;
-  width: 4px;
-  height: 5px;
-  border-radius: 1px;
-  animation: loading 1s ease-in-out infinite;
 
-}
-.loading-bar:nth-child(1) {
-  background-color: #3498db;
-  animation-delay: 0;
-}
-.loading-bar:nth-child(2) {
-  background-color: #c0392b;
-  animation-delay: 0.05s;
-}
-.loading-bar:nth-child(3) {
-  background-color: #f1c40f;
-  animation-delay: .10s;
-}
-.loading-bar:nth-child(4) {
-  background-color: #27ae60;
-  animation-delay: .15s;
-}
-.loading-bar:nth-child(5) {
-  background-color: chocolate;
-  animation-delay: .20s;
-}
-.loading-bar:nth-child(6) {
-  background-color: lightblue;
-  animation-delay: .30s;
-}
-
-@keyframes loading {
-  0% {
-    transform: scale(1);
-  }
-  20% {
-    transform: scale(1, 10);
-  }
-  40% {
-    transform: scale(1);
-  }
-}
 input[type=button] {
     color:white;
     margin-bottom:20px;
