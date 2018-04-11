@@ -20,7 +20,10 @@
 .fb:focus, .fb:hover {
     color: FFF !important;
 }
-
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
 
 .left-side {
     padding: 0px 0px 0px;

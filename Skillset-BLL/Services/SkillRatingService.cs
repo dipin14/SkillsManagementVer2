@@ -55,9 +55,9 @@ namespace Skillset_BLL.Services
             {   Id=employee.Id,
                 EmployeeId = employee.EmployeeId,
                 SkillName = employee.SkillName,
-                RaitedNote = employee.RaitedNote,
-                RaitedValue = employee.RaitedValue,
-                RaitedDate=employee.RaitedDate
+                RatedNote = employee.RaitedNote,
+                RatedValue = employee.RaitedValue,
+                RatedDate=employee.RaitedDate
 
             }).ToList();
         }
