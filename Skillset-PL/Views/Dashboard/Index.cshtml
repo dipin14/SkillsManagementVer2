@@ -69,7 +69,7 @@
 <body>
     <div class="row">
         <div class="col-md-4 tile-first">
-            <span class="tile-top"><i class="fa fa-user"></i>Total Users</span>
+            <span class="tile-top"><i class="fa fa-user"></i>Total Employees</span>
             <div class="tile-value">@(ViewBag.TotalEmployees)</div>
         </div>
         <div class="col-md-4 tile-list">
@@ -104,7 +104,7 @@
             <div class="dashboard-card">
                 <div class="row card-title">
                     <div class="col-md-8">
-                        <h3>Top Skilled</h3>
+                        <h3 data-tooltip="Employees who have rated 5 star for skills" data-tooltip-position="bottom">Top Skilled</h3>
                         @using (Html.BeginForm("Index", "Dashboard", FormMethod.Get))
                         {
                             <div class="row" style="margin-left:0px">

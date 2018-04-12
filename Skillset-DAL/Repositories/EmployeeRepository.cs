@@ -402,7 +402,7 @@ namespace Skillset_DAL.Repositories
                              on sr.RatingId equals r.Id
                              join s in context.Skills
                              on sr.SkillId equals s.SkillId
-                             where sr.Status == true && s.Status == true && sr.RatingId == RatingId
+                             where sr.Status == true && s.Status == true && sr.RatingId == RatingId && e.Status == true
                              orderby sr.RatingId descending
                              select new { s.SkillName, e.Name }).ToList();
 
