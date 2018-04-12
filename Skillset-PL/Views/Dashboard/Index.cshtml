@@ -140,12 +140,9 @@
                         <tbody>
                             @if ((ViewBag.TopSkillsTableData != null))
                             {
-                                int i = 1;
                                 foreach (var group in ViewBag.TopSkillsTableData)
                                 {
-                                    i++;
-                                    if (i == 1)
-                                    {
+                                    
                                         <tr class="blogBox">
                                             <td>@group.Key</td>
                                             <td style="color:#1ABB9C">
@@ -156,25 +153,10 @@
                                                 }
                                             </td>
                                         </tr>
-                                    }
-                                    else
-                                    {
-                                        <tr class="blogBox moreBox" style="display: none;">
-                                            <td>@group.Key</td>
-                                            <td style="color:#1ABB9C">
-                                                @foreach (var item in group.Values)
-                                                {
-                                                    @item
-                                                    <br />
-                                                }
-                                            </td>
-                                        </tr>
-                                    }
+                                   
 
                                 }
-                                @*<div id="loadMore" style="">
-                                    <a href="#">Load More</a>
-                                </div>*@
+                              
                             }
                             @if (ViewBag.TopSkillsTableData.Count <= 0)
                             {
