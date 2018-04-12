@@ -65,7 +65,7 @@ function SubmitRating(RatedSkills, TotalSkills) {
     var specialSkill = document.getElementById("TxtAra").value
      var specialScore = document.getElementById("Rating 0").value
      var SkillID = 1;
-     if (specialSkill != "" && specialScore != "") 
+     if (specialSkill.trim() != "" && specialScore != "") 
      {
        
             var RatingObject = {};
@@ -86,8 +86,8 @@ function CompleteRating(RatingList) {
     if (RatingList == "") {
         var specialSkill = document.getElementById("TxtAra").value
         var specialScore = document.getElementById("Rating 0").value
-        if (specialSkill == "" && specialScore!="")
-            ValidateEmployee("Special skill name is mandatory")
+        if (specialSkill.trim() == "" && specialScore!="")
+            ValidateEmployee("Special skill name is required")
         else
             ValidateEmployee("Enter your ratings");
     }

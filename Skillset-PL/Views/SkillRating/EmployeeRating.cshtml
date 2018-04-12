@@ -26,15 +26,12 @@
 }
 
 
-
-
-
 <div class="row first" style="background-color:white;padding:30px;padding-top:30px;margin:10px;">
     <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Rate Your Skills</label>
     <div class="row">
         <div class="col-sm-7">
-            <div class="panel-heading" style="display:block;background-color:#2a3f54;color:#FFF;"><b>Skills</b></div>
 
+            <div class="panel-heading" style="display:block;background-color:#2a3f54;color:#FFF;"><b>Skills</b></div>
 
 
 
@@ -42,7 +39,6 @@
                 Succesfully added rating
             </div>
             <div id="snackbarValidation">
-
             </div>
           @if (Model.SkillRatings.Count() > 0)
           {
@@ -63,7 +59,10 @@
                                 @Html.DisplayFor(modelItem => item.SkillDescription)
                             </p>
 
+{
+
                         </div>
+
 
 
 
@@ -86,7 +85,10 @@
                     </div>
                 </div>
 
+
                     <br />
+
+
               }
 
           }
@@ -100,9 +102,11 @@
 
             <button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>
 
+
             <div id="demo" class="collapse">
                 <div class="Ratecard">
                     <div class="row">
+
 
                         <div class="col-sm-6" style="margin-left:20px;">
                             <textarea class="txtSkillSpecial" id="TxtAra" placeholder="Enter your special skill here"></textarea>
@@ -117,6 +121,7 @@
                                 <span class="starFade" id="Rate4 0" onclick="CRate(0, 4)" onmouseover="CRateOver(0,4)" onmouseout="CRateOut(0,4)" data-tooltip="Okay" data-tooltip-position="bottom"></span>
                                 <span class="starFade" id="Rate5 0" onclick="CRate(0, 5)" onmouseover="CRateOver(0,5)" onmouseout="CRateOut(0,5)" data-tooltip="Perfect" data-tooltip-position="bottom"></span>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -124,13 +129,12 @@
 
             <br /><br />
 
-
-
             @{var data = @Html.Raw(Json.Encode(Model.SkillRatings));
                 <input type="button" class="btn btn-info" style="background-color:#1abb9c;border-color:rgb(26, 187, 156);" onclick='SubmitRating(@data,@Model.SkillRatings.Count())' value="Submit Ratings">
 
                 <input type="button" class="btn btn-info " style="background-color:#2a3f54;border-color:#2a3f54;margin-bottom:20px;" onclick='Reload()' value="Reset">
             }
+
 
         </div>
 
@@ -141,7 +145,6 @@
 
                 <div class="row">
 
-
                     <div class="col-sm-7" style="padding-left:13px;text-align:left">
                         <b> Rated Skills</b>
                     </div>
@@ -149,16 +152,18 @@
 
                         <div id="loading"> </div>
                     </div>
+
                 </div>
 
+
+
+
             </div>
-            @*<div class="col-sm-4 well " style="background-color:white;">*@
+
             <div class="panel panel-body" style="border-color:whitesmoke;">
                 @if (Model.RatedSkills.Count() > 0)
+
                 {
-
-
-
 
 
                     foreach (var item in Model.RatedSkills)
@@ -178,17 +183,21 @@
                             </p>
                             @for (var i = 1; i <= item.RatedValue; i++)
                     {
+
+
                                 <span class="starGlowN"></span>
                             }
                             @for (var i = (item.RatedValue + 1); i <= 5; i++)
                     {
+
+
                                 <span class="starFadeN"></span>
                             }
-
-
                         </div>
 
                     }
+
+
                 }
                 else
                 {
@@ -197,6 +206,8 @@
                             <strong>No skill ratings!</strong>
                             <br /> You have no skills rated.
                         </div>
+
+
                 }
             </div>
         </div>

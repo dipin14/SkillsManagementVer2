@@ -14,7 +14,6 @@ namespace Skillset_PL.ViewModels
         public string Name { get; set; }
         public string Designation { get; set; }
         public string ManagerCode { get; set; }
-        [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
     }

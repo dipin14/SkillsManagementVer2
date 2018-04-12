@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Skillset_DAL.Repositories
 {
-    public interface IReportingStaff
+    public interface IReportingStaffRepository
     { 
         /// <summary>
         /// Retrieve List of employees under a manager

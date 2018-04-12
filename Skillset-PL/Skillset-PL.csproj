@@ -251,6 +251,7 @@
     <Content Include="obj\Debug\Skillset-PL.csprojResolveAssemblyReference.cache" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\redstar.png" />
+    <Content Include="Scripts\ActiveNav.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.js" />
