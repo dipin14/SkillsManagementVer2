@@ -82,6 +82,32 @@ namespace Skillset_DAL.Repositories
         }
 
         /// <summary>
+        /// Checks if duplicate employee exist with same employee code, mobile number or email
+        /// </summary>
+        /// <param name="employeeList"></param>
+        /// <param name="newEmployee"></param>
+        /// <returns></returns>
+        public int CheckDuplicateEmployeeForEdit(List<Employee> employeeList, Employee newEmployee)
+        {
+            var check = new List<Employee>();
+
+            //Gets the list of employees with same mobilenumber
+            check = employeeList.Where(p => p.MobileNumber == newEmployee.MobileNumber && p.EmployeeCode != newEmployee.EmployeeCode).ToList();
+            if (check.Count == 1)
+            {
+                return 1;
+            }
+            //Gets the list of employees with same email
+            check = employeeList.Where(p => p.Email == newEmployee.Email && p.EmployeeCode != newEmployee.EmployeeCode).ToList();
+            if (check.Count == 1)
+            {
+                return 2;
+            }
+            return 0;
+
+        }
+
+        /// <summary>
         /// Delete employee by id
         /// </summary>
         /// <param name="id"></param>
@@ -97,7 +123,7 @@ namespace Skillset_DAL.Repositories
                     Employee employee = context.Employees.Where(p => p.EmployeeCode == id && p.Status == true).Single();
                     int managerCount = GetManagers().Count();
                     //if the employee to be deleted is the only manager
-                    if(managerCount==1&&employee.RoleId==2)
+                    if (managerCount == 1 && employee.RoleId == 2)
                     {
                         return 2;
                     }
@@ -114,7 +140,7 @@ namespace Skillset_DAL.Repositories
                         context.Entry(employee).State = EntityState.Modified;
                         context.SaveChanges();
                     }
-                    
+
                 }
                 return 1;
             }
@@ -132,33 +158,56 @@ namespace Skillset_DAL.Repositories
         /// <returns></returns>    
         public int EditEmployee(Employee employee)
         {
-            try
+            //try
+            //{
+            List<Employee> employeeList = new List<Employee>();
+            using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                using (SkillsetDbContext context = new SkillsetDbContext())
+              employeeList = context.Employees.Where(p => p.Status == true).ToList();
+            }
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
+                int managerCount = GetManagers().Count();
+                int role = Convert.ToInt32(context.Employees.Where(p => p.EmployeeCode == employee.EmployeeCode).Select(p => p.RoleId).Single());
+                //if the employee to be edited is the only manager and attempts to change role
+                if (managerCount == 1 && role == 2 && employee.RoleId != 2)
                 {
-                    int managerCount = GetManagers().Count();
-                    //if the employee to be edited is the only manager and attempts to change role
-                    if (managerCount == 1 && employee.RoleId != 2)
-                    {
-                        return 2;
-                    }
-                    else
+                    return 3;
+                }
+                else
+                {
+                    int status = CheckDuplicateEmployeeForEdit(employeeList, employee);
+                    if (status == 0)
                     {
                         //gets the id of the employee
                         int id = Convert.ToInt32(context.Employees.Where(p => p.EmployeeCode == employee.EmployeeCode).Select(p => p.Id).Single());
+
                         employee.Id = id;
                         employee.Status = true;
                         context.Entry(employee).State = EntityState.Modified;
                         context.SaveChanges();
+                        return 0;
                     }
-                   
+                    //mobile number same
+                    else if (status == 1)
+                    {
+                        return 1;
+                    }
+                    //email same
+                    else
+                    {
+                        return 2;
+                    }
+
                 }
-                return 1;
+
             }
-            catch
-            {
-                return 0;
-            }
+
+            //}
+            //catch
+            //{
+            //    return -1;
+            //}
         }
 
         /// <summary>
@@ -296,10 +345,10 @@ namespace Skillset_DAL.Repositories
         {
             var employeeList = new List<Employee>();
             try
-            {         
+            {
                 int employeeCount;
-                if(search!=null)
-                  search=search.ToUpper();
+                if (search != null)
+                    search = search.ToUpper();
                 using (SkillsetDbContext context = new SkillsetDbContext())
                 {
                     //if no search value is there
@@ -314,11 +363,11 @@ namespace Skillset_DAL.Repositories
                         //Query to get the list of employees whose name code or designation matches the search key
                         var query = from e in context.Employees
                                     from d in context.Designations
-                                    where (e.DesignationId == d.Id && e.Status == true && e.RoleId != 1 && d.Id != 1 && (e.Name.ToUpper().Contains(search)||d.Name.ToUpper().Contains(search)||e.EmployeeCode.ToUpper().Contains(search)))
+                                    where (e.DesignationId == d.Id && e.Status == true && e.RoleId != 1 && d.Id != 1 && (e.Name.ToUpper().Contains(search) || d.Name.ToUpper().Contains(search) || e.EmployeeCode.ToUpper().Contains(search)))
                                     select e;
-                        employeeList=query.OrderBy(p=>p.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
+                        employeeList = query.OrderBy(p => p.EmployeeCode).Skip(pageSize * pageNumber).Take(pageSize).ToList();
                         employeeCount = query.OrderBy(p => p.EmployeeCode).Count();
-                        
+
                     }
                     totalCount = employeeCount;
                     return employeeList;
@@ -476,6 +525,6 @@ namespace Skillset_DAL.Repositories
             }
         }
 
-       
+
     }
 }
