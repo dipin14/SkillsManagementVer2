@@ -163,6 +163,7 @@ namespace Skillset_PL.Controllers
             employee.Name = employee.Name.Trim();
             employee.Email = employee.Email.Trim();
             employee.Address = employee.Address.Trim();
+            employee.MobileNumber =Convert.ToDouble( employee.MobileNumber.ToString().Trim());
             if (ModelState.IsValid)
             {
                 int status = _services.AddNewEmployee(employee.EmployeeViewModeltoDTO());
@@ -292,6 +293,8 @@ namespace Skillset_PL.Controllers
             employee.Name = employee.Name.Trim();
             employee.Email = employee.Email.Trim();
             employee.Address = employee.Address.Trim();
+            employee.MobileNumber = Convert.ToDouble(employee.MobileNumber.ToString().Trim());
+
             EmployeeViewModel originalEmployee = (EmployeeViewModel)Session["EmployeeOriginal"];
             var comparer = new ObjectsComparer.Comparer<EmployeeViewModel>();
             if (ModelState.IsValid)
