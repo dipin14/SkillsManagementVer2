@@ -87,7 +87,7 @@
         <div class="col-md-8 ">
             <div class="dashboard-graph">
                 <div class="row graph-title">
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="padding-top:12px;padding-bottom:12px">
                         <h3>Average Ratings</h3>
                     </div>
                 </div>
@@ -103,11 +103,27 @@
             <div class="dashboard-card">
                 <div class="row card-title">
                     <div class="col-md-8">
-                        <h3>Top Skilled</h3><div>Employees</div>
+                        <h3>Top Skilled</h3>
+                        @using (Html.BeginForm("Index", "Dashboard", FormMethod.Get))
+                        {
+                            <div class="row" style="margin-left:0px">
+                                <div class="col-md-8" style="padding:0px">
+                                    @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control", @placeholder = "Employee/Skill" } })
+                                </div>
+                                <div class="col-md-4" style="padding-right:0px;padding-left:5px">
+                                    <button type="submit" name="submit" class="btn" style="background-color:white;color:#2a3f54;font-size:20px;" data-tooltip="Search Employee/Skill" data-tooltip-position="bottom">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    @*<a href="@Url.Action("Index")" data-tooltip="Search Employee/Skill" data-tooltip-position="bottom" style="background-color:white;color:#2a3f54;font-size:20px;" class="btn"><div class="fa fa-search"></div></a>*@
+                                    <a href="@Url.Action("Index")" data-tooltip="Refresh Search" data-tooltip-position="bottom" style="background-color:white;color:#2a3f54;font-size:20px;" class="btn"><div class="fa fa-refresh"></div></a>
+                                </div>
+                            </div>
+                        }
                     </div>
                     <div class="col-md-4 toggle-card">
                         <a class="toggle-button" style="float:right;"><i class="classi fa fa-chevron-up"></i></a>
                     </div>
+
                 </div>
             </div>
             <div class="col-md-12" style="background:white;" id="show">
