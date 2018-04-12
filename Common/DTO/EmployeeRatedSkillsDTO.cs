@@ -11,8 +11,8 @@ namespace Common.DTO
         public int Id { get; set; }
         public int EmployeeId { get; set; }
         public string SkillName { get; set; }
-        public int RaitedValue { get; set; }
-        public DateTime RaitedDate { get; set; }
-        public string RaitedNote { get; set; }
+        public int RatedValue { get; set; }
+        public DateTime RatedDate { get; set; }
+        public string RatedNote { get; set; }
     }
 }
