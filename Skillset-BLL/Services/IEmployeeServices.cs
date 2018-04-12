@@ -124,7 +124,7 @@ namespace Skillset_BLL.Services
         /// Retrieve employee name and skill name of those employee who top rated that skill
         /// </summary>
         /// <returns></returns>
-        List<KeyValuePair<string, string>> GetTopRatedRecentEmployees();
+        List<KeyValuePair<string, string>> GetTopRatedRecentEmployees(string search);
 
 
     }
