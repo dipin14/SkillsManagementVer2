@@ -1,4 +1,4 @@
-﻿
+﻿@using Skillset_PL.ViewModels;
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Dashboard";
@@ -11,6 +11,7 @@
 
     <link href="~/Content/Site.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="~/Scripts/LoadMore.js"></script>
     <script>
 
         var BarChartData =
@@ -139,13 +140,41 @@
                         <tbody>
                             @if ((ViewBag.TopSkillsTableData != null))
                             {
-                                foreach (var item in ViewBag.TopSkillsTableData)
+                                int i = 1;
+                                foreach (var group in ViewBag.TopSkillsTableData)
                                 {
-                                    <tr>
-                                        <td>@item.Value</td>
-                                        <td style="color:#1ABB9C">@item.Key</td>
-                                    </tr>
+                                    i++;
+                                    if (i == 1)
+                                    {
+                                        <tr class="blogBox">
+                                            <td>@group.Key</td>
+                                            <td style="color:#1ABB9C">
+                                                @foreach (var item in group.Values)
+                                                {
+                                                    @item
+                                                    <br />
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr class="blogBox moreBox" style="display: none;">
+                                            <td>@group.Key</td>
+                                            <td style="color:#1ABB9C">
+                                                @foreach (var item in group.Values)
+                                                {
+                                                    @item
+                                                    <br />
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+
                                 }
+                                @*<div id="loadMore" style="">
+                                    <a href="#">Load More</a>
+                                </div>*@
                             }
                             @if (ViewBag.TopSkillsTableData.Count <= 0)
                             {
