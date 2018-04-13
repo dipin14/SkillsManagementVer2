@@ -27,6 +27,12 @@
                     <th>
                         @Html.DisplayName("Email")
                     </th>
+                    <th>
+                        @Html.DisplayName("Rated Skills Count")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Average Skill Rating")
+                    </th>
                     <th></th>
                 </tr>
             </thead>
@@ -45,6 +51,12 @@
                         </td>
                         <td data-title="Email">
                             @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td data-title="Rated Skills Count">
+                            @Html.DisplayFor(modelItem => item.RatedSkillsCount)
+                        </td>
+                        <td data-title="Average Skill Rating">
+                            @Html.DisplayFor(modelItem => item.AverageRating)
                         </td>
                         <td data-title="">
                             <a href="@Url.Action("SkillRate",new { code = item.EmployeeCode, name = item.Name })" data-tooltip="View Skills" data-tooltip-position="bottom"><i class="fa fa-lightbulb-o" style="background-color:white;color:#2a3f54;font-size:20px;"></i></a>
