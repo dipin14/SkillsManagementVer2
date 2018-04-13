@@ -14,7 +14,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</div>
                 <div class="panel-body">*@
-        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px">Employee Details</label>
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:15px">Employee Details</label>
         <div class="well" style="background-color:#fff;">
             <div class="row">
                 <table class="table-responsive profileborder" style="width: 100%">
@@ -36,12 +36,12 @@
                     <tr>
                         <td style="width:5%"><span class="fa fa-calendar"></span></td>
                         <td>Birth Date </td>
-                        <td class="info">@Model.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                        <td class="info">@Model.DateOfBirth.ToString("MM/dd/yyyy")</td>
                     </tr>
                     <tr>
                         <td style="width:5%"><span class="fa fa-calendar"></span></td>
                         <td>Joining Date </td>
-                        <td class="info">@Model.DateOfJoining.ToString("dd/MM/yyyy")</td>
+                        <td class="info">@Model.DateOfJoining.ToString("MM/dd/yyyy")</td>
                     </tr>
                     <tr>
                         <td style="width:5%"><span class="fa fa-cog"></span></td>
@@ -73,9 +73,9 @@
 <br />
 <div class="col-sm-2"></div>
 <div class="col-sm-8">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeCode }, htmlAttributes: new { @class = "btn btn-warning", @style = "background-color:#2a3f54;color:#FFF; border-color:#2a3f54" })
+    <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-aqua">Back</a>
     &nbsp; &nbsp;
-    <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-primary" style="background-color:whitesmoke;color:#2a3f54; border-color:#2a3f54">Back</a>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeCode }, htmlAttributes: new { @class = "btn btn-green" })
 
 </div>
 

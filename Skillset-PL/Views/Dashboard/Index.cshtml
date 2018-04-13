@@ -19,10 +19,7 @@
             labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
             datasets: [{
                 label: 'Skill Ratings Average',
-                backgroundColor: ["rgba(42, 63, 84, 1.0)",
-                "rgba(42, 63, 84, 1.0)", "rgba(42, 63, 84, 1.0)",
-                "rgba(42, 63, 84, 1.0)", "rgba(42, 63, 84, 1.0)",
-                "rgba(42, 63, 84, 1.0)", "rgba(42, 63, 84, 1.0)"],
+                backgroundColor: "rgba(42, 63, 84, 1.0)",
 
 
                 borderWidth: 2,
@@ -127,7 +124,7 @@
 
                 </div>
             </div>
-            <div class="col-md-12" style="background:white;" id="show">
+            <div class="col-md-12" style="background:white;padding-left: 0px;padding-right: 0px;" id="show">
                 <div id="collapse1">
                     <table class="employeetable table table-hover table-responsive" style="margin-bottom:10px">
                         <thead style="background-color: #2a3f54;color: white;">
@@ -145,7 +142,7 @@
                                     
                                         <tr class="blogBox">
                                             <td>@group.Key</td>
-                                            <td style="color:#1ABB9C">
+                                            <td>
                                                 @foreach (var item in group.Values)
                                                 {
                                                     @item
