@@ -95,7 +95,7 @@
                 @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2", })
                 <div class="col-md-4">
 
-                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", type = "date", @onchange = "OnChangeEvent();" } })
+                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new {@class = "form-control", type = "date", @onchange = "OnChangeEvent();" } })
 
                     @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger", id = "birthvalidation" })
                 </div>
