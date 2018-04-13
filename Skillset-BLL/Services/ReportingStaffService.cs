@@ -26,7 +26,7 @@ namespace Skillset_BLL.Services
         }
 
         /// <summary>
-        /// Retrieve details of an employee along with designation.
+        /// Retrieve details of an employee along with designation,rated skills count and average skill rating.
         /// </summary>
         /// <param name="managerCode"></param>
         /// <returns>IEnumerable<Common.DTO.ReportingStaff></returns>
@@ -44,7 +44,7 @@ namespace Skillset_BLL.Services
                                         Name = s.Name == null || s.Name == string.Empty ? "Not available" : s.Name,
                                         Email = s.Email == null || s.Email == string.Empty ? "Not available" : s.Email,
                                         Designation = d == null ? "Not available" : d.Name,
-                                        RatedSkillsCount=_employeeRepository.GetSkillDetails(s.EmployeeCode).Count(),
+                                        RatedSkillsCount=(_employeeRepository.GetSkillDetails(s.EmployeeCode).Select(x=>x.IsSpecialSkill==true).ToList()).Any() ? _employeeRepository.GetSkillDetails(s.EmployeeCode).Count()-1 : _employeeRepository.GetSkillDetails(s.EmployeeCode).Count(),
                                         AverageRating =AverageSkillRating(s.EmployeeCode)
                                     }).Distinct().ToList();
                 return staffDetails.Select(employee => new Common.DTO.ReportingStaff
@@ -104,22 +104,31 @@ namespace Skillset_BLL.Services
         }
 
         /// <summary>
-        /// Calculate average of skill rating of an employee
+        /// Calculate average of skill rating of an employee excluding special skill.
         /// </summary>
         /// <param name="employeeCode"></param>
         /// <returns>averageSkillRating</returns>
         public double AverageSkillRating(string employeeCode)
         {
             double sumOfSkillRating= default(double), averageSkillRating;
+            int RatedSkillsCount = default(int);
             var employeeSkillRatingList = _employeeRepository.GetSkillDetails(employeeCode);
-            if(employeeSkillRatingList.Count()!=0)
+            if(employeeSkillRatingList.Select(x=>x.IsSpecialSkill==true).ToList().Any())
+            {
+                RatedSkillsCount = employeeSkillRatingList.Count()-1;
+            }
+            else
+            {
+                RatedSkillsCount = employeeSkillRatingList.Count();
+            }
+            if(RatedSkillsCount != 0)
             {
                 foreach (var s in employeeSkillRatingList)
                 {
-
+                    if(!s.IsSpecialSkill)
                     sumOfSkillRating = sumOfSkillRating + _employeeRepository.FindSkillValue(s.RatingId);
                 }
-                averageSkillRating = sumOfSkillRating / employeeSkillRatingList.Count();
+                averageSkillRating = sumOfSkillRating / RatedSkillsCount;
             }
             else
             {

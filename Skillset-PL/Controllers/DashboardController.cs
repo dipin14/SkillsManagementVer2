@@ -30,7 +30,7 @@ namespace Skillset_PL.Controllers
             ViewBag.TotalEmployees = _services.GetEmployeesCount();
             ViewBag.TotalSkillRatingsCount = _ratingservices.GetSkillRatingsCount();
 
-            //Get chart data
+            //Get chart data excluding special skill
             ViewBag.SkillnameExcludeList = string.Format("'{0}'", string.Join("','", _ratingservices.GetEmployeeRatedSkillExcludeSpecial().Select(i => i.Replace("'", "\"\"")).ToArray()));
             ViewBag.RatingAverage = _ratingservices.GetRatingAverage();
 
