@@ -16,5 +16,7 @@ namespace Skillset_PL.ViewModels
         public string ManagerCode { get; set; }
         [Display(Name = "Email")]
         public string Email { get; set; }
+        public int RatedSkillsCount { get; set; }
+        public double AverageRating { get; set; }
     }
 }

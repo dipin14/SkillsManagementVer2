@@ -14,5 +14,7 @@ namespace Common.DTO
         public string Designation { get; set; }
         public string ManagerCode { get; set; }
         public string Email { get; set; }
+        public int RatedSkillsCount { get; set; }
+        public double AverageRating { get; set; }
     }
 }
