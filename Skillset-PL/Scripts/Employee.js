@@ -26,11 +26,25 @@ function ShowValidation()
 function OnSubmitClick()
 {
     ShowValidation();
+    NumberValidation();
     OnChangeEvent();
 }
+function NumberValidation()
+{
+    var temp = $("#MobileNumber").val().trim();
+    $("#MobileNumber").val(temp);
+}
+function OnChangeMobile() {
+    NumberValidation();
+}
+$('#MobileNumber').keyup(function () {
+    var temp = $("#MobileNumber").val().trim();
+    $("#MobileNumber").val(temp);
+});
 function resetValidation()
 {
     
     $(".has-error").empty();
     $(".text-danger").empty();
 }
+

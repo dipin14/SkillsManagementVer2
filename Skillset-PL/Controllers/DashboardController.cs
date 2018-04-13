@@ -18,8 +18,12 @@ namespace Skillset_PL.Controllers
         }
         // GET: Dashboard
       
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
+            //Search employee/skill from top rated employee table
+            if (search != null)
+                search = search.Trim();
+           
             //Get total skills,ratings and employees
             ViewBag.TotalSkills = _skillservices.GetSkillsCount();
             ViewBag.TotalEmployees = _services.GetEmployeesCount();
@@ -30,7 +34,7 @@ namespace Skillset_PL.Controllers
             ViewBag.RatingAverage = _ratingservices.GetRatingAverage();
 
             //Get table data
-            ViewBag.TopSkillsTableData= _services.GetTopRatedRecentEmployees();
+            ViewBag.TopSkillsTableData= _services.GetTopRatedRecentEmployees(search);
 
             return View();
         }
