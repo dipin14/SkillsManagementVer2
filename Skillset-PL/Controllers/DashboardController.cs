@@ -1,6 +1,7 @@
 ﻿using Skillset_BLL.Services;
 using System.Linq;
 using System.Web.Mvc;
+using Skillset_PL.ViewModels;
 
 namespace Skillset_PL.Controllers
 {
@@ -34,7 +35,7 @@ namespace Skillset_PL.Controllers
             ViewBag.RatingAverage = _ratingservices.GetRatingAverage();
 
             //Get table data
-            ViewBag.TopSkillsTableData= _services.GetTopRatedRecentEmployees(search);
+            ViewBag.TopSkillsTableData = (from b in _services.GetTopRatedRecentEmployees(search) group b by b.Value into g select new Group<string, string> { Key = g.Key, Values = g.Select(s=>s.Key).ToList() }).ToList();
 
             return View();
         }

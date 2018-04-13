@@ -264,6 +264,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\LoadMore.js" />
     <Content Include="Scripts\MenuList.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Skill.js" />
@@ -289,6 +290,7 @@
     <Compile Include="ViewModels\EmployeeRatedSkillsViewModel.cs" />
     <Compile Include="ViewModels\EmployeeRatingScreenViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\Group.cs" />
     <Compile Include="ViewModels\ReportingStaff.cs" />
     <Compile Include="ViewModels\AdministratorSkillViewModel.cs" />
     <Compile Include="ViewModels\EmployeeSkillRatingViewModel.cs" />
