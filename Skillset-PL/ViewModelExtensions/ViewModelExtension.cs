@@ -85,7 +85,9 @@ namespace Skillset_PL.ViewModelExtensions
                     EmployeeCode = staff.EmployeeCode,
                     Name = staff.Name,
                     Email = staff.Email,
-                    Designation = staff.Designation
+                    Designation = staff.Designation,
+                    RatedSkillsCount = staff.RatedSkillsCount,
+                    AverageRating = staff.AverageRating
                 }).Distinct().ToList().OrderBy(staff => staff.EmployeeCode).ThenBy(staff => staff.Name).ToList();
             }
             else

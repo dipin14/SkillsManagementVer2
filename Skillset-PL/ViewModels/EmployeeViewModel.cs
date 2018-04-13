@@ -10,7 +10,7 @@ namespace Skillset_PL.ViewModels
     {
 
         [Required(ErrorMessage ="Please enter Employee code")]
-        [Display(Name = "Code")]
+        [Display(Name = "Employee Code")]
         [RegularExpression("^E([0-9]){3,8}$", ErrorMessage = "Code must begin with 'E' followed by atleast 3 numbers")]
         public string EmployeeCode { get; set; }
         [Required(ErrorMessage = "Please enter Name")]
