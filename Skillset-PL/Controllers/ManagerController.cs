@@ -102,8 +102,12 @@ namespace Skillset_PL.Controllers
             }
             var EmpId = Convert.ToInt32(Session["customerId"]);
             EmployeeRatingScreenViewModel ratingObj = new EmployeeRatingScreenViewModel();
-            ratingObj.RatedSkills = GetRatedSkills(EmpId);
-            ratingObj.SkillRatings = EmployeeRatings();
+            var ratedList = GetRatedSkills(EmpId);
+            var SkillList = EmployeeRatings();
+            //var result = ratedList.Where(x => !SkillList.Contains(x.SkillId));
+            var result = SkillList.Where(p => !ratedList.Any(p2 => p2.SkillId == p.skillId));
+            ratingObj.RatedSkills = ratedList;
+            ratingObj.SkillRatings = result;
             ViewBag.IsSpecial = ratingObj.RatedSkills.ToList().Any(m => m.SkillName == "Special skill");
             return View(ratingObj);
         }
