@@ -44,8 +44,10 @@ namespace Skillset_BLL.Services
                                   join rt in RatingValuesList on r.RatingId equals rt.Id
                                   select new
                                   {   Id=r.Id,
+                                      SkillId=r.SkillId,
                                       EmployeeId = r.EmployeeId,
                                       SkillName =r.IsSpecialSkill==true?"Special skill":s.SkillName,
+                                      SkillDescription=s.SkillDescription,
                                       RaitedValue = rt.Value,
                                       RaitedNote=r.Note,
                                       RaitedDate=r.RatingDate
@@ -53,7 +55,9 @@ namespace Skillset_BLL.Services
                                   }).ToList();
             return RatingViewList.Select(employee => new EmployeeRatedSkillsDTO
             {   Id=employee.Id,
+                SkillId = employee.SkillId,
                 EmployeeId = employee.EmployeeId,
+                SkillDescription=employee.SkillDescription,
                 SkillName = employee.SkillName,
                 RatedNote = employee.RaitedNote,
                 RatedValue = employee.RaitedValue,
@@ -99,6 +103,12 @@ namespace Skillset_BLL.Services
         {
             return _iSkillRatingRepository.GetEmployeeRatedSkillExcludeSpecial();
         }
-    
+
+
+        public IList<SkillDTO>  GetAllSkills()
+        {
+            return _iSkillRatingRepository.GetAllSkills().ToDtoList();
+        }
+       
     }
 }
