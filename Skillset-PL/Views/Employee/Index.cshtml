@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <link href="~/Content/theme.css" rel="stylesheet" />
+<script src="~/Scripts/Employee.js"></script>
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Index";
@@ -20,7 +21,19 @@
         });
     </script>
 }
+@if (TempData["error"] != null)
+{
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            ValidateEmployee("@TempData["error"]");
+        });
+    </script>
+}
 <div id="snackbar"></div>
+<div id="snackbarValidation"></div>
 <div style="padding-bottom:10px;">
     @using (Html.BeginForm("Index", "Employee", FormMethod.Get))
     {
@@ -45,7 +58,7 @@
     }
 </div>
 
-<label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Employee Details</label>
+<label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:15px;">Employee Details</label>
 
 @if ((Model.Count() > 0))
 {

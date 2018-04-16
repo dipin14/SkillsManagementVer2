@@ -3,7 +3,6 @@
     Layout = "~/Views/SkillRating/_EmployeeLayout.cshtml";
     ViewBag.Title = "EmployeeRating";
 }
-
 <head>
     <link href="~/Content/Layout.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
@@ -15,22 +14,19 @@
 </head>
 @if (ViewBag.IsSpecial != null)
 {
-
     <script type="text/javascript">
 
-        $(function () {
+        $(function () 
+{
 
             EnableSpecial(@ViewBag.IsSpecial.ToString().ToLower());
         });
     </script>
 }
-
-
 <div class="row first" style="background-color:white;padding:30px;padding-top:30px;margin:10px;">
-    <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Rate Your Skills</label>
+    <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:15px;">Rate Your Skills</label>
     <div class="row">
         <div class="col-sm-7">
-
             <div class="panel-heading" style="display:block;background-color:#2a3f54;color:#FFF;">
             <b>Skills</b>
                 
@@ -50,14 +46,11 @@
           {
               foreach (var item in Model.RatedSkills)
               {
-
-
                 <div class="Ratecard">
                     <div style="float:right;">
                         <button class="glyphicon glyphicon-remove delete" id="@item.Id" onclick="DeleteRating(@item.Id)"></button>
                     </div>
                     <div class="row">
-
                         <div class="col-sm-6" style="margin-left:20px;">
                             <h4>
                                 <b style="color:#2a3f54;">
@@ -71,12 +64,7 @@
 
 
                         </div>
-
-
-
-
                         <div class="col-sm-5" style="color:grey;">
-
                            
                             <div class="str" id="StarRower " onmouseout="CRateSelected(@item.SkillId,@item.RatedValue)" style="margin-left:20px;margin-top:10px;min-width:120px;">
                                 <input id="Rating_@item.SkillId" value="@item.RatedValue" hidden />
@@ -103,13 +91,11 @@
                     
                 </div>
 
-
                     <br />
               }
           }
          @foreach (var item in Model.SkillRatings)
           {
-
 
                     <div class="Ratecard">
                         <div class="row">
@@ -127,10 +113,6 @@
                                 
 
                             </div>
-
-
-
-
                             <div class="col-sm-5" style="color:grey;">
 
                                 <div class="str" id="StarRower " onmouseout="CRateSelected(@item.skillId)" style="margin-left:20px;margin-top:10px;min-width:120px;">
@@ -143,17 +125,13 @@
 
                                     }
 
-
                                 </div>
-
                                 <textarea class="txtSkill" id="TxtAra_@item.skillId" placeholder="Enter your notes here" required style=" margin:10px;"></textarea>
-
 
                             </div>
 
                         </div>
                     </div>
-
                     <br />
          }
 
@@ -170,11 +148,9 @@
 
             @*<button class="btn btn-info" id="specialSkillBtn" href="#demo" data-toggle="collapse">Special Skills?</button>*@
 
-
            @*<div id="demo" class="collapse">
                 <div class="Ratecard">
                     <div class="row">
-
 
                         <div class="col-sm-6" style="margin-left:20px;">
                             <textarea class="txtSkillSpecial" id="TxtAra" placeholder="Enter your special skill here"></textarea>
@@ -205,7 +181,6 @@
 
                 <input type="button" class="btn btn-info " style="background-color:#2a3f54;border-color:#2a3f54;margin-bottom:20px;" onclick='Reload()' value="Reset">
             }
-
 
         </div>
 

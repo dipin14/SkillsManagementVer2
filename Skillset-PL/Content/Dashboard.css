@@ -94,12 +94,12 @@
 
 
 .navbar-inverse .navbar-nav > li > a {
-    color: #5A738E !important;
+    color: black !important;
     font-size: 13px;
     font-weight: 500;
 }
     .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
-        color: #5A738E !important;
+        color: black !important;
         font-size: 13px;
         font-weight: 500;
     }
@@ -184,7 +184,7 @@ table.employeetable > thead > tr > th {
 
 #collapse1 {
     overflow-y: scroll;
-    height:269px;
+    height:273px;
 }
 /* 
 Max width before this PARTICULAR table gets nasty

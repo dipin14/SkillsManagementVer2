@@ -4,15 +4,15 @@
     ViewBag.Title = "Edit";
 }
 <link href="~/Content/theme.css" rel="stylesheet" />
-
+<script src="~/Scripts/Skill.js"></script>
 
 @using (Html.BeginForm())
-{
+{    
     @Html.AntiForgeryToken()
     @Html.HiddenFor(x => x.skillId)
 
     <div class="form-horizontal well">
-        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Edit Skill</label>
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:15px;">Edit Skill</label>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-1" style="margin-bottom:10px;">
-                @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-aqua" })
+                @Html.ActionLink("Cancel", "Index", new { page = ViewBag.CurrentPage }, htmlAttributes: new { @class = "btn btn-aqua" })
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-1" style="margin-bottom:10px;">

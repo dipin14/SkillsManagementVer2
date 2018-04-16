@@ -4,6 +4,7 @@
     ViewBag.Title = "Edit";
 }
 <link href="~/Content/theme.css" rel="stylesheet" />
+<script src="~/Scripts/Employee.js"></script>
 
 
 @using (Html.BeginForm())
@@ -11,7 +12,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal well">
-        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px">Edit Employee</label>
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:15px">Edit Employee</label>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -121,8 +122,8 @@
                 </div>
                 @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control",@onchange = "OnChangeMobile();" } })
+                    @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger", id = "mobileValidation" })
                 </div>
             </div>
         </div>

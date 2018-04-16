@@ -10,7 +10,7 @@ namespace Skillset_PL.ViewModels
     {
 
         [Required(ErrorMessage ="Please enter Employee code")]
-        [Display(Name = "Code")]
+        [Display(Name = "Employee Code")]
         [RegularExpression("^E([0-9]){3,8}$", ErrorMessage = "Code must begin with 'E' followed by atleast 3 numbers")]
         public string EmployeeCode { get; set; }
         [Required(ErrorMessage = "Please enter Name")]
@@ -37,7 +37,7 @@ namespace Skillset_PL.ViewModels
         [Required(ErrorMessage = "Please enter Birth Date")]
         [DataType(DataType.Date)]      
         [Display(Name = "Birth Date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
         [Required(ErrorMessage = "Please select a Manager")]
         [Display(Name = "Manager")]
@@ -50,7 +50,7 @@ namespace Skillset_PL.ViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Please enter Mobile Number")]
-        [RegularExpression("^([0-9]){10}$", ErrorMessage = "Mobile Number should contain 10 digits")]
+        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Mobile Number should contain 10 digits")]
         [Display(Name = "Mobile Number")]
         public double MobileNumber { get; set; }
         [Required(ErrorMessage = "Please choose a Gender")]

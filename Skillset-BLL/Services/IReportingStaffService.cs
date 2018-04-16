@@ -25,5 +25,12 @@ namespace Skillset_BLL.Services
         /// <param name="id"></param>
         /// <returns>EmployeeDTO</returns>
         EmployeeDTO GetProfile(string id);
+
+        /// <summary>
+        /// Calculate average of skill rating of an employee
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <returns>averageSkillRating</returns>
+        double AverageSkillRating(string employeeCode);
     }
 }

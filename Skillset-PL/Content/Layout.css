@@ -105,7 +105,7 @@
     background-color: #D9DEE4 !important;
     font-size: 13px;
     font-weight: 500;
-    color: black !important;
+    color: #5A738E !important;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -146,10 +146,7 @@
     color: #1ABB9C;
     font-size: 40px;
 }
-/* Dropdown*/
-.dropdown-menu > li > a {
-    color: #5A738E !important;
-}
+
 
 .pull-right {
     float: right !important;
@@ -199,14 +196,14 @@ table.table.table-hover.table-responsive.size-response td{
             left: 6px;
              width: 45%;
             padding-right: 10px;
-            white-space: nowrap;
+            /*white-space: nowrap;*/
 		  /* text-align:left;*/
 		    font-weight: bold;
+
          }
    /*Label the data*/
        .size-response td:before { 
            content: attr(data-title);
-
        }
         
        
@@ -233,6 +230,7 @@ table.table.table-hover.table-responsive.size-response td{
     }
 .size-response td {
         font-size:10px;
+ 
     }
 table.table.table-hover.table-responsive.size-response td{
        /* Behave  like a "row" */
@@ -242,6 +240,7 @@ table.table.table-hover.table-responsive.size-response td{
         padding-left:50%;       
 		white-space: normal;
 		text-align:left;
+ 
     }
 
   .size-response td:before {
@@ -253,11 +252,12 @@ table.table.table-hover.table-responsive.size-response td{
              width: 45%;
             padding-right: 10px;
 		    font-weight: bold;
+ 
          }
    /*Label the data*/
        .size-response td:before { 
            content: attr(data-title);
-
+ 
        }
         
        

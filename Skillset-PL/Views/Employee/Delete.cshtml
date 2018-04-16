@@ -5,59 +5,60 @@
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="~/Content/theme.css" rel="stylesheet" />
+<script src="~/Scripts/Employee.js"></script>
 <div class="row first">
 
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
 
-        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Delete Employee</label>
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:15px;">Delete Employee</label>
         <div class="well" style="background-color:#fff">
             <div class="row">
                 <table class="table-responsive profileborder" style="width: 100%">
                     <tr>
                         <td style="width:5%"><span class="fa fa-envelope-o"></span></td>
-                        <td>Email Id: </td>
+                        <td>Email </td>
                         <td class="info">@Model.Email</td>
                     </tr>
                     <tr>
                         <td style="width:5%"><span class="fa fa-intersex"></span></td>
-                        <td>Gender: </td>
+                        <td>Gender </td>
                         <td class="info">@Model.Gender</td>
                     </tr>
                     <tr>
                         <td style="width:5%"><span class="fa fa-phone"></span></td>
-                        <td>Mobile Number: </td>
+                        <td>Mobile Number </td>
                         <td class="info">@Model.MobileNumber</td>
                     </tr>
                     <tr>
                         <td style="width:5%"><span class="fa fa-calendar"></span></td>
-                        <td>Date Of Birth:</td>
-                        <td class="info">@Model.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                        <td>Birth Date </td>
+                        <td class="info">@Model.DateOfBirth.ToString("MM/dd/yyyy")</td>
                     </tr>
                     <tr>
                         <td style="width:5%"><span class="fa fa-calendar"></span></td>
-                        <td>Date Of Joining:</td>
-                        <td class="info">@Model.DateOfJoining.ToString("dd/MM/yyyy")</td>
+                        <td>Joining Date </td>
+                        <td class="info">@Model.DateOfJoining.ToString("MM/dd/yyyy")</td>
                     </tr>
                     <tr>
                         <td style="width:5%"><span class="fa fa-cog"></span></td>
-                        <td>Designation: </td>
+                        <td>Designation </td>
                         <td class="info">@Model.DesignationId</td>
                     </tr>
                     <tr>
                         <td style="width:5%"><span class="fa fa-black-tie"></span></td>
-                        <td>Experience: </td>
+                        <td>Experience </td>
                         <td class="info">@Model.Experience years</td>
                     </tr>
                     <tr>
                         <td style="width:5%"><span class="fa fa-briefcase"></span></td>
-                        <td>Role: </td>
+                        <td>Role </td>
                         <td class="info">@Model.RoleId</td>
                     </tr>
 
                     <tr>
                         <td style="width:5%"><span class="fa fa-address-card-o"></span></td>
-                        <td>Address: </td>
+                        <td>Address </td>
                         <td class="info">@Model.Address</td>
                     </tr>
                 </table>
@@ -73,9 +74,9 @@
     <div class="form-group">
         <div class="col-sm-2"></div>
         <div class="col-sm-6">
-            <input type="submit" value="Delete" class="btn btn-danger " style="background-color:#1abb9c;color:#FFF; border-color:#1abb9c" />
+            <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-aqua">Cancel</a>
             &nbsp; &nbsp;
-            <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-primary" style="background-color:#2a3f54;color:#FFF; border-color:#2a3f54;padding-left:10px;">Cancel</a>
+            <input type="submit" value="Delete" class="btn btn-green"  />
 
         </div>
         <div class="col-md-4"></div>

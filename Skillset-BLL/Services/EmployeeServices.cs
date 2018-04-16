@@ -267,9 +267,18 @@ namespace Skillset_BLL.Services
         /// Retrieve employee name and skill name of those employee who top rated that skill
         /// </summary>
         /// <returns></returns>
-        public List<KeyValuePair<string, string>> GetTopRatedRecentEmployees()
+        public List<KeyValuePair<string, string>> GetTopRatedRecentEmployees(string search)
         {
-            return _repository.GetTopRatedRecentEmployees();
+            var topEmployees = _repository.GetTopRatedRecentEmployees();
+            if(!string.IsNullOrWhiteSpace(search))
+            {
+                var searchResult=topEmployees.FindAll(s => s.Key.ToLower().Contains(search.ToLower()) || s.Value.ToLower().Contains(search.ToLower()));
+                topEmployees = searchResult;
+            }
+           
+            
+            return topEmployees;
+
         }
 
        

@@ -1,4 +1,4 @@
-﻿
+﻿@using Skillset_PL.ViewModels;
 @{
     Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
     ViewBag.Title = "Dashboard";
@@ -11,6 +11,7 @@
 
     <link href="~/Content/Site.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="~/Scripts/LoadMore.js"></script>
     <script>
 
         var BarChartData =
@@ -18,10 +19,7 @@
             labels: [@Html.Raw(ViewBag.SkillnameExcludeList)],
             datasets: [{
                 label: 'Skill Ratings Average',
-                backgroundColor: ["rgba(42, 63, 84, 1.0)",
-                "rgba(42, 63, 84, 1.0)", "rgba(42, 63, 84, 1.0)",
-                "rgba(42, 63, 84, 1.0)", "rgba(42, 63, 84, 1.0)",
-                "rgba(42, 63, 84, 1.0)", "rgba(42, 63, 84, 1.0)"],
+                backgroundColor: "rgba(42, 63, 84, 1.0)",
 
 
                 borderWidth: 2,
@@ -68,7 +66,7 @@
 <body>
     <div class="row">
         <div class="col-md-4 tile-first">
-            <span class="tile-top"><i class="fa fa-user"></i>Total Users</span>
+            <span class="tile-top"><i class="fa fa-user"></i>Total Employees</span>
             <div class="tile-value">@(ViewBag.TotalEmployees)</div>
         </div>
         <div class="col-md-4 tile-list">
@@ -87,7 +85,7 @@
         <div class="col-md-8 ">
             <div class="dashboard-graph">
                 <div class="row graph-title">
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="padding-top:12px;padding-bottom:12px">
                         <h3>Average Ratings</h3>
                     </div>
                 </div>
@@ -103,17 +101,33 @@
             <div class="dashboard-card">
                 <div class="row card-title">
                     <div class="col-md-8">
-                        <h3>Top Skilled</h3><div>Employees</div>
+                        <h3 data-tooltip="Employees who have rated 5 star for skills" data-tooltip-position="bottom">Top Skilled</h3>
+                        @using (Html.BeginForm("Index", "Dashboard", FormMethod.Get))
+                        {
+                            <div class="row" style="margin-left:0px">
+                                <div class="col-md-8" style="padding:0px">
+                                    @Html.Editor("search", null, new { htmlAttributes = new { @class = "form-control", @placeholder = "Employee/Skill" } })
+                                </div>
+                                <div class="col-md-4" style="padding-right:0px;padding-left:5px">
+                                    <button type="submit" name="submit" class="btn" style="background-color:white;color:#2a3f54;font-size:20px;" data-tooltip="Search Employee/Skill" data-tooltip-position="bottom">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    @*<a href="@Url.Action("Index")" data-tooltip="Search Employee/Skill" data-tooltip-position="bottom" style="background-color:white;color:#2a3f54;font-size:20px;" class="btn"><div class="fa fa-search"></div></a>*@
+                                    <a href="@Url.Action("Index")" data-tooltip="Refresh Search" data-tooltip-position="bottom" style="background-color:white;color:#2a3f54;font-size:20px;" class="btn"><div class="fa fa-refresh"></div></a>
+                                </div>
+                            </div>
+                        }
                     </div>
                     <div class="col-md-4 toggle-card">
                         <a class="toggle-button" style="float:right;"><i class="classi fa fa-chevron-up"></i></a>
                     </div>
+
                 </div>
             </div>
-            <div class="col-md-12" style="background:white;" id="show">
+            <div class="col-md-12" style="background:white;padding-left: 0px;padding-right: 0px;" id="show">
                 <div id="collapse1">
                     <table class="employeetable table table-hover table-responsive" style="margin-bottom:10px">
-                        <thead>
+                        <thead style="background-color: #2a3f54;color: white;">
                             <tr>
                                 <th style="font-weight:bold;font-size:16px">Employee Name</th>
                                 <th style="font-weight:bold;font-size:16px">Skill</th>
@@ -123,13 +137,23 @@
                         <tbody>
                             @if ((ViewBag.TopSkillsTableData != null))
                             {
-                                foreach (var item in ViewBag.TopSkillsTableData)
+                                foreach (var group in ViewBag.TopSkillsTableData)
                                 {
-                                    <tr>
-                                        <td>@item.Value</td>
-                                        <td style="color:#1ABB9C">@item.Key</td>
-                                    </tr>
+                                    
+                                        <tr class="blogBox">
+                                            <td>@group.Key</td>
+                                            <td>
+                                                @foreach (var item in group.Values)
+                                                {
+                                                    @item
+                                                    <br />
+                                                }
+                                            </td>
+                                        </tr>
+                                   
+
                                 }
+                              
                             }
                             @if (ViewBag.TopSkillsTableData.Count <= 0)
                             {

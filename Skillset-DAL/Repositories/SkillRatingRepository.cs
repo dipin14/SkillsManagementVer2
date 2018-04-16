@@ -151,6 +151,33 @@ namespace Skillset_DAL.Repositories
                 StringBuilder result = new StringBuilder();
                 string id = string.Empty;
 
+                //Get total ratings count for each skill
+                totalValues = GetTotalValue();
+
+                //Get sum of actual ratings for each skill
+                specificValues = GetSpecificValue();
+               
+                for (int i = 0; i < specificValues.Count; i++)
+                {
+                    //Calculate average rating for each skill
+                    float ratingAvg = (float)specificValues.ElementAt(i) / (float)totalValues.ElementAt(i);
+                    result.Append(ratingAvg);
+                    result.Append(", ");
+                }
+                return result.ToString();
+
+            }
+        }
+
+        /// <summary>
+        /// Retrieve total ratings count for each skill
+        /// </summary>
+        /// <returns></returns>
+        public List<int> GetTotalValue()
+        {
+            List<int> totalValues = new List<int>();
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
                 var rating = context.SkillRatings.Where(x => x.Status == true);
                 var groupRating = rating.GroupBy(x => x.SkillId).Select(x => new { Id = x.Key, Values = x.Distinct().Count() });
 
@@ -159,7 +186,19 @@ namespace Skillset_DAL.Repositories
                     //Get total no of rating for each skill
                     totalValues.Add(r);
                 }
+                return totalValues;
+            }
+        }
 
+        /// <summary>
+        /// Retrieve sum of actual ratings for each skill
+        /// </summary>
+        /// <returns></returns>
+        public List<int> GetSpecificValue()
+        {
+            List<int> specificValues = new List<int>();
+            using (SkillsetDbContext context = new SkillsetDbContext())
+            {
                 var skill = (from sr in context.SkillRatings
                              join r in context.Ratings
                              on sr.RatingId equals r.Id
@@ -174,15 +213,7 @@ namespace Skillset_DAL.Repositories
                     //Get acual rating for each skill
                     specificValues.Add(r);
                 }
-                for (int i = 0; i < specificValues.Count; i++)
-                {
-                    //Calculate average rating for each skill
-                    float ratingAvg = (float)specificValues.ElementAt(i) / (float)totalValues.ElementAt(i);
-                    result.Append(ratingAvg);
-                    result.Append(", ");
-                }
-                return result.ToString();
-
+                return specificValues;
             }
         }
 

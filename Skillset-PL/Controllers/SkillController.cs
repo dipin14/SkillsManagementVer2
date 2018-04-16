@@ -41,6 +41,7 @@ namespace Skillset_PL.Controllers
             //Limited the number of rows per page to 8
             int pageSize = 8;
             int pageNumber = (page ?? 1);
+            ViewBag.CurrentPage = pageNumber;
             return View(skillList.ToPagedList(pageNumber, pageSize));
         }
 
@@ -93,8 +94,11 @@ namespace Skillset_PL.Controllers
         /// </summary>
         /// <param name="skillName"></param>
         /// <returns></returns>
-        public ActionResult Edit(string skillName)
+        public ActionResult Edit(string skillName, int page)
         {
+            //Pass current page to edit view
+            ViewBag.CurrentPage = page; 
+
             if (skillName == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -116,22 +120,27 @@ namespace Skillset_PL.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(SkillViewModel skillView, FormCollection collection)
+        public ActionResult Edit(SkillViewModel skillView, FormCollection collection, int page)
         {
             try
             {
+                //Pass current page to edit view
+                ViewBag.CurrentPage = page;
+
                 skillView.SkillName = skillView.SkillName.Trim();
                 skillView.SkillDescription = skillView.SkillDescription.Trim();
                 var skillUpdateResult = _skillService.Update(skillView.ToDTO());
+
                 //-1 is returned if the updated Skill Name already exists
                 if (skillUpdateResult == -1)
                 {
                     ModelState.AddModelError("SkillName", "Skill Name already exists");
                     return View(skillView);
                 }
+
                 //Notification Message is stored in tempdata
                 TempData["message"] = "Modified skill record";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { page = page });
             }
             catch
             {

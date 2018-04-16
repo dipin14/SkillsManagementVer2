@@ -4,6 +4,7 @@
     ViewBag.Title = "Delete";
 }
 <link href="~/Content/theme.css" rel="stylesheet" />
+<script src="~/Scripts/Skill.js"></script>
 <div class="row first">
     <p style="color:red"> @ViewBag.message </p>
     <div class="col-sm-2"></div>
@@ -13,7 +14,7 @@
                 <div class="panel-heading" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;">Employee Details</div>
                 <div class="panel-body">*@
 
-        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:20px;">Delete Skill</label>
+        <label class="control-label alert-success well-sm" style="display:block;text-align:center;background-color:#2a3f54;color:#FFF;font-size:15px;">Delete Skill</label>
         <div class="well" style="background-color:#fff">
             <div class="row">
                 <table class="table-responsive profileborder" style="width: 100%">
@@ -24,7 +25,7 @@
                     </tr>
                     <tr>
                         <td style="width:5%"><span class="fa fa-align-justify"></span></td>
-                        <td>Description: </td>
+                        <td>Skill Description: </td>
                         <td class="info">@Model.SkillDescription</td>
                     </tr>
                 </table>
@@ -42,9 +43,9 @@
     <div class="form-group">
         <div class="col-sm-2"></div>
         <div class="col-sm-6">
-            <input type="submit" value="Delete" class="btn btn-danger" style="background-color:#1abb9c;color:#FFF; border-color:#1abb9c" />
+            <a href="javascript:history.back()" name="Back" value="Back" class="btn btn-aqua">Cancel</a>
             &nbsp; &nbsp;
-            @Html.ActionLink("Cancel", "Index", null, htmlAttributes: new { @class = "btn btn-success", @style = "background-color:#2a3f54;color:#FFF; border-color:#2a3f54;" })
+            <input type="submit" value="Delete" class="btn btn-green"  />
         </div>
     </div>
 }

@@ -13,7 +13,7 @@ namespace Skillset_PL.ViewModels
         public string Skill { get; set; }
         public int Rating { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Rated On")]
         public DateTime RatingDate { get; set; }
         [DataType(DataType.MultilineText)]

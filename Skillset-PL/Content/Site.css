@@ -198,8 +198,7 @@ textarea {
     padding: 4px 8px;
     font-size: 14px;
     line-height: 1.4;
-    min-width: 100
-    px;
+    min-width: 100px;
     text-align: center;
     border-radius: 4px;
 }
@@ -326,3 +325,4 @@ td
 {
 word-break: break-all;
 }
+

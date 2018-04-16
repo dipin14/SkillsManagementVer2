@@ -163,6 +163,7 @@ namespace Skillset_PL.Controllers
             employee.Name = employee.Name.Trim();
             employee.Email = employee.Email.Trim();
             employee.Address = employee.Address.Trim();
+            employee.MobileNumber =Convert.ToDouble( employee.MobileNumber.ToString().Trim());
             if (ModelState.IsValid)
             {
                 int status = _services.AddNewEmployee(employee.EmployeeViewModeltoDTO());
@@ -185,7 +186,7 @@ namespace Skillset_PL.Controllers
                 //If some error occur during creation of employee record
                 else if (status == -1)
                 {
-                    TempData["message"] = "Error in creating new Employee record";
+                    TempData["error"] = "Error in creating new Employee record";
 
                 }
                 //If employee is successfully added
@@ -230,10 +231,17 @@ namespace Skillset_PL.Controllers
             int status = _services.DeleteEmployeeById(id);
             if (status == 0)
             {
-                TempData["message"] = "Error in deleting Employee record";
+                TempData["error"] = "Error in deleting Employee record";
                 return RedirectToAction("Delete", id);
             }
-            TempData["message"] = "Successfully deleted Employee record";
+            if(status==2)
+            {
+                TempData["error"] = "Employee record cannot be deleted";
+            }
+            if(status==1)
+            {
+                TempData["message"] = "Successfully deleted Employee record";
+            }
             return RedirectToAction("Index");
         }
 
@@ -285,26 +293,56 @@ namespace Skillset_PL.Controllers
             employee.Name = employee.Name.Trim();
             employee.Email = employee.Email.Trim();
             employee.Address = employee.Address.Trim();
+            employee.MobileNumber = Convert.ToDouble(employee.MobileNumber.ToString().Trim());
+
             EmployeeViewModel originalEmployee = (EmployeeViewModel)Session["EmployeeOriginal"];
             var comparer = new ObjectsComparer.Comparer<EmployeeViewModel>();
             if (ModelState.IsValid)
             {
 
                 bool isEqual = comparer.Compare(employee, originalEmployee);
+                ViewData["Designations"] = GetDesignations();
+                ViewData["Qualifications"] = GetQualifications();
+                ViewData["Managers"] = GetManagers();
+                ViewData["Roles"] = GetRoles();
                 if (!isEqual)
                 {
                     int status = _services.EditEmployeeById(employee.EmployeeViewModeltoDTO());
-                    if (status == 0)
+                    //If mobile number already exists 
+                    if (status == 1)
                     {
-                        TempData["message"] = "Error in modifying Employee record";
-                        return RedirectToAction("Edit", employee);
+                        ModelState.AddModelError("MobileNumber", "Mobile number already exists");
+
                     }
-                    TempData["message"] = "Modified Employee record";
-                    return RedirectToAction("Index");
+                    //If email already exists
+                    else if (status == 2)
+                    {
+                        ModelState.AddModelError("Email", "Email already exists");
+
+                    }
+                    else
+                    {
+                        if (status == -1)
+                        {
+                            TempData["error"] = "Error in modifying Employee record";
+
+                        }
+                        if (status == 0)
+                        {
+                            TempData["message"] = "Modified Employee record";
+                        }
+
+                        if (status == 3)
+                        {
+                            TempData["error"] = "Role for this employee cannot be changed";
+                        }
+                        return RedirectToAction("Index");
+                    }
+                   
                 }
                 else
                 {
-                    TempData["message"] = "No modification applied";
+                    TempData["error"] = "No modification applied";
                     return RedirectToAction("Index");
                 }
             }
