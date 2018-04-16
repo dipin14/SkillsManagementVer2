@@ -104,7 +104,7 @@ namespace Skillset_DAL.Repositories
                 {
                     var deleteSkillRating = db.SkillRatings.Find(SkillRatingId);
                     deleteSkillRating.Status = false;
-                    //Changin skill name of deleted skill to prevent conflict
+                    //Changing skill name of deleted skill to prevent conflict
                     db.Entry(deleteSkillRating).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -226,8 +226,8 @@ namespace Skillset_DAL.Repositories
             int skillRatingsCount = default(int);
             using (SkillsetDbContext context = new SkillsetDbContext())
             {
-                //Get distinct skill ratings count excluding special skill
-                skillRatingsCount = context.SkillRatings.Where(s => s.Status).Where(s => s.SkillId != 1).Distinct().Count();
+                //Get distinct skill ratings count
+                skillRatingsCount = context.SkillRatings.Where(s => s.Status).Distinct().Count();
             }
             return skillRatingsCount;
         } 
