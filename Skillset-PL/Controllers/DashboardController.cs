@@ -35,7 +35,7 @@ namespace Skillset_PL.Controllers
             ViewBag.RatingAverage = _ratingservices.GetRatingAverage();
 
             //Get table data
-            ViewBag.TopSkillsTableData = (from b in _services.GetTopRatedRecentEmployees(search) group b by b.Value into g select new Group<string, string> { Key = g.Key, Values = g.Select(s=>s.Key).ToList() }).ToList();
+              ViewBag.TopSkillsTableData = (from b in _services.GetTopRatedRecentEmployees(search) group b by b.Value into g select new Group<string, string> { Key = g.Key, Values = g.Select(s=>s.Key).ToList() }).ToList();
 
             return View();
         }
