@@ -204,6 +204,8 @@ namespace Skillset_PL.ViewModelExtensions
             return skillList.Select(employee => new ViewModels.EmployeeRatedSkillsViewModel
             {
                 Id = employee.Id,
+                SkillId = employee.SkillId,
+                SkillDescription =employee.SkillDescription,
                 EmployeeId = employee.EmployeeId,
                 SkillName = employee.SkillName,
                 RatedNote = employee.RatedNote,
