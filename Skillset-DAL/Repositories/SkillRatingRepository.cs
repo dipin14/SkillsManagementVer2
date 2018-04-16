@@ -73,7 +73,7 @@ namespace Skillset_DAL.Repositories
         {
             using (var db = new SkillsetDbContext())
             {
-                var skillList = db.Skills.ToList();
+                var skillList = db.Skills.Where(s=>s.Status==true).ToList();
                 return skillList;
             }
         }

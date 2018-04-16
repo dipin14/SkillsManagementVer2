@@ -44,12 +44,7 @@ namespace Skillset_DAL.Migrations
                 new Rating { Id = 4, Value = 4, Note = "Okay" },
                 new Rating { Id = 5, Value = 5, Note = "Perfect" }
              );
-            context.Skills.AddOrUpdate(
-                  p => p.SkillId,
-                   new Skill { SkillId = 1, SkillName = "Special skill", SkillDescription = "If you have any special Skills", Status = false }
-
-                );
-
+          
             context.SaveChanges();
 
             if (context.Employees.Find(1) == null)
