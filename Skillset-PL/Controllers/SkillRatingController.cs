@@ -90,11 +90,6 @@ namespace Skillset_PL.Controllers
             var SkillList= EmployeeRatings();
             //var result = ratedList.Where(x => !SkillList.Contains(x.SkillId));
             var result1 = SkillList.Where(p => !ratedList.Any(p2 => p2.SkillId == p.skillId));
-           /* var SkillRatings=from r in ratedList
-                             from s in SkillList
-                             where(r.SkillId!=s.skillId)
-                             select s;*/
-
             ratingObj.RatedSkills = ratedList;
            ratingObj.SkillRatings = result1;
             ViewBag.IsSpecial = ratingObj.RatedSkills.ToList().Any(m => m.SkillName == "Special skill");

@@ -72,18 +72,18 @@
                                 {
 
 
-                                    <span class="starGlow" id="Rate_@i @item.SkillId" onclick="CRate(@item.SkillId, @i)" onmouseover="CRateOver(@item.SkillId,@i)" onmouseout="CRateOut(@item.SkillId,@i)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
+                                    <span class="starGlow" id="Rate_@i @item.SkillId" onclick="CRate(@item.SkillId, @i)" onmouseover="CRateOver(@item.SkillId,@i)" onmouseout="CRateOut(@item.SkillId,@i)" ></span>
                                 }
                                 @for (var i = (item.RatedValue + 1); i <= 5; i++)
                                 {
 
 
-                                    <span class="starFade" id="Rate_@i @item.SkillId" onclick="CRate(@item.SkillId, @i)" onmouseover="CRateOver(@item.SkillId,@i)" onmouseout="CRateOut(@item.SkillId,@i)" data-tooltip="Not so good" data-tooltip-position="bottom"></span>
+                                    <span class="starFade" id="Rate_@i @item.SkillId" onclick="CRate(@item.SkillId, @i)" onmouseover="CRateOver(@item.SkillId,@i)" onmouseout="CRateOut(@item.SkillId,@i)" ></span>
                                 }
                                
                             </div>
                             
-                            <textarea class="txtSkill" id="TxtAra_@item.SkillId"   required style=" margin:10px;">@item.RatedNote</textarea>
+                            <textarea class="txtSkill" id="TxtAra_@item.SkillId"   required style="margin:10px;">@item.RatedNote</textarea>
 
                         </div>
                         

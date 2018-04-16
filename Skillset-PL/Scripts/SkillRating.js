@@ -62,7 +62,7 @@ function CRateSelected(id,value) {
         var SkillID = AllRatings.RatedSkills[i].SkillId
         var Notes = document.getElementById("TxtAra_"+AllRatings.RatedSkills[i].SkillId).value
 
-        // if (ratingSCore != "") 
+       
         {
             var RatingObject = {};
 
@@ -185,9 +185,7 @@ function CRateSelected(id,value) {
         var specialSKill = document.getElementById("specialSkillBtn")
 
         if (IsSpecial == true) {
-            //document.getElementById("test").style.display = "none";
             specialSKill.style.display = "none";
-            //specialSKill.style.cursor = no-drop;
         }
         else {
             specialSKill.disabled = false;
